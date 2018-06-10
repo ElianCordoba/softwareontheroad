@@ -38,21 +38,12 @@ I learnt about the maths beahind backpropagation, what is an activation function
 
  I trained a model that can solve XOR
 
- ## Linear Regression
-  _It's just a fancy name for a model that can do binary classification_
-
-  [LINK](https://github.com/santiq/linear-regression-tensor-flow)
-
-  This one is a lot simple than the previous project, but I learnt about the Tensorflow.js API and some Keras (python framework)
-  Using Tensorflow.js, _and some library that helpedme with the canvas_ I train a model that do linear regression.
-
-  ```javascript
-  X * M + B // IT'S THE SAME FORMULA AS A FEEDFOWARD NEURAL NETWORK!!! 
-  ```
-  
  ## Polinomial Regression
 
-  **Working Progress**
+  [LINK](https://santiq.github.io/linear-regression-tensor-flow)
+
+  This one is a lot simple than the previous project, but I learnt about the Tensorflow.js API and some Keras (python framework)
+  Using Tensorflow.js, _and some library that helpedme with the canvas_ I train a model that do linear regression. 
 
  ## Train a model that recognize images
 
