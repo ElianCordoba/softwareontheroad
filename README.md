@@ -24,7 +24,7 @@
 
 I'm going to make every little project public
 
- ## My first neural network 
+## My first neural network 
 
  [LINK](https://github.com/santiq/simple-nn)
 
@@ -38,26 +38,27 @@ I learnt about the maths beahind backpropagation, what is an activation function
 
  I trained a model that can solve XOR
 
- ## Polinomial Regression
+## Polinomial Regression
 
-  [LINK](https://santiq.github.io/linear-regression-tensor-flow)
+  [DEMO](https://santiq.github.io/linear-regression-tensor-flow)
+  [Source](https://github.com/santiq/linear-regression-tensor-flow)
 
   This one is a lot simple than the previous project, but I learnt about the Tensorflow.js API and some Keras (python framework)
   Using Tensorflow.js, _and some library that helpedme with the canvas_ I train a model that do linear regression. 
 
- ## Train a model that recognize images
+## Train a model that recognize images
 
   **Coming soon**
 
- ## Using Q Learning, train a model to play a game like Chrome's endless runner
+## Using Q Learning, train a model to play a game like Chrome's endless runner
 
   **Comming soon**
 
- ## Deploy a tensorflow based api that do sentiment analysis
+## Deploy a tensorflow based api that do sentiment analysis
  
   **Comming soon**
 
- ## A simple model that predict stock prices based on previous prices
+## A simple model that predict stock prices based on previous prices
 
   **Comming Soon**
 
