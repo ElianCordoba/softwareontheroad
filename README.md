@@ -78,3 +78,6 @@ Make a donation so I can quit my job and do this fulltime
 `3PN7G5X5hnJTWef3j2LETxUUMMRgcGaSWm`
 
 Thanks !!!
+
+
+{% include analytics.html %}
