@@ -4,6 +4,10 @@ title: My journey as a digital nomad &#x1F468;&#x200D;&#x1F4BB;
 subtitle: Why I quit my 9-5 job and decide to travel the world 
 tags: [blog, digital-nomad, travel, life, self]
 ---
+ <p> 
+  The reasons why I started a nomadic life.
+  Being a digital nomad is something that everybody should try. I mean, I know is not for everybody, but if you want to do it, you should do it before you regret it.
+ </p>
  <p>
   Last time I wrote something here I was in a phase of my career and my life where I felt like I didn't know what's next step to take. 
   </p>
