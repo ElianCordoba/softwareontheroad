@@ -223,7 +223,7 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
             <PostCardTitle>{post.frontmatter.title}</PostCardTitle>
           </header>
           <PostCardExcerpt>
-            <p>{post.excerpt}</p>
+            <p>{post.excerpt.replace('#', '')}</p>
           </PostCardExcerpt>
         </Link>
         <PostCardMeta className="post-card-meta">
