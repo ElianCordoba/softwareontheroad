@@ -11,6 +11,7 @@ draft: false
 
 
 # Have you ever hear about the "uncaughtException" ?
+<!-- end -->
 
 The "uncaughtException" event is emitted when an uncaught JavaScript exception bubbles all the way back to the event loop.
 

@@ -1,28 +1,26 @@
 ---
 layout: post
 title: How to upload files to a private S3 bucket from client side (Easy Guide)
-subtitle: Simple steps to generate signed urls and improve your uploading performance
 author: santypk4
 date: "2019-02-01T00:00:00.000Z"
 image: img/writing.jpg
 tags: ["s3", "aws", "devops", "backend", "javascript", "node.js", "how-to", "guide", "getting-started"]
 draft: true
 ---
-  <p> 
-   The thing is I already have a working upload solution but the file goes first to the server and then the server uploads it to the S3 bucket.
-  </p>
 
-  <p> 
-   This is a performance problem for my clients, they are across the world, and uploading a 70MB file from Singapour to the server that's somewhere in the US, and then the server uploads it again to my main bucket on Frankfurt, well boy you gotta have problems.
-  </p>
+  # Simple steps to generate signed urls and improve your uploading experience
+  <!-- end -->
 
-  <p> Well let's do this, should be easy thought. </p>
+  The thing is I already have a working upload solution but the file goes first to the server and then the server uploads it to the S3 bucket.
 
-  <p> I think that I scanned the entery Internet and there is no easy to follow tutorial, everybody is talking about pre-signed v2 vs pre-signed v4, come on people what the fuck is that, why cloud computing guys always have to overcomplicate the simple things? </p>
+  This is a performance problem for my clients, they are across the world, and uploading a 70MB file from Singapour to the server that's somewhere in the US, and then the server uploads it again to my main bucket on Frankfurt, well boy you gotta have problems.
+  
+  # Well let's do this, should be easy thought. 
 
-  <p>  
-    This is pretty easy, every human should be able to do this.
-  </p>
+  I think that I scanned the entery Internet and there is no easy to follow tutorial, everybody is talking about pre-signed v2 vs pre-signed v4, come on people what the fuck is that, why cloud computing guys always have to overcomplicate the simple things? 
+
+  This is pretty easy, every human should be able to do this.
+  
 
   <img src="https://docs.aws.amazon.com/AmazonS3/latest/API/images/s3_post.png" alt="s3 upload flow">
 
