@@ -30,8 +30,8 @@ export interface WebsiteConfig {
 }
 
 const config: WebsiteConfig = {
-  title: 'How to use your software development skills &#x1F4BB; to travel the world &#x1F5FA',
-  description: 'Quit your 9-5 job and sail around the world',
+  title: 'Software on the road',
+  description: 'Writing software while travelling around the world 🌍',
   coverImage: 'img/blog-cover.jpg',
   logo: 'img/ghost-logo.png',
   lang: 'en',

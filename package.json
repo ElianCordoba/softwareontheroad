@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-casper",
-  "description": "Casper for gatsby",
+  "name": "softwareontheroad",
+  "description": "https:// softwareontheroad.com - A blog on software topics",
   "version": "0.0.0",
   "private": true,
-  "author": "Scott Cooper <scttcper@gmail.com>",
+  "author": "Santiago Quinteros <contacto.quinteros@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",

@@ -2,8 +2,8 @@ const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: 'How to use your software development skills &#x1F4BB; to travel the world &#x1F5FA',
-    description: 'Quit your 9-5 job and sail around the world',
+    title: 'Software on the road',
+    description: 'Writing software while travelling around the world 🌍',
     siteUrl: 'https://softwareontheroad.com', // full path to blog - no ending slash
   },
   mapping: {
