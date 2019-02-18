@@ -30,7 +30,7 @@ export interface WebsiteConfig {
 }
 
 const config: WebsiteConfig = {
-  title: 'Software on the road',
+  title: 'softwareontheroad',
   description: 'Writing software while travelling around the world 🌍',
   coverImage: 'img/blog-cover.jpg',
   logo: 'img/ghost-logo.png',
