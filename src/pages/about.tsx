@@ -37,27 +37,21 @@ const About: React.FunctionComponent = () => (
 
           <PostFullContent className="post-full-content">
             <div className="post-content">
-              <p>
-                Ghost is professional publishing platform designed for modern journalism. This is a
-                demo site of a basic Ghost install to give you a general sense of what a new Ghost
-                site looks like when set up for the first time.
+              <p> 
+                Welcome to the personal blog of Santiago Quinteros. 
               </p>
-              <blockquote>
-                <p>
-                  If you'd like to set up a site like this for yourself, head over to{' '}
-                  <a href="https://ghost.org">Ghost.org</a> and start a free 14 day trial to give
-                  Ghost a try!
-                </p>
-              </blockquote>
+              <p> 
+                Santiago has been developing software since a young age, he started at age 16 making video games with good old Unity3D.
+              </p>
+                At 19 he learned javascript and web development and fall in love with NodeJs and cloud computing.
               <p>
-                If you're a developer: Ghost is a completely open source (MIT) Node.js application
-                built on a JSON API with an Ember.js admin client. It works with MySQL and SQLite,
-                and is publicly available <a href="https://github.com/TryGhost/ghost">on Github</a>.
+                Six years later, he has acquired vast experience working on early-stage startups, helping them reach the next level.
+              </p>
+              <p> 
+                Santiago is interested in working with cloud computing, full-stack development, and machine learning projects.
               </p>
               <p>
-                If you need help with using Ghost, you'll find a ton of useful articles on{' '}
-                <a href="https://help.ghost.org">our knowledgebase</a>, as well as extensive{' '}
-                <a href="https://docs.ghost.org">developer documentation</a>.
+                Now he travels the world as a digital nomad while working full time at <a href="https://standups.io" target="_blank"> standups.io </a> the best way to run video standups specially crafted for remote and distributed teams 🌎
               </p>
             </div>
           </PostFullContent>
