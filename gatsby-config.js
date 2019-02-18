@@ -21,6 +21,7 @@ module.exports = {
     {
       resolve: 'gatsby-transformer-remark',
       options: {
+        "excerpt_separator": `<!-- end -->`,
         plugins: [
           {
             resolve: 'gatsby-remark-responsive-iframe',
