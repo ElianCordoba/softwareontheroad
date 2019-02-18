@@ -3,7 +3,7 @@ layout: post
 title: How to upload files to a private S3 bucket from client side (Easy Guide)
 author: santypk4
 date: "2019-02-01T00:00:00.000Z"
-image: img/writing.jpg
+image: img/fast-uploads.jpg
 tags: ["s3", "aws", "devops", "backend", "javascript", "node.js", "how-to", "guide", "getting-started"]
 draft: true
 ---

@@ -3,7 +3,7 @@ layout: post
 title: My journey as a digital nomad 👨‍💻 
 author: santypk4
 date: "2019-01-20T00:00:00.000Z"
-image: img/computer.jpg
+image: img/digital-nomad.jpg
 tags: ["travel", "life", "self"]
 draft: false
 ---
