@@ -47,13 +47,3 @@ draft: false
   
   Maybe I don't have the time to continue studying Machine Learning, nor studying to apply for a job as a software engineer at Google, because now I spend my free time doing surf or scuba diving or just chilling with my wife and watching Netflix, and you know what? <b> Maybe I'm learning about what is to be alive. </b>
  
-
-  <div class="col-sm-12 text-center"> 
-    <div class="alert alert-info" role="alert">
-      <h3 class="alert-heading"> Stay in touch! </h3>
-      <p style="margin: 10px" > If you would like to know more about my travells </p>
-      <a href="https://www.instagram.com/santypk4">
-        <button type="button" class="btn btn-block btn-success btn-lg"> Fllow me on Instagram </button> 
-      </a>
-    </div>
-  </div>
