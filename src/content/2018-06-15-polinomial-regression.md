@@ -4,7 +4,7 @@ title: Polinomial Regression
 subtitle: Using tensorflow.js low-level API
 author: santypk4
 date: "2018-06-15T00:00:00.000Z"
-image: img/demo1.jpg
+image: img/demo4.jpg
 tags: ["machine-learning"]
 draft: false
 ---
