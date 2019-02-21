@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: 'softwareontheroad',
+    title: 'Software on the road',
     description: 'Writing software while travelling around the world 🌍',
     siteUrl: 'https://softwareontheroad.com', // full path to blog - no ending slash
   },
