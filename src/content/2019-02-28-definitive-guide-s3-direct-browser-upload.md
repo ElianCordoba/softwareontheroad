@@ -13,7 +13,7 @@ tags: ["s3", "aws", "devops", "backend", "javascript", "node.js", "how-to", "gui
 
 Well if your application is uploading a file to your server, and then your server uploads it to an S3 Bucket, you have a bottleneck and performance trouble.
 
-My clients were uploading large video files, 100mb average, from Asia, Europe, and North America, my server is hosted on Heroku and located in Northen Virginia but my main S3 Bucket is on Frankfurt!
+My clients were uploading **large** video **files**, 100mb average, from various locations Asia, Europe, and North America, my server is hosted on **Heroku** and located in **Northen Virginia** **but my main S3 Bucket** is on **Frankfurt**!
 
 Will be easier and efficient if the web client has the possibility to upload directly to that S3 Bucket.
 
@@ -24,8 +24,9 @@ Seem's trivial but you may confront several problems and the official AWS docume
 
 # The procedure
 
-You will need to generate pre-signed S3 URLs, so a user can write an object directly with a POST or PUT call.
-A pre-signed URL is a URL that you generate with your AWS credentials and you provide to your users to grant temporary access to a specific S3 object. 
+You will need to generate `pre-signed` S3 URLs, so a user can write an object **directly** with a **POST** or **PUT** call.
+
+A `pre-signed` URL is a URL that you generate with your AWS credentials and you provide to your users to grant temporary access to a specific S3 object. 
 
 # Generate Credentials
 
@@ -40,7 +41,7 @@ A pre-signed URL is a URL that you generate with your AWS credentials and you pr
 
 ## Click create your own policy and copy the following
 
-JSON
+```JSON
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -147,8 +148,9 @@ route.get('/signed-url-put-object', async (req, res) => {
 
 # Server Code - POST Multi-Part FormData
 
-With this, you will generate a FORM and you must send all the fields in a FormData object in a POST request to the S3 bucket.
-You can not use the transfer acceleration endpoint because is a CloudFront endpoint that it's not configured with the necessary CORS options and you cannot change it sadly.
+With this, you will generate a FORM and you must send all the fields in a FormData object in a **POST** request to the S3 bucket.
+
+**You can not use the transfer acceleration endpoint because is a CloudFront endpoint that it's not configured with the necessary CORS options and you cannot change it sadly.**
 
 But this is useful if you are developing a react native application and you have the needing of using a FormData or any other scenario where you must use multi-part uploads.
 
