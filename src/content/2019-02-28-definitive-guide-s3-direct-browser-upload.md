@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Definitive guide to upload files to a private S3 bucket from browser (Easy Guide)
+title: Definitive guide to AWS S3 direct uploads from browser (easy guide - no CORS)
 author: santypk4
 date: "2019-02-28T15:45:00.000Z"
 image: img/fast-uploads.jpg
@@ -75,6 +75,12 @@ Add it to your new user.
 
 # Configuring S3 CORS policy
 
+The same-origin policy is an important security concept implemented by web browsers to prevent Javascript code from making requests against a different domain than the one from which it was served.
+
+Cross-Origin Resource Sharing (CORS) is a technique for relaxing the same-origin policy, allowing Javascript on a web page to making HTTP calls to a different origin.
+
+CORS makes it easier for service providers to distribute content to users while adding interoperability to online services​​.
+​​
 1- Go to your bucket
 
 2- Go to the permissions tab
@@ -95,6 +101,8 @@ Add it to your new user.
 </CORSRule>
 </CORSConfiguration>
 ```
+
+CORS makes it easy for web services to quickly and easily integrate without exposing their users
 
 # Activating Transfer Acceleration Endpoint
 
