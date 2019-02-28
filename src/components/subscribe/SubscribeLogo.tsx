@@ -36,8 +36,9 @@ const SubscribeLogo = () => (
     `}
     // tslint:disable-next-line:react-this-binding-issue
     render={(data: SiteNavLogoProps) =>
-      data.logo && (
-        <SubscribeOverlayLogo src={data.logo.childImageSharp.fixed.src} alt={config.title} />
+      // tslint:disable-next-line:binary-expression-operand-order
+      null && (
+        <SubscribeOverlayLogo src={data.logo && data.logo.childImageSharp.fixed.src} alt={config.title} />
       )
     }
   />
