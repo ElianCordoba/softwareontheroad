@@ -4,18 +4,18 @@ title: Definitive guide to upload files to a private S3 bucket from browser (Eas
 author: santypk4
 date: "2019-02-28T15:45:00.000Z"
 image: img/fast-uploads.jpg
-tags: ["s3", "aws", "devops", "backend", "javascript", "node.js", "how-to", "guide", "besties"]
+tags: ["AWS S3", "aws", "devops", "backend", "javascript", "node.js", "how-to", "guide", "besties"]
 ---
 
 <img src="https://docs.aws.amazon.com/AmazonS3/latest/API/images/s3_post.png" alt="Direct upload to s3 infrastructure">
 
 # Why you will want to upload files to a private S3 directly from the browser?
 
-Well if your application is uploading a file to your server, and then your server uploads it to an S3 Bucket, you have a bottleneck and performance trouble.
+Well if your application is uploading a file to your server, and then your server uploads it to an AWS S3 Bucket, you have a bottleneck and performance trouble.
 
 My clients were uploading **large** video **files**, 100mb average, from various locations Asia, Europe, and North America, my server is hosted on **Heroku** and located in **Northen Virginia** **but my main S3 Bucket** is on **Frankfurt**!
 
-Will be easier and efficient if the web client has the possibility to upload directly to that S3 Bucket.
+Will be easier and efficient if the web client has the possibility to upload directly to that AWS S3 Bucket.
 
 
 <img src="img/s3-upload-guide/connections-mess.png" alt="Object upload replication mess">
@@ -24,9 +24,20 @@ Seem's trivial but you may confront several problems and the official AWS docume
 
 # The procedure
 
-You will need to generate `pre-signed` S3 URLs, so a user can write an object **directly** with a **POST** or **PUT** call.
+You will need to generate `pre-signed` AWS S3 URLs, so a user can write an object **directly** with a **POST** or **PUT** call.
 
-A `pre-signed` URL is a URL that you generate with your AWS credentials and you provide to your users to grant temporary access to a specific S3 object. 
+## Presigned URL (HTTP PUT Method)
+
+A `pre-signed` URL is a URL that you generate with your AWS credentials and you provide to your users to grant temporary access to a specific AWS S3 object.
+
+The presigned URLs are useful if you want your user/customer to be able to upload a specific object to your bucket, but you don't require them to have AWS security credentials or permissions.
+
+When you create a presigned URL, you must provide your security credentials and then specify a bucket name, an object key, an HTTP method (PUT for uploading objects), and an expiration date and time. The presigned URLs are valid only for the specified duration.
+
+## Alternative (HTTP POST Form Method)
+
+AWS S3 supports POST, which allows your users to upload content directly to AWS S3. POST is designed to simplify uploads, reduce upload latency, and save you money on applications where users upload data to store in AWS S3.
+
 
 # Generate Credentials
 
@@ -87,7 +98,7 @@ Add it to your new user.
 
 # Activating Transfer Acceleration Endpoint
 
-Amazon S3 Transfer Acceleration is a bucket-level feature that enables faster data transfers to and from Amazon S3.
+AWS S3 Transfer Acceleration is a bucket-level feature that enables faster data transfers to and from AWS S3.
 
 1- Go to your bucket
 
@@ -151,11 +162,13 @@ route.get('/signed-url-put-object', async (req, res) => {
 
 # Server Code - POST Multi-Part FormData
 
-With this, you will generate a FORM and you must send all the fields in a FormData object in a **POST** request to the S3 bucket.
+Get a pre-signed POST policy to support uploading to S3 directly from an HTML form from browser.
+
+With this, you will generate a **FORM** and you must send all the fields in a FormData object in a **POST** request to the AWS S3 bucket.
 
 **You can not use the transfer acceleration endpoint because is a CloudFront endpoint that it's not configured with the necessary CORS options and you cannot change it sadly.**
 
-But this is useful if you are developing a react native application and you have the needing of using a FormData or any other scenario where you must use multi-part uploads.
+But this is useful if you are developing a react native application and you have the needing of using a **FormData** or any other scenario where you must use multi-part uploads.
 
 For this method we rely on the `createPresignedPost` method from AWS-SDK please note the difference with the previous method.
 https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#createPresignedPost-property
@@ -217,7 +230,7 @@ route.get('/signed-form-upload', async (req, res) => {
 
 # Conclusion
 
-There are several ways to upload files to a private S3 bucket directly from browser, and can be challenging and confusing, but with a little effort, you will have a huge improvement in your performance.
+There are several ways to upload files to a private AWS S3 bucket directly from browser, and can be challenging and confusing, but with a little effort, you will have a huge improvement in your performance.
 
 # Resources
 
