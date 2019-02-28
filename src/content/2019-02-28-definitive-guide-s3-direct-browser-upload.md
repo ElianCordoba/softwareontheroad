@@ -170,13 +170,13 @@ route.get('/signed-url-put-object', async (req, res) => {
 
 # Server Code - POST Multi-Part FormData
 
-Get a pre-signed POST policy to support uploading to S3 directly from an HTML form from browser.
+Get a pre-signed POST policy to support uploading to S3 directly from an HTML form from the browser.
 
 With this, you will generate a **FORM** and you must send all the fields in a FormData object in a **POST** request to the AWS S3 bucket.
 
 **You can not use the transfer acceleration endpoint because is a CloudFront endpoint that it's not configured with the necessary CORS options and you cannot change it sadly.**
 
-But this is useful if you are developing a react native application and you have the needing of using a **FormData** or any other scenario where you must use multi-part uploads.
+But this is useful if you are developing a react native application and you have the needed of using a **FormData** or any other scenario where you must use multi-part uploads.
 
 For this method we rely on the `createPresignedPost` method from AWS-SDK please note the difference with the previous method.
 https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#createPresignedPost-property
