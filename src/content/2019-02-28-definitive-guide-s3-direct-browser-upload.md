@@ -4,7 +4,7 @@ title: Definitive guide to upload files to a private S3 bucket from browser (Eas
 author: santypk4
 date: "2019-02-28T15:45:00.000Z"
 image: img/fast-uploads.jpg
-tags: ["s3", "aws", "devops", "backend", "javascript", "node.js", "how-to", "guide", "getting-started"]
+tags: ["s3", "aws", "devops", "backend", "javascript", "node.js", "how-to", "guide", "besties"]
 ---
 
 <img src="https://docs.aws.amazon.com/AmazonS3/latest/API/images/s3_post.png" alt="Direct upload to s3 infrastructure">
