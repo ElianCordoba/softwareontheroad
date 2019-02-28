@@ -41,7 +41,7 @@ A `pre-signed` URL is a URL that you generate with your AWS credentials and you 
 
 ## Click create your own policy and copy the following
 
-```JSON
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -127,11 +127,14 @@ route.get('/signed-url-put-object', async (req, res) => {
   const options = {
     signatureVersion: 'v4',
     region: 'eu-west-1', // same as your bucket
+    // highlight-next-line
     endpoint: new AWS.Endpoint('your-bucket-name.s3-accelerate.amazonaws.com'),
+    // highlight-next-line
     useAccelerateEndpoint: true,
   }
   const client = new AWS.S3(options);
   const signedURL = await (new Promise((resolve, reject) => {
+    // highlight-next-line
     client.getSignedUrl('putObject', params, (err, data) => {
       if (err) {
         reject(err)
@@ -181,14 +184,23 @@ route.get('/signed-form-upload', async (req, res) => {
   const options = {
     signatureVersion: 'v4',
     region: 'eu-west-1', // same as your bucket
+
+    // highlight-next-line
     endpoint = new AWS.Endpoint('https://your-bucket-name.s3.amazonaws.com'),
+
+    // highlight-next-line
     useAccelerateEndpoint = false,
+
+    // highlight-next-line
     s3ForcePathStyle = true,
   }
 
   const client = new AWS.S3(options);
   const form = await (new Promise((resolve, reject) => {
+
+    // highlight-next-line
     client.createPresignedPost(params, (err, data) => {
+
       if (err) {
         reject(err)
       } else {
