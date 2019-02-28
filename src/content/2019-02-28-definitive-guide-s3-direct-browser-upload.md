@@ -2,7 +2,7 @@
 layout: post
 title: Definitive guide to upload files to a private S3 bucket from browser (Easy Guide)
 author: santypk4
-date: "2019-02-01T00:00:00.000Z"
+date: "2019-02-28T15:45:00.000Z"
 image: img/fast-uploads.jpg
 tags: ["s3", "aws", "devops", "backend", "javascript", "node.js", "how-to", "guide", "getting-started"]
 ---
