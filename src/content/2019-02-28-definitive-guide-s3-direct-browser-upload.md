@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Definitive guide to upload files to a private S3 bucket from browser (Easy Guide)
+title: Definitive guide to AWS S3 direct uploads from browser (easy guide - no CORS)
 author: santypk4
 date: "2019-02-28T15:45:00.000Z"
 image: img/fast-uploads.jpg
