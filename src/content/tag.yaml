@@ -4,8 +4,8 @@
 - id: aws
   description: TODO
   image: img/computer.jpg
-- id: getting-started
-  description: TODO
+- id: besties
+  description: The best post on this blog
   image: img/computer.jpg
 - id: devops
   description: TODO
