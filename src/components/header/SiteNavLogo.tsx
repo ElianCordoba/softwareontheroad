@@ -26,14 +26,6 @@ const SiteNavLogoStyles = css`
   }
 `;
 
-interface SiteNavLogoProps {
-  logo?: {
-    childImageSharp: {
-      fixed: any;
-    };
-  };
-}
-
 const SiteNavLogo = () => (
   <StaticQuery
     query={graphql`
@@ -48,7 +40,7 @@ const SiteNavLogo = () => (
       }
     `}
     // tslint:disable-next-line:react-this-binding-issue
-    render={(data: SiteNavLogoProps) => (
+    render={() => (
       <Link className="site-nav-logo" css={SiteNavLogoStyles} to="/">
         {
           config.title

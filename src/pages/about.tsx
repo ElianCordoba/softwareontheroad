@@ -51,7 +51,7 @@ const About: React.FunctionComponent = () => (
                 Santiago is interested in working with cloud computing, full-stack development, and machine learning projects.
               </p>
               <p>
-                Now he travels the world as a digital nomad while working full time at <a href="https://standups.io" target="_blank"> standups.io </a> the best way to run video standups specially crafted for remote and distributed teams 🌎
+                Now he travels the world as a digital nomad while working full time at <a href="https://standups.io" rel="noreferrer" target="_blank"> standups.io </a> the best way to run video standups specially crafted for remote and distributed teams 🌎
               </p>
             </div>
           </PostFullContent>
