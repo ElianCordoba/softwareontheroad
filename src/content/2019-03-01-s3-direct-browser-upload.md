@@ -2,7 +2,7 @@
 layout: post
 title: How to upload files to AWS S3 directly from the browser (Insane performance boost)
 author: santypk4
-date: "2019-02-28T15:45:00.000Z"
+date: "2019-03-01T15:45:00.000Z"
 image: img/fast-uploads.jpg
 tags: ["AWS S3", "aws", "devops", "backend", "javascript", "node.js", "how-to", "guide", "besties"]
 ---
