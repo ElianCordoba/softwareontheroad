@@ -17,7 +17,6 @@ My clients were uploading **large** video **files**, 100mb average, from various
 
 Will be easier and efficient if the web client has the possibility to upload directly to that AWS S3 Bucket.
 
-
 <img src="img/s3-upload-guide/connections-mess.png" alt="Object upload replication mess">
 
 Seem's trivial but you may confront several problems and the official AWS documentation don't tell you much.
@@ -32,11 +31,15 @@ A `pre-signed` URL is a URL that you generate with your AWS credentials and you 
 
 The presigned URLs are useful if you want your user/customer to be able to upload a specific object to your bucket, but you don't require them to have AWS security credentials or permissions.
 
-When you create a presigned URL, you must provide your security credentials and then specify a bucket name, an object key, an HTTP method (PUT for uploading objects), and an expiration date and time. The presigned URLs are valid only for the specified duration.
+When you create a presigned URL, you must provide your security credentials and then specify a bucket name, an object key, an HTTP method (PUT for uploading objects), and an expiration date and time.
+
+The presigned URLs are valid only for the specified duration.
 
 ## Alternative (HTTP POST Form Method)
 
-AWS S3 supports POST, which allows your users to upload content directly to AWS S3. POST is designed to simplify uploads, reduce upload latency, and save you money on applications where users upload data to store in AWS S3.
+AWS S3 supports POST, which allows your users to upload content directly to AWS S3. 
+
+POST is designed to simplify uploads, reduce upload latency, and save you money on applications where users upload data to store in AWS S3.
 
 
 # Generate Credentials
@@ -73,8 +76,11 @@ AWS S3 supports POST, which allows your users to upload content directly to AWS 
 ```
 <img src="img/s3-upload-guide/iam-4.png" alt="Choosing attach existing policy">
 
-Click Review Policy and enter a name for the policy. Save the policy
-Add it to your new user.
+- Click Review Policy and enter a name for the policy.
+
+- Save the policy.
+
+- Add it to your new user.
 
 # Configuring S3 CORS policy
 
@@ -130,7 +136,7 @@ You have two choices for generating the pre-signed URL, depending on how your cl
 This approach generates a PUT endpoint but you **can-not** use multi-part FormData to upload files. But you can benefit from using AWS Transfer acceleration endpoint
 We rely on the `getSignedUrl` method from AWS-SDK. 
 
-(Read more about it on the AWS S3 SDK)[https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property]
+[Read more about it on the AWS S3 SDK](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property)
 
 ```javascript
 const AWS = require('aws-sdk');
@@ -187,7 +193,7 @@ But this is useful if you are developing a react native application and you have
 
 For this method we rely on the `createPresignedPost` method from AWS-SDK please note the difference with the previous method.
 
-(Read more about it on the AWS S3 SDK)[https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#createPresignedPost-property]
+[Read more about it on the AWS S3 SDK](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#createPresignedPost-property)
 
 *You cannot use transfer acceleration with this method*
 
