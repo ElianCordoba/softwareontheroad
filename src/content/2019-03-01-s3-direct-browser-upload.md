@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Definitive guide to AWS S3 direct uploads from browser (easy guide - no CORS)
+title: How to upload files to AWS S3 directly from the browser (Insane performance boost)
 author: santypk4
-date: "2019-02-28T15:45:00.000Z"
+date: "2019-03-01T15:45:00.000Z"
 image: img/fast-uploads.jpg
 tags: ["AWS S3", "aws", "devops", "backend", "javascript", "node.js", "how-to", "guide", "besties"]
 ---
@@ -13,10 +13,9 @@ tags: ["AWS S3", "aws", "devops", "backend", "javascript", "node.js", "how-to", 
 
 Well if your application is uploading a file to your server, and then your server uploads it to an AWS S3 Bucket, you have a bottleneck and performance trouble.
 
-My clients were uploading **large** video **files**, 100mb average, from various locations Asia, Europe, and North America, my server is hosted on **Heroku** and located in **Northen Virginia** **but my main S3 Bucket** is on **Frankfurt**!
+My clients were uploading **large** video **files**, 100mb average, from various locations Asia, Europe, and North America, my server is hosted on **Heroku** and located in **Northern Virginia** **but my main S3 Bucket** is in **Ireland**!
 
 Will be easier and efficient if the web client has the possibility to upload directly to that AWS S3 Bucket.
-
 
 <img src="img/s3-upload-guide/connections-mess.png" alt="Object upload replication mess">
 
@@ -32,25 +31,32 @@ A `pre-signed` URL is a URL that you generate with your AWS credentials and you 
 
 The presigned URLs are useful if you want your user/customer to be able to upload a specific object to your bucket, but you don't require them to have AWS security credentials or permissions.
 
-When you create a presigned URL, you must provide your security credentials and then specify a bucket name, an object key, an HTTP method (PUT for uploading objects), and an expiration date and time. The presigned URLs are valid only for the specified duration.
+When you create a presigned URL, you must provide your security credentials and then specify a bucket name, an object key, an HTTP method (PUT for uploading objects), and an expiration date and time.
+
+The presigned URLs are valid only for the specified duration.
 
 ## Alternative (HTTP POST Form Method)
 
-AWS S3 supports POST, which allows your users to upload content directly to AWS S3. POST is designed to simplify uploads, reduce upload latency, and save you money on applications where users upload data to store in AWS S3.
+AWS S3 supports POST, which allows your users to upload content directly to AWS S3. 
+
+POST is designed to simplify uploads, reduce upload latency, and save you money on applications where users upload data to store in AWS S3.
 
 
 # Generate Credentials
 
-## Open you AWS Console and Navigate to IAM
+- Open you AWS Console and Navigate to IAM
+
 <img src="img/s3-upload-guide/iam-1.png" alt="AWS console looking for IAM service">
 
-## Create a User with Programmatic access
+- Create a User with Programmatic access
+
 <img src="img/s3-upload-guide/iam-2.png" alt="Creating AWS user with programatic access">
 
-## Click the attach existing policies directly tab
+- Click the attach existing policies directly tab
+
 <img src="img/s3-upload-guide/iam-3.png" alt="Choosing attach existing policy">
 
-## Click create your own policy and copy the following
+- Click create your own policy and copy the following
 
 ```json
 {
@@ -70,22 +76,25 @@ AWS S3 supports POST, which allows your users to upload content directly to AWS 
 ```
 <img src="img/s3-upload-guide/iam-4.png" alt="Choosing attach existing policy">
 
-Click Review Policy and enter a name for the policy. Save the policy
-Add it to your new user.
+- Click Review Policy and enter a name for the policy.
+
+- Save the policy.
+
+- Add it to your new user.
 
 # Configuring S3 CORS policy
 
-The same-origin policy is an important security concept implemented by web browsers to prevent Javascript code from making requests against a different domain than the one from which it was served.
+The `same-origin` policy is an important security concept implemented by web browsers to prevent Javascript code from making requests against a different domain than the one from which it was served.
 
 Cross-Origin Resource Sharing (CORS) is a technique for relaxing the same-origin policy, allowing Javascript on a web page to making HTTP calls to a different origin.
 
 CORS makes it easier for service providers to distribute content to users while adding interoperability to online services​​.
 ​​
-1- Go to your bucket
+- Go to your bucket
 
-2- Go to the permissions tab
+- Go to the permissions tab
 
-3- Click CORS configuration and copy and paste the following
+- Click CORS configuration and copy and paste the following
 
 
 ```xml
@@ -102,19 +111,22 @@ CORS makes it easier for service providers to distribute content to users while 
 </CORSConfiguration>
 ```
 
-CORS makes it easy for web services to quickly and easily integrate without exposing their users
+CORS makes it easy for web services to quickly and easily integrate without exposing their users.
 
 # Activating Transfer Acceleration Endpoint
 
 AWS S3 Transfer Acceleration is a bucket-level feature that enables faster data transfers to and from AWS S3.
 
-1- Go to your bucket
+- Go to your bucket
 
-2- Choose properties
+- Choose properties
+
   <img src="img/s3-upload-guide/transfer-activate-1.png" alt="Properties tab">
-3- Click on permissions
+
+- Click on permissions
   <img src="img/s3-upload-guide/transfer-activate-2.png" alt="Transfer acceleration">
-4- Scroll to transfer acceleration and active it
+
+- Scroll to transfer acceleration and active it
   <img src="img/s3-upload-guide/transfer-activate-3.png" alt="Activate transfer acceleration">
 
 # Server Code - PUT to a transfer acceleration endpoint
@@ -122,8 +134,9 @@ AWS S3 Transfer Acceleration is a bucket-level feature that enables faster data 
 You have two choices for generating the pre-signed URL, depending on how your client code will upload the file.
 
 This approach generates a PUT endpoint but you **can-not** use multi-part FormData to upload files. But you can benefit from using AWS Transfer acceleration endpoint
-We rely on the `getSignedUrl` method from AWS-SDK.
-https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property
+We rely on the `getSignedUrl` method from AWS-SDK. 
+
+[Read more about it on the AWS S3 SDK](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property)
 
 ```javascript
 const AWS = require('aws-sdk');
@@ -179,7 +192,8 @@ With this, you will generate a **FORM** and you must send all the fields in a Fo
 But this is useful if you are developing a react native application and you have the needed of using a **FormData** or any other scenario where you must use multi-part uploads.
 
 For this method we rely on the `createPresignedPost` method from AWS-SDK please note the difference with the previous method.
-https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#createPresignedPost-property
+
+[Read more about it on the AWS S3 SDK](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#createPresignedPost-property)
 
 *You cannot use transfer acceleration with this method*
 
@@ -235,10 +249,51 @@ route.get('/signed-form-upload', async (req, res) => {
 }
 ```
 
+# Common Problems
+
+**"SignatureDoesNotMatch"**
+
+```xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Error><Code>SignatureDoesNotMatch</Code>
+<Message>The request signature we calculated does not match the signature you provided. Check your key and signing method.</Message>
+<StringToSignBytes>90 81 89 12 ...</StringToSignBytes>
+<RequestId>G7AAF1689RC5909C</RequestId>
+<HostId>q+r+2T5K6mMKLKTWw0R9/jm33LyIfZFACY8GEDznfmMrRxvaVJwPiu/hlofuJWbW</HostId>
+<StringToSign>PUT
+    video/webm
+    456789067
+    x-amz-acl:authenticated-read
+    /your-bucket-name/</StringToSign>
+<AWSAccessKeyId>youraccesskey</AWSAccessKeyId>
+</Error>
+
+```
+
+S3 creates a signature by combining file type, the file key, content-type, and so on.
+
+If you are having this problem check: 
+
+- Make sure you are passing the correct Content Type Header.
+
+- Check that you are using POST with the form upload method, or PUT with the transfer acceleration endpoint.
+
+- The file type and file key **MUST** exactly match the one which was provided when the pre-signed URL was created.
+
+- When using POST FormData method, check that you are sending all the form fields that were generated by AWS S3 SDK.
+
 
 # Conclusion
 
 There are several ways to upload files to a private AWS S3 bucket directly from browser, and can be challenging and confusing, but with a little effort, you will have a huge improvement in your performance.
+
+In my case the performance upgrade was about 200% thanks to the AWS S3 Transfer Acceleration endpoint.
+
+<img src="https://media.amazonwebservices.com/blog/2016/s3_ta_speed_compare_2.png" alt="AWS S3 Transfer Acceleration Performance">
+
+_You can try this awesome performance estimator tool (right here)[http://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html]_
+
 
 # Resources
 
@@ -251,3 +306,5 @@ There are several ways to upload files to a private AWS S3 bucket directly from 
 - https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html
 
 - https://docs.aws.amazon.com/AmazonS3/latest/user-guide/enable-transfer-acceleration.html
+
+- https://aws.amazon.com/blogs/aws/aws-storage-update-amazon-s3-transfer-acceleration-larger-snowballs-in-more-regions/
