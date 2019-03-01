@@ -13,7 +13,7 @@ tags: ["AWS S3", "aws", "devops", "backend", "javascript", "node.js", "how-to", 
 
 Well if your application is uploading a file to your server, and then your server uploads it to an AWS S3 Bucket, you have a bottleneck and performance trouble.
 
-My clients were uploading **large** video **files**, 100mb average, from various locations Asia, Europe, and North America, my server is hosted on **Heroku** and located in **Northen Virginia** **but my main S3 Bucket** is on **Frankfurt**!
+My clients were uploading **large** video **files**, 100mb average, from various locations Asia, Europe, and North America, my server is hosted on **Heroku** and located in **Northern Virginia** **but my main S3 Bucket** is in **Ireland**!
 
 Will be easier and efficient if the web client has the possibility to upload directly to that AWS S3 Bucket.
 
@@ -111,7 +111,7 @@ CORS makes it easier for service providers to distribute content to users while 
 </CORSConfiguration>
 ```
 
-CORS makes it easy for web services to quickly and easily integrate without exposing their users
+CORS makes it easy for web services to quickly and easily integrate without exposing their users.
 
 # Activating Transfer Acceleration Endpoint
 
@@ -288,7 +288,7 @@ If you are having this problem check:
 
 There are several ways to upload files to a private AWS S3 bucket directly from browser, and can be challenging and confusing, but with a little effort, you will have a huge improvement in your performance.
 
-In my case the performance upgrade was about 200% thanks to the AWS S3 Transfer Acceleration endpoint
+In my case the performance upgrade was about 200% thanks to the AWS S3 Transfer Acceleration endpoint.
 
 <img src="https://media.amazonwebservices.com/blog/2016/s3_ta_speed_compare_2.png" alt="AWS S3 Transfer Acceleration Performance">
 
