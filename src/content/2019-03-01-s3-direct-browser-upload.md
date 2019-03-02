@@ -292,7 +292,7 @@ In my case the performance upgrade was about 200% thanks to the AWS S3 Transfer 
 
 ![AWS S3 Transfe Acceleration Performance](img/s3-upload-guide/s3_ta_speed_compare_2.png)
 
-_You can try this awesome performance estimator tool (right here)[http://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html]_
+_You can try this awesome performance estimator tool [right here](http://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html)_
 
 
 # Resources
