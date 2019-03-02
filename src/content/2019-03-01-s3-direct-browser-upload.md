@@ -7,7 +7,7 @@ image: img/fast-uploads.jpg
 tags: ["AWS S3", "aws", "devops", "backend", "javascript", "node.js", "how-to", "guide", "besties"]
 ---
 
-<img src="https://docs.aws.amazon.com/AmazonS3/latest/API/images/s3_post.png" alt="Direct upload to s3 infrastructure">
+![Direct upload to s3 infrastructure](/img/s3-upload-guide/s3_post.png)
 
 # Why you will want to upload files to a private S3 directly from the browser?
 
@@ -17,7 +17,7 @@ My clients were uploading **large** video **files**, 100mb average, from various
 
 Will be easier and efficient if the web client has the possibility to upload directly to that AWS S3 Bucket.
 
-<img src="img/s3-upload-guide/connections-mess.png" alt="Object upload replication mess">
+![Object upload replication mess](img/s3-upload-guide/connections-mess.png)
 
 Seem's trivial but you may confront several problems and the official AWS documentation don't tell you much.
 
@@ -46,15 +46,15 @@ POST is designed to simplify uploads, reduce upload latency, and save you money 
 
 - Open you AWS Console and Navigate to IAM
 
-<img src="img/s3-upload-guide/iam-1.png" alt="AWS console looking for IAM service">
+![AWS console looking for IAM service](img/s3-upload-guide/iam-1.png)
 
 - Create a User with Programmatic access
 
-<img src="img/s3-upload-guide/iam-2.png" alt="Creating AWS user with programatic access">
+![Creating AWS user with programatic access](img/s3-upload-guide/iam-2.png) 
 
 - Click the attach existing policies directly tab
 
-<img src="img/s3-upload-guide/iam-3.png" alt="Choosing attach existing policy">
+![Choosing attach existing policy](img/s3-upload-guide/iam-3.png)
 
 - Click create your own policy and copy the following
 
@@ -74,7 +74,7 @@ POST is designed to simplify uploads, reduce upload latency, and save you money 
     ]
 }
 ```
-<img src="img/s3-upload-guide/iam-4.png" alt="Choosing attach existing policy">
+![Choosing attach existing policy](img/s3-upload-guide/iam-4.png)
 
 - Click Review Policy and enter a name for the policy.
 
@@ -121,13 +121,13 @@ AWS S3 Transfer Acceleration is a bucket-level feature that enables faster data 
 
 - Choose properties
 
-  <img src="img/s3-upload-guide/transfer-activate-1.png" alt="Properties tab">
+  ![Properties tab](img/s3-upload-guide/transfer-activate-1.png)
 
 - Click on permissions
-  <img src="img/s3-upload-guide/transfer-activate-2.png" alt="Transfer acceleration">
+  ![Transfer acceleration](img/s3-upload-guide/transfer-activate-2.png)
 
 - Scroll to transfer acceleration and active it
-  <img src="img/s3-upload-guide/transfer-activate-3.png" alt="Activate transfer acceleration">
+  ![Activate transfer acceleration](img/s3-upload-guide/transfer-activate-3.png)
 
 # Server Code - PUT to a transfer acceleration endpoint
 
@@ -290,7 +290,7 @@ There are several ways to upload files to a private AWS S3 bucket directly from 
 
 In my case the performance upgrade was about 200% thanks to the AWS S3 Transfer Acceleration endpoint.
 
-<img src="https://media.amazonwebservices.com/blog/2016/s3_ta_speed_compare_2.png" alt="AWS S3 Transfer Acceleration Performance">
+![AWS S3 Transfe Acceleration Performance](img/s3-upload-guide/s3_ta_speed_compare_2.png)
 
 _You can try this awesome performance estimator tool (right here)[http://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html]_
 
