@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Prevent your node.js server to crash on production with this simple trick
+title: 1 simple trick to prevent your node.js server from crashing on production
 subtitle: A simple line of code that should be on every node.js application
 author: santypk4
 date: "2018-07-01T00:00:00.000Z"
