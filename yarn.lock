@@ -1518,6 +1518,13 @@ async-limiter@~1.0.0:
   resolved "https://registry.yarnpkg.com/async-limiter/-/async-limiter-1.0.0.tgz#78faed8c3d074ab81f22b4e985d79e8738f720f8"
   integrity sha512-jp/uFnooOiO+L211eZOoSyzpOITMXx1rBITauYykG3BRYPu8h0UcxsPNB04RR5vo4Tyz3+ay17tR6JVf9qzYWg==
 
+async-unist-util-visit@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/async-unist-util-visit/-/async-unist-util-visit-1.0.0.tgz#115c808ef2a5ac6695b691dbb731bbb0ca00e852"
+  integrity sha1-EVyAjvKlrGaVtpHbtzG7sMoA6FI=
+  dependencies:
+    run-async "2.2.0"
+
 async@1.5.2, async@^1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
@@ -2014,6 +2021,13 @@ babel-plugin-transform-react-jsx@^6.8.0:
   dependencies:
     babel-helper-builder-react-jsx "^6.24.1"
     babel-plugin-syntax-jsx "^6.8.0"
+    babel-runtime "^6.22.0"
+
+babel-plugin-transform-runtime@^6.23.0:
+  version "6.23.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-runtime/-/babel-plugin-transform-runtime-6.23.0.tgz#88490d446502ea9b8e7efb0fe09ec4d99479b1ee"
+  integrity sha1-iEkNRGUC6puOfvsP4J7E2ZR5se4=
+  dependencies:
     babel-runtime "^6.22.0"
 
 babel-plugin-transform-strict-mode@^6.24.1:
@@ -2832,6 +2846,25 @@ chokidar@^2.0.0, chokidar@^2.0.2:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.1.0.tgz#5fcb70d0b28ebe0867eb0f09d5f6a08f29a1efa0"
   integrity sha512-5t6G2SH8eO6lCvYOoUpaRnF5Qfd//gd7qJAkwRUw9qlGVkiQ13uwQngqbWWaurOsaAm9+kUGbITADxt6H0XFNQ==
+  dependencies:
+    anymatch "^2.0.0"
+    async-each "^1.0.1"
+    braces "^2.3.2"
+    glob-parent "^3.1.0"
+    inherits "^2.0.3"
+    is-binary-path "^1.0.0"
+    is-glob "^4.0.0"
+    normalize-path "^3.0.0"
+    path-is-absolute "^1.0.0"
+    readdirp "^2.2.1"
+    upath "^1.1.0"
+  optionalDependencies:
+    fsevents "^1.2.7"
+
+chokidar@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.1.2.tgz#9c23ea40b01638439e0513864d362aeacc5ad058"
+  integrity sha512-IwXUx0FXc5ibYmPC2XeEj5mpXoV66sR+t3jqu2NS2GYwCktt3KF1/Qqjws/NkegajBA4RbZ5+DDwlOiJsxDHEg==
   dependencies:
     anymatch "^2.0.0"
     async-each "^1.0.1"
@@ -5418,6 +5451,13 @@ gatsby-plugin-feed@^2.0.11:
     pify "^3.0.0"
     rss "^1.2.2"
 
+gatsby-plugin-google-adsense@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-adsense/-/gatsby-plugin-google-adsense-1.1.3.tgz#267e24880a7634d988bb09b920a115a80f826d55"
+  integrity sha512-tzEg4UIMXCTn+NSB580jzvOgDVTY/+ZbSwQ0EfHUDDqdnvI5KnSQP84mGC5bd96Qy9L15+l9ZRtZ17EdoKBe7g==
+  dependencies:
+    "@babel/runtime" "^7.2.0"
+
 gatsby-plugin-google-analytics@^2.0.9:
   version "2.0.13"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-2.0.13.tgz#31ecf6be05815ba2047ec8cd5129f0bea9d7fd75"
@@ -5477,6 +5517,16 @@ gatsby-plugin-sharp@2.0.17:
     sharp "^0.21.0"
     svgo "^0.7.2"
 
+gatsby-plugin-sitemap@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sitemap/-/gatsby-plugin-sitemap-2.0.6.tgz#1d1b9e8418e410a70775251a2c1978b7abc8fc7b"
+  integrity sha512-c0sjGWhDxsY/+tekO8tLnrU9SilhjS2Zqd5ZYEItHy5OUIuHCDXagr6y8cKn6d7gjfb+Ps+cM+4EOOlUJ3BXBQ==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    minimatch "^3.0.4"
+    pify "^3.0.0"
+    sitemap "^1.12.0"
+
 gatsby-plugin-typescript@2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-typescript/-/gatsby-plugin-typescript-2.0.3.tgz#07b4f42180d8e4d39b3fa9da5a494390a03d0c6e"
@@ -5517,6 +5567,18 @@ gatsby-remark-copy-linked-files@2.0.8:
     path-is-inside "^1.0.2"
     probe-image-size "^4.0.0"
     unist-util-visit "^1.3.0"
+
+gatsby-remark-embed-gist@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-embed-gist/-/gatsby-remark-embed-gist-1.1.6.tgz#78e3c0e5b08df38555e528642645fd40cf0d90e6"
+  integrity sha512-PSo01dh46iMxUziQNPbQId6NqfwuMl+70jWmWpFmEj0ClJyiALkhZ0jJYZULDr5G4fhX38vGKYt/729ZubNGww==
+  dependencies:
+    async-unist-util-visit "^1.0.0"
+    babel-plugin-transform-runtime "^6.23.0"
+    cheerio "^1.0.0-rc.2"
+    parse-numeric-range "^0.0.2"
+    request "^2.88.0"
+    request-promise "^4.2.2"
 
 gatsby-remark-images@3.0.1:
   version "3.0.1"
@@ -5561,15 +5623,15 @@ gatsby-remark-smartypants@2.0.7:
     retext-smartypants "^3.0.0"
     unist-util-visit "^1.3.0"
 
-gatsby-source-filesystem@2.0.16:
-  version "2.0.16"
-  resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-2.0.16.tgz#d2d0ed731c07739b66bef3862b2fa6a78a17c3eb"
-  integrity sha512-cq9NGoO9BqBsopBRDh7vVZF9HuUzEFKyssKUlbbgkdC4U1OyYI7JP6rjNrcK9J5VoLhcYze6isFRhPdLKkTiLQ==
+gatsby-source-filesystem@^2.0.21:
+  version "2.0.23"
+  resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-2.0.23.tgz#244b1e5e492f474bd4cc75bfe3a9863d55c92d24"
+  integrity sha512-gzcvKTysWgCIFEp9WyKqFGJsF6Cb+MNDX7dRzB3vmS3c/mJi+/UbOuxcqLuNSGhONskTVh3N57kbvcqMq/f8Jg==
   dependencies:
     "@babel/runtime" "^7.0.0"
     better-queue "^3.8.7"
     bluebird "^3.5.0"
-    chokidar "^1.7.0"
+    chokidar "^2.1.2"
     file-type "^10.2.0"
     fs-extra "^5.0.0"
     got "^7.1.0"
@@ -9883,7 +9945,7 @@ pseudomap@^1.0.1, pseudomap@^1.0.2:
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
   integrity sha1-8FKijacOYYkX7wqKw0wa5aaChrM=
 
-psl@^1.1.24:
+psl@^1.1.24, psl@^1.1.28:
   version "1.1.31"
   resolved "https://registry.yarnpkg.com/psl/-/psl-1.1.31.tgz#e9aa86d0101b5b105cbe93ac6b784cd547276184"
   integrity sha512-/6pt4+C+T+wZUieKR620OpzN/LlnNKuWjy1iFLQ/UG35JqHlR/89MP1d96dUfkf6Dne3TuLQzOYEYshJ+Hx8mw==
@@ -9938,7 +10000,7 @@ punycode@1.3.2:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.3.2.tgz#9653a036fb7c1ee42342f2325cceefea3926c48d"
   integrity sha1-llOgNvt8HuQjQvIyXM7v6jkmxI0=
 
-punycode@2.x.x, punycode@^2.1.0:
+punycode@2.x.x, punycode@^2.1.0, punycode@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
@@ -10520,7 +10582,24 @@ replace-ext@1.0.0, replace-ext@^1.0.0:
   resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-1.0.0.tgz#de63128373fcbf7c3ccfa4de5a480c45a67958eb"
   integrity sha1-3mMSg3P8v3w8z6TeWkgMRaZ5WOs=
 
-request@^2.65.0, request@^2.83.0, request@^2.85.0:
+request-promise-core@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/request-promise-core/-/request-promise-core-1.1.2.tgz#339f6aababcafdb31c799ff158700336301d3346"
+  integrity sha512-UHYyq1MO8GsefGEt7EprS8UrXsm1TxEvFUX1IMTuSLU2Rh7fTIdFtl8xD7JiEYiWU2dl+NYAjCTksTehQUxPag==
+  dependencies:
+    lodash "^4.17.11"
+
+request-promise@^4.2.2:
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/request-promise/-/request-promise-4.2.4.tgz#1c5ed0d71441e38ad58c7ce4ea4ea5b06d54b310"
+  integrity sha512-8wgMrvE546PzbR5WbYxUQogUnUDfM0S7QIFZMID+J73vdFARkFy+HElj4T+MWYhpXwlLp0EQ8Zoj8xUA0he4Vg==
+  dependencies:
+    bluebird "^3.5.0"
+    request-promise-core "1.1.2"
+    stealthy-require "^1.1.1"
+    tough-cookie "^2.3.3"
+
+request@^2.65.0, request@^2.83.0, request@^2.85.0, request@^2.88.0:
   version "2.88.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
   integrity sha512-NAqBSrijGLZdM0WZNsInLJpkJokL72XYjUpnB0iwsRgxh7dB6COrHnTBNwN0E+lHDAJzu7kLAkDeY08z2/A0hg==
@@ -10700,6 +10779,14 @@ rss@^1.2.2:
   dependencies:
     mime-types "2.1.13"
     xml "1.0.1"
+
+run-async@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/run-async/-/run-async-2.2.0.tgz#8783abd83c7bb86f41ee0602fc82404b3bd6e8b9"
+  integrity sha1-h4Or2Dx7uG9B7gYC/IJASzvW6Lk=
+  dependencies:
+    is-promise "^2.1.0"
+    pinkie-promise "^2.0.0"
 
 run-async@^2.2.0:
   version "2.3.0"
@@ -11045,6 +11132,14 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
+sitemap@^1.12.0:
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/sitemap/-/sitemap-1.13.0.tgz#569cbe2180202926a62a266cd3de09c9ceb43f83"
+  integrity sha1-Vpy+IYAgKSamKiZs094Jyc60P4M=
+  dependencies:
+    underscore "^1.7.0"
+    url-join "^1.1.0"
+
 slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
@@ -11388,6 +11483,11 @@ statuses@~1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.4.0.tgz#bb73d446da2796106efcc1b601a253d6c46bd087"
   integrity sha512-zhSCtt8v2NDrRlPQpCNtw/heZLtfUDqxBM1udqikb/Hbk52LK4nQSwr10u77iopCW5LsyHpuXS0GnEc48mLeew==
+
+stealthy-require@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
+  integrity sha1-NbCYdbT/SfJqd35QmzCQoyJr8ks=
 
 stream-browserify@^2.0.1:
   version "2.0.2"
@@ -11889,6 +11989,14 @@ topo@2.x.x:
   dependencies:
     hoek "4.x.x"
 
+tough-cookie@^2.3.3:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.5.0.tgz#cd9fb2a0aa1d5a12b473bd9fb96fa3dcff65ade2"
+  integrity sha512-nlLsUzgm1kfLXSXfRZMc1KLAugd4hqJHDTvc2hDIwS3mZAfMEuMbc03SujMF+GEcpaX/qboeycw6iO8JwVv2+g==
+  dependencies:
+    psl "^1.1.28"
+    punycode "^2.1.1"
+
 tough-cookie@~2.4.3:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.4.3.tgz#53f36da3f47783b0925afa06ff9f3b165280f781"
@@ -12128,6 +12236,11 @@ underscore.string@^3.3.4:
     sprintf-js "^1.0.3"
     util-deprecate "^1.0.2"
 
+underscore@^1.7.0:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.1.tgz#06dce34a0e68a7babc29b365b8e74b8925203961"
+  integrity sha512-5/4etnCkd9c8gwgowi5/om/mYO5ajCaOgdzj/oW+0eQV9WxKBDZw5+ycmKmeaTXjInS/W0BzpGLo2xR2aBwZdg==
+
 unherit@^1.0.4:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/unherit/-/unherit-1.1.1.tgz#132748da3e88eab767e08fabfbb89c5e9d28628c"
@@ -12341,6 +12454,11 @@ urix@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
+
+url-join@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/url-join/-/url-join-1.1.0.tgz#741c6c2f4596c4830d6718460920d0c92202dc78"
+  integrity sha1-dBxsL0WWxIMNZxhGCSDQySIC3Hg=
 
 url-loader@^1.0.1:
   version "1.1.2"

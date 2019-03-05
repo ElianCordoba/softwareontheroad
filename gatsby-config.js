@@ -29,6 +29,13 @@ module.exports = {
               wrapperStyle: 'margin-bottom: 1rem',
             },
           },
+          {
+            resolve: "gatsby-remark-embed-gist",
+            options: {
+              // the github handler whose gists are to be accessed
+              username: 'santiq',
+            }
+          },
           'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
