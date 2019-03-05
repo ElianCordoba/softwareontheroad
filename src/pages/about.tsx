@@ -51,7 +51,7 @@ const About: React.FunctionComponent = () => (
                 If you want to know more about my previous work experience check my <a href="https://www.linkedin.com/in/santiagoquinteros/">LinkedIn profile. </a>
               </p>
               <p> 
-              This blog is Open Source, so if you think that something can be improved, just open an issue or PR.
+                This blog is Open Source, so if you think that something can be improved, <a href="https://github.com/santiq/softwareontheroad"> just open an issue or PR. </a>
               </p>
               <p> 
               I hope you find this blog useful.
