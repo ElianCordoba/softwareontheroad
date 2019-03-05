@@ -13,11 +13,15 @@ tags: ["Devops", "Continuous Integration", "Best"]
 
   The problem was only one developer and one computer could generate the APK, this was a bottleneck especially when we were in a rush to complete the sprint and the QA Team needed several APK. 
 
+  ![do more work](img/ionic-circleci2/do-stuff.jpg)
+
   You know how is this, maybe the change requested by the QA team was only a change of text but we had to wait for that developer to be free to generate an APK.
 
 # It's hard to setup your computer for this task
 
   As you may experience, making an APK on your machine can be difficult, you need to install Android Studio or at least Android SDK Manager, spend some time downloading the 20GB SDKs, fighting with your almost completed MBP's SSD because of videos from your last holiday.
+
+  ![do more work](img/ionic-circleci2/stress.jpg)
 
   Even if you can handle all that trouble, maybe your coworkers don't, and you will become that guy who can generate the APK, they always will depend upon you or your computer.
 
