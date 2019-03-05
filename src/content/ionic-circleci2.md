@@ -2,7 +2,7 @@
 layout: post
 title: CircleCI for automating Ionic app APK generation
 author: santypk4
-date: "2019-03-01T15:45:00.000Z"
+date: "2019-03-05T15:00:00.000Z"
 image: img/ionic-circleci.jpg
 tags: ["Devops", "Continuous Integration", "Best"]
 ---
