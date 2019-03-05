@@ -32,26 +32,32 @@ const About: React.FunctionComponent = () => (
       <main id="site-main" className="site-main" css={[SiteMain, outer]}>
         <article className="post page" css={[PostFull, NoImage]}>
           <PostFullHeader>
-            <PostFullTitle>About</PostFullTitle>
+            <PostFullTitle>Hello world! It's Santiago</PostFullTitle>
           </PostFullHeader>
 
           <PostFullContent className="post-full-content">
             <div className="post-content">
-              <p> 
-                Welcome to the personal blog of Santiago Quinteros. 
-              </p>
-              <p> 
-                Santiago has been developing software since a young age, he started at age 16 making video games with good old Unity3D.
-              </p>
-                At 19 he learned javascript and web development and fall in love with NodeJs and cloud computing.
               <p>
-                Six years later, he has acquired vast experience working on early-stage startups, helping them reach the next level.
+                In my five years of experience as a software developer, I worked for several startups from the very beginning, some of them succeed, some fail, but I had the luck to experience what is write an MVP then re-write it using the best practices out there while having to scale it.
               </p>
               <p> 
-                Santiago is interested in working with cloud computing, full-stack development, and machine learning projects.
+              My vision for this blog is to be a source of knowledge for several topics of software development mainly javascript, node.js, typescript, cloud computing, AWS, GCP, continuous integration and, continuous delivery.
               </p>
-              <p>
-                Now he travels the world as a digital nomad while working full time at <a href="https://standups.io" rel="noreferrer" target="_blank"> standups.io </a> the best way to run video standups specially crafted for remote and distributed teams 🌎
+              <p> 
+                I also offer my services as a consultant, I can help you with your product, feel free to contact me at <a href="mailto:santiago@softwareontheroad.com."> santiago@softwareontheroad.com. </a>
+                I can help you scale your product, taking it to production, designing the software architecture or just giving you my thoughts and tips.
+              </p>
+              <p> 
+                If you want to know more about my previous work experience check my <a href="https://www.linkedin.com/in/santiagoquinteros/">LinkedIn profile. </a>
+              </p>
+              <p> 
+                This blog is Open Source, so if you think that something can be improved, <a href="https://github.com/santiq/softwareontheroad"> just open an issue or PR. </a>
+              </p>
+              <p> 
+              I hope you find this blog useful.
+              </p>
+              <p> 
+              Santiago Quinteros - March 2019
               </p>
             </div>
           </PostFullContent>

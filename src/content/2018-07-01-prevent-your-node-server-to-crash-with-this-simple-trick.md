@@ -5,7 +5,7 @@ subtitle: A simple line of code that should be on every node.js application
 author: santypk4
 date: "2018-07-01T00:00:00.000Z"
 image: img/nodejs-trick.jpg
-tags: ["node.js", "javascript"]
+tags: ["Node.js", "Javascript"]
 draft: false
 ---
 
