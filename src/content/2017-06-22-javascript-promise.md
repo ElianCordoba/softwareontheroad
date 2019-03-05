@@ -5,7 +5,7 @@ subtitle: Get rid of those annoying callbacks functions with this simple utilit
 author: santypk4
 date: "2017-06-22T15:00:00.000Z"
 image: img/callback-hell.jpg
-tags: ["javascript", "node.js"]
+tags: ["Javascript", "Node.js"]
 draft: false
 ---
 

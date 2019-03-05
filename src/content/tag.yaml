@@ -1,45 +1,27 @@
 - id: AWS S3
   description: Amazon Simple Storage Service is storage for the Internet. It is designed to make web-scale computing easier for developers. Amazon S3 has a simple web services interface that you can use to store and retrieve any amount of data, at any time, from anywhere on the web.
   image: img/computer.jpg
-- id: aws
-  description: TODO
+- id: AWS
+  description: Amazon Web Services is a subsidiary of Amazon that provides on-demand cloud computing platforms to individuals, companies and governments, on a paid subscription basis. The technology allows subscribers to have at their disposal a virtual cluster of computers, available all the time, through the Internet.
   image: img/computer.jpg
-- id: besties
-  description: The best post on this blog
+- id: Best
+  description: Collection of in-deep guides about software development
   image: img/computer.jpg
-- id: devops
-  description: TODO
+- id: DevOps
+  description: Set of practices that automates the processes between software development and IT teams, in order that they can build, test, and release software faster and more reliably.
   image: img/computer.jpg
-- id: backend
-  description: TODO
+- id: Javascript
+  description: The most used language in the world
   image: img/computer.jpg
-- id: javascript
-  description: TODO
+- id: Node.js
+  description:
   image: img/computer.jpg
-- id: node.js
-  description: TODO
+- id: Travel
+  description: 
   image: img/computer.jpg
-- id: how-to
-  description: TODO
+- id: Self
+  description: Thoughs about life.
   image: img/computer.jpg
-- id: guide
-  description: TODO
-  image: img/computer.jpg
-- id: travel
-  description: TODO
-  image: img/computer.jpg
-- id: life
-  description: TODO
-  image: img/computer.jpg
-- id: self
-  description: TODO
-  image: img/computer.jpg
-- id: node.js 
-  description: TODO
-  image: img/computer.jpg
-- id: javascript
-  description: TODO
-  image: img/computer.jpg
-- id: machine-learning
-  description: TODO
+- id: Machine Learning
+  description:
   image: img/computer.jpg
