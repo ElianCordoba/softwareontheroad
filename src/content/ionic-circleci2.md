@@ -15,21 +15,22 @@ tags: ["Devops", "Continuous Integration", "Best"]
 
   You know how is this, maybe the change requested by the QA team was only a change of text but we had to wait for that developer to be free to generate an APK.
 
-# The problem of preparing the workspace
+# It's hard to setup your computer for this task
 
   As you may experience, making an APK on your machine can be difficult, you need to install Android Studio or at least Android SDK Manager, spend some time downloading the 20GB SDKs, fighting with your almost completed MBP's SSD because of videos from your last holiday.
 
   Even if you can handle all that trouble, maybe your coworkers don't, and you will become that guy who can generate the APK, they always will depend upon you or your computer.
 
-# Introducing Automated APK Generation with CircleCI
+# Introducing automated APK generation with CircleCI and Docker
 
-  Here come continuous delivery practices to solve your problems. With the help of my friend CircleCI and the amazing Docker technology, you can pass the responsibility to them and forget about manually generating Ionic app APKs for the QA team.
+  Here come continuous delivery practices to solve your problems. With the help of my friend CircleCI and the amazing Docker technology, you can pass the responsibility to them and forget about manually generating ionic mobile app APKs for the QA team.
+  Now even you can run your automation testing suit.
 
   With CircleCI you have: 
 
-   - No more buggy Ionic app APKs, run unit tests and if pass generate APK
+   - No more buggy ionic mobile app APKs, run automation testing and then generate APK
 
-   - Save ~10 minutes from every Ionic app APK generation.
+   - Save ~10 minutes from every ionic mobile app APK generation.
 
    - Independence, no more sharing a file through airdrop, just use the download link from CircleCi dashboard.
 
