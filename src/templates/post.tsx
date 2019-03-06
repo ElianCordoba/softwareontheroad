@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet';
 import AuthorCard from '../components/AuthorCard';
 import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
+import Share from '../components/Share';
 import PostCard from '../components/PostCard';
 import PostContent from '../components/PostContent';
 import PostFullFooter from '../components/PostFullFooter';
@@ -136,6 +137,7 @@ interface PageTemplateProps {
         title: string;
         date: string;
         userDate: string;
+        twittertags: string[];
         image: {
           childImageSharp: {
             fluid: any;
@@ -295,7 +297,16 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                 </PostFullImage>
               )}
               <PostContent htmlAst={post.htmlAst} />
-
+              <Share
+                socialConfig={{
+                  twitterHandle: '@santypk4',
+                  config: {
+                    url: config.siteUrl + props.pathContext.slug,
+                    title: post.frontmatter.title,
+                  },
+                }}
+                tags={post.frontmatter.twittertags}
+              />
               {/* The big email subscribe modal content */}
               {config.showSubscribe && <Subscribe title={config.title} />}
 
@@ -347,6 +358,7 @@ export const query = graphql`
         userDate: date(formatString: "D MMMM YYYY")
         date
         tags
+        twittertags
         image {
           childImageSharp {
             fluid(maxWidth: 3720) {
