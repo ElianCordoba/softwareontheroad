@@ -6,6 +6,7 @@ author: santypk4
 date: "2018-06-12T00:00:00.000Z"
 image: img/machine-learning.jpg
 tags: ["Machine Learning"]
+twittertags: ["neuralnetwork", "machinelearning", "tensorflow"]
 draft: false
 ---
 

@@ -6,6 +6,7 @@ author: santypk4
 date: "2017-06-22T15:00:00.000Z"
 image: img/callback-hell.jpg
 tags: ["Javascript", "Node.js"]
+twittertags: ["javascript", "promises", "async/await", "nodejs"]
 draft: false
 ---
 

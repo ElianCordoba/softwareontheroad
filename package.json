@@ -18,6 +18,7 @@
     "@emotion/core": "^10.0.6",
     "@emotion/styled": "^10.0.6",
     "@emotion/styled-base": "^10.0.5",
+    "@types/react-share": "^2.1.1",
     "classnames": "2.2.6",
     "cssnano": "4.1.8",
     "emotion": "10.0.6",
@@ -36,6 +37,7 @@
     "gatsby-plugin-typescript": "2.0.3",
     "gatsby-remark-abbr": "1.0.0",
     "gatsby-remark-copy-linked-files": "2.0.8",
+    "gatsby-remark-embed-gist": "^1.1.6",
     "gatsby-remark-images": "3.0.1",
     "gatsby-remark-prismjs": "3.2.0",
     "gatsby-remark-responsive-iframe": "2.0.8",
@@ -56,6 +58,7 @@
     "react-dom": "16.7.0",
     "react-emotion": "10.0.0",
     "react-helmet": "5.2.0",
+    "react-share": "^2.4.0",
     "rehype-react": "3.1.0"
   },
   "devDependencies": {

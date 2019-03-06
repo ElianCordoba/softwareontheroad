@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   siteMetadata: {
     title: 'Software on the road',
-    description: 'Writing software while travelling around the world 🌍',
+    description: 'Here you will find my adventures with AWS, AWS S3, AWS CloudFront, high availability, continuous integration, continuous delivery, CircleCi, node.js and javascript in general, typescript, react, ionic app, react native, and maybe some experiments with machine learning',
     siteUrl: 'https://softwareontheroad.com', // full path to blog - no ending slash
   },
   mapping: {
@@ -28,6 +28,13 @@ module.exports = {
             options: {
               wrapperStyle: 'margin-bottom: 1rem',
             },
+          },
+          {
+            resolve: "gatsby-remark-embed-gist",
+            options: {
+              // the github handler whose gists are to be accessed
+              username: 'santiq',
+            }
           },
           'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
