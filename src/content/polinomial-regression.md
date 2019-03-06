@@ -6,6 +6,7 @@ author: santypk4
 date: "2018-06-15T00:00:00.000Z"
 image: img/demo4.jpg
 tags: ["Machine Learning"]
+twittertags: ["neuralnetwork", "machinelearning", "tensorflow"]
 draft: false
 ---
   # I trained a model that do linear regression

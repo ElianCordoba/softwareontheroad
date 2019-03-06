@@ -5,6 +5,8 @@ author: santypk4
 date: "2019-03-01T15:45:00.000Z"
 image: img/fast-uploads.jpg
 tags: ["AWS S3", "AWS", "DevOps", "Javascript", "Node.js", "Best"]
+twittertags: ["aws", "s3", "devops", "nodejs", "javascript"]
+draft: false
 ---
 
 ![Direct upload to s3 infrastructure](/img/s3-upload-guide/s3_post.png)

@@ -5,6 +5,8 @@ author: santypk4
 date: "2019-03-05T15:00:00.000Z"
 image: img/ionic-circleci.jpg
 tags: ["Devops", "Continuous Integration", "Best"]
+twittertags: ["ionic", "circleci", "deploy", "devops", "javascript", "continuous integration"]
+draft: false
 ---
 
 # Do you struggle to generate APK for your Ionic App?
