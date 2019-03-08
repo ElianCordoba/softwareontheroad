@@ -11,15 +11,15 @@ draft: true
 
 # Let me show you real uses cases for the new React Hooks API
   <!-- end -->
-  Starting of react `16.8.0` there are new ways to call async code in a elegant way, reuse logic between components much more easily.
+  Starting of React `16.8.0` there are new ways to call async code in an elegant way, reuse logic between components much more easily.
   
   And **improve your testing experience** by moving away logic from stateful components.
 
 # But first, what are react hooks anyway?
 
-  In simple words, react hooks are **special functions** that want to be the **replacement for lifecycle events** that were only available for React Classes.
+  In simple words, react hooks are **special functions** that want to be the **replacement for lifecycle events** that was only available for React Classes.
 
-  ## The good old fahsion class-based way
+  ## The good old fashion class-based way
 
   ```javascript
   import React from 'react';
@@ -71,25 +71,25 @@ draft: true
   ```
   _example using `useState` hook to store state in a function component_
 
-  **Less lines of code to do the same think!**
+  ** Fewer lines of code to do the same thing!**
 
-  But is not just that, with react hooks **you can now reuse stateful logic** and have a **better separation of concerns**.
+  But is not just that, with React hooks **you can now reuse stateful logic** and have a **better separation of concerns**.
 
-  At first this new API may appear weird to you but stay with me, you will learn how to get the most out of it.
+  At first, this new API may appear weird to you but stay with me, you will learn how to get the most out of it.
 
 ## The existing hooks
 
   The new API comes with two main pre-existing hooks, and some others for other use cases
 
 
-  - The `useState` is the _State hook_ use it for declaring state in your components
+  - The `useState` is the _State hook_ use it for declaring the state in your components
 
   - The `useEffect` is the _Side effects hook_ use it for data fetching, manually changing the DOM, and etc.
 
 
 # Those peculiar brackets
 
-  You might be asking what the sintax `const [age, setAge] = useState(24)` means, 
+  You might be asking what the syntax `const [age, setAge] = useState(24)` means, 
   but is just the new way to destructuring an array, let me show you another way to do it.
 
   ```javascript
@@ -101,7 +101,7 @@ draft: true
   const [age, setAge] = useState(24);
   ```
 
-  **I love simple and elegant one liners**, _not as much as python people, and definitively I do NOT like insane one liners as python people_ 
+  **I love simple and elegant one-liners**, _not as much as python people, and definitively I do NOT like insane one-liners as python people_ 
 
 # Separation of concerns
 
@@ -212,7 +212,7 @@ draft: true
 
   ## Dived and conquer
 
-  Now you may have notice that hooks are just functions!! And functions can be unit tested easily.
+  Now you may have noticed that hooks are just functions!! And functions can be unit tested easily.
 
 ```javascript
 import PlacesAPI from '../services/place';
@@ -244,7 +244,7 @@ function PlacesNews(props) {
   return <div> {` The current place event is ${currentEvent} `} </div>
 }
 ```
-  Now that looks very similar to a `mobx` observerbable or a subscription from `Rx`.
+  Now that looks very similar to a `mobx` observable or a subscription from `Rx`.
 
 # Tips and tricks
 
@@ -269,8 +269,7 @@ function PlacesNews(props) {
 # Conclusion
 
   The new React hooks API is a game changer, now we can use state in function components, 
-  reuse stateful logic, create better test scenearios and write less code.
-  
+  reuse stateful logic, create better test scenarios and write less code.
 
 # Resources
 
