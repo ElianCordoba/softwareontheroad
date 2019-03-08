@@ -94,6 +94,7 @@ module.exports = {
         publisherId: `ca-pub-6523317289472383`
       },
     },
-    'gatsby-plugin-sitemap'
+    'gatsby-plugin-sitemap',
+    `gatsby-plugin-netlify`
   ],
 };
