@@ -43,7 +43,50 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 };
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createPage, createRedirect } = actions;
+
+  createRedirect({
+    fromPath: `/2019-03-01-s3-direct-browser-upload`,
+    toPath: `/aws-s3-secure-direct-upload`,
+    isPermanent: true,
+    statusCode: 200,
+  })
+  createRedirect({
+    fromPath: `/2019-02-28-definitive-guide-s3-direct-browser-upload`,
+    toPath: `/aws-s3-secure-direct-upload`,
+    isPermanent: true,
+    statusCode: 200,
+  })
+  createRedirect({
+    fromPath: `/2017-06-22-javascript-promise`,
+    toPath: `/javascript-promise`,
+    isPermanent: true,
+    statusCode: 200,
+  })
+  createRedirect({
+    fromPath: `/2018-06-15-polinomial-regression`,
+    toPath: `/polinomial-regression`,
+    isPermanent: true,
+    statusCode: 200,
+  })
+  createRedirect({
+    fromPath: `/2018-06-12-my-first-neural-network`,
+    toPath: `/my-first-neural-network`,
+    isPermanent: true,
+    statusCode: 200,
+  })
+  createRedirect({
+    fromPath: `/2018-06-10-road-to-machine-learning`,
+    toPath: `/aws-s3-secure-direct-upload`,
+    isPermanent: true,
+    statusCode: 200,
+  })
+  createRedirect({
+    fromPath: `/2018-07-01-prevent-your-node-server-to-crash-with-this-simple-trick`,
+    toPath: `/nodejs-crash-exception-handler`,
+    isPermanent: true,
+    statusCode: 200,
+  })
 
   const result = await graphql(`
     {
