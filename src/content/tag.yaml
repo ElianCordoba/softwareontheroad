@@ -13,6 +13,9 @@
 - id: Javascript
   description: The most used language in the world
   image: img/computer.jpg
+- id: React
+  description: The most powerful UI library ever
+  image: img/computer.jpg
 - id: Node.js
   description:
   image: img/computer.jpg
