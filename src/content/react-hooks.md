@@ -23,20 +23,32 @@ draft: true
  - [The existing react hooks](#existing-hooks)
  - [Notation](#notation)
  - [Separation of concerns](#separation-concerns)
- - [Doing tests on your hooks](#testing)
- - [Tips and tricks](#tips)
+ - [Tests for your hooks](#testing)
  - [Advance use cases](#advance)
- - [Real world example](#real-world)
+ - [Real world examples](#real-world)
+    - [Show online status](#online-status)
+    - [Track geolocation](#geo-location)
  - [Going further](#)
  - [Conclusion](#conclusion)
 
  <a name="intro"></a>
 
-# But first, what are react hooks anyway?
+# What are react hooks anyway?
 
-  In simple words, react hooks are **special functions** that want to be the **replacement for lifecycle events** that was only available for React Classes.
+  When you work with React class components you can use state, that's why these components are also called stateful, also every class component have lifecycle methods like: `componentDidMount()`, `componentDidUpdate()`, and so on.
+
+  You can't use any of this in functional components.
+  Functional components can’t use their own state and don’t have lifecycle methods.
+
+  **Now with React hooks you can.**
+
+  React hooks allows us to take a React functional component and add state and lifecycle methods to it.
+
+  In simple words, react hooks are **special functions** to extend the capabilities of functional components and give them the posibility to have **lifecycle events** and **manage state.**
 
 <a name="classes-vs-hooks"></a>
+
+  Let's compare how a class differ from a functional component when react hooks are used.
 
   ## The good old fashion class-based way
 
@@ -100,7 +112,7 @@ draft: true
 
   The new API comes with two main pre-existing hooks, and some others for other use cases
 
-## Basics react hooks
+### Basics react hooks
 
   The foundation of all react hooks, every other hook you will see is a variation of these three or are using them as primitives.
 
@@ -108,15 +120,16 @@ draft: true
 
   - The `useEffect` is the _Side effects hook_ use it for data fetching, manually changing the DOM, and etc.
 
-  - The `useContext`
+  - The `useContext` use it in conjunction with React Context API. When the React Context provider updates, this hook will trigger render with the latest context value.
 
-## Advance react hooks
+### Advance react hooks
 
   These are the most important of the other built-in react hooks that comes with the library.
 
-  - The `useReducer`
+  - The `useReducer` is an alternative to `useState`, you should use it when you have complex state logic, if you’re familiar with Redux you will like it.
 
-  - The `useRef`
+  - The `useRef` use it for accessing a DOM element with a mutable ref object. Is more useful than the `ref` attribute
+
 
 <a name="notation"></a>
 
@@ -138,6 +151,18 @@ draft: true
 
 <a name="separation-concerns"> </a>
 
+### Rules
+
+ - Never call Hooks from inside a loop, condition or nested function
+
+ - Never call a Hook from a regular function
+
+ - Only call them inside functions components or custom hooks
+
+ - Hooks should sit at the top level of your component
+
+ - Hooks can call other Hooks
+
 # Separation of concerns
 
 ![Mantain your code organized](/img/react-hooks/organized.jpeg)
@@ -146,7 +171,9 @@ draft: true
 
   Hooks allow you to reuse stateful logic without changing your component hierarchy.
 
-  Example, components might perform some data fetching in `componentDidMount` and `componentDidUpdate`. However, the same `componentDidMount` method **might also contain unrelated logic** that sets up event listeners, with cleanup performed in `componentWillUnmount`. 
+  Example, components might perform some data fetching in `componentDidMount` and `componentDidUpdate`. 
+
+  However, the same `componentDidMount` method **might also contain unrelated logic** that sets up event listeners, with cleanup performed in `componentWillUnmount`. 
 
   Mutually related code that changes together gets split apart, but **completely unrelated code ends up combined in a single method.**
 
@@ -226,10 +253,10 @@ draft: true
 
 # The `useEffect` hook
 
-  ## The subscribe and unsubscribe 
-
   In a React class, you would typically set up a subscription in `componentDidMount`, and clean it up in `componentWillUnmount`.
+
   With react hook `useEffect` we perform this by returning a function to clean up or _unsubscribe_ the effect.
+
   If you have worked with `mobx` this pattern may result familiar to you, it's an analogy to a reaction.
 
 ```javascript
@@ -241,8 +268,10 @@ draft: true
   });
 ```
 
-  ## Why did we return a function from our effect? 
-  This is the optional cleanup mechanism for effects. Every effect may return a function that cleans up after it. 
+  ### Why did we return a function from our effect? 
+
+  This is the optional cleanup mechanism for effects. Every effect may return a function that cleans up after it.
+
   This lets us keep the logic for adding and removing subscriptions close to each other. 
 
 # The `useReducer` hook
@@ -322,11 +351,9 @@ export default TodoList;
 
 <a name="testing"> </a>
 
-# Better way to testing logic
+# Better way to test stateful logic
 
   ![Divide and conquer](/img/react-hooks/divide.jpg)
-
-  ## Dived and conquer
 
   Now you may have noticed that **hooks are just functions**, and functions can be **unit tested easily**.
 
@@ -364,14 +391,6 @@ function PlacesNews(props) {
 ```
   Now that looks very similar to a `mobx` observable or a subscription from `Rx`.
 
-<a name="tips"></a>
-
-# Tips and tricks
-
- - Don't use them inside loops, conditions, or nested function
-
- - Only call them inside functions components or custom hooks
-
 <a name="advance"> </a>
 
 # Advance use cases
@@ -392,34 +411,124 @@ function PlacesNews(props) {
 
 <a name="real-world"></a>
 
-# Real-World example
+# Real-World examples
 
-  Let's combine all we learn in an advance sample / mini-app.
+  <a name="online-status"></a>
 
-  - 1 Input form with a search term
+  ## Show online status 
+  Detect user's device online status.
+  _[(credits to mathdroid)](https://github.com/rehooks/online-status)_
 
-  ```jsx
+  ### Hook implementation 
 
-  import { useState } from 'react'
-    
-  function InputComponent() {
-    const [input, setValue] = useState("");
-    
-    handleInput = (event) => {
-      setValue(event.target.value);
-    }
-    
-    return (
-      <div>
-        <input type="text" value={input} onChange={handleInput} />
-        <button onClick={updateName}>Save</button>
-      </div>
-    )
+  ```javascript
+  import { useEffect, useState } from "react";
+
+  function getOnlineStatus() {
+    return typeof navigator !== "undefined" &&
+      typeof navigator.onLine === "boolean"
+      ? navigator.onLine
+      : true;
   }
 
+  export const useOnlineStatus = () => {
+    let [onlineStatus, setOnlineStatus] = useState(getOnlineStatus());
+    const goOnline = () => setOnlineStatus(true);
+    const goOffline = () => setOnlineStatus(false);
+
+    useEffect(() => {
+      window.addEventListener("online", goOnline);
+      window.addEventListener("offline", goOffline);
+      return () => {
+        window.removeEventListener("online", goOnline);
+        window.removeEventListener("offline", goOffline);
+      };
+    }, []);
+
+    return onlineStatus;
+  }
   ```
 
-  - 2 
+  ### Hook Usage
+
+  ```javascript
+  const App = () => {
+    let onlineStatus = useOnlineStatus();
+    return (
+      <div>
+        <h1>You are {onlineStatus ? "Online" : "Offline"}</h1>
+      </div>
+    );
+  }
+  ```
+
+  <a name="geo-location"></a>
+
+  ## Detect geolocation changes
+  Tracks geolocation state of user's device.
+  _[(credits to streamich)](https://github.com/streamich/react-use)_
+  ### Hook implementation 
+  ```javascript
+  import {useState, useEffect} from 'react';
+  const useGeolocation = () => {
+  const [state, setState] = useState({
+    loading: true,
+    accuracy: null,
+    altitude: null,
+    altitudeAccuracy: null,
+    heading: null,
+    latitude: null,
+    longitude: null,
+    speed: null,
+    timestamp: Date.now(),
+  });
+  let mounted = true;
+  let watchId: any;
+
+  const onEvent = (event: any) => {
+    if (mounted) {
+      setState({
+        loading: false,
+        accuracy: event.coords.accuracy,
+        altitude: event.coords.altitude,
+        altitudeAccuracy: event.coords.altitudeAccuracy,
+        heading: event.coords.heading,
+        latitude: event.coords.latitude,
+        longitude: event.coords.longitude,
+        speed: event.coords.speed,
+        timestamp: event.timestamp,
+      });
+    }
+  };
+  const onEventError = (error: any) =>
+    mounted && setState(oldState => ({...oldState, loading: false, error}));
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(onEvent, onEventError);
+    watchId = navigator.geolocation.watchPosition(onEvent, onEventError);
+
+    return () => {
+      mounted = false;
+      navigator.geolocation.clearWatch(watchId);
+    };
+  }, [0]);
+
+  return state;
+};
+  ``` 
+  ### Hook Usage
+
+  ```javascript
+  const Demo = () => {
+    const state = useGeolocation();
+
+    return (
+      <pre>
+        {JSON.stringify(state, null, 2)}
+      </pre>
+    );
+  };
+  ```
 
 # Going further
 
