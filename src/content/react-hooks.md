@@ -6,11 +6,10 @@ date: "2019-03-10T15:00:00.000Z"
 image: img/react-hooks.jpg
 tags: ["React", "Best"]
 twittertags: ["react", "react-native", "hooks", "functional-progamming", "fp", "javascript"]
-draft: true
+draft: false
 ---
   Starting of React `16.8.0` there are new ways to call async code in an elegant way, reuse logic between components much more easily.
   <!-- end -->
-  And **improve your testing experience** by moving away logic from stateful components.
   
   All right this is gonna be a **long post**, so I added a table of content so you can read a little, then continue working on your project, and come back when you need a break.
 
@@ -22,8 +21,11 @@ draft: true
  - [React Hook vs React Class](#classes-vs-hooks)
  - [The existing react hooks](#existing-hooks)
  - [Notation](#notation)
+ - [The useState hook](#use-state)
+ - [The useEffect hook](#use-effect)
+ - [The useReducer hook](#use-reducer)
+ - [The useRef hook](#use-ref)
  - [Separation of concerns](#separation-concerns)
- - [Tests for your hooks](#testing)
  - [Advance use cases](#advance)
  - [Real world examples](#real-world)
     - [Show online status](#online-status)
@@ -108,6 +110,8 @@ draft: true
 
   At first, this new API may appear weird to you but stay with me, you will learn how to get the most out of it.
 
+<a name="existing-hooks"> </a>
+
 # The existing react hooks
 
   The new API comes with two main pre-existing hooks, and some others for other use cases
@@ -149,8 +153,6 @@ draft: true
 
   **I love simple and elegant one-liners**, _not as much as python people, and definitively I do NOT like insane one-liners as python people_ 
 
-<a name="separation-concerns"> </a>
-
 ### Rules
 
  - Never call Hooks from inside a loop, condition or nested function
@@ -163,7 +165,32 @@ draft: true
 
  - Hooks can call other Hooks
 
-# The `useEffect` hook
+<a name="use-state"> </a>
+
+# The `useState` hook 🎲
+
+  The most easy to use and understand of all the hooks. It's porpuse is to store state in a functional component.
+
+  > Well, technicaly we are not storing state inside it, but hooking into the a dictionary (key-value) of states that are handle by the react library under the hood. _But we are not going to deep into that details for now_
+
+  ```javascript
+  import React, { useState } from 'react';
+
+  function myAwesomeComponent () {
+    const [name, setName] = useState('John');
+    ...
+  }
+  ```
+
+  The useState returns a tuple with a _state holder_  property and a setter method.
+
+  You invoque useState with the initial value for your state.
+
+  To update the state you call the `setName` function
+
+<a name="use-effect"> </a>
+
+# The `useEffect` hook 🍯
 
   In a React class, you would typically set up a subscription in `componentDidMount`, and clean it up in `componentWillUnmount`.
 
@@ -186,7 +213,9 @@ draft: true
 
   This lets us keep the logic for adding and removing subscriptions close to each other. 
 
-# The `useReducer` hook
+<a name="use-reducer"> </a>
+
+# The `useReducer` hook 🎣
   When you have complex state logic, it's a good idea to use a `reducer`. If you are familiar with libraries like `Redux` or the `flux pattern` you will understand this at the first glance.
 
   ![Redux pattern architecture](/img/react-hooks/redux-pattern.png)
@@ -263,8 +292,9 @@ function TodoList() {
 export default TodoList;
 ```
 
+<a name="use-ref"> </a>
 
-# The `useRef` hook
+# The `useRef` hook 🔮
   **Refs** are used to access React elements or DOM elements rendered in the **render** function.
   The hook `useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument `initialValue`.
   It's very simply to use
@@ -285,7 +315,7 @@ export default TodoList;
   }
   ```
 
-<a name="testing"> </a>
+<a name="separation-concerns"> </a>
 
 # Separation of concerns
 
@@ -364,7 +394,6 @@ export default TodoList;
     useEffect(() => {
       PlacesAPI.subscribeToPlaceNews(props.place.id, handlePlacesNews);
 
-      // Why returning a new function? See next section
       return () => {
         PlacesAPI.unsubscribeFromPlaceNews(props.place.id, handlePlacesNews);
       };
@@ -374,46 +403,6 @@ export default TodoList;
     return ...;
   }
 ```
-
-## Better way to test stateful logic
-
-  ![Divide and conquer](/img/react-hooks/divide.jpg)
-
-  Now you may have noticed that **hooks are just functions**, and functions can be **unit tested easily**.
-
-  In the next example we will be using jest to do unit testing.
-
-```javascript
-import PlacesAPI from '../services/place';
-export function usePlaceNews(placeId) {
-  const [currentEvent, setCurrentEvent] = useState(null);
-
-  function handlePlacesNews(place) {
-    setCurrentEvent(place.currentEvent);
-  }
-
-  useEffect(() => {
-    PlacesAPI.subscribeToPlaceNews(placeId, handlePlacesNews);
-
-    // Why returning a new function? See next section
-    return () => {
-      PlacesAPI.unsubscribeFromPlaceNews(placeId, handlePlacesNews);
-    };
-  });
-  return currentEvent;
-}
-```
-
-```javascript
-import { usePlaceNews } from '../hooks/place';
-
-function PlacesNews(props) {
-  const currentEvent = usePlaceNews(props.place.id);
-
-  return <div> {` The current place event is ${currentEvent} `} </div>
-}
-```
-  Now that looks very similar to a `mobx` observable or a subscription from `Rx`.
 
 <a name="advance"> </a>
 
@@ -575,7 +564,7 @@ function PlacesNews(props) {
 # Wrapping up
 
   The new React hooks API is a game changer, now we can use state in function components, 
-reuse stateful logic, create better test scenarios and write less code.
+reuse stateful logic.
 
   We learn about `useState` and `useEffect`, those are the primitives for every hook you will see.
 
