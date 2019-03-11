@@ -17,10 +17,10 @@ draft: false
   I still remember good old days when nobody was talking about the redux pattern and my reacts apps were a state mess (mid 2014).
 
   When the flux pattern was introduced at first it was hard to understand and seems very complicated to implement, but now a few years later is the standard in every react framework based project.
-  
+
   With react hooks will happen the same, is the replacement for class components and the future of react framework.
   
-  All right this is gonna be a **long post**, so I added a table of content so you can read a little, then continue working on your project, and come back when you need a break.
+  All right this is gonna be a **long post**, so I added a table of content so you can read a little, then continue working on your project, and come back later when you need a break.
 
   _I'm the only one who reads technical articles to clean my mind and release stress from my day-to-day work ?_
 
