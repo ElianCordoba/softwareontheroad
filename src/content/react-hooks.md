@@ -17,9 +17,9 @@ draft: false
 
 # Table of contents
 
- - [What are react hooks anyway?](#intro)
+ - [What are React hooks anyway?](#intro)
  - [React Hook vs React Class](#classes-vs-hooks)
- - [The existing react hooks](#existing-hooks)
+ - [The existing React hooks](#existing-hooks)
  - [Notation](#notation)
  - [The useState hook](#use-state)
  - [The useEffect hook](#use-effect)
@@ -35,9 +35,9 @@ draft: false
 
  <a name="intro"></a>
 
-# What are react hooks anyway?
+# What are React hooks anyway?
 
-  When you work with React class components you can use state, that's why these components are also called stateful, also every class component have lifecycle methods like: `componentDidMount()`, `componentDidUpdate()`, and so on.
+  When you work with React class components you can use state, that's why these components are also called stateful, also every class component has lifecycle methods like: `componentDidMount()`, `componentDidUpdate()`, and so on.
 
   You can't use any of this in functional components.
   Functional components can’t use their own state and don’t have lifecycle methods.
@@ -46,11 +46,11 @@ draft: false
 
   React hooks allows us to take a React functional component and add state and lifecycle methods to it.
 
-  In simple words, react hooks are **special functions** to extend the capabilities of functional components and give them the posibility to have **lifecycle events** and **manage state.**
+  In simple words, React hooks are **special functions** to extend the capabilities of functional components and give them the possibility to have **lifecycle events** and **manage state.**
 
 <a name="classes-vs-hooks"></a>
 
-  Let's compare how a class differ from a functional component when react hooks are used.
+  Let's compare how a class differs from a functional component when React hooks are used.
 
   ## The good old fashion class-based way
 
@@ -83,7 +83,7 @@ draft: false
     }
   }
   ```
-  ## With react hooks
+  ## With React hooks
   ```javascript
   import React, { useState } from 'react';
   function ClickCounter() {
@@ -112,13 +112,13 @@ draft: false
 
 <a name="existing-hooks"> </a>
 
-# The existing react hooks
+# The existing React hooks
 
   The new API comes with two main pre-existing hooks, and some others for other use cases
 
-### Basics react hooks
+### Basics React hooks
 
-  The foundation of all react hooks, every other hook you will see is a variation of these three or are using them as primitives.
+  The foundation of all React hooks, every other hook you will see is a variation of these three or are using them as primitives.
 
   - The `useState` is the _State hook_ use it for declaring the state in your components
 
@@ -126,9 +126,9 @@ draft: false
 
   - The `useContext` use it in conjunction with React Context API. When the React Context provider updates, this hook will trigger render with the latest context value.
 
-### Advance react hooks
+### Advance React hooks
 
-  These are the most important of the other built-in react hooks that comes with the library.
+  These are the most important of the other built-in React hooks that come with the library.
 
   - The `useReducer` is an alternative to `useState`, you should use it when you have complex state logic, if you’re familiar with Redux you will like it.
 
@@ -169,9 +169,9 @@ draft: false
 
 # The `useState` hook 🎲
 
-  The most easy to use and understand of all the hooks. It's porpuse is to store state in a functional component.
+  The easiest to use and understand all the hooks. Its purpose is to store the state in a functional component.
 
-  > Well, technicaly we are not storing state inside it, but hooking into the a dictionary (key-value) of states that are handle by the react library under the hood. _But we are not going to deep into that details for now_
+  > Well, technically we are not storing state inside it, but hooking into the dictionary (key-value) of states that are handled by the react library under the hood. _But we are not going to deep into that details for now_
 
   ```javascript
   import React, { useState } from 'react';
@@ -184,7 +184,7 @@ draft: false
 
   The useState returns a tuple with a _state holder_  property and a setter method.
 
-  You invoque useState with the initial value for your state.
+  You invoke useState with the initial value for your state.
 
   To update the state you call the `setName` function
 
@@ -216,7 +216,7 @@ draft: false
 <a name="use-reducer"> </a>
 
 # The `useReducer` hook 🎣
-  When you have complex state logic, it's a good idea to use a `reducer`. If you are familiar with libraries like `Redux` or the `flux pattern` you will understand this at the first glance.
+  When you have complex state logic, it's a good idea to use a `reducer`. If you are familiar with libraries like `Redux` or the `flux pattern` you will understand this at first glance.
 
   ![Redux pattern architecture](/img/react-hooks/redux-pattern.png)
 
@@ -297,7 +297,7 @@ export default TodoList;
 # The `useRef` hook 🔮
   **Refs** are used to access React elements or DOM elements rendered in the **render** function.
   The hook `useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument `initialValue`.
-  It's very simply to use
+  It's very simple to use
 
   ```javascript
   function TextInputWithFocusButton() {
@@ -370,7 +370,7 @@ export default TodoList;
   }
 ```
 
-  ### A better approach using react hooks
+  ### A better approach using React hooks
 
 ```javascript
   import React, { useState, useEffect } from 'react';
@@ -429,7 +429,7 @@ export default TodoList;
   <a name="online-status"></a>
 
   ## Show online status 
-  Detect user's device online status.
+  Detect the user's device online status.
   _[(credits to mathdroid)](https://github.com/rehooks/online-status)_
 
   ### Hook implementation 
@@ -547,17 +547,17 @@ export default TodoList;
 
 # Awesome projects
 
- - [react-use](https://www.npmjs.com/package/react-use) The largest collection of react hooks, really worth checking out.
+ - [react-use](https://www.npmjs.com/package/react-use) The largest collection of React hooks, really worth checking out.
 
- - [awesome react hooks](https://github.com/rehooks/awesome-react-hooks) Curated list of awesome resources for learning react hooks.
+ - [awesome react hooks](https://github.com/rehooks/awesome-react-hooks) Curated list of awesome resources for learning React hooks.
 
  - [react-swipeable](https://www.npmjs.com/package/react-swipeable) Provides swipe events for your component.
 
- - [easy-peasy](https://www.npmjs.com/package/easy-peasy) Global state manager powered by react hooks.
+ - [easy-peasy](https://www.npmjs.com/package/easy-peasy) Global state manager powered by React hooks.
 
  - [react-intersection-observer](https://www.npmjs.com/package/react-intersection-observer) Tell you when an element enters or leaves the viewport.
 
- - [UseHooks.com](https://usehooks.com/) Collection of recipies for several react hooks.
+ - [UseHooks.com](https://usehooks.com/) Collection of recipes for several React hooks.
 
 <a name="conclusion"></a>
 
@@ -570,9 +570,9 @@ reuse stateful logic.
 
   **Remember, every new hook is a derivation of one of those two.**
 
-  We talk about other react built-in hooks such as `useReducer` and `useRef`.
+  We talk about others react built-in hooks such as `useReducer` and `useRef`.
 
-  We create our own custom hooks to handle data fetching and we implement our own version of `useReducer` to demostrate the magic behind it.
+  We create our own custom hooks to handle data fetching and we implement our own version of `useReducer` to demonstrate the magic behind it.
 
   **Keep it cool and continue learning!**
     
