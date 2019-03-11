@@ -28,7 +28,7 @@ draft: true
  - [Real world examples](#real-world)
     - [Show online status](#online-status)
     - [Track geolocation](#geo-location)
- - [Going further](#)
+ - [Awesome resources](#awesome)
  - [Conclusion](#conclusion)
 
  <a name="intro"></a>
@@ -163,6 +163,130 @@ draft: true
 
  - Hooks can call other Hooks
 
+# The `useEffect` hook
+
+  In a React class, you would typically set up a subscription in `componentDidMount`, and clean it up in `componentWillUnmount`.
+
+  With react hook `useEffect` we perform this by returning a function to clean up or _unsubscribe_ the effect.
+
+  If you have worked with `mobx` this pattern may result familiar to you, it's an analogy to a reaction.
+
+```javascript
+  useEffect(() => {
+    PlacesAPI.subscribeToPlaceNews(props.place.id, handlePlacesNews);
+    return () => {
+      PlacesAPI.unsubscribeFromPlaceNews(props.place.id, handlePlacesNews);
+    };
+  });
+```
+
+  ### Why did we return a function from our effect? 
+
+  This is the optional cleanup mechanism for effects. Every effect may return a function that cleans up after it.
+
+  This lets us keep the logic for adding and removing subscriptions close to each other. 
+
+# The `useReducer` hook
+  When you have complex state logic, it's a good idea to use a `reducer`. If you are familiar with libraries like `Redux` or the `flux pattern` you will understand this at the first glance.
+
+  ![Redux pattern architecture](/img/react-hooks/redux-pattern.png)
+
+  Basically with a reducer you `dispatch` or trigger some actions in your view, those events are listened by a reducer who has the logic inside to update the store which is where your state lives. Now when the store is updated, your component will rerender.
+
+
+```javascript
+
+import React, { useReducer, useState } from 'react';
+import produce from 'immer';
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'toggle':
+      return produce(state, (draftState) => {
+        draftState[action.payload].isCompleted = !draftState[action.payload].isCompleted;
+      });
+    case 'add':
+      return produce(state, (draftState) => {
+        draftState.push({ label: action.payload });
+      });
+    default:
+      return state;
+  }
+}
+
+function Todo({ isCompleted, label, onChange }) {
+  return <p>
+    <label style={{
+      textDecoration: isCompleted && 'line-through'
+    }}>
+      <input
+        type="checkbox"
+        checked={isCompleted || false}
+        onChange={onChange}
+      />
+      <span>{label}</span>
+    </label>
+  </p>
+}
+
+function TodoList() {
+  const todos = [
+    { label: 'Do something' },
+    { label: 'Buy dinner' }
+  ];
+
+  const [state, dispatch] = useReducer(reducer, todos);
+  const [newTodo, setNewTodo] = useState('');
+
+  return <>
+    {state.map((todo, i) => (
+      <Todo
+        key={i}
+        {...todo}
+        onChange={() => dispatch({ type: 'toggle', payload: i })}
+      />
+    ))}
+    <input
+      type="text"
+      value={newTodo}
+      onChange={(e) => setNewTodo(e.target.value)}
+    />
+    <button onClick={() => {
+      dispatch({ type: 'add', payload: newTodo });
+      setNewTodo('');
+    }}>
+      Add
+    </button>
+  </>;
+}
+
+export default TodoList;
+```
+
+
+# The `useRef` hook
+  **Refs** are used to access React elements or DOM elements rendered in the **render** function.
+  The hook `useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument `initialValue`.
+  It's very simply to use
+
+  ```javascript
+  function TextInputWithFocusButton() {
+    const inputEl = useRef(null);
+    const onButtonClick = () => {
+      // `current` points to the mounted text input element
+      inputEl.current.focus();
+    };
+    return (
+      <>
+        <input ref={inputEl} type="text" />
+        <button onClick={onButtonClick}>Focus the input</button>
+      </>
+    );
+  }
+  ```
+
+<a name="testing"> </a>
+
 # Separation of concerns
 
 ![Mantain your code organized](/img/react-hooks/organized.jpeg)
@@ -251,107 +375,7 @@ draft: true
   }
 ```
 
-# The `useEffect` hook
-
-  In a React class, you would typically set up a subscription in `componentDidMount`, and clean it up in `componentWillUnmount`.
-
-  With react hook `useEffect` we perform this by returning a function to clean up or _unsubscribe_ the effect.
-
-  If you have worked with `mobx` this pattern may result familiar to you, it's an analogy to a reaction.
-
-```javascript
-  useEffect(() => {
-    PlacesAPI.subscribeToPlaceNews(props.place.id, handlePlacesNews);
-    return () => {
-      PlacesAPI.unsubscribeFromPlaceNews(props.place.id, handlePlacesNews);
-    };
-  });
-```
-
-  ### Why did we return a function from our effect? 
-
-  This is the optional cleanup mechanism for effects. Every effect may return a function that cleans up after it.
-
-  This lets us keep the logic for adding and removing subscriptions close to each other. 
-
-# The `useReducer` hook
-
-
-```javascript
-
-import React, { useReducer, useState } from 'react';
-import produce from 'immer';
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'toggle':
-      return produce(state, (draftState) => {
-        draftState[action.payload].isCompleted = !draftState[action.payload].isCompleted;
-      });
-    case 'add':
-      return produce(state, (draftState) => {
-        draftState.push({ label: action.payload });
-      });
-    default:
-      return state;
-  }
-}
-
-function Todo({ isCompleted, label, onChange }) {
-  return <p>
-    <label style={{
-      textDecoration: isCompleted && 'line-through'
-    }}>
-      <input
-        type="checkbox"
-        checked={isCompleted || false}
-        onChange={onChange}
-      />
-      <span>{label}</span>
-    </label>
-  </p>
-}
-
-function TodoList() {
-  const todos = [
-    { label: 'Do something' },
-    { label: 'Buy dinner' }
-  ];
-
-  const [state, dispatch] = useReducer(reducer, todos);
-  const [newTodo, setNewTodo] = useState('');
-
-  return <>
-    {state.map((todo, i) => (
-      <Todo
-        key={i}
-        {...todo}
-        onChange={() => dispatch({ type: 'toggle', payload: i })}
-      />
-    ))}
-    <input
-      type="text"
-      value={newTodo}
-      onChange={(e) => setNewTodo(e.target.value)}
-    />
-    <button onClick={() => {
-      dispatch({ type: 'add', payload: newTodo });
-      setNewTodo('');
-    }}>
-      Add
-    </button>
-  </>;
-}
-
-export default TodoList;
-```
-
-
-# The `useRef` hook
-
-<a name="testing"> </a>
-
-# Better way to test stateful logic
+## Better way to test stateful logic
 
   ![Divide and conquer](/img/react-hooks/divide.jpg)
 
@@ -530,7 +554,9 @@ function PlacesNews(props) {
   };
   ```
 
-# Going further
+<a name="awesome"></a>
+
+# Awesome projects
 
  - [react-use](https://www.npmjs.com/package/react-use) The largest collection of react hooks, really worth checking out.
 
@@ -550,9 +576,13 @@ function PlacesNews(props) {
 
   The new React hooks API is a game changer, now we can use state in function components, 
 reuse stateful logic, create better test scenarios and write less code.
+
   We learn about `useState` and `useEffect`, those are the primitives for every hook you will see.
+
   **Remember, every new hook is a derivation of one of those two.**
+
   We talk about other react built-in hooks such as `useReducer` and `useRef`.
+
   We create our own custom hooks to handle data fetching and we implement our own version of `useReducer` to demostrate the magic behind it.
 
   **Keep it cool and continue learning!**
