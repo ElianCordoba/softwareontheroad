@@ -10,6 +10,15 @@ draft: false
 ---
   Starting of React `16.8.0` there are new ways to call async code in an elegant way, reuse logic between components much more easily.
   <!-- end -->
+
+  As a reactjs developer, is your duty to stay up to date with the new react framework features.
+  Not to please your boss but to stay relevant in the field and the market.
+
+  I still remember good old days when nobody was talking about the redux pattern and my reacts apps were a state mess (mid 2014).
+
+  When the flux pattern was introduced at first it was hard to understand and seems very complicated to implement, but now a few years later is the standard in every react framework based project.
+  
+  With react hooks will happen the same, is the replacement for class components and the future of react framework.
   
   All right this is gonna be a **long post**, so I added a table of content so you can read a little, then continue working on your project, and come back when you need a break.
 
@@ -37,14 +46,14 @@ draft: false
 
 # What are React hooks anyway?
 
-  When you work with React class components you can use state, that's why these components are also called stateful, also every class component has lifecycle methods like: `componentDidMount()`, `componentDidUpdate()`, and so on.
+  When you work with Reactjs class components you can use state, that's why these components are also called stateful, also every class component has lifecycle methods like: `componentDidMount()`, `componentDidUpdate()`, and so on.
 
   You can't use any of this in functional components.
   Functional components can’t use their own state and don’t have lifecycle methods.
 
   **Now with React hooks you can.**
 
-  React hooks allows us to take a React functional component and add state and lifecycle methods to it.
+  React hooks allows us to take a Reactjs functional component and add state and lifecycle methods to it.
 
   In simple words, React hooks are **special functions** to extend the capabilities of functional components and give them the possibility to have **lifecycle events** and **manage state.**
 
@@ -124,7 +133,7 @@ draft: false
 
   - The `useEffect` is the _Side effects hook_ use it for data fetching, manually changing the DOM, and etc.
 
-  - The `useContext` use it in conjunction with React Context API. When the React Context provider updates, this hook will trigger render with the latest context value.
+  - The `useContext` use it in conjunction with Reactjs Context API. When the React Context provider updates, this hook will trigger render with the latest context value.
 
 ### Advance React hooks
 
@@ -412,7 +421,7 @@ export default TodoList;
 
   ## Using `useEffect` for data fetching
 
-  With the combination of `useEffect` and `useState`, you can make API calls by using `useEffect` and passing in an empty array or object as the second argument to have the same behaviour as **componentDidMount**
+  With the combination of `useEffect` and `useState`, you can make API calls by using `useEffect` and passing in an empty array or object as the second argument to have the same behavior as **componentDidMount**
 
   The key here is the second argument. If you don't provide an empty array or object as the second argument, the API call will be called on every render, and it effectively becomes the same as a **componentDidUpdate**
 
@@ -434,7 +443,7 @@ export default TodoList;
   ```
   By passing a second parameter to useEffect we are setting a _subscription_ whenever the _id_ property change the effect will be retriggered
 
-  If instead we would like to make an API call **ONLY** when the component is mounted
+  If instead, we would like to make an API call **ONLY** when the component is mounted
 
   ```javascript
   const [fullName, setFullName] = useState(null);
