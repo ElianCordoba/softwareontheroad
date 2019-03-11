@@ -412,14 +412,41 @@ export default TodoList;
 
   ## Using `useEffect` for data fetching
 
-  ```javascript
-    ...example using axios
+  With the combination of `useEffect` and `useState`, you can make API calls by using `useEffect` and passing in an empty array or object as the second argument to have the same behaviour as **componentDidMount**
 
+  The key here is the second argument. If you don't provide an empty array or object as the second argument, the API call will be called on every render, and it effectively becomes the same as a **componentDidUpdate**
+
+  ```javascript
+    const [todo, setTodo] = useState(null);
+    const [id, setId] = useState(1);
+    
+    useEffect(() => {
+      if (!id) {
+        return;
+      }
+      
+      fetch(`https://jsonplaceholder.typicode.com/todos/${id}`)
+        .then(results => results.json())
+        .then(data => {
+          setTodo(data);
+        });
+    }, [id]);  // Don't forget to add this!
   ```
+  By passing a second parameter to useEffect we are setting a _subscription_ whenever the _id_ property change the effect will be retriggered
+
+  If instead we would like to make an API call **ONLY** when the component is mounted
 
   ```javascript
+  const [fullName, setFullName] = useState(null);
 
-    ...example using an abstraction layer
+  useEffect(() => {
+    fetch('https://randomuser.me/api/')
+      .then(results => results.json())
+      .then(data => {
+        const {name} = data.results[0];
+        setFullName(`${name.first} ${name.last}`);
+      });
+  }, []); // <-- Have to pass in [] here!
   ```
 
 <a name="real-world"></a>
