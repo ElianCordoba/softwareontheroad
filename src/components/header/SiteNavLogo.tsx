@@ -7,10 +7,10 @@ import config from '../../website-config';
 const SiteNavLogoStyles = css`
   flex-shrink: 0;
   display: block;
-  margin-right: 24px;
-  padding: 11px 0;
+  margin-right: 20px;
+  padding: 10px 0;
   color: #fff;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   line-height: 1em;
   font-weight: bold;
   letter-spacing: -0.5px;
