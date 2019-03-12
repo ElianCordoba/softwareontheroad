@@ -30,25 +30,43 @@ const ShareSocialContainer = styled.div`
 	max-width: 840px;
 `
 
+const ShareSocialTitle = styled.h1`
+justify-content: space-around;
+display: flex;
+align-items: center;
+`
+
+const SocialNetworkName = styled.p`
+justify-content: space-around;
+display: flex;
+align-items: center;
+`
+
+
 const Share: React.FunctionComponent<ShareProps> = ({ socialConfig, tags }) => (
+	<>
+	<ShareSocialTitle> Share with your developer fellows !  </ShareSocialTitle>
 	<ShareSocialContainer>
-		<h2> Share: </h2> 
 		<span css={css`cursor: pointer;`} >
 			<FacebookShareButton url={socialConfig.config.url} >
 				<FacebookIcon size={64} />
+					<SocialNetworkName> Facebook </SocialNetworkName>
 			</FacebookShareButton>
 		</span>
 		<span css={css`cursor: pointer;`} >
 			<TwitterShareButton url={socialConfig.config.url} title={socialConfig.config.title} via={socialConfig.twitterHandle.split('@').join('')} hashtags={tags} >
 				<TwitterIcon size={64}  />
+				<SocialNetworkName> Twitter </SocialNetworkName>
 			</TwitterShareButton>
 		</span>
 		<span css={css`cursor: pointer;`} >
 			<RedditShareButton url={socialConfig.config.url} title={socialConfig.config.title} >
 				<RedditIcon size={64}  />
+					<SocialNetworkName> Reddit </SocialNetworkName>
 			</RedditShareButton>
 		</span>
 	</ShareSocialContainer>
+	</>
 );
 
 Share.defaultProps = {
