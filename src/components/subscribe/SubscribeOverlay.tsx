@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 
 import { colors } from '../../styles/colors';
-import config from '../../website-config';
 import SubscribeForm from './SubscribeForm';
 import SubscribeLogo from './SubscribeLogo';
 
@@ -189,10 +188,9 @@ class SubscribeModal extends React.Component<any, SubscribeState> {
         <SubscribeOverlayClose onClick={this.close} />
         <SubscribeOverlayContent>
           <SubscribeLogo />
-          <SubscribeOverlayTitle>Subscribe to {config.title}</SubscribeOverlayTitle>
+          <SubscribeOverlayTitle>Get notified when new content is out.</SubscribeOverlayTitle>
           <SubscribeOverlayDescription>
-            Stay up to date! Get all the latest &amp; greatest posts delivered straight to your
-            inbox
+            Only high-quality articles about AWS, DevOps, continuous integration, node.js, react, ionic and more...
           </SubscribeOverlayDescription>
           <SubscribeForm />
         </SubscribeOverlayContent>

@@ -6,7 +6,6 @@ import { css } from '@emotion/core';
 
 import { SocialLink } from '../../styles/shared';
 import config from '../../website-config';
-import Facebook from '../icons/facebook';
 import Twitter from '../icons/twitter';
 import SubscribeModal from '../subscribe/SubscribeOverlay';
 import SiteNavLogo from './SiteNavLogo';
@@ -27,7 +26,7 @@ const SiteNavStyles = css`
   align-items: flex-start;
   overflow-y: hidden;
   height: 40px;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
 `;
 
 const SiteNavLeft = styled.div`
@@ -38,7 +37,7 @@ const SiteNavLeft = styled.div`
   -webkit-overflow-scrolling: touch;
   margin-right: 10px;
   padding-bottom: 80px;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.5px;
   white-space: nowrap;
 
   -ms-overflow-scrolling: touch;
@@ -87,6 +86,13 @@ const SiteNavRight = styled.div`
   }
 `;
 
+const SubscribeModalContainer = styled.div`
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  height: 40px;
+`;
+
 const SocialLinks = styled.div`
   flex-shrink: 0;
   display: flex;
@@ -101,10 +107,12 @@ const SubscribeButton = styled.a`
   padding: 4px 10px;
   border: #fff 1px solid;
   color: #fff;
-  font-size: 1.2rem;
-  line-height: 1em;
-  border-radius: 10px;
-  opacity: 0.8;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-right: 10px;
+  line-height: 1.2em;
+  border-radius: 5px;
+  opacity: 1;
 
   :hover {
     text-decoration: none;
@@ -139,33 +147,29 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
     return (
       <nav css={[isHome && HomeNavRaise, SiteNavStyles]}>
         <SiteNavLeft>
-          {!isHome && <SiteNavLogo />}
           <ul css={NavStyles} role="menu">
             {/* TODO: mark current nav item - add class nav-current */}
-            <li role="menuitem">
-              <Link to="/">Home</Link>
-            </li>
-            <li role="menuitem">
-              <Link to="/about">About</Link>
-            </li>
+            {
+              !isHome && <li role="menuitem">
+                <Link to="/">Home</Link>
+              </li>
+            }
             <li role="menuitem">
               <Link to="/tags/best/">Bests Posts</Link>
             </li>
+
+            <li role="menuitem">
+              <Link to="/about">About</Link>
+            </li>
           </ul>
+          <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
         </SiteNavLeft>
+        <SubscribeModalContainer> 
+          <SubscribeModal ref={this.subscribe} />
+        </SubscribeModalContainer>
         <SiteNavRight>
           <SocialLinks>
-            {config.facebook && (
-              <a
-                css={SocialLink}
-                href={config.facebook}
-                target="_blank"
-                title="Facebook"
-                rel="noopener noreferrer"
-              >
-                <Facebook />
-              </a>
-            )}
+            <span css={css`font-size: 1.2em;font-weight: 500;`}> Follow me </span>
             {config.twitter && (
               <a
                 css={SocialLink}
@@ -189,10 +193,6 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
               </a>
             )}
           </SocialLinks>
-          {config.showSubscribe && (
-            <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
-          )}
-          {config.showSubscribe && <SubscribeModal ref={this.subscribe} />}
         </SiteNavRight>
       </nav>
     );
