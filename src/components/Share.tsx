@@ -4,12 +4,8 @@ import { css } from '@emotion/core';
 import {
 	FacebookIcon,
 	TwitterIcon,
-	GooglePlusIcon,
-	LinkedinIcon,
 	RedditIcon,
 	FacebookShareButton,
-	GooglePlusShareButton,
-	LinkedinShareButton,
 	TwitterShareButton,
 	RedditShareButton,
 } from 'react-share';
@@ -36,7 +32,7 @@ const ShareSocialContainer = styled.div`
 
 const Share: React.FunctionComponent<ShareProps> = ({ socialConfig, tags }) => (
 	<ShareSocialContainer>
-		<h3> Share: </h3> 
+		<h2> Share: </h2> 
 		<span css={css`cursor: pointer;`} >
 			<FacebookShareButton url={socialConfig.config.url} >
 				<FacebookIcon size={64} />
@@ -46,16 +42,6 @@ const Share: React.FunctionComponent<ShareProps> = ({ socialConfig, tags }) => (
 			<TwitterShareButton url={socialConfig.config.url} title={socialConfig.config.title} via={socialConfig.twitterHandle.split('@').join('')} hashtags={tags} >
 				<TwitterIcon size={64}  />
 			</TwitterShareButton>
-		</span>
-		<span css={css`cursor: pointer;`} >
-			<GooglePlusShareButton url={socialConfig.config.url} >
-				<GooglePlusIcon size={64} />
-			</GooglePlusShareButton>
-		</span>
-		<span css={css`cursor: pointer;`} >
-			<LinkedinShareButton url={socialConfig.config.url} title={socialConfig.config.title} >
-				<LinkedinIcon size={64}  />
-			</LinkedinShareButton>
 		</span>
 		<span css={css`cursor: pointer;`} >
 			<RedditShareButton url={socialConfig.config.url} title={socialConfig.config.title} >
