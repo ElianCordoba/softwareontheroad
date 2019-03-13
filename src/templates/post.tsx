@@ -146,6 +146,7 @@ interface PageTemplateProps {
         };
         tags: string[];
         author: {
+          name: string;
           id: string;
           bio: string;
           avatar: {
@@ -371,6 +372,7 @@ export const query = graphql`
         }
         author {
           id
+          name
           bio
           avatar {
             children {

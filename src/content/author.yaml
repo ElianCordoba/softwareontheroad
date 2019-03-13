@@ -1,6 +1,8 @@
 - id: santypk4
+  name: Santiago Quinteros
   avatar: avatars/profile.jpg
-  bio: During the day I talk to the node.js runtime with Typescript or Javascript, during the night I fight with AWS and it's complexity.
+  bio: "During the day I talk to the node.js runtime with Typescript or Javascript, during the night I fight with AWS and it's complexity. 
+  Follow me on twitter @santypk4"
   twitter: santypk4
   facebook: santypk4
   github: santiq

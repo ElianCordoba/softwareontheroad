@@ -40,12 +40,10 @@ export interface AuthorCardProps {
 const AuthorCard: React.FunctionComponent<AuthorCardProps> = ({ author }) => {
   return (
     <AuthorCardSection>
-      {/* TODO: default avatar */}
-      {/* TODO: author page url */}
       <img css={AuthorProfileImage} src={author.avatar.children[0].fixed.src} alt={author.id} />
       <AuthorCardContent>
         <AuthorCardName>
-          <Link to={`/author/${_.kebabCase(author.id)}/`}>{author.id}</Link>
+          <Link to={`/author/${_.kebabCase(author.id)}/`}>{author.name} - @{author.id}</Link>
         </AuthorCardName>
         {author.bio ? (
           <p>{author.bio}</p>
