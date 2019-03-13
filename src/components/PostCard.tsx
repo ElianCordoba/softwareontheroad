@@ -240,7 +240,7 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
               </Link>
             </AuthorListItem>
           </AuthorList>
-          <ReadingTime>{post.timeToRead} min read</ReadingTime>
+          <ReadingTime>{post.timeToRead > 9 ? post.timeToRead : post.timeToRead + 2} min read</ReadingTime>
         </PostCardMeta>
       </PostCardContent>
     </article>
