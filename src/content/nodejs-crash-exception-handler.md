@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 1 simple trick to prevent your node.js server from crashing on production
-subtitle: A simple line of code that should be on every node.js application
+subtitle: "A simple line of code that should be on every node.js application"
 author: santypk4
 date: "2018-07-01T00:00:00.000Z"
 image: img/nodejs-trick.jpg

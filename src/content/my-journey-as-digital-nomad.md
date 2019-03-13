@@ -1,6 +1,7 @@
 ---
 layout: post
 title: My journey as a digital nomad 👨‍💻 
+subtitle: "Being a digital nomad is something that everybody should try."
 author: santypk4
 date: "2019-01-20T00:00:00.000Z"
 image: img/digital-nomad.jpg

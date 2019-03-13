@@ -1,7 +1,7 @@
 ---
 layout: post
 title: My first neural network 
-subtitle: Coding a neural network library from scratch
+subtitle: "Coding a neural network library from scratch"
 author: santypk4
 date: "2018-06-12T00:00:00.000Z"
 image: img/machine-learning.jpg
