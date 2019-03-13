@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Polinomial Regression
+title: Polynomial Regression
 subtitle: Using tensorflow.js low-level API
 author: santypk4
 date: "2018-06-15T00:00:00.000Z"
