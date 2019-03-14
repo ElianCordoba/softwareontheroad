@@ -12,13 +12,13 @@ draft: false
 
   # Use CircleCI and automate your deploys for free 🚢
 
-  In a previous post, we discuss how to implement an AWS S3 bucket and an AWS CloudFront distribution to server your frontend code to a million users.
+  In a future post, we will discuss how to implement an AWS S3 bucket as hosting for your web application, and an AWS CloudFront distribution as your content distribution network to deliver your web application in a scalable way.
 
-  But we let out of discussion an efficient way to manage several environments.
+  But first, we need an efficient way to manage several environments.
 
-  > After all, if you have one million users you don't want to mess up by using a bad CLI command.
+  > After all, if you have one million users you don't want to mess up your site by using a bad CLI command.
 
-  You need to have your infrastructure automatized, and those configurations must be **INSIDE a version control tool** like GIT or SVN.
+  We need to have our infrastructure automatized, and those configurations must be **INSIDE a version control tool** like GIT or SVN.
 
   _(just kidding, who use SVN these days?)_ 
 
