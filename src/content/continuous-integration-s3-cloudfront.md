@@ -24,7 +24,22 @@ draft: false
 
   I'm a big fan of **CircleCI**, I have been using it since version 1 in 2015 when I was looking for a cheap alternative to TravisCI but also an easier alternative to Jenkins.
 
-  # Why continuous integration and delivery ? 🤔 
+  Let's deep dive into a Continuous Integration solution for your web application using CircleCI.
+
+  # Table of contents
+
+  - [Why implementing continuous integration? 🤔](#why)
+  - [The circleci config file 🙌](#config)
+  - [Explanation 🍿](#explanation)
+      - [Testing suit 👮](#tests)
+      - [Packing application 🔮](#packing)
+      - [Uploading to AWS S3 bucket 📦](#deploy)
+      - [CloudFront distribution 🕵️‍♂️](#cache)
+  - [Conclusion](#conclusion)
+
+<a name="why"></a>
+
+# Why continuous integration and delivery ? 🤔 
 
   ![Continuous Integration Diagram](/img/circleci-s3/ci.png)
   
@@ -35,10 +50,14 @@ draft: false
 
   To prevent all of this shenanigans, here is a **CircleCI** configuration that will deploy 
   your frontend code to **S3** and will invalidate your **CloudFront cache** after a merge to the desired branch.
-  
+
+<a name="config"></a>  
+
   # CircleCI configuration file 🙌
 
   `gist:santiq/dee9d7707cf98d4bd0cfa80093495e25`
+
+<a name="explanation"></a>
 
   ## Explanation 🍿
 
@@ -51,6 +70,8 @@ draft: false
   You have your _master_ branch where all code is merged, then the _staging_ branch is where you merge master when is stable enough to be ready for QA manual revision.
 
   Then _production_ branch is merged with master after all acceptance tests were run and everybody is happy.
+
+<a name="tests"></a>
 
   ## Run your Tests! 👮
 
@@ -81,6 +102,8 @@ draft: false
       - run: npm run test 
   ```
 
+<a name="packing"></a>
+
   ## Prepare your artifact 🔮
 
   How you generate your artifact is entirely up to you.
@@ -100,6 +123,7 @@ draft: false
         echo "Artifact generated!"
   ```
 
+<a name="deploy"></a>
 
   ## The deploy to S3 bucket 📦
 
@@ -118,6 +142,8 @@ draft: false
   ```
 
   > _The term "deploy" is used here as a fancy word for copy, pasting and replacing files_
+
+<a name="cache"></a>
 
   ## CloudFront Cache invalidation 🕵️‍♂️
   
