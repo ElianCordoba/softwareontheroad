@@ -3,7 +3,7 @@ layout: post
 title: "How to start using continuous integration in your web app 🚀"
 subtitle: "Get continuous integration and delivery to AWS S3 easily for your React or Angular app by using CircleCI"
 author: santypk4
-date: "2019-03-16T08:00:00.000Z"
+date: "2019-03-15T08:00:00.000Z"
 image: img/circleci-s3.jpg
 tags: ["AWS", "Best"]
 twittertags: ["node", "scalability", "backend", "100daysofcode", "programming", "devops", "javascript", "continuousdelivery"]
