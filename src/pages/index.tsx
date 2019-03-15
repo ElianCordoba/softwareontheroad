@@ -190,6 +190,7 @@ export const pageQuery = graphql`
           timeToRead
           frontmatter {
             title
+            subtitle
             date
             tags
             draft

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "React Hooks: everything you need to know!"
+subtitle: "The new React Hooks API is here and it's gonna change the way you develop react apps"
 author: santypk4
 date: "2019-03-10T15:00:00.000Z"
 image: img/react-hooks.jpg
@@ -9,7 +10,6 @@ twittertags: ["react", "react-native", "hooks", "functional-progamming", "fp", "
 draft: false
 ---
   Starting of React `16.8.0` there are new ways to call async code in an elegant way, reuse logic between components much more easily.
-  <!-- end -->
 
   As a reactjs developer, is your duty to stay up to date with the new react framework features.
   Not to please your boss but to stay relevant in the field and the market.

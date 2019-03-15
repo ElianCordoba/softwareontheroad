@@ -223,7 +223,7 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
             <PostCardTitle>{post.frontmatter.title}</PostCardTitle>
           </header>
           <PostCardExcerpt>
-            <p>{post.excerpt.replace('#', '')}</p>
+            <p> { post.frontmatter.subtitle }</p>
           </PostCardExcerpt>
         </Link>
         <PostCardMeta className="post-card-meta">
@@ -240,7 +240,7 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
               </Link>
             </AuthorListItem>
           </AuthorList>
-          <ReadingTime>{post.timeToRead} min read</ReadingTime>
+          <ReadingTime>{post.timeToRead > 9 ? post.timeToRead : post.timeToRead + 2} min read</ReadingTime>
         </PostCardMeta>
       </PostCardContent>
     </article>

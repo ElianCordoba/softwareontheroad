@@ -91,6 +91,7 @@ interface AuthorTemplateProps {
     };
     authorYaml: {
       id: string;
+      name: string;
       website?: string;
       twitter?: string;
       facebook?: string;
@@ -163,11 +164,6 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
         <header
           className="no-cover"
           css={[outer, SiteHeader]}
-          style={{
-            backgroundImage: author.profile_image
-              ? `url(${author.profile_image.childImageSharp.fluid.src})`
-              : '',
-          }}
         >
           <div css={inner}>
             <SiteNav isHome={false} />
@@ -177,12 +173,12 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
                 src={props.data.authorYaml.avatar.childImageSharp.fluid.src}
                 alt={author.id}
               />
-              <SiteTitle>{author.id}</SiteTitle>
+              <SiteTitle>{author.name} </SiteTitle>
               {author.bio && <AuthorBio>{author.bio}</AuthorBio>}
               <AuthorMeta>
                 {author.location && (
                   <div css={HiddenMobile}>
-                    {author.location} <Bull>&bull;</Bull>
+                   📍 {author.location} <Bull>&bull;</Bull>
                   </div>
                 )}
                 <div css={HiddenMobile}>
@@ -239,6 +235,7 @@ export const pageQuery = graphql`
   query($author: String) {
     authorYaml(id: { eq: $author }) {
       id
+      name
       website
       twitter
       bio
@@ -266,6 +263,7 @@ export const pageQuery = graphql`
           timeToRead
           frontmatter {
             title
+            subtitle
             tags
             date
             draft

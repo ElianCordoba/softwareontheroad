@@ -135,6 +135,7 @@ interface PageTemplateProps {
       timeToRead: string;
       frontmatter: {
         title: string;
+        subtitle: string;
         date: string;
         userDate: string;
         twittertags: string[];
@@ -145,6 +146,7 @@ interface PageTemplateProps {
         };
         tags: string[];
         author: {
+          name: string;
           id: string;
           bio: string;
           avatar: {
@@ -191,6 +193,7 @@ export interface PageContext {
       };
     };
     title: string;
+    subtitle: string;
     date: string;
     draft?: boolean;
     tags: string[];
@@ -223,11 +226,11 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         <html lang={config.lang} />
         <title>{post.frontmatter.title}</title>
 
-        <meta name="description" content={post.excerpt} />
+        <meta name="description" content={post.frontmatter.subtitle || post.excerpt} />
         <meta property="og:site_name" content={config.title} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.frontmatter.title} />
-        <meta property="og:description" content={post.excerpt} />
+        <meta property="og:description" content={post.frontmatter.subtitle || post.excerpt} />
         <meta property="og:url" content={config.siteUrl + props.pathContext.slug} />
         {post.frontmatter.image && (
           <meta property="og:image" content={config.siteUrl + post.frontmatter.image.childImageSharp.fluid.src} />
@@ -243,7 +246,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         {config.facebook && <meta property="article:author" content={config.facebook} />}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.frontmatter.title} />
-        <meta name="twitter:description" content={post.excerpt} />
+        <meta name="twitter:description" content={post.frontmatter.subtitle || post.excerpt} />
         <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
         {post.frontmatter.image && (
           <meta name="twitter:image" content={config.siteUrl + post.frontmatter.image.childImageSharp.fluid.src} />
@@ -355,6 +358,7 @@ export const query = graphql`
       timeToRead
       frontmatter {
         title
+        subtitle
         userDate: date(formatString: "D MMMM YYYY")
         date
         tags
@@ -368,6 +372,7 @@ export const query = graphql`
         }
         author {
           id
+          name
           bio
           avatar {
             children {
@@ -392,7 +397,8 @@ export const query = graphql`
           timeToRead
           excerpt
           frontmatter {
-            title
+            title,
+            subtitle
           }
           fields {
             slug

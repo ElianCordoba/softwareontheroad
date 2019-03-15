@@ -1,6 +1,7 @@
 ---
 layout: post
 title: It's Here! Simple Ionic app build automation with new CircleCI 2.0
+subtitle: "Use CircleCI to automate APK Generation and archive Continuous Integration and Delivery"
 author: santypk4
 date: "2019-03-05T15:00:00.000Z"
 image: img/ionic-circleci.jpg
