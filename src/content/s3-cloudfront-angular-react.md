@@ -124,7 +124,7 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
 <a name="conclusion"></a>
 
-# Conclusion 📝
+# Conclusion 🎉
 
   With the combination of this two fantastic services we can develop a scalable hosting and distribution solution our web application.
 
