@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "React Hooks: everything you need to know!"
-subtitle: "The new React Hooks API is here and it's gonna change the way you develop react apps"
+title: "React Hooks: everything you need to know! 🚀"
+subtitle: "The new React Hooks API is here and it's gonna change the way you develop react apps 🔥"
 author: santypk4
 date: "2019-03-10T15:00:00.000Z"
 image: img/react-hooks.jpg
@@ -44,7 +44,7 @@ draft: false
 
  <a name="intro"></a>
 
-# What are React hooks anyway?
+# What are React hooks anyway? 🤔
 
   When you work with Reactjs class components you can use state, that's why these components are also called stateful, also every class component has lifecycle methods like: `componentDidMount()`, `componentDidUpdate()`, and so on.
 
@@ -121,7 +121,7 @@ draft: false
 
 <a name="existing-hooks"> </a>
 
-# The existing React hooks
+# The existing React hooks 🍱
 
   The new API comes with two main pre-existing hooks, and some others for other use cases
 
@@ -326,7 +326,7 @@ export default TodoList;
 
 <a name="separation-concerns"> </a>
 
-# Separation of concerns
+# Separation of concerns 🎎
 
 ![Mantain your code organized](/img/react-hooks/organized.jpeg)
 
@@ -415,7 +415,7 @@ export default TodoList;
 
 <a name="advance"> </a>
 
-# Advance use cases
+# Advance use cases 🤵
 
   ![Like a boss](/img/react-hooks/professional.jpg)
 
@@ -581,7 +581,7 @@ export default TodoList;
 
 <a name="awesome"></a>
 
-# Awesome projects
+# Awesome projects ✨
 
  - [react-use](https://www.npmjs.com/package/react-use) The largest collection of React hooks, really worth checking out.
 
@@ -597,7 +597,7 @@ export default TodoList;
 
 <a name="conclusion"></a>
 
-# Wrapping up
+# Conclusion  🎉
 
   The new React hooks API is a game changer, now we can use state in function components, 
 reuse stateful logic.
