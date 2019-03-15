@@ -10,11 +10,11 @@ twittertags: ["angular", "scalability", "react", "aws", "devops", "s3", "javascr
 draft: true
 ---
 
-# You web application is ready to be released but, where will you hosting it? 
+# You web application is ready to be released but, where will you host it? 
 
-**By using AWS S3 buckets as your hosting and AWS Cloudfront as your content delivery network your website will be ready to handle large amounts of traffic.**
+**By using AWS S3 buckets as your hosting and AWS CloudFront as your content delivery network your website will be ready to handle large amounts of traffic.**
 
-In this tutorial we will discuss how to implement a scalable hosting solution and distribution for your web application.
+In this tutorial, we will discuss how to implement a scalable hosting solution and distribution for your web application.
 
 You need an AWS account. If you don't already have one, (follow this easy tutorial.)[LINK]
 
@@ -29,7 +29,7 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
 <a name="s3"></a>
 
-# What is AWS S3 ? 🤔
+# What is AWS S3? 🤔
 
   [Imagen de cajas o containers o barcos con containers]
   
@@ -58,8 +58,8 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
   ## Configure your bucket to be a web server
   
-  Now you have your site running in that url, but that's not so efficient. 
-  If your clients are far from the region you choosed, the page load speed will be low...
+  Now you have your site running in that URL, but that's not so efficient. 
+  If your clients are far from the region you chose, the page load speed will be low...
 
   ![Site speed with s3 and cloudfront](/img/s3-cloudfront-angular-react/speed_comparation.jpg)
 
@@ -69,7 +69,7 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
   [some image for cloudfront]
 
-  AWS CloudFront speeds up distribution of your web content (html, css, js, image, vide, etc) to your users.
+  AWS CloudFront speeds up the distribution of your web content (HTML, CSS, js, image, video, etc) to your users.
   It delivers your content through a worldwide _network of data centers_ called **edge locations**. 
 
   When a user requests content that you're serving with AWS CloudFront, the user is routed to the _edge_ location that provides the lowest latency, so that content is delivered with the **best possible performance.**
@@ -81,18 +81,18 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
   - Increase application availability 
   - Free data Transfer between AWS cloud services and Amazon CloudFront
 
-  **The idea is to use Cloudfront as a proxy to our AWS S3 bucket**
+  **The idea is to use CloudFront as a proxy to our AWS S3 bucket**
 
  ![Architecture overview](/img/s3-cloudfront-angular-react/architecture.png)
 
 <a name="setup-distribution"></a>
 
-  ## Creating a Cloudfront Distribution
+  ## Creating a CloudFront Distribution
 
    Now go to CloudFront and create a new distribution
 
   ## Setup origins
-    Origins are the place where the distributio should look for content
+    Origins are the place where the distribution should look for content
 
   ## Configuring routes
 
@@ -101,7 +101,7 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
   ## Invalidating cache after each deploy
 
-## If you don't care about the cost, you can go now! Have a nice day and share this article with your fellows :smile-face:
+  ### If you don't care about the cost, you can go now! Have a nice day and share this article with your fellows 😃
 
 <a name="cost"></a>
 # Cost analysis 💰
@@ -112,18 +112,18 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
 # AWS S3 Pricing
   - Image of S3 storage pricing
-  - Image of S3 bandwith pricing
+  - Image of S3 bandwidth pricing
 
 # AWS CloudFront pricing
-  - Image of cloudfront pricing
+  - Image of CloudFront pricing
 
 # Estimated total
 
   Let's say you have a SPA written in React or Angular, the bundle shouldn't be large than 2 MB.
 
-  If so, you should optimize the bundle size ! Large bundles slow downs the page speed and generate bad user experience.
+  If so, you should optimize the bundle size! Large bundles slow downs the page speed and generate bad user experience.
 
-  And you get 50.000 vistors monthly, from the US, Europe and Asia.
+  And you get 50.000 visitors monthly, from the US, Europe, and Asia.
 
   Cost storage + Cost bandwith + Cost cloudfront US + Cost cloudfront EU + Cost Asia
 
@@ -132,13 +132,13 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
 # Conclusion 🎉
 
-  With the combination of this two fantastic services we can develop a scalable hosting and distribution solution our web application.
+  With the combination of these two fantastic services, we can develop a scalable hosting and distribution solution our web application.
 
-  We learn how by using AWS S3 we can storage or host our web application, and by using AWS Cloudfront CDN we can handle large amount of traffic without slowing down the page load speed.
+  We learn how by using AWS S3 we can storage or host our web application, and by using AWS CloudFront CDN we can handle a large amount of traffic without slowing down the page load speed.
 
-  ![How the Cloudfront edge works](/img/s3-cloudfront-angular-react/cdn.jpg)
+  ![How the CloudFront edge works](/img/s3-cloudfront-angular-react/cdn.jpg)
 
-  The costs of using this scalabe infraestructre can may vary depending on your traffic but for small sites should be almost free.
+  The costs of using this scalable infrastructure can vary depending on your traffic but for small sites should be almost free.
 
   [The next step is to use a continuous integration approach to have an efficient and automated way to make deploys](/continuous-integration-s3-cloudfront)
 
