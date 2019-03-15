@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Direct uploads to AWS S3 from the browser (crazy performance boost)
+subtitle: "Using pre signed URLs upload files securely to a S3 bucket"
 author: santypk4
 date: "2019-03-01T15:45:00.000Z"
 image: img/fast-uploads.jpg

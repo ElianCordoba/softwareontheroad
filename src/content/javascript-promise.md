@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Convert your callback functions to javascript promise
-subtitle: Get rid of those annoying callbacks functions with this simple utility
+subtitle: "Get rid of those annoying callbacks functions with this simple utility"
 author: santypk4
 date: "2017-06-22T15:00:00.000Z"
 image: img/callback-hell.jpg
