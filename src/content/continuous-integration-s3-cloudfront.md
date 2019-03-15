@@ -12,7 +12,7 @@ draft: false
 
   # Use CircleCI and automate your deploys for free 🚢
 
-  In a future post, we will discuss how to implement an AWS S3 bucket as hosting for your web application, and an AWS CloudFront distribution as your content distribution network to deliver your web application in a scalable way.
+  [In a future post, we will discuss how to implement an AWS S3 bucket as hosting for your web application, and an AWS CloudFront distribution as your content distribution network to deliver your web application in a scalable way.](/s3-cloudfront-angular-react)
 
   But first, we need an efficient way to manage several environments.
 
