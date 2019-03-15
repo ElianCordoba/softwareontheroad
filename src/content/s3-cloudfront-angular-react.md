@@ -10,55 +10,73 @@ twittertags: ["angular", "scalability", "react", "aws", "devops", "s3", "javascr
 draft: true
 ---
 
-# You react app, angular app, vue app is ready to be released live but, where will you hosting it? 
+# You web application is ready to be released but, where will you hosting it?
 
-The answer can not be a FTP server of your cheap provider.
+**By using AWS S3 buckets as your hosting and AWS Cloudfront as your content delivery network your website will be ready to handle large amounts of traffic.**
 
-I mean, yeah you can do it for a while, maybe you are just starting but that will bring you troubles latter.
+In this tutorial we will discuss how to implement a scalable hosting solution and distribution for your web application.
 
-> Troubles in the worst moment, when you are having lot of traffic.
-
-It's almost the same work uploading files to a FTP than doing it to an AWS S3 Bucket, don't be scare because of the big names here, AWS is for the begginers too!
-
+You need an AWS account. If you don't already have one, (follow this easy tutorial.)[LINK]
 
 # Table of content
   - What is AWS S3 ?
+  - Setup AWS S3 Bucket
+  - Enabling website hosting in AWS S3 Bucket
   - What is AWS CloudFront ?
-  - Setup ...
+  - Setup AWS Cloudfront Distribution
   - Cost analysis
   - Conclusion
 
+[Imagen de cajas o containers o barcos con containers]
+
 # What is AWS S3 ? :think-face:
-  The service AWS S3, "simple storage service", is a ...
-
-  Features:
-    -
-    -
-    -
   
-# What is CloudFront ? :cara-de-lucas:
-  AWS ClodFront is a content delivery network (CDN), so it ...
+  Amazon S3 stores data as objects within buckets. An object consists of a file and optionally any metadata that describes that file.
+  To store an object in Amazon S3, you upload the file you want to store to a bucket. When you upload a file, you can set permissions on the object as well as any metadata
 
-  Features:
+  **Features:**
+
+    - Encryption to the data that you store
+    - Multiple copies are maintained to enable regeneration of data in case of data corruption
+    - It regularly verifies the integrity of data stored using checksums e.g. if S3 detects there is any corruption in data, it is immediately repaired with the help of replicated data.
+
+  ## Creating a bucket
+
+    - In the Bucket name field, type a unique DNS-compliant name for your new bucket
+
+    - For Region, choose US West (Oregon) as the region where you want the bucket to reside.
+
+  ## Configure your bucket to be a web server
+  
+
+  Now you have your site running in that url, but that's not so efficient. 
+  If your clients are far from the region you choosed, the page load speed will be low...
+
+  What you want is a content distribution network that handle...
+
+[]
+
+# AWS CloudFront 
+
+  AWS CloudFront speeds up distribution of your web content (html, css, js, image, vide, etc) to your users.
+  It delivers your content through a worldwide _network of data centers_ called **edge locations**. 
+
+  When a user requests content that you're serving with AWS CloudFront, the user is routed to the _edge_ location that provides the lowest latency, so that content is delivered with the **best possible performance.**
+
+  **Features:**
+
     -
     -
     -
 
  Image of comparation of a site with and without cloudfront
 
-# Using it togherter
-
-  With the combination of this two fantastic services we can develop a Hosting solution for our web application and setup a Content Delivery Network, so it loads amazingly fast.
 
 # Let's do it! 
 
-  ## Creating a bucket
-
-  ## Setup web server
-
   ## Uploading your files
 
-  ## Creating a Cloudfront Distributio
+  ## Creating a Cloudfront Distribution
 
    Now go to CloudFront and create a new distribution
 
@@ -78,9 +96,13 @@ It's almost the same work uploading files to a FTP than doing it to an AWS S3 Bu
 
 
 
-## If you don't care about the cost, you can go now! Have a nice day :smile-face:
+## If you don't care about the cost, you can go now! Have a nice day and share this article with your fellows :smile-face:
 
 # Cost analysis
+
+  [Imagen de personas haciendo cuentas en papel, o de contadores, o de plata]
+
+  As a part of the AWS Free Usage Tier, you can get started with AWS S3 for free. Upon sign up, new AWS customers receive 5 GB of Amazon S3 standard storage, 20,000 Get-Requests, 2,000 Put-Requests, and 15GB of data transfer-out each month for one year.
 
 # AWS S3 Pricing
   - Image of S3 storage pricing
@@ -102,15 +124,16 @@ It's almost the same work uploading files to a FTP than doing it to an AWS S3 Bu
 
 <a name="conclusion"></a>
 
-# Wrapping up
-  Storing files in AWS S3 bucket is an effective and cheap way to store your web application, regarless of the framework you choose (Angular, React, Vue, etc)
+# Conclusion
 
-  By using cloudfront 
+  With the combination of this two fantastic services we can develop a scalable hosting and distribution solution our web application.
 
-  As a bonus we configured the domain name.
+  We learn how by using AWS S3 we can storage or host our web application, and by using AWS Cloudfront CDN we can handle large amount of traffic without slowing down the page load speed.
 
-  Continue learning ! 
+  The costs of using this scalabe infraestructre can may vary depending on your traffic but for small sites should be almost free.
 
+  (The next step is to use a continuous integration approach to have an efficient and automated way to make deploys)
+  [LINK-TO-CIRCLECI-S3]
 
 # Resources
   - https://medium.com/devopslinks/this-is-how-i-reduced-my-cloudfront-bills-by-80-a7b0dfb24128
