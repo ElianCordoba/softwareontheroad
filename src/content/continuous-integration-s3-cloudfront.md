@@ -161,7 +161,7 @@ draft: false
 
 <a name="conclusion"></a>
 
-# Wrapping up 🎉
+# Conclusion 🎉
 
   In this tutorial, we learned all the basic and necessary steps to create a continuous integration and continuous delivery solution for S3 and CloudFront by using the awesome CircleCI tool.
   

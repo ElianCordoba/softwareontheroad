@@ -32,7 +32,7 @@ draft: true
 
 <a name="conclusion"></a>
 
-# Wrapping up
+# Conclusion
 
   We explored just three of the most common scalability issues out there.
   In future articles we will discuss 

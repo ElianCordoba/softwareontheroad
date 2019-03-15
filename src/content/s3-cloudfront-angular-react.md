@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "The perfect hosting for your react app :some-emoji:"
-subtitle: "Use AWS S3 to host your web app and CloudFront to delivery your content worldwide blazing fast :lighting:"
+title: "The perfect hosting for your react app 👌"
+subtitle: "Use AWS S3 to host your web app and AWS CloudFront to delivery your content worldwide blazing fast ⚡"
 author: santypk4
 date: "2019-03-21T08:00:00.000Z"
 image: img/s3-cloudfront.jpg
@@ -10,7 +10,7 @@ twittertags: ["angular", "scalability", "react", "aws", "devops", "s3", "javascr
 draft: true
 ---
 
-# You web application is ready to be released but, where will you hosting it?
+# You web application is ready to be released but, where will you hosting it? 
 
 **By using AWS S3 buckets as your hosting and AWS Cloudfront as your content delivery network your website will be ready to handle large amounts of traffic.**
 
@@ -29,7 +29,7 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
 [Imagen de cajas o containers o barcos con containers]
 
-# What is AWS S3 ? :think-face:
+# What is AWS S3 ? 🤔
   
   Amazon S3 stores data as objects within buckets. An object consists of a file and optionally any metadata that describes that file.
   To store an object in Amazon S3, you upload the file you want to store to a bucket. When you upload a file, you can set permissions on the object as well as any metadata
@@ -56,7 +56,7 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
 []
 
-# AWS CloudFront 
+# AWS CloudFront 🧙
 
   AWS CloudFront speeds up distribution of your web content (html, css, js, image, vide, etc) to your users.
   It delivers your content through a worldwide _network of data centers_ called **edge locations**. 
@@ -98,7 +98,7 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
 ## If you don't care about the cost, you can go now! Have a nice day and share this article with your fellows :smile-face:
 
-# Cost analysis
+# Cost analysis 💰
 
   [Imagen de personas haciendo cuentas en papel, o de contadores, o de plata]
 
@@ -124,7 +124,7 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
 <a name="conclusion"></a>
 
-# Conclusion
+# Conclusion 📝
 
   With the combination of this two fantastic services we can develop a scalable hosting and distribution solution our web application.
 
