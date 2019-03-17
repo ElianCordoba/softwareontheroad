@@ -24,14 +24,13 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
   - [Enabling website hosting in AWS S3 Bucket](#setup-website)
   - [What is AWS CloudFront ?](#cloudfront)
   - [Setup AWS Cloudfront Distribution](#setup-distribution)
-  - [Cost analysis](#costs)
   - [Conclusion](#conclusion)
 
 <a name="s3"></a>
 
 # What is AWS S3? 🤔
 
-  [Imagen de cajas o containers o barcos con containers]
+  ![AWS S3](/img/s3-cloudfront-angular-react/s3.jpg)
   
   Amazon S3 stores data as objects within buckets.
   An object consists of a file and optionally any metadata that describes that file.
@@ -50,15 +49,28 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
   ## Creating a bucket
 
+  ![Step 1 - Create AWS S3 Bucket](/img/s3-cloudfront-angular-react/step-1-create-bucket.png)
+
   - In the Bucket name field, type a unique DNS-compliant name for your new bucket
 
   - For Region, choose US West (Oregon) as the region where you want the bucket to reside.
 
+  ![Step 2 - Confirm AWS S3 Bucket creation](/img/s3-cloudfront-angular-react/step-2-create-bucket-confirm.png)
+
 <a name="setup-website"></a>
 
   ## Configure your bucket to be a web server
+
+  ![Step 3 - AWS S3 Bucket properties](/img/s3-cloudfront-angular-react/step-3-bucket-properties.png)
+
+
+  ![Step 4 - Enable AWS S3 Bucket static webhosting](/img/s3-cloudfront-angular-react/step-4-enable-static-webhosting.png)
+
+
+  ![Step 5 - Check AWS S3 Bucket Policies](/img/s3-cloudfront-angular-react/step-5-bucket-policies.png)
   
   Now you have your site running in that URL, but that's not so efficient. 
+
   If your clients are far from the region you chose, the page load speed will be low...
 
   ![Site speed with s3 and cloudfront](/img/s3-cloudfront-angular-react/speed_comparation.jpg)
@@ -67,9 +79,10 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
 # AWS CloudFront 🧙
 
-  [some image for cloudfront]
+  ![Cloudfront](/img/s3-cloudfront-angular-react/cloudfront.jpg)
 
   AWS CloudFront speeds up the distribution of your web content (HTML, CSS, js, image, video, etc) to your users.
+
   It delivers your content through a worldwide _network of data centers_ called **edge locations**. 
 
   When a user requests content that you're serving with AWS CloudFront, the user is routed to the _edge_ location that provides the lowest latency, so that content is delivered with the **best possible performance.**
@@ -91,41 +104,33 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
    Now go to CloudFront and create a new distribution
 
+  ![Step 6 - Open AWS Cloudfront](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
+
+  ![Step 7 - Select create AWS Cloudfront distribution](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
+
+  ![Step 8 - Select create web distribution](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
+
+
   ## Setup origins
-    Origins are the place where the distribution should look for content
 
-  ## Configuring routes
+  Origins are the place where the distribution should look for content
+
+  ![Step 9 - Select create web distribution](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
+
+  ## Configurations
+
+  ![Step 10 - Select https redirect](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
+
+  ![Step 11 - Select pricing](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
 
 
-  ## Configuring cache
+  ![Step 12 - Check origins are well configured](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
 
   ## Invalidating cache after each deploy
 
-  ### If you don't care about the cost, you can go now! Have a nice day and share this article with your fellows 😃
+  ![Step 13 - Check origins are well configured](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
 
-<a name="cost"></a>
-# Cost analysis 💰
-
-  [Imagen de personas haciendo cuentas en papel, o de contadores, o de plata]
-
-  As a part of the AWS Free Usage Tier, you can get started with AWS S3 for free. Upon sign up, new AWS customers receive 5 GB of Amazon S3 standard storage, 20,000 Get-Requests, 2,000 Put-Requests, and 15GB of data transfer-out each month for one year.
-
-# AWS S3 Pricing
-  - Image of S3 storage pricing
-  - Image of S3 bandwidth pricing
-
-# AWS CloudFront pricing
-  - Image of CloudFront pricing
-
-# Estimated total
-
-  Let's say you have a SPA written in React or Angular, the bundle shouldn't be large than 2 MB.
-
-  If so, you should optimize the bundle size! Large bundles slow downs the page speed and generate bad user experience.
-
-  And you get 50.000 visitors monthly, from the US, Europe, and Asia.
-
-  Cost storage + Cost bandwith + Cost cloudfront US + Cost cloudfront EU + Cost Asia
+  ![Step 14 - Check origins are well configured](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
 
 
 <a name="conclusion"></a>
