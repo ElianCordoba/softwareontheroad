@@ -104,33 +104,33 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
    Now go to CloudFront and create a new distribution
 
-  ![Step 6 - Open AWS Cloudfront](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
+  ![Step 6 - Open AWS Cloudfront](/img/s3-cloudfront-angular-react/step-6-go-cloudfront.png)
 
-  ![Step 7 - Select create AWS Cloudfront distribution](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
+  ![Step 7 - Select create AWS Cloudfront distribution](/img/s3-cloudfront-angular-react/step-7-cloudfront-create-distribution.png)
 
-  ![Step 8 - Select create web distribution](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
+  ![Step 8 - Select create web distribution](/img/s3-cloudfront-angular-react/step-8-cloudfront-select-web.png)
 
 
   ## Setup origins
 
   Origins are the place where the distribution should look for content
 
-  ![Step 9 - Select create web distribution](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
+  ![Step 9 - Select create web distribution](/img/s3-cloudfront-angular-react/step-9-select-origin.png)
 
   ## Configurations
 
-  ![Step 10 - Select https redirect](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
+  ![Step 10 - Select https redirect](/img/s3-cloudfront-angular-react/step-10-select-redirect-http.png)
 
-  ![Step 11 - Select pricing](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
+  ![Step 11 - Select pricing](/img/s3-cloudfront-angular-react/step-11-cloudfront-select-ssl.png)
 
 
-  ![Step 12 - Check origins are well configured](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
+  ![Step 12 - Check origins are well configured](/img/s3-cloudfront-angular-react/step-12-cloudfront-origins.png)
 
   ## Invalidating cache after each deploy
 
-  ![Step 13 - Check origins are well configured](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
+  ![Step 13 - Check origins are well configured](/img/s3-cloudfront-angular-react/step-13-cloudfront-invalidation.png)
 
-  ![Step 14 - Check origins are well configured](/img/s3-cloudfront-angular-react/step-6-bucket-properties.png)
+  ![Step 14 - Check origins are well configured](/img/s3-cloudfront-angular-react/step-14-cloudfront-invalidation-create.png)
 
 
 <a name="conclusion"></a>
