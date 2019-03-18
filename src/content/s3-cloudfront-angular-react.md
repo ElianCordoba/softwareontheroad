@@ -177,6 +177,14 @@ You need an AWS account. If you don't already have one, [follow this easy video 
 
   ![Step 14 - Check origins are well configured](/img/s3-cloudfront-angular-react/step-14-cloudfront-invalidation-create.png)
 
+# Result
+
+  Now you have your site ready under this CloudFront distribution URL. 
+
+  You will want to create a DNS Alias pointing your domain to it.
+
+  ![Step 15 - Results](/img/s3-cloudfront-angular-react/step-14-cloudfront-invalidation-create.png)
+
 <a name="conclusion"></a>
 
 # Conclusion 🎉
