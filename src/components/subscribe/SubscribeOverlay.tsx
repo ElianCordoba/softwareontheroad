@@ -56,7 +56,7 @@ const SubscribeOverlay = styled.div`
 
   button {
     display: inline-block;
-    margin: 0 0 0 15px;
+    margin: 0 0 0 0px;
     padding: 0 25px;
     height: 52px;
     outline: none;
@@ -86,7 +86,6 @@ const SubscribeOverlayClose = styled.a`
   bottom: 0;
   left: 0;
   display: block;
-
   :before {
     content: '';
     position: absolute;
@@ -114,7 +113,7 @@ const SubscribeOverlayClose = styled.a`
   }
 
   :hover {
-    cursor: default;
+    cursor: pointer;
   }
 `;
 
