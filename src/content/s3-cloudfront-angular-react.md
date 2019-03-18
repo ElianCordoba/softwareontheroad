@@ -3,7 +3,7 @@ layout: post
 title: "The perfect hosting for your react app 👌"
 subtitle: "Use AWS S3 to host your web app and AWS CloudFront to delivery your content worldwide blazing fast ⚡"
 author: santypk4
-date: "2019-03-21T08:00:00.000Z"
+date: "2019-03-20T08:00:00.000Z"
 image: img/s3-cloudfront.jpg
 tags: ["AWS", "Best"]
 twittertags: ["100daysofcode", "angular", "scalability", "react", "aws", "devops", "s3", "javascript", "webdev"]
