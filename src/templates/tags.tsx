@@ -63,19 +63,19 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
       <Helmet>
         <html lang={config.lang} />
         <title>
-          {tag} - {config.title}
+          {tag} - {config.siteTitle}
         </title>
         <meta
           name="description"
           content={tagData && tagData.node ? tagData.node.description : ''}
         />
-        <meta property="og:site_name" content={config.title} />
+        <meta property="og:site_name" content={config.siteTitle} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={`${tag} - ${config.title}`} />
+        <meta property="og:title" content={`${tag} - ${config.siteTitle}`} />
         <meta property="og:url" content={config.siteUrl + props.pathContext.slug} />
         {config.facebook && <meta property="article:publisher" content={config.facebook} />}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${tag} - ${config.title}`} />
+        <meta name="twitter:title" content={`${tag} - ${config.siteTitle}`} />
         <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
         {config.twitter && (
           <meta
