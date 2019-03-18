@@ -129,12 +129,12 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
       <Helmet>
         <html lang={config.lang} />
         <title>
-          {author.id} - {config.title}
+          {author.id} - {config.siteTitle}
         </title>
         <meta name="description" content={author.bio} />
-        <meta property="og:site_name" content={config.title} />
+        <meta property="og:site_name" content={config.siteTitle} />
         <meta property="og:type" content="profile" />
-        <meta property="og:title" content={`${author.id} - ${config.title}`} />
+        <meta property="og:title" content={`${author.id} - ${config.siteTitle}`} />
         <meta property="og:url" content={config.siteUrl + props.pathContext.slug} />
         <meta property="article:publisher" content="https://www.facebook.com/santypk4" />
         <meta property="article:author" content="https://www.facebook.com/santypk4" />
@@ -280,7 +280,7 @@ export const pageQuery = graphql`
               avatar {
                 children {
                   ... on ImageSharp {
-                    fixed(quality: 100) {
+                    fixed(quality: 90) {
                       src
                     }
                   }

@@ -1,5 +1,6 @@
 export interface WebsiteConfig {
   title: string;
+  siteTitle: string;
   description: string;
   coverImage: string;
   logo: string;
@@ -31,7 +32,8 @@ export interface WebsiteConfig {
 
 const config: WebsiteConfig = {
   title: 'Software on the road',
-  description: 'Writing software while travelling the world 🌍',
+  siteTitle: 'Softwareontheroad: articles on node, react, angular, AWS',
+  description: 'Find articles and tutorials about node, react, angular, cloud computing, aws, continuous integration, docker, and more...',
   coverImage: 'img/blog-cover.jpg',
   logo: 'img/ghost-logo.png',
   lang: 'en',

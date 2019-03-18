@@ -91,11 +91,11 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
     <IndexLayout css={HomePosts}>
       <Helmet>
         <html lang={config.lang} />
-        <title>{config.title}</title>
+        <title>{config.siteTitle}</title>
         <meta name="description" content={config.description} />
-        <meta property="og:site_name" content={config.title} />
+        <meta property="og:site_name" content={config.siteTitle} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={config.title} />
+        <meta property="og:title" content={config.siteTitle} />
         <meta property="og:description" content={config.description} />
         <meta property="og:url" content={config.siteUrl} />
         <meta
@@ -184,7 +184,11 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(limit: 1000, sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC },
+      filter: { frontmatter: { draft: { ne: true } } },
+      limit: 1000,
+    ) {
       edges {
         node {
           timeToRead
@@ -207,7 +211,7 @@ export const pageQuery = graphql`
               avatar {
                 children {
                   ... on ImageSharp {
-                    fixed(quality: 100) {
+                    fixed(quality: 90) {
                       src
                     }
                   }

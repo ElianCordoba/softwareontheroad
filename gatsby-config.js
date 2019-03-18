@@ -48,6 +48,12 @@ module.exports = {
               withWebp: true
             },
           },
+          {
+            resolve: "gatsby-remark-external-links",
+            options: {
+              target: "_blank",
+            }
+          }
         ],
       },
     },
@@ -94,6 +100,7 @@ module.exports = {
         publisherId: `ca-pub-6523317289472383`
       },
     },
+    'gatsby-plugin-catch-links',
     'gatsby-plugin-sitemap',
     `gatsby-plugin-netlify`
   ],
