@@ -8,7 +8,6 @@ import { SocialLink } from '../../styles/shared';
 import config from '../../website-config';
 import Twitter from '../icons/twitter';
 import SubscribeModal from '../subscribe/SubscribeOverlay';
-import SiteNavLogo from './SiteNavLogo';
 import Github from '../icons/github';
 
 const HomeNavRaise = css`
@@ -86,13 +85,6 @@ const SiteNavRight = styled.div`
   }
 `;
 
-const SubscribeModalContainer = styled.div`
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  height: 40px;
-`;
-
 const SocialLinks = styled.div`
   flex-shrink: 0;
   display: flex;
@@ -145,7 +137,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
   render() {
     const { isHome = false } = this.props;
     return (
-      <nav css={[isHome && HomeNavRaise, SiteNavStyles]}>
+      [ <nav key="site-nav" css={[isHome && HomeNavRaise, SiteNavStyles]}>
         <SiteNavLeft>
           <ul css={NavStyles} role="menu">
             {/* TODO: mark current nav item - add class nav-current */}
@@ -164,9 +156,6 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
           </ul>
           <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
         </SiteNavLeft>
-        <SubscribeModalContainer> 
-          <SubscribeModal ref={this.subscribe} />
-        </SubscribeModalContainer>
         <SiteNavRight>
           <SocialLinks>
             <span css={css`font-size: 1.2em;font-weight: 500;`}> Follow me </span>
@@ -194,7 +183,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
             )}
           </SocialLinks>
         </SiteNavRight>
-      </nav>
+      </nav> , <SubscribeModal key="subscribe-modal" ref={this.subscribe} />]
     );
   }
 }

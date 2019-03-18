@@ -16,9 +16,7 @@ const SubscribeOverlay = styled.div`
   bottom: 0;
   left: 0;
   z-index: 9000;
-  width: 100vw;
-  height: 100vh;
-  display: block;
+  display: flex;
   justify-content: center;
   align-items: center;
   background: rgba(0, 25, 40, 0.97);
@@ -122,7 +120,7 @@ const SubscribeOverlayClose = styled.a`
 const SubscribeOverlayContent = styled.div`
   position: relative;
   z-index: 9999;
-  margin: 10vh 0 25vh 0;
+  margin: 0 0 5vw 0;
   padding: 4vw;
   color: #fff;
   text-align: center;
