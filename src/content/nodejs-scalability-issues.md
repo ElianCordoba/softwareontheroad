@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "3 node.js scalability issues and how to solve them"
+title: "3 node.js scalability issues and how to solve them 🗼"
 author: santypk4
-date: "2011-03-21T08:00:00.000Z"
+date: "2019-03-22T08:00:00.000Z"
 image: img/node-scalability.jpg
-subtitle: "hello"
+subtitle: "These scalability issues are the most commont in many projects, but is not hard to fix them 🤟"
 tags: ["Node.js", "Best"]
 twittertags: ["node", "scalability", "backend", "programming", "devops", "javascript"]
-draft: true
+draft: false
 ---
 
-# How to scale node.js applications?
+# How to scale node.js applications? 🤔
 
   Scaling servers never have to be with the technology behind, but with the problem, they are aimed to solve.
 
@@ -19,16 +19,16 @@ draft: true
   A node.js backend for a real-time chat application can handle a different load that an e-commerce app.
   Here are some considerations and common issues that many development teams face at the moment of scaling a node.js application.
 
-# Table of contents
+# Table of contents 📝
 
- - [Serving static assets with express](#static)
+ - [Serving static assets with express](#assets)
  - [Jobs and Workers](#jobs)
  - [Using all the resources](#resources)
  - [Conclusion](#conclusion)
 
   I worked for a couple of startups who started their software products just from a simple express.js template that we found on GitHub.
 
-  At Whyline for example, back in 2015, I was who installed the ["Full-Stack Angular"]() template from Yeoman (Oh boy I'm old).
+  At Whyline for example, back in 2015, I was who installed the ["Angular Full-Stack"](https://github.com/angular-fullstack/generator-angular-fullstack) template from Yeoman (Oh boy I'm old).
 
   The product grows fast, and in the process, we had to almost re-write the backend server, change the semi-monolithic architecture to a microservices, move the web-client to a CDN.
 
@@ -38,17 +38,23 @@ draft: true
 
   Now, I work as a freelancer, and every new project that I arrived has this same scalability issues, so today I want to talk about how they are holding back your node.js server from growing and reaching a high scalability state.
 
-# Serving static assets (A.K.A The web application)
+<a name="assets"></a>
 
-  Express and node.js weren't designed to serve static assets, for that you should be using a CDN like CloudFront. 
+# Serving static assets 📦
 
-  I believe the root of the problem comes from the amount of bootstrap or starters that provides a "full-stack" solution for building an MVP, but when your product and user base grows, you will face a problem, your servers will use too many CPU time.
+  Why do you have your angular or react app served by express?
 
-  The first time I face this issue was when I was working for a company where we start the core product based on the starter angular-bootstrap-full-stack that we found on the yeoman registry.
+  Node.js wasn't designed to serve static assets, 
 
-  The first couple of months it worked pretty good, well at least the node.js because we had problems scaling our MongoDB database but that's another story...
+  You should be using a CDN like CloudFront. 
 
-  Having the server and the client in the same repository, one inside of the other was a problem for us, the front-end team sent too many changes that the backend team didn't care and slow down the backend releases. The same was the other way around.
+  I believe the root of the problem comes from the amount of starter templates that comes with a "full-stack" solution for building an MVP.
+
+  But when your product and user base grows, you will face a problem, your servers will use too many CPU time.
+
+  Also, having the server and the client in the same repository, one inside of the other was a problem for us, the front-end team sent too many changes that the backend team didn't care and slow down the backend releases. 
+
+  The same was the other way around.
 
   COMPARISON CPU% WITH AND WITHOUT CLIENT CODE
 
@@ -59,6 +65,8 @@ draft: true
   As an example of how much is it, this blog is hosted on Netlify and each page weight almost 800kb, so I can have around 100.000 visits/month for free.
 
 <a name="jobs"></a>
+
+  # A good task scheduler ⏰
 
   It's so common needing some kind of recurring task, maybe you need to fire a reminder for a user once a day, or calculating the billing of the service for a customer once a month.
 
@@ -80,7 +88,7 @@ draft: true
 
 <a name="resources"></a>
 
-# Using all the resources
+# Using all the resources 💰
 
   Is 2019 and still most developers don't use the cluster feature that comes built-in in node since version 0.10; [TENGO QUE CHECKEAR ESTO]
 
@@ -92,7 +100,7 @@ draft: true
 
   Also, I recommend you checking out my guide on a good folder structure for your node.js server.
 
-  HOW TO DO 
+  HOW TO DO CLUSTERING
 
 <a name="conclusion"></a>
 
