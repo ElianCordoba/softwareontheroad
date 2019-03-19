@@ -3,20 +3,20 @@ layout: post
 title: "The perfect hosting for your react app 👌"
 subtitle: "Use AWS S3 to host your web app and AWS CloudFront to delivery your content worldwide blazing fast ⚡"
 author: santypk4
-date: "2019-03-21T08:00:00.000Z"
+date: "2019-03-19T08:00:00.000Z"
 image: img/s3-cloudfront.jpg
 tags: ["AWS", "Best"]
-twittertags: ["angular", "scalability", "react", "aws", "devops", "s3", "javascript", "webdev"]
-draft: true
+twittertags: ["100daysofcode", "angular", "scalability", "react", "aws", "devops", "s3", "javascript", "webdev"]
+draft: false
 ---
 
 # You web application is ready to be released but, where will you host it? 
 
-**By using AWS S3 buckets as your hosting and AWS CloudFront as your content delivery network your website will be ready to handle large amounts of traffic.**
+By using AWS S3 buckets as your hosting and AWS CloudFront as your content delivery network your website will be ready to handle large amounts of traffic.
 
 In this tutorial, we will discuss how to implement a scalable hosting solution and distribution for your web application.
 
-You need an AWS account. If you don't already have one, (follow this easy tutorial.)[LINK]
+You need an AWS account. If you don't already have one, [follow this easy video tutorial.](https://www.youtube.com/watch?v=WviHsoz8yHk)
 
 # Table of content
   - [What is AWS S3 ?](#s3)
@@ -49,29 +49,49 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
   ## Creating a bucket
 
+  - Go to S3 service in the AWS Console and select Create Bucket
+
   ![Step 1 - Create AWS S3 Bucket](/img/s3-cloudfront-angular-react/step-1-create-bucket.png)
 
-  - In the Bucket name field, type a unique DNS-compliant name for your new bucket
+  - In the Bucket name field, type a unique ["DNS-compliant"](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) name for your new bucket
 
-  - For Region, choose US West (Oregon) as the region where you want the bucket to reside.
+  - For Region, choose US East (N. Virginia) as the region where you want the bucket to reside.
 
   ![Step 2 - Confirm AWS S3 Bucket creation](/img/s3-cloudfront-angular-react/step-2-create-bucket-confirm.png)
 
+  - Now go and upload your site to the S3 Bucket.
+
 <a name="setup-website"></a>
 
-  ## Configure your bucket to be a web server
+  ## Configure your S3 bucket to be a static website hosting
+
+  - Go to your bucket properties and look for the "Static Website Hosting" option
 
   ![Step 3 - AWS S3 Bucket properties](/img/s3-cloudfront-angular-react/step-3-bucket-properties.png)
 
+  - Select the "entry point" file for your website. 
+
+  If you are serving a react or angular single page application (SPA), this will be the **index.html**
+
+  - Wrote down the endpoint URL.
+
+  This is your website URL now.
 
   ![Step 4 - Enable AWS S3 Bucket static webhosting](/img/s3-cloudfront-angular-react/step-4-enable-static-webhosting.png)
 
+  - Make sure your Bucket Policy is **Public**
+
+  Go to the S3 Bucket Policy section and check that your configuration is correct.
 
   ![Step 5 - Check AWS S3 Bucket Policies](/img/s3-cloudfront-angular-react/step-5-bucket-policies.png)
   
-  Now you have your site running in that URL, but that's not so efficient. 
+  Congratulations! 
+  
+  Now you have your site running in AWS S3.
 
-  If your clients are far from the region you chose, the page load speed will be low...
+  **But, we can do it better.**
+
+  Let's improve our page loading time with AWS Cloudfront
 
   ![Site speed with s3 and cloudfront](/img/s3-cloudfront-angular-react/speed_comparation.jpg)
 
@@ -102,36 +122,68 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
 
   ## Creating a CloudFront Distribution
 
-   Now go to CloudFront and create a new distribution
+  Let's go back to the AWS Console.
+
+  - Navigate to AWS CloudFront service
 
   ![Step 6 - Open AWS Cloudfront](/img/s3-cloudfront-angular-react/step-6-go-cloudfront.png)
 
+  - Select Create distribution
+
   ![Step 7 - Select create AWS Cloudfront distribution](/img/s3-cloudfront-angular-react/step-7-cloudfront-create-distribution.png)
+
+  - Select Web distribution
 
   ![Step 8 - Select create web distribution](/img/s3-cloudfront-angular-react/step-8-cloudfront-select-web.png)
 
 
-  ## Setup origins
+  - Configure Origins
 
-  Origins are the place where the distribution should look for content
+  Origins are places where the distribution should look for content, in our case is the AWS S3 Bucket for our website that we created in the previous part.
 
   ![Step 9 - Select create web distribution](/img/s3-cloudfront-angular-react/step-9-select-origin.png)
 
-  ## Configurations
+  - Configure Cache Behaviours
+
+  We want to redirect all HTTP request to HTTPS, after all HTTP sites will not be accepted anymore on chrome.
+
+  Also, we want to allow all HTTP methods.
 
   ![Step 10 - Select https redirect](/img/s3-cloudfront-angular-react/step-10-select-redirect-http.png)
 
+  - Select price class
+
+  We are going to use all edge locations, I have clients in South America and Asia, so better go with all from the start.
+
   ![Step 11 - Select pricing](/img/s3-cloudfront-angular-react/step-11-cloudfront-select-ssl.png)
 
+  - Just to make sure our origins are well configured, go to Origins tab and check the configurations.
 
   ![Step 12 - Check origins are well configured](/img/s3-cloudfront-angular-react/step-12-cloudfront-origins.png)
 
-  ## Invalidating cache after each deploy
+  - Invalidation Cache after each deploy
+
+  This is very important, every time you push a new version of your website, you have to come here and create a Cache Invalidation.
+
+  **If you forget, your users will see the old version of your website until the cache is refreshed.**
+
+  [_Read how to do this automaticaly_](/continuous-integration-s3-cloudfront)
 
   ![Step 13 - Check origins are well configured](/img/s3-cloudfront-angular-react/step-13-cloudfront-invalidation.png)
 
+  For this, I usually just set `*` which means invalidate all routes and resources.
+
+  But you can go specific and prevent from invalidating some assets cache, like images and video.
+
   ![Step 14 - Check origins are well configured](/img/s3-cloudfront-angular-react/step-14-cloudfront-invalidation-create.png)
 
+# Result
+
+  Now you have your site ready under this CloudFront distribution URL. 
+
+  You will want to create a DNS Alias pointing your domain to it.
+
+  ![Step 15 - Results](/img/s3-cloudfront-angular-react/step-14-cloudfront-invalidation-create.png)
 
 <a name="conclusion"></a>
 
@@ -146,6 +198,3 @@ You need an AWS account. If you don't already have one, (follow this easy tutori
   The costs of using this scalable infrastructure can vary depending on your traffic but for small sites should be almost free.
 
   [The next step is to use a continuous integration approach to have an efficient and automated way to make deploys](/continuous-integration-s3-cloudfront)
-
-# Resources
-  - https://medium.com/devopslinks/this-is-how-i-reduced-my-cloudfront-bills-by-80-a7b0dfb24128
