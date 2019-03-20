@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "3 node.js scalability issues and how to solve them 🗼"
+title: "3 node.js enterprise scalability issues and how to solve them 🗼"
 author: santypk4
 date: "2019-03-22T08:00:00.000Z"
 image: img/node-scalability.jpg
-subtitle: "These scalability issues are the most commont in many projects, but is not hard to fix them 🤟"
+subtitle: "Serving static assets, enabling clustering, and using poor designed cron jobs, are the most common take aways from scaling a node.js server. Here is how you can fix them"
 tags: ["Node.js", "Best"]
 twittertags: ["node", "scalability", "backend", "programming", "devops", "javascript"]
 draft: false
@@ -74,19 +74,162 @@ draft: false
 
   But you shouldn't rely on simple `setTimeout` or `setInterval` for doing such tasks.
 
-  This will bring you troubles when you will try to scale horizontally your servers, the cron jobs will be duplicated and chaos can occur.
+  Bad planning here will bring you troubles when you will try to scale horizontally your servers, the cron jobs will be duplicated and chaos can occur.
 
-  Also, what happens every time your server reboot? you just recalculate the next time the cron should run? what happens if the task fails?
+  It's a better approach to use a task scheduler framework like [Agenda.js](https://github.com/agenda/agenda) who has a separate [module to have an admin dashboard.](https://github.com/agenda/agendash)
 
-  How do you know what task is scheduled to run? How do you run it manually?
+  - Scheduled and recurring Jobs are stored in mongodb, every time a worker start a job, they lock the execution so no problem with multiple jobs running at the same time.
 
-  It's a better approach to use a task scheduler framework like Agenda.js who has a separate module for an admin dashboard.
+  - Can reschedule jobs easily, they are just mongodb documents that can be changed any time.
 
-  HOW TO USE AGENDA
+  - If the task fail you can reschedule to run again.
 
-  HOW TO INSTALL AGENDASH
+  - You can add an admin dashboard GUI to monitoring scheduled and recurring task and their states.
 
-  HOW TO SECURE AGENDASH
+  - Using the admin dashboard you can run manually a job whenever you want.
+
+  - No problem with horizontal scaling of nodejs server and duplication of job execution.
+
+
+### Setting up agenda
+
+```javascript
+import * as Agenda from 'agenda';
+import { Collection } from 'mongoose';
+
+export default ({ mongoConnection, logger }) => {
+  const agenda = (new Agenda() as any);
+
+  (async () => {
+    await agenda._ready;
+
+    try {
+      (agenda._collection as Collection).ensureIndex({
+        disabled: 1,
+        lockedAt: 1,
+        name: 1,
+        nextRunAt: 1,
+        priority: -1
+      }, {
+          name: 'findAndLockNextJobIndex'
+        });
+    } catch (err) {
+      logger.warn('Failed to create Agenda index!');
+      logger.warn(err);
+      throw err;
+    }
+
+    logger.info('Agenda index ensured');
+  })();
+
+  agenda
+    .mongo(mongoConnection, 'my-agenda-jobs')
+    .processEvery('5 seconds')
+    .maxConcurrency(20);
+
+  return agenda;
+}
+
+```
+
+
+### Setting up agenda jobs
+
+```javascript
+import SendWelcomeEmail from '../jobs/send-welcome-email';
+
+export default ({ agenda }) => {
+
+  agenda.define('send-welcome-email', 
+    { priority: 'high', concurrency: 10 },
+    new SendWelcomeEmail().handler, // reference to the handler, but not executing it! 
+  )
+  
+  agenda.start();
+}
+```
+
+### Job definition
+
+```javascript
+
+import * as mailgun from 'mailgun';
+
+export default class Mailer {
+  constructor(
+  ) {
+  }
+
+  public async SendWelcomeEmail(email){
+    const data = {
+      from: 'Hi from Softwareontheroad <santiago@softwareontheroad.com>',
+      to: email,
+      subject: 'Welcome !',
+      text: 'Thanks for sign up',
+    };
+
+    return mailgun.messages().send(data);
+  }
+
+}
+
+```
+
+### Calling agenda jobs
+
+  ```javascript
+
+  import { Service, Inject } from 'typedi';
+
+  @Service()
+  export default class UsersService {
+    constructor(
+      @Inject('agendaClient') private agenda;
+    ) {
+    }
+
+    public async SignUp(userDTO: IUserDTO): Promise<IUser> {
+      let user;
+      try {
+        user = new UserModel(userDTO);
+        ... // do fancy stuff
+        await user.save();
+        
+        // Call to agenda and schedule a task, in 10 minutes send the welcome email to the user.
+        this.agenda.schedule('in 10 minutes', 'send-welcome-email', { email: user.email },);
+
+        ... // do more fancy stuff
+        return user;
+      } catch(e) {
+        logger.warn('Error on creation of user...')
+        await user.remove();
+        throw e;
+      }
+    }
+  }
+  ```
+
+  ### Setting up Agendash for GUI admin dashboard.
+
+  ```javascript
+import * as basicAuth from 'express-basic-auth';
+import * as Agendash from 'agendash';
+
+export default ({ expressApp, agendaInstance }: { expressApp: Application }) => {
+  expressApp.use('/agendash',
+    basicAuth({
+      users: {
+        agendaAdmin: 'super-secure-and-secred-password',
+      },
+      challenge: true,
+    }),
+    Agendash(agendaInstance)
+  );
+};
+
+```
+
+CAPTURA DE PANTALLA DE AGENDASH
 
 <a name="resources"></a>
 
@@ -184,9 +327,13 @@ draft: false
 
   And don't forget to enable the power of cluster mode from day 1 to make use of all the resources available in the machine.
 
-  My experience has tough me that once you scale your node.js server, _maybe by throwing all away in move to AWS Lambda_, the next big challange is scaling the database behind.
+  My experience has tough me that once you scale your node.js server, _maybe by throwing all away and move to AWS Lambda_, the next big challange is scaling the database behind.
 
   And that's something that we'll discuss in a future post.
 
+# Let me a know in a comment, what was your biggest challange scaling a nodejs application?
+
 # Resources
   - https://nodejs.org/api/cluster.html
+  - https://github.com/agenda/agenda
+  - https://github.com/agenda/agendash/issues/98
