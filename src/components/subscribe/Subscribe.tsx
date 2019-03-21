@@ -10,16 +10,18 @@ import SubscribeForm from './SubscribeForm';
 const SubscribeFormSection = styled.section`
   margin: 1.5em 0;
   padding: 6.5vw 7vw 7vw;
-  /* border: color(var(--whitegrey) l(+2%)) 1px solid; */
   border: ${lighten('0.02', colors.whitegrey)} 1px solid;
   text-align: center;
-  /* background: color(var(--whitegrey) l(+4%)); */
-  background: ${lighten('0.04', colors.whitegrey)};
+  background: ${props =>
+    props.color === 'white' ? '#fff' : lighten('0.04', colors.whitegrey)
+  };
   border-radius: 7px;
 
   p {
     margin-bottom: 1em;
-    color: ${colors.midgrey};
+    color: ${props =>
+      props.color === 'white' ? colors.darkgrey : colors.midgrey
+    };
     font-size: 2.2rem;
     line-height: 1.55em;
     letter-spacing: 0.2px;
@@ -55,16 +57,12 @@ const SubscribeFormTitle = css`
   }
 `;
 
-export interface SubscribeProps {
-  title: string;
-}
-
-const Subscribe: React.FunctionComponent<SubscribeProps> = () => {
+const Subscribe: React.FunctionComponent<{ color: string; }> = ({ color }) => {
   return (
-    <SubscribeFormSection>
+    <SubscribeFormSection color={color}>
       <h3 css={SubscribeFormTitle}>Get notified when new content is out.</h3>
       <p> Only high-quality articles about AWS, DevOps, continuous integration, node.js, react, ionic and more...</p>
-      <SubscribeForm />
+      <SubscribeForm color={color} />
     </SubscribeFormSection>
   );
 };

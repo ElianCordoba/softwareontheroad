@@ -10,6 +10,7 @@ import IndexLayout from '../layouts';
 import { colors } from '../styles/colors';
 import { inner, outer, PostFeed, SiteHeader } from '../styles/shared';
 import { PageContext } from '../templates/post';
+import Subscribe from '../components/subscribe/Subscribe';
 
 const SiteNavCenter = styled.nav`
   display: flex;
@@ -79,6 +80,7 @@ const NotFoundPage: React.FunctionComponent<NotFoundTemplateProps> = props => {
               <Link css={ErrorLink} to={''}>
                 Go to the front page →
               </Link>
+              <Subscribe color={'white'} />
             </section>
           </div>
         </main>
