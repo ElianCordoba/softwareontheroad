@@ -4,7 +4,8 @@ title: "3 node.js enterprise scalability issues and how to solve them 🗼"
 author: santypk4
 date: "2019-03-22T08:00:00.000Z"
 image: img/node-scalability.jpg
-subtitle: "Serving static assets, enabling clustering, and using poor designed cron jobs, are the most common take aways from scaling a node.js server. Here is how you can fix them"
+subtitle: "Serving static assets, enabling clustering, and using poor designed cron jobs, are the most common take aways from scaling a node.js server. \n
+Here is how you can fix them"
 tags: ["Node.js", "Best"]
 twittertags: ["node", "scalability", "backend", "programming", "devops", "javascript"]
 draft: false
@@ -76,7 +77,7 @@ draft: false
 
   Bad planning here will bring you troubles when you will try to scale horizontally your servers, the cron jobs will be duplicated and chaos can occur.
 
-  It's a better approach to use a task scheduler framework like [Agenda.js](https://github.com/agenda/agenda) who has a separate [module to have an admin dashboard.](https://github.com/agenda/agendash)
+  It's a better approach to use a task scheduler framework like [agendajs](https://github.com/agenda/agenda) who has a separate [module to have an admin dashboard.](https://github.com/agenda/agendash)
 
   - Scheduled and recurring Jobs are stored in mongodb, every time a worker start a job, they lock the execution so no problem with multiple jobs running at the same time.
 
@@ -91,20 +92,20 @@ draft: false
   - No problem with horizontal scaling of nodejs server and duplication of job execution.
 
 
-### Setting up agenda
-
+### Setting up agendajs
+We setup agendajs following the best practices to create index and 
 ```javascript
-import * as Agenda from 'agenda';
+import * as agendajs from 'agenda';
 import { Collection } from 'mongoose';
 
 export default ({ mongoConnection, logger }) => {
-  const agenda = (new Agenda() as any);
+  const agendajs = (new agendajs() as any);
 
   (async () => {
-    await agenda._ready;
+    await agendajs._ready;
 
     try {
-      (agenda._collection as Collection).ensureIndex({
+      (agendajs._collection as Collection).ensureIndex({
         disabled: 1,
         lockedAt: 1,
         name: 1,
@@ -114,43 +115,63 @@ export default ({ mongoConnection, logger }) => {
           name: 'findAndLockNextJobIndex'
         });
     } catch (err) {
-      logger.warn('Failed to create Agenda index!');
+      logger.warn('Failed to create agendajs index!');
       logger.warn(err);
       throw err;
     }
 
-    logger.info('Agenda index ensured');
+    logger.info('agendajs index ensured');
   })();
 
-  agenda
-    .mongo(mongoConnection, 'my-agenda-jobs')
+  agendajs
+    .mongo(mongoConnection, 'my-agendajs-jobs')
     .processEvery('5 seconds')
     .maxConcurrency(20);
 
-  return agenda;
+  return agendajs;
 }
 
 ```
 
+### Setting up agendajs jobs
 
-### Setting up agenda jobs
+```javascript
+import { Container } from 'typedi';
+import MailerService from '../services/companies';
+
+export default class SendWelcomeEmail {
+
+  public async handler (job, done): Promise<any> {
+    const { email } = job.attrs.data;
+    const mailerServiceInstance = Container.get(MailerService);
+    await mailerServiceInstance.SendWelcomeEmail(email);
+    done();
+  }
+}
+
+
+```
+
+### Registering the agendajs job
+
+We defined what's gonna be the handler of the job `send-welcome-email`
 
 ```javascript
 import SendWelcomeEmail from '../jobs/send-welcome-email';
 
-export default ({ agenda }) => {
+export default ({ agendajs }) => {
 
-  agenda.define('send-welcome-email', 
+  agendajs.define('send-welcome-email', 
     { priority: 'high', concurrency: 10 },
     new SendWelcomeEmail().handler, // reference to the handler, but not executing it! 
   )
   
-  agenda.start();
+  agendajs.start();
 }
 ```
 
 ### Job definition
-
+Were the logic for the
 ```javascript
 
 import * as mailgun from 'mailgun';
@@ -175,7 +196,7 @@ export default class Mailer {
 
 ```
 
-### Calling agenda jobs
+### Calling agendajs jobs
 
   ```javascript
 
@@ -184,7 +205,7 @@ export default class Mailer {
   @Service()
   export default class UsersService {
     constructor(
-      @Inject('agendaClient') private agenda;
+      @Inject('agendajsClient') private agendajs;
     ) {
     }
 
@@ -195,8 +216,8 @@ export default class Mailer {
         ... // do fancy stuff
         await user.save();
         
-        // Call to agenda and schedule a task, in 10 minutes send the welcome email to the user.
-        this.agenda.schedule('in 10 minutes', 'send-welcome-email', { email: user.email },);
+        // Call to agendajs and schedule a task, in 10 minutes send the welcome email to the user.
+        this.agendajs.schedule('in 10 minutes', 'send-welcome-email', { email: user.email },);
 
         ... // do more fancy stuff
         return user;
@@ -209,21 +230,21 @@ export default class Mailer {
   }
   ```
 
-  ### Setting up Agendash for GUI admin dashboard.
+  ### Setting up agendash for GUI admin dashboard.
 
   ```javascript
 import * as basicAuth from 'express-basic-auth';
-import * as Agendash from 'agendash';
+import * as agendash from 'agendash';
 
-export default ({ expressApp, agendaInstance }: { expressApp: Application }) => {
+export default ({ expressApp, agendajsInstance }: { expressApp: Application }) => {
   expressApp.use('/agendash',
     basicAuth({
       users: {
-        agendaAdmin: 'super-secure-and-secred-password',
+        agendajsAdmin: 'super-secure-and-secred-password',
       },
       challenge: true,
     }),
-    Agendash(agendaInstance)
+    agendash(agendajsInstance)
   );
 };
 
@@ -323,7 +344,7 @@ CAPTURA DE PANTALLA DE AGENDASH
 
   Serving static assets with node.js is a task that demands a lot of CPU, node.js wasn't designed for that.
 
-  Having your cron jobs inside Agenda will benefice you at the moment of doing horizontal scalability.
+  Having your cron jobs inside agendajs will benefice you at the moment of doing horizontal scalability.
 
   And don't forget to enable the power of cluster mode from day 1 to make use of all the resources available in the machine.
 
@@ -331,7 +352,7 @@ CAPTURA DE PANTALLA DE AGENDASH
 
   And that's something that we'll discuss in a future post.
 
-# Let me a know in a comment, what was your biggest challange scaling a nodejs application?
+### Let me a know in a comment, what was your biggest challange scaling a nodejs application?
 
 # Resources
   - https://nodejs.org/api/cluster.html
