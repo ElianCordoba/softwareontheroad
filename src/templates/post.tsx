@@ -271,7 +271,6 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         </header>
         <main id="site-main" className="site-main" css={[SiteMain, outer]}>
           <div css={inner}>
-            {/* TODO: no-image css tag? */}
             <article css={[PostFull, !post.frontmatter.image && NoImage]}>
               <PostFullHeader>
                 <PostFullMeta>
@@ -299,7 +298,12 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                   />
                 </PostFullImage>
               )}
-              <PostContent htmlAst={post.htmlAst} />
+              <PostContent htmlAst={post.htmlAst} 
+                postURL={encodeURIComponent(config.siteUrl + props.pathContext.slug)}
+                githubFile={`${props.pathContext.slug.slice(
+                  0,
+                  props.pathContext.slug.length - 1
+                )}.md`} /> 
               <Share
                 socialConfig={{
                   twitterHandle: '@santypk4',
@@ -311,7 +315,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                 tags={post.frontmatter.twittertags}
               />
               {/* The big email subscribe modal content */}
-              {config.showSubscribe && <Subscribe title={config.title} />}
+              <Subscribe color={'regular'} />
 
               <PostFullFooter>
                 <AuthorCard author={post.frontmatter.author} />
