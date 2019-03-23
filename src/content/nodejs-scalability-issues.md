@@ -4,10 +4,9 @@ title: "3 node.js enterprise scalability issues and how to solve them 🗼"
 author: santypk4
 date: "2019-03-22T08:00:00.000Z"
 image: img/node-scalability.jpg
-subtitle: "Serving static assets, enabling clustering, and using poorly designed cron jobs, are the most common takeaways from scaling a node.js server. \n
-Here is how you can fix them"
+subtitle: "Serving static assets, not using cluster mode, and poorly designed cron jobs, are the most common mistakes at the moment of scaling a node.js server."
 tags: ["Node.js", "Best"]
-twittertags: ["node", "scalability", "backend", "programming", "DevOps", "javascript"]
+twittertags: ["node", "scalability", "backend", "programming", "DevOps", "javascript", "100daysofcode"]
 draft: false
 ---
 
@@ -96,19 +95,23 @@ draft: false
 
 
 ### Setting up agendajs
-We setup agendajs following the best practices to create index and 
+
+  This is a good way of installing agenda in a project.
+
+  - First initialize agendajs and create a singleton, this is what we are going to use in the whole application.
+
+_File jobs/agenda.js_
 ```javascript
 import * as agendajs from 'agenda';
-import { Collection } from 'mongoose';
 
-export default ({ mongoConnection, logger }) => {
-  const agendajs = (new agendajs() as any);
+export default (mongoConnection) => {
+  const agendajs = new agendajs();
 
   (async () => {
     await agendajs._ready;
 
     try {
-      (agendajs._collection as Collection).ensureIndex({
+      agendajs._collection.ensureIndex({
         disabled: 1,
         lockedAt: 1,
         name: 1,
@@ -118,12 +121,10 @@ export default ({ mongoConnection, logger }) => {
           name: 'findAndLockNextJobIndex'
         });
     } catch (err) {
-      logger.warn('Failed to create agendajs index!');
-      logger.warn(err);
+      console.log('Failed to create agendajs index!');
+      console.log(err);
       throw err;
     }
-
-    logger.info('agendajs index ensured');
   })();
 
   agendajs
@@ -136,31 +137,53 @@ export default ({ mongoConnection, logger }) => {
 
 ```
 
-### Setting up agendajs jobs
+- Second, create a job declaration for every job you want agenda to call
+
+Notice that you don't necesarylly have to have your service logic here, you can use this class a façade to the actual implementation.
+
+_File jobs/sendWelcomeEmail.js_
 
 ```javascript
-import { Container } from 'typedi';
-import MailerService from '../services/companies';
+import MailerService from '../services/mailer';
 
 export default class SendWelcomeEmail {
 
   public async handler (job, done): Promise<any> {
     const { email } = job.attrs.data;
-    const mailerServiceInstance = Container.get(MailerService);
+    const mailerServiceInstance = new MailerService();
     await mailerServiceInstance.SendWelcomeEmail(email);
     done();
   }
 }
 
-
 ```
 
-### Registering the agendajs job
+_File services/mailer.js_
+```javascript
+
+import * as mailgun from 'mailgun';
+export default class Mailer {
+  constructor() {}
+
+  public async SendWelcomeEmail(email){
+    const data = {
+      from: 'Hi from Softwareontheroad <santiago@softwareontheroad.com>',
+      to: email,
+      subject: 'Welcome !',
+      text: 'Thanks for sign up',
+    };
+    return mailgun.messages().send(data);
+  }
+}
+```
+
+- Third, register your job in the agendajs job definition
 
 We defined what's gonna be the handler of the job `send-welcome-email`
 
+_File jobs/index.js_
 ```javascript
-import SendWelcomeEmail from '../jobs/send-welcome-email';
+import SendWelcomeEmail from './send-welcome-email';
 
 export default ({ agendajs }) => {
 
@@ -173,44 +196,13 @@ export default ({ agendajs }) => {
 }
 ```
 
-### Job definition
-Were the logic for the
+- Forth, use the agendajs instance to schedule your jobs
+
+_File service/user.js_
 ```javascript
-
-import * as mailgun from 'mailgun';
-
-export default class Mailer {
-  constructor(
-  ) {
-  }
-
-  public async SendWelcomeEmail(email){
-    const data = {
-      from: 'Hi from Softwareontheroad <santiago@softwareontheroad.com>',
-      to: email,
-      subject: 'Welcome !',
-      text: 'Thanks for sign up',
-    };
-
-    return mailgun.messages().send(data);
-  }
-
-}
-
-```
-
-### Calling agendajs jobs
-
-  ```javascript
-
-  import { Service, Inject } from 'typedi';
-
-  @Service()
+  import agendajs from '../jobs/agendajs';
   export default class UsersService {
-    constructor(
-      @Inject('agendajsClient') private agendajs;
-    ) {
-    }
+    constructor() {}
 
     public async SignUp(userDTO: IUserDTO): Promise<IUser> {
       let user;
@@ -220,7 +212,7 @@ export default class Mailer {
         await user.save();
         
         // Call to agendajs and schedule a task, in 10 minutes send the welcome email to the user.
-        this.agendajs.schedule('in 10 minutes', 'send-welcome-email', { email: user.email },);
+        agendajs.schedule('in 10 minutes', 'send-welcome-email', { email: user.email },);
 
         ... // do more fancy stuff
         return user;
@@ -233,27 +225,39 @@ export default class Mailer {
   }
   ```
 
-  ### Setting up agendash for GUI admin dashboard.
+# Using Agendash as a good admin GUI
+
+Now your jobs are stored in the db and are less error prompt but they can ocurr.
+A good way to monitorize your active, scheduled, and failed jobs is by using Agendash the web UI for agendajs
+Also with have control over the jobs, we can re-schedule, create, run, and delete them.
+
+![Agendash overview](/img/nodejs-scalability/job-details.png)
+
+## Agendash Instalation
+
+  Go where you start your Express.js routes and add a new one for Agendash.
+
+  Notice that Agendash do not provide any sort of security, so here we are adding a minimal layer of protection with `express-basic-auth`
 
   ```javascript
-import * as basicAuth from 'express-basic-auth';
-import * as agendash from 'agendash';
+  import * as basicAuth from 'express-basic-auth';
+  import * as agendash from 'agendash';
 
-export default ({ expressApp, agendajsInstance }: { expressApp: Application }) => {
-  expressApp.use('/agendash',
-    basicAuth({
-      users: {
-        agendajsAdmin: 'super-secure-and-secred-password',
-      },
-      challenge: true,
-    }),
-    agendash(agendajsInstance)
-  );
-};
+  export default (app, agendajsInstance) => {
+    app.use('/agendash',
+      basicAuth({
+        users: {
+          agendajsAdmin: 'super-secure-and-secred-password',
+        },
+        challenge: true,
+      }),
+      agendash(agendajsInstance)
+    );
+  };
 
-```
+  ```
 
-CAPTURA DE PANTALLA DE AGENDASH
+  Now your agendajs dashboard should be located on `/agendash`
 
 <a name="resources"></a>
 
@@ -341,31 +345,7 @@ CAPTURA DE PANTALLA DE AGENDASH
   It may seem scary to try this out in your already in production node.js server, but you don't have to worry.
   Unless you are using some type of home-made CRON in the same server that runs your API.
 
-  [And we already talk about this, in the previous section.](/#jobs)
-
-# Know when to go serverless and when not
-
-  Nowadays with all the advance of frameworks like AWS Serverless is just easier to start your node.js directly in lambda functions.
-
-  But it may slow you down, especially if you are in early stages of your company, creating a Pipeline of continuous integration, continuous delivery, testing and several environments (staging, dev, production) can take a significative amount of time, much more than the classic node.js on a Heroku instance right to go.
-
-  Although, if you have your server already running in production, your customers are happy, and you plan to develop a new feature, you should consider if it can be done in a couple of Lambda Functions.
-
-  Which bring me to the next issue
-
-# Split your monolithic app into microservices early on
-
-  Don't let your node.js server codebase grow without proper separation of concerns, because a microservice architecture is just that, a fancy separation of concerns applied to infrastructure.
-
-  But how do you know when and how to split?
-
-  You have to follow a basic principle
-
-  New feature -> Requires or Adds functionality to existing features ? do it on your existing app : is a medium-big feature ? separate : do it on your existing app
-
-  For example, when your codebase start to grow 
-
-<a name="conclusion"></a>
+  [And we already talk about this, in the previous section.](#jobs)
 
 # Conclusion
 
