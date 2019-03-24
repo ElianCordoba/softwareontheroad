@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "3 enterprise node.js scalability issues and how to solve them 🗼"
+title: "3 node.js scalability problems and how to solve them 🚀"
 author: santypk4
 date: "2019-03-24T00:05:00.000Z"
 image: img/node-scalability.jpg
@@ -30,9 +30,9 @@ draft: false
 
 # Table of contents 📝
 
- - [Serving static assets with express](#assets)
- - [Jobs and Workers](#jobs)
- - [Using all the resources](#resources)
+ - [Serving static assets](#assets)
+ - [Cron jobs and task scheduling](#jobs)
+ - [Cluster Mode - Using all the available resources](#resources)
  - [Conclusion](#conclusion)
 
 # My story scaling node.js APIs
