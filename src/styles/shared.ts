@@ -77,7 +77,6 @@ export const SiteHeader = css`
   padding-top: 12px;
   padding-bottom: 12px;
   color: #fff;
-  /* background: color(var(--darkgrey) l(-5%)) no-repeat center center; */
   background: ${darken('0.05', colors.darkgrey)} no-repeat center center;
   background-size: cover;
 `;
@@ -137,7 +136,6 @@ export const SiteHeaderStyles = css`
 
 export const AuthorProfileImage = css`
   display: block;
-  /* background: color(var(--lightgrey) l(+10%)); */
   background: ${lighten('0.1', colors.lightgrey)};
   border-radius: 100%;
   object-fit: cover;

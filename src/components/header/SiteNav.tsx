@@ -140,7 +140,6 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
       [ <nav key="site-nav" css={[isHome && HomeNavRaise, SiteNavStyles]}>
         <SiteNavLeft>
           <ul css={NavStyles} role="menu">
-            {/* TODO: mark current nav item - add class nav-current */}
             {
               !isHome && <li role="menuitem">
                 <Link to="/">Home</Link>

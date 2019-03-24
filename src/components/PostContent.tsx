@@ -88,7 +88,6 @@ export const PostFullContent = styled.section`
 
   strong,
   em {
-    /* color: color(var(--darkgrey) l(-5%)); */
     color: ${darken('0.05', colors.darkgrey)};
   }
 
@@ -132,7 +131,6 @@ export const PostFullContent = styled.section`
     text-align: center;
   }
 
-  /* Override third party iframe styles */
   iframe {
     margin: 0 auto !important;
   }
@@ -173,12 +171,10 @@ export const PostFullContent = styled.section`
     margin: 1.5em 0 3em;
     padding: 20px;
     max-width: 100%;
-    /* border: color(var(--darkgrey) l(-10%)) 1px solid; */
     border: ${darken('0.01', colors.darkgrey)} 1px solid;
     color: ${colors.whitegrey};
     font-size: 1.4rem;
     line-height: 1.5em;
-    /* background: color(var(--darkgrey) l(-3%)); */
     background: ${darken('0.03', colors.darkgrey)};
     border-radius: 5px;
   }
@@ -194,7 +190,6 @@ export const PostFullContent = styled.section`
     color: inherit;
   }
 
-  /* .fluid-width-video-wrapper { */
   .gatsby-resp-iframe-wrapper {
     margin: 1.5em 0 3em;
   }
@@ -212,7 +207,6 @@ export const PostFullContent = styled.section`
     margin-left: -10px;
     width: 1px;
     height: 30px;
-    /* background: color(var(--lightgrey) l(+10%)); */
     background: ${lighten('0.1', colors.lightgrey)};
     box-shadow: #fff 0 0 0 5px;
     transform: rotate(45deg);
@@ -307,7 +301,6 @@ export const PostFullContent = styled.section`
     }
   }
 
-  /* Tables */
   table {
     display: inline-block;
     overflow-x: auto;
@@ -361,14 +354,12 @@ export const PostFullContent = styled.section`
     letter-spacing: 0.2px;
     text-align: left;
     text-transform: uppercase;
-    /* background-color: color(var(--whitegrey) l(+4%)); */
     background-color: ${lighten('0.04', colors.whitegrey)};
   }
 
   table th,
   table td {
     padding: 6px 12px;
-    /* border: color(var(--whitegrey) l(-1%) s(-5%)) 1px solid; */
     border: ${setSaturation('0.05', darken('0.01', colors.whitegrey))} 1px solid;
   }
 
@@ -383,6 +374,11 @@ export const PostFullContent = styled.section`
   }
 `;
 
+const LeaveACommentContainer = styled.div`
+  width: 100%;
+  text-align: center;
+`
+
 const renderAst = new rehypeReact({
   createElement: React.createElement,
   // components: { 'interactive-counter': Counter },
@@ -396,13 +392,28 @@ const Ast = ({ ast, ...props }: any) => {
 
 export interface PostContentProps {
   htmlAst: any;
+  postURL: string;
+  githubFile: string;
 }
 
-const PostContent: React.FunctionComponent<PostContentProps> = ({ htmlAst }) => {
+const PostContent: React.FunctionComponent<PostContentProps> = ({ htmlAst, postURL, githubFile }) => {
   return (
     <PostFullContent className="post-full-content">
       {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
       <Ast className="post-content" ast={htmlAst} />
+      <br />
+      <LeaveACommentContainer>
+        <a href={`https://mobile.twitter.com/search?q=${postURL}`} target="_blank" rel="nofollow noopener noreferrer">
+          Discuss on Twitter
+        </a>
+        {` - `}
+        <a href={
+          `https://github.com/santiq/softwareontheroad/edit/master/src/content${githubFile}`
+        } target="_blank" rel="nofollow noopener noreferrer">
+          Edit on GitHub
+        </a>
+      </LeaveACommentContainer>
+      <br />
     </PostFullContent>
   );
 };

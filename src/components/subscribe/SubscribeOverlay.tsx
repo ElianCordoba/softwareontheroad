@@ -48,7 +48,7 @@ const SubscribeOverlay = styled.div`
     font-weight: normal;
     letter-spacing: 0.5px;
     user-select: text;
-    border-radius: 8px;
+    border-radius: 2px;
     transition: border-color 0.15s linear;
 
     -webkit-appearance: none;
@@ -72,7 +72,7 @@ const SubscribeOverlay = styled.div`
       color(var(--blue) lightness(-7%) saturation(-10%)) 90%,
       color(var(--blue) lightness(-4%) saturation(-10%))
     );
-    border-radius: 8px;
+    border-radius: 2px;
     box-shadow: 0 0 0 1px inset rgba(0, 0, 0, 0.14);
 
     -webkit-font-smoothing: subpixel-antialiased;

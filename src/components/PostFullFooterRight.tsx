@@ -15,7 +15,6 @@ const PostFullFooterRightDiv = styled.div`
 const AuthorCardButton = css`
   display: block;
   padding: 9px 16px;
-  /* border: color(var(--midgrey) l(+20%)) 1px solid; */
   border: ${lighten('0.2', colors.midgrey)} 1px solid;
   color: ${colors.midgrey};
   font-size: 1.2rem;

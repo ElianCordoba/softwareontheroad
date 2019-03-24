@@ -1,7 +1,7 @@
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import * as _ from 'lodash';
-import { lighten } from 'polished';
+// import { lighten } from 'polished';
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
@@ -96,90 +96,89 @@ const AuthorList = styled.ul`
   list-style: none;
 `;
 
-const AuthorListItem = styled.li`
-  position: relative;
-  flex-shrink: 0;
-  margin: 0;
-  padding: 0;
+// const AuthorListItem = styled.li`
+//   position: relative;
+//   flex-shrink: 0;
+//   margin: 0;
+//   padding: 0;
 
-  :nth-of-type(1) {
-    z-index: 10;
-  }
-  :nth-of-type(2) {
-    z-index: 9;
-  }
-  :nth-of-type(3) {
-    z-index: 8;
-  }
-  :nth-of-type(4) {
-    z-index: 7;
-  }
-  :nth-of-type(5) {
-    z-index: 6;
-  }
-  :nth-of-type(6) {
-    z-index: 5;
-  }
-  :nth-of-type(7) {
-    z-index: 4;
-  }
-  :nth-of-type(8) {
-    z-index: 3;
-  }
-  :nth-of-type(9) {
-    z-index: 2;
-  }
-  :nth-of-type(10) {
-    z-index: 1;
-  }
-  :hover .author-name-tooltip {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-`;
+//   :nth-of-type(1) {
+//     z-index: 10;
+//   }
+//   :nth-of-type(2) {
+//     z-index: 9;
+//   }
+//   :nth-of-type(3) {
+//     z-index: 8;
+//   }
+//   :nth-of-type(4) {
+//     z-index: 7;
+//   }
+//   :nth-of-type(5) {
+//     z-index: 6;
+//   }
+//   :nth-of-type(6) {
+//     z-index: 5;
+//   }
+//   :nth-of-type(7) {
+//     z-index: 4;
+//   }
+//   :nth-of-type(8) {
+//     z-index: 3;
+//   }
+//   :nth-of-type(9) {
+//     z-index: 2;
+//   }
+//   :nth-of-type(10) {
+//     z-index: 1;
+//   }
+//   :hover .author-name-tooltip {
+//     opacity: 1;
+//     transform: translateY(0px);
+//   }
+// `;
 
-const AuthorNameTooltip = styled.div`
-  position: absolute;
-  bottom: 105%;
-  z-index: 999;
-  display: block;
-  padding: 2px 8px;
-  color: white;
-  font-size: 1.2rem;
-  letter-spacing: 0.2px;
-  white-space: nowrap;
-  background: ${colors.darkgrey};
-  border-radius: 3px;
-  box-shadow: rgba(39, 44, 49, 0.08) 0 12px 26px, rgba(39, 44, 49, 0.03) 1px 3px 8px;
-  opacity: 0;
-  transition: all 0.3s cubic-bezier(0.4, 0.01, 0.165, 0.99);
-  transform: translateY(6px);
-  pointer-events: none;
+// const AuthorNameTooltip = styled.div`
+//   position: absolute;
+//   bottom: 105%;
+//   z-index: 999;
+//   display: block;
+//   padding: 2px 8px;
+//   color: white;
+//   font-size: 1.2rem;
+//   letter-spacing: 0.2px;
+//   white-space: nowrap;
+//   background: ${colors.darkgrey};
+//   border-radius: 3px;
+//   box-shadow: rgba(39, 44, 49, 0.08) 0 12px 26px, rgba(39, 44, 49, 0.03) 1px 3px 8px;
+//   opacity: 0;
+//   transition: all 0.3s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+//   transform: translateY(6px);
+//   pointer-events: none;
 
-  @media (max-width: 650px) {
-    display: none;
-  }
-`;
+//   @media (max-width: 650px) {
+//     display: none;
+//   }
+// `;
 
-const StaticAvatar = css`
-  display: block;
-  overflow: hidden;
-  margin: 0 -5px;
-  width: 34px;
-  height: 34px;
-  border: #fff 2px solid;
-  border-radius: 100%;
-`;
+// const StaticAvatar = css`
+//   display: block;
+//   overflow: hidden;
+//   margin: 0 -5px;
+//   width: 34px;
+//   height: 34px;
+//   border: #fff 2px solid;
+//   border-radius: 100%;
+// `;
 
-const AuthorProfileImage = styled.img`
-  display: block;
-  width: 100%;
-  height: 100%;
-  /* background: color(var(--lightgrey) l(+10%)); */
-  background: ${lighten('0.1', colors.lightgrey)}
-  border-radius: 100%;
-  object-fit: cover;
-`;
+// const AuthorProfileImage = styled.img`
+//   display: block;
+//   width: 100%;
+//   height: 100%;
+//   background: ${lighten('0.1', colors.lightgrey)}
+//   border-radius: 100%;
+//   object-fit: cover;
+// `;
 
 const ReadingTime = styled.span`
   flex-shrink: 0;
@@ -228,7 +227,7 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
         </Link>
         <PostCardMeta className="post-card-meta">
           <AuthorList>
-            <AuthorListItem>
+            {/* <AuthorListItem>
               <AuthorNameTooltip className="author-name-tooltip">
                 {post.frontmatter.author.id}
               </AuthorNameTooltip>
@@ -238,7 +237,7 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
                   alt={post.frontmatter.author.id}
                 />
               </Link>
-            </AuthorListItem>
+            </AuthorListItem> */}
           </AuthorList>
           <ReadingTime>{post.timeToRead > 9 ? post.timeToRead : post.timeToRead + 2} min read</ReadingTime>
         </PostCardMeta>
