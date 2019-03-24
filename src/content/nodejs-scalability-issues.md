@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "3 node.js enterprise scalability issues and how to solve them 🗼"
+title: "3 enterprise node.js scalability issues and how to solve them 🗼"
 author: santypk4
-date: "2019-03-22T08:00:00.000Z"
+date: "2019-03-24T00:05:00.000Z"
 image: img/node-scalability.jpg
 subtitle: "Serving static assets, not using cluster mode, and poorly designed cron jobs, are the most common mistakes at the moment of scaling a node.js server."
 tags: ["Node.js", "Best"]
@@ -10,13 +10,21 @@ twittertags: ["node", "scalability", "backend", "programming", "DevOps", "javasc
 draft: false
 ---
 
-# How to scale node.js applications? 🤔
+# Introduction
 
-  Scaling a node.js application is not about the routing framework (express, koa, fastify), sure, having the one with the highest throughput help, but it's all about your architecture.
+  Node.js is a JavaScript runtime environment built on Chrome’s V8 JavaScript engine, it implements the reactor pattern, a non-blocking, event-driven I/O paradigm.
 
-  A node.js backend for a real-time chat application can handle a different load that an e-commerce app.
-  Netflix uses node.js for its microservices infrastructure, they have a video streaming platform that needs to serve a million concurrent connections.
-  But they don't have just a single node.js app running in a big machine, they have a microservice architecture.
+  You definitely don’t want to use Node.js for CPU-intensive operations, using it for heavy computation will annul nearly all of its advantages. 
+
+  Node.js really shines in building fast, scalable network applications, as it’s capable of handling a huge number of simultaneous connections with high throughput.
+
+# How do you scale node.js APIs? 🤔
+
+  There are several common tips for writing scalable node.js servers, but the key thing is the architecture behind it.
+
+  And every application is different, i.e. a node.js backend for a real-time chat application can handle a different amount of connections than an e-commerce site or a streaming platform.
+
+  Take Netflix for example, they use node.js on its microservices infrastructure, [to do A/B testing at scale](https://www.youtube.com/watch?v=gtjzjiTI96c)
 
   Here are some considerations and common issues that many development teams face at the moment of scaling a node.js application.
 
@@ -27,17 +35,22 @@ draft: false
  - [Using all the resources](#resources)
  - [Conclusion](#conclusion)
 
+# My story scaling node.js APIs
+
   I worked for a couple of startups who started their software products just from a simple express.js template that we found on GitHub.
 
-  At Whyline for example, back in 2015, I was who installed the ["Angular Full-Stack"](https://github.com/angular-fullstack/generator-angular-fullstack) template from Yeoman (Oh boy I'm old).
+  Back in 2015, I was hired by a startup that was looking into building the MVP for what I was to be it's first product, so with the team, we decided to use the ["Angular Full-Stack"](https://github.com/angular-fullstack/generator-angular-fullstack) template from Yeoman the scaffolding app (oh boy I'm old)
 
-  The product grows fast, and in the process, we had to almost re-write the backend server, change the semi-monolithic architecture to a microservices based one, move away from the web-client from being served on the node.js app to be hosted on AWS S3 and have a CDN.
+  With that, we managed to build MVP in a couple of months, and fortunately, the product had success
+
+  It started to grow fast, and in the process, we had to re-write the backend server, change the semi-monolithic architecture to a microservices based one, move away from the web-client from being served on the node.js app to be hosted on AWS S3 and have a CDN.
 
   And we did so many other things in order to scale the node.js applications like performance improvements in Linux AMIs, refactors to several layers, implementing typescript in the node.js server, re-writing some node.js services, implementing pub-sub pattern in a node.js microservice, implementing sockets with socket.io, move away the search solution from node.js to Elastic Search, add Redis cache layers, and so.
 
   _It will take me a whole year to write about all_
 
-  Now, I'm working as a freelancer consultor, and every new project that I arrived has this same scalability issues.
+  Now, I'm working as a freelancer consultor, and every new project that I arrived in has similar scalability issues.
+
   So today I want to talk about how they are holding back your node.js server from growing and reaching a high scalability state.
 
 <a name="assets"></a>
@@ -51,6 +64,7 @@ draft: false
   You should be using a proxy CDN like CloudFront in front of your static files.
 
   I believe the root of the problem comes from the number of starter templates that comes with a "full-stack" solution for building an MVP.
+
   But when your product and user base grows, you will face a problem, your node.js server will use too many CPU time.
 
   ![node.js and Web client architecture](/img/nodejs-scalability/static_assets.png)
@@ -98,7 +112,7 @@ draft: false
 
   This is a good way of installing agenda in a project.
 
-  - First initialize agendajs and create a singleton, this is what we are going to use in the whole application.
+  - First, initialize agendajs and create a singleton, this is what we are going to use in the whole application.
 
 _File jobs/agenda.js_
 ```javascript
@@ -139,7 +153,7 @@ export default (mongoConnection) => {
 
 - Second, create a job declaration for every job you want agenda to call
 
-Notice that you don't necesarylly have to have your service logic here, you can use this class a façade to the actual implementation.
+Notice that you don't necessarily have to have your service logic here, you can use this class a façade to the actual implementation.
 
 _File jobs/sendWelcomeEmail.js_
 
@@ -196,7 +210,7 @@ export default ({ agendajs }) => {
 }
 ```
 
-- Forth, use the agendajs instance to schedule your jobs
+- Fourth, use the agendajs instance to schedule your jobs
 
 _File service/user.js_
 ```javascript
@@ -227,13 +241,13 @@ _File service/user.js_
 
 # Using Agendash as a good admin GUI
 
-Now your jobs are stored in the db and are less error prompt but they can ocurr.
-A good way to monitorize your active, scheduled, and failed jobs is by using Agendash the web UI for agendajs
+Now your jobs are stored in the DB and are less error prompt but they can occur.
+A good way to monitor your active, scheduled, and failed jobs are by using Agendash the web UI for agendajs
 Also with have control over the jobs, we can re-schedule, create, run, and delete them.
 
 ![Agendash overview](/img/nodejs-scalability/job-details.png)
 
-## Agendash Instalation
+## Agendash Installation
 
   Go where you start your Express.js routes and add a new one for Agendash.
 
@@ -349,21 +363,18 @@ Also with have control over the jobs, we can re-schedule, create, run, and delet
 
 # Conclusion
 
-  I guaranty you that you will be able to handle more traffic if you follow these considerations.
-
   Serving static assets with node.js is a task that demands a lot of CPU, node.js wasn't designed for that.
 
   Having your cron jobs inside agendajs will benefice you at the moment of doing horizontal scalability.
 
   And don't forget to enable the power of cluster mode from day 1 to make use of all the resources available in the machine.
 
-  My experience has tough me that once you scale your node.js server, _maybe by throwing all away and move to AWS Lambda_, the next big challenge is scaling the database behind.
+  By resolving these issues, you will be able to scale your node.js server to be able to handle more traffic.
 
-  And that's something that we'll discuss in a future post.
-
-### Let me know in a comment, what was your biggest challenge scaling a node.js application?
+### What was your biggest challenge scaling a node.js application?
 
 # Resources
   - https://nodejs.org/api/cluster.html
   - https://github.com/agenda/agenda
   - https://github.com/agenda/agendash/issues/98
+  - https://www.netguru.com/blog/top-companies-used-nodejs-production
