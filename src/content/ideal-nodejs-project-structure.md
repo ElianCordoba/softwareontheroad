@@ -47,6 +47,15 @@ draft: false
 
   ![3 layer pattern for node.js REST API](/img/nodejs-project-structure/server_layers_2.png)
 
+
+# Don't put your business logic in the controllers!! Use the service layer
+
+  You may be tempted to just use the controllers to store the business logic of your application, but this quickly becomes spaghetti code, as soon as you need to write unit tests, they end up dealing with complex mocks for req or res express objects.
+
+  Also, it's complicated to separate when a response should be sent and when a process should be run in 'background' after the response is sent to the client.
+
+  <<EXAMPLE HORRIBLE CODE IN EXPRESS>>
+
 # Use a Pub/Sub layer too 🎙️
 
   This goes beyond the classic node.js 3 layer architecture proposed here but it's extremely useful.
@@ -92,12 +101,22 @@ draft: false
   A better approach is just to emit an event, 'a user signed up with this email'. And you are done, now it's the responsibility of the listeners to do their job.
 
   ```javascript
-    async function UserSignup(user) {
-      const userRecord = await UserModel.create(user);
-      const companyRecord = await CompanyModel.create(user);
-      eventEmitter.emit('user_signup', { user: userRecord, company: companyRecord })
+  export default class UserService() {
+
+    constructor(userModel, companyModel, eventEmitter) {
+      this.userModel = userModel;
+      this.companyModel = companyModel;
+      this.eventEmitter = eventEmitter;
+    }
+
+    async Signup(user) {
+      const userRecord = await this.userModel.create(user);
+      const companyRecord = await this.companyModel.create(user);
+      this.eventEmitter.emit('user_signup', { user: userRecord, company: companyRecord })
       return userRecord
     }
+
+  }
   ```
 
   And now you can split the event handlers in multiple files
@@ -141,6 +160,7 @@ draft: false
   By doing this way, you will gain flexibility when writing unit tests.
   The 
 
+  <<EXAMPLE MANUAL INJECTION VS TYPEDI>>
 
 # Cron Jobs ⚡
 
@@ -195,15 +215,59 @@ draft: false
 
   With this approach, you gain flexibility and tidy a little how the modules are initialized.
 
-# Don't put your business logic in the controllers!! Use the service layer
+# An unit test example 🕵🏻
 
-  You may be tempted to just use the controllers to store the business logic of your application, but this quickly becomes spaghetti code, as soon as you need to write unit tests, they end up dealing with complex mocks for req or res express objects.
+  Using dependency injection and these organization patterns, testing becomes realy simple.
 
-  Also, it's complicated to separate when a response should be sent and when a process should be run in 'background' after the response is sent to the client.
+  You don't have to mock req/res objects and you don't have to mock require(...) calls.
 
-# Unit testing - What a test looks like? 🕵🏻
+  The unit test for signup user method
 
-  Testing becomes realy simple, you don't have to mock req/res objects and you don't have to mock require(...) calls
+  ```javascript
+  import UserService from '../../../src/services/user';
+
+  describe('User service unit tests', () => {
+    describe('Signup', () => {
+      test('Should create user record and emit user_signup event', async () => {
+        const eventEmitterService = {
+          emit: jest.fn(),
+        };
+
+        const userModel = {
+          create: (user) => {
+            return {
+              ...user,
+              _id: 'mock-user-id'
+            }
+          },
+        };
+
+        const companyModel = {
+          create: (user) => {
+            return {
+              owner: user._id,
+              companyTaxId: '12345',
+            }
+          },
+        };
+
+        const userInput= {
+          fullname: 'User Unit Test',
+          email: 'test@example.com',
+        };
+
+        const userService = new UserService(userModel, companyModel, eventEmitterService);
+        const userRecord = await userService.SignUp(teamId.toHexString(), userInput);
+
+        expect(userRecord).toBeDefined();
+        expect(userRecord._id).toBeDefined();
+        expect(eventEmitterService.emit).toBeCalled();
+      });
+    })
+  })
+
+  ```
+
 
 # Conclusion
 
