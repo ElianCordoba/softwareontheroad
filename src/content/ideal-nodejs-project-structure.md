@@ -58,12 +58,81 @@ draft: false
   It's better to separate responsabilities so code is more maintenible.
   But an imperative call to a dependent service, is not the best way of doing it nether, it will be too much code.
 
-  ->>> EXAMPLE OF CHAIN OF CALLS <<<-
+  ```javascript
 
+    async function UserSignup(user) {
+      const userRecord = await UserModel.create(user);
+      const companyRecord = await CompanyModel.create(user);
+      const salaryRecord = await SalaryModel.create(user, salary);
+
+      eventTracker.track(
+        'user_signup',
+        userRecord,
+        companyRecord,
+        salaryRecord
+      );
+
+      intercom.createUser(
+        userRecord
+      );
+
+      gaAnalytics.event(
+        'user_signup',
+        userRecord
+      );
+      
+      await EmailService.startSignupSequence(userRecord)
+
+      ...more stuff
+
+      return userRecord
+    }
+  ```
 
   A better approach is just to emit an event, 'a user signed up with this email'. And you are done, now it's the responsibility of the listeners to do their job.
 
-  ->>> EXAMPLE OF PUB/SUB <<<-
+  ```javascript
+    async function UserSignup(user) {
+      const userRecord = await UserModel.create(user);
+      const companyRecord = await CompanyModel.create(user);
+      eventEmitter.emit('user_signup', { user: userRecord, company: companyRecord })
+      return userRecord
+    }
+  ```
+
+  And now you can split the event handlers in multiple files
+
+  ```javascript
+  eventEmitter.on('user_signup', ({ user, company }) => {
+
+    eventTracker.track(
+      'user_signup',
+      user,
+      company,
+    );
+
+    intercom.createUser(
+      user
+    );
+
+    gaAnalytics.event(
+      'user_signup',
+      user
+    );
+  })
+  ```
+
+  ```javascript
+  eventEmitter.on('user_signup', ({ user, company }) => {
+    const salaryRecord = await SalaryModel.create(user, salary);
+  })
+  ```
+
+  ```javascript
+  eventEmitter.on('user_signup', ({ user, company }) => {
+    await EmailService.startSignupSequence(user)
+  })
+  ```
 
 # Dependency Injection 💉
 
