@@ -158,7 +158,28 @@ draft: false
 
   This may be good enought but, we add an extra step, have a `config/index.ts` file where you call `dotenv` and load the .env file and also use a config object, with the proper structure.
 
-  ->>>> LOAD CONFIG FILES <<<<-
+  ```javascript
+  const dotenv = require('dotenv');
+  // config() will read your .env file, parse the contents, assign it to process.env.
+  dotenv.config();
+  
+  export default {
+    port: process.env.PORT,
+    databaseURL: process.env.DATABASE_URI,
+    paypal: {
+      publicKey: process.env.PAYPAL_PUBLIC_KEY,
+      secretKey: process.env.PAYPAL_SECRET_KEY,
+    },
+    paypal: {
+      publicKey: process.env.PAYPAL_PUBLIC_KEY,
+      secretKey: process.env.PAYPAL_SECRET_KEY,
+    },
+    mailchimp: {
+      apiKey: process.env.MAILCHIMP_API_KEY,
+      sender: process.env.MAILCHIMP_SENDER,
+    }
+  }
+  ```
 
   Doing this way you avoid flooding your code with `process.env.MY_RANDOM_VAR` instructions, and by having the autocompletion you don't have to know how to name the env var.
 
