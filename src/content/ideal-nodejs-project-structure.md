@@ -12,11 +12,26 @@ draft: false
 
 # Introduction
 
-  While Express.js or Hapi.js are great frameworks for making a node.js rest API they don't offer you a clear way of architecture your node.js project.
+  While Express.js is great frameworks for making a node.js REST APIs it don't offer you any clue for organize your node.js project.
 
-  Due to the massive amount of node.js tutorials for beginners, the vast majority of node.js projects that are [#.......]
+  And it may sound silly but this is a real problem, the correct organization of your project will avoid duplication of code, improve stability and potentialy will help you scale your services if is doing correctly.
 
-  If you need help to align your node.js project architecture, just drop me a letter. (CALL TO ACTION)
+  This is an extense research from my years of experience dealing with poor structured node.js project and bad patterns, countless hours of refactoring code and moving things around.
+
+  If you need help to align your node.js project architecture, just drop me a letter at santiago@softwareontheroad.com
+
+# Table of contents
+
+  - [The folder structure 🏢](#folder)
+  - [3 Layer architecture 🥪](#architecture)
+  - [Service Layer](#service)
+  - [Pub/Sub Layer](#pubsub)
+  - [Dependency Injection](#di)
+  - [Cron Jobs and recurring task ⚡](#cron)
+  - [Configurations and secrets](#configs)
+  - [Loaders](#loaders)
+
+<a name="folder"></a>
 
 # The folder structure 🏢
 
@@ -48,13 +63,101 @@ draft: false
   ![3 layer pattern for node.js REST API](/img/nodejs-project-structure/server_layers_2.png)
 
 
-# Don't put your business logic in the controllers!! Use the service layer
+# Don't put your business logic in the controllers!!
 
-  You may be tempted to just use the controllers to store the business logic of your application, but this quickly becomes spaghetti code, as soon as you need to write unit tests, they end up dealing with complex mocks for req or res express objects.
+  You may be tempted to just use the controllers to store the business logic of your application, but this quickly becomes spaghetti code, as soon as you need to write unit tests, you will end up dealing with complex mocks for req or res express objects.
 
   Also, it's complicated to separate when a response should be sent and when a process should be run in 'background' after the response is sent to the client.
 
-  <<EXAMPLE HORRIBLE CODE IN EXPRESS>>
+  Here is an example of what not to do.
+  ```javascript
+  route.post('/', async (req, res, next) => {
+
+    // This should be a middleware or should be handled by a library like Joi.
+    const userDTO = req.body;
+    const isUserValid = validators.user(userDTO)
+    if(!isUserValid) {
+      return res.status(400).end();
+    }
+
+    // Lot of business logic here...
+    const userRecord = await UserModel.create(userDTO);
+    delete userRecord.password;
+    delete userRecord.salt;
+    const companyRecord = await CompanyModel.create(userRecord);
+    const companyDashboard = await CompanyDashboard.create(userRecord, companyRecord);
+
+    ...whatever...
+
+
+    // But here is the 'optimization' that mess up everything.
+    // The response is sent to client...
+    res.json({ user: userRecord, company: companyRecord });
+
+    // But code execution continues :(
+    const salaryRecord = await SalaryModel.create(user, salary);
+    eventTracker.track('user_signup',userRecord,companyRecord,salaryRecord);
+    intercom.createUser(userRecord);
+    gaAnalytics.event('user_signup',userRecord);
+    await EmailService.startSignupSequence(userRecord)
+  });
+
+  ```
+
+  # Use a service layer instead
+
+  This layer is where your business logic should live.
+
+  It's just a collection of classes with clear porpuses following the SOLID principles.
+
+  In this layer there should not exits any form of 'SQL query', use the data access layer for that.
+
+  - Move away your code from the express.js router
+  - Don't pass the req or res object to the service layer
+  - Don't return anything related to the http transport layer like a status code or headers from the service layer.
+
+  Example
+
+  ```javascript
+  route.post('/', 
+    validators.userSignup, // this middleware take care of validation
+    async (req, res, next) => {
+      // The actual responsability of the route layer.
+      const userDTO = req.body;
+
+      // Call to service layer.
+      // Abstraction on how to access the data layer and the business logic.
+      const { user, company } = await UserService.Signup(userDTO);
+
+      // Return a response to client.
+      return res.json({ user, company });
+    });
+  ```
+
+  Your service working behind the scenes
+
+  ```javascript
+  import UserModel from '../models/user';
+  import CompanyModel from '../models/company';
+
+  export default class UserService() {
+
+    async Signup(user) {
+      const userRecord = await UserModel.create(user);
+      const companyRecord = await CompanyModel.create(user);
+      const salaryRecord = await SalaryModel.create(user, salary);
+      
+      ...whatever
+      
+      await EmailService.startSignupSequence(userRecord)
+
+      ...do more stuff
+
+      return { user: userRecord, company: companyRecord };
+    }
+  }
+
+  ```
 
 # Use a Pub/Sub layer too 🎙️
 
@@ -68,8 +171,13 @@ draft: false
   But an imperative call to a dependent service, is not the best way of doing it nether, it will be too much code.
 
   ```javascript
+  import UserModel from '../models/user';
+  import CompanyModel from '../models/company';
+  import SalaryModel from '../models/salary';
 
-    async function UserSignup(user) {
+  export default class UserService() {
+
+    async Signup(user) {
       const userRecord = await UserModel.create(user);
       const companyRecord = await CompanyModel.create(user);
       const salaryRecord = await SalaryModel.create(user, salary);
@@ -94,20 +202,20 @@ draft: false
 
       ...more stuff
 
-      return userRecord
+      return { user: userRecord, company: companyRecord };
     }
+
+  }
   ```
 
   A better approach is just to emit an event, 'a user signed up with this email'. And you are done, now it's the responsibility of the listeners to do their job.
 
   ```javascript
-  export default class UserService() {
+  import UserModel from '../models/user';
+  import CompanyModel from '../models/company';
+  import SalaryModel from '../models/salary';
 
-    constructor(userModel, companyModel, eventEmitter) {
-      this.userModel = userModel;
-      this.companyModel = companyModel;
-      this.eventEmitter = eventEmitter;
-    }
+  export default class UserService() {
 
     async Signup(user) {
       const userRecord = await this.userModel.create(user);
@@ -155,24 +263,126 @@ draft: false
 
 # Dependency Injection 💉
 
-  When several services are connected and depended upon each other, it's a good practice to use a dependency injection pattern, and not just 'require' the siblings' service in the file.
+  D.I. or inversion of control (IoC) is a common pattern that help you organize by 'injecting' or passing throug the constructor the _dependencies_ of your class.
 
-  By doing this way, you will gain flexibility when writing unit tests.
-  The 
+  By doing this way you will gain flexibility to inject a _'compatible dependency'_ when, for example, you write the unit tests for the service, or when the service is used in another context.
 
-  <<EXAMPLE MANUAL INJECTION VS TYPEDI>>
+  Code with no D.I
 
-# Cron Jobs ⚡
+  ```javascript
+  import UserModel from '../models/user';
+  import CompanyModel from '../models/company';
+  import SalaryModel from '../models/salary';  
+  class UserService {
+    constructor(){}
+    Sigup(){
+      // Caling UserMode, CompanyModel, etc
+      ...
+    }
+  }
+  ```
+
+  Code with manual dependency injection
+
+  ```javascript
+  export default class UserService {
+    constructor(userModel, companyModel, salaryModel){
+      this.userModel = userModel;
+      this.companyModel = companyModel;
+      this.salaryModel = salaryModel;
+    }
+    getMyUser(userId){
+      // models available throug 'this'
+      const user = this.userModel.findById(userId);
+      return user;
+    }
+  }
+  ```
+  Now you can inject custom dependencies.
+  ```javascript
+  import UserService from '../services/user';
+  import UserModel from '../models/user';
+  import CompanyModel from '../models/company';
+  const salaryModelMock = {
+    calculateNetSalary(){
+      return 42;
+    }
+  }
+  const userServiceInstance = new UserService(userModel, companyModel, salaryModelMock);
+  const user = await userServiceInstance.getMyUser('12346');
+  ```
+
+  The amount of dependencies that a service can have is infinite, and refactor every instantiation for a service in all the codebase
+  every time you add a new one is boring.
+
+  That's why dependency injection frameworks where created.
+
+  The idea is you declare your dependencies in the class, and when you need an instance of that class, you just call the 'Service Locator'.
+  Let's see an example using [typedi](https://www.npmjs.com/package/typedi)
+
+  [You can read more on how to use typedi in the offical documentation](https://www.github.com/typestack/typedi)
+
+  _WARNING typescript example_
+  ```typescript
+  import { Service } from 'typedi';
+  @Service()
+  export default class UserService {
+    constructor(
+      private userModel,
+      private companyModel, 
+      private salaryModel
+    ){}
+
+    getMyUser(userId){
+      const user = this.userModel.findById(userId);
+      return user;
+    }
+  }
+  ```
+
+  Now typedi will take care of resolve any dependency the UserService require.
+  
+  ```javascript
+  import { Container } from 'typedi';
+  import UserService from '../services/user';
+  const userServiceInstance = Container.get(UserService);
+  const user = await userServiceInstance.getMyUser('12346');
+  ```
+  *_Abusing service locator calls is an anti-pattern_*
+
+
+# Using Dependency Injection with Express.js in Node.js
+
+  The final piece of the puzzle.
+
+  **Routing layer**
+  ```javascript
+  route.post('/', 
+    async (req, res, next) => {
+      const userDTO = req.body;
+
+      const userServiceInstance = Container.get(UserService) // Service locator
+
+      const { user, company } = userServiceInstance.Signup(userDTO);
+
+      return res.json({ user, company });
+    });
+  ```
+
+  Now the node.js project looks great, its so organized that makes me want to be coding something right now.
+
+# Cron Jobs and recurring task ⚡
+
+  Now that you abstracted your business logic into the service layer, you may have a recurring task or a cron that needs to be executed.
 
   You should never rely on node.js `setTimeout` or another primitive way of delay the execution of code, but on a framework that persist your jobs, and the execution of them, in a database.
 
   This way you will have control over the failed jobs, and feedback of those who succeed.
-  
-  [Check my guide on using agenda.js for this crucial task.](/nodejs-scalability-issues)
+  I already wrote on good practice for this so, [check my guide on using agenda.js the best task manager for node.js](/nodejs-scalability-issues).
 
 # Configurations and secrets 🤫
 
-  Following the bulletproof concepts of [Twelve-Factor App](https://12factor.net) in node.js the best approach to store API Keys and database string connections, it's with **dotenv**.
+  Following the battle tested concepts of [Twelve-Factor App](https://12factor.net) in node.js the best approach to store API Keys and database string connections, it's with **dotenv**.
 
   By using a `.env` file, that you must never commit (but it has to exist with default values in your repository) the npm package `dotenv` loads the .env file and put the vars into `process.env`
 
@@ -267,7 +477,7 @@ draft: false
   })
 
   ```
-
+<a name="conclusion"></a>
 
 # Conclusion
 
