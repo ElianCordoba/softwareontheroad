@@ -39,7 +39,7 @@ draft: false
 # The folder structure 🏢
   Here is the node.js project structure that I'm talking about.
 
-  I use this in every REST API service that I build, let's see in details what every component do.
+  I use this in every node.js REST API service that I build, let's see in details what every component do.
 
   ```md
   src
@@ -60,7 +60,7 @@ draft: false
 
 # 3 Layer architecture 🥪
 
-  The idea is to use the **principle of separation of concerns** to move the business logic away from the API Routes.
+  The idea is to use the **principle of separation of concerns** to move the business logic away from the node.js API Routes.
 
   ![3 layer pattern](/img/nodejs-project-structure/server_layers.png)
 
@@ -72,7 +72,7 @@ draft: false
 
 ## ☠️ Don't put your business logic inside the controllers!! ☠️
 
-  You may be tempted to just use the controllers to store the business logic of your application, but this quickly becomes spaghetti code, as soon as you need to write unit tests, you will end up dealing with complex mocks for req or res express objects.
+  You may be tempted to just use the express.js controllers to store the business logic of your application, but this quickly becomes spaghetti code, as soon as you need to write unit tests, you will end up dealing with complex mocks for _req_ or _res_ express.js objects.
 
   It's complicated to distingue when a response should be sent, and when to continue processing in 'background', let's say after the response is sent to the client.
 
@@ -117,7 +117,7 @@ draft: false
 
   This layer is where your business logic should live.
 
-  It's just a collection of classes with clear porpuses following the **SOLID** principles.
+  It's just a collection of classes with clear porpuses, following the **SOLID** principles applied to node.js.
 
   _In this layer there should not exists any form of 'SQL query', use the data access layer for that._
 
@@ -176,13 +176,13 @@ draft: false
 
   The pub/sub pattern goes beyond the classic 3 layer architecture proposed here but it's extremely useful.
 
-  The simple API endpoint that creates a user right now, may want to call third-party services, maybe to an analytics service, or maybe start an email sequence.
+  The simple node.js API endpoint that creates a user right now, may want to call third-party services, maybe to an analytics service, or maybe start an email sequence.
 
   Sooner than later, that simple "create" operation will be doing several things, and you will end up with 1000 lines of code, all in a single function.
 
   That violates the principle of single responsibility.
 
-  So, it's better to separate responsibilities from the start, so your code is will be maintainable.
+  So, it's better to separate responsibilities from the start, so your code remains maintainable.
 
   ```javascript
   import UserModel from '../models/user';
@@ -224,7 +224,7 @@ draft: false
 
   **An imperative call to a dependent service is not the best way of doing it.**
 
-  A better approach is by emitting an event, 'a user signed up with this email'. 
+  A better approach is by emitting an event i.e. 'a user signed up with this email'. 
 
   And you are done, now it's the responsibility of the listeners to do their job.
 
@@ -245,7 +245,7 @@ draft: false
   }
   ```
 
-  And now you can split the event handlers/listeners into multiple files.
+  Now you can split the event handlers/listeners into multiple files.
 
   ```javascript
   eventEmitter.on('user_signup', ({ user, company }) => {
@@ -339,7 +339,7 @@ draft: false
 
   The idea is you declare your dependencies in the class, and when you need an instance of that class, you just call the 'Service Locator'.
 
-  Let's see an example using [typedi](https://www.npmjs.com/package/typedi)
+  Let's see an example using [typedi](https://www.npmjs.com/package/typedi) an npm library that brings D.I to node.js
 
   [You can read more on how to use typedi in the official documentation](https://www.github.com/typestack/typedi)
 
@@ -362,7 +362,7 @@ draft: false
   ```
   _services/user.ts_
 
-  Now typedi will take care of resolving any dependency the UserService require.
+  Now _typedi_ will take care of resolving any dependency the UserService require.
   
   ```javascript
   import { Container } from 'typedi';
@@ -374,7 +374,7 @@ draft: false
 
 ## Using Dependency Injection with Express.js in Node.js
 
-  Using D.I. in express.js is the final piece of the puzzle for this architecture.
+  Using D.I. in express.js is the final piece of the puzzle for this node.js project architecture.
 
   **Routing layer**
   ```javascript
@@ -390,14 +390,14 @@ draft: false
     });
   ```
 
-  Now the node.js project is looking great.
+  Awesome, project is looking great ! 
   It's so organized that makes me want to be coding something right now.
 
   <a name="test"></a>
 
 # An unit test example 🕵🏻
 
-  Using dependency injection and these organization patterns, testing becomes really simple.
+  By using dependency injection and these organization patterns, unit testing becomes really simple.
 
   You don't have to mock req/res objects or require(...) calls.
 
@@ -452,7 +452,7 @@ draft: false
 
 # Cron Jobs and recurring task ⚡
 
-  Now that the business logic encapsulated into the service layer, it's easier to use it from a Cron job.
+  So, now that the business logic encapsulated into the service layer, it's easier to use it from a Cron job.
 
   You should never rely on node.js `setTimeout` or another primitive way of delay the execution of code, but on a framework that persist your jobs, and the execution of them, in a database.
 
@@ -502,7 +502,7 @@ draft: false
 
   I took this pattern from [W3Tech microframework](https://www.npmjs.com/package/microframework-w3tec) but without depending upon their package.
 
-  The idea is that you split the startup process of your service into testable modules.
+  The idea is that you split the startup process of your node.js service into testable modules.
 
   Let's see a classic express.js app initialization
 
@@ -650,11 +650,11 @@ draft: false
 
 # Conclusion
 
-  We explore a production tested project structure that can be summarised in these tips: 
+  We deep dive into a production tested node.js project structure, here are some summarized tips:
 
   - Use a 3 layer architecture.
 
-  - Don't put your business logic on the controllers.
+  - Don't put your business logic into the express.js controllers.
 
   - Use PubSub pattern and emit events for background tasks.
 
@@ -662,4 +662,4 @@ draft: false
 
   - Never leak your passwords, secrets and API keys, use a configuration manager.
 
-  - Split your node.js server configurations into small modules that can be loaded independently
+  - Split your node.js server configurations into small modules that can be loaded independently.
