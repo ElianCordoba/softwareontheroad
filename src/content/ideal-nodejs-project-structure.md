@@ -347,6 +347,7 @@ draft: false
     }
   }
   ```
+  _services/user.ts_
 
   Now typedi will take care of resolve any dependency the UserService require.
   
@@ -388,6 +389,7 @@ draft: false
 
   The unit test for signup user method
 
+  _tests/unit/services/user.js_
   ```javascript
   import UserService from '../../../src/services/user';
 
@@ -453,6 +455,7 @@ draft: false
 
   This may be good enough but, we add an extra step, have a `config/index.ts` file where you call `dotenv` and load the .env file and also use a config object, with the proper structure.
 
+  _config/index.js_
   ```javascript
   const dotenv = require('dotenv');
   // config() will read your .env file, parse the contents, assign it to process.env.
@@ -488,21 +491,144 @@ draft: false
 
   Let's see a classic express.js app initialization
 
+  ```javascript
+  const mongoose = require('mongoose');
+  const express = require('express');
+  const bodyParser = require('body-parser');
+  const session = require('express-session');
+  const cors = require('cors');
+  const errorhandler = require('errorhandler');
+  const app = express();
+
+  app.get('/status', (req, res) => { res.status(200).end(); });
+  app.head('/status', (req, res) => { res.status(200).end(); });
+  app.use(cors());
+  app.use(require('morgan')('dev'));
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json(setupForStripeWebhooks));
+  app.use(require('method-override')());
+  app.use(express.static(__dirname + '/public'));
+  app.use(session({ secret: process.env.SECRET, cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
+  mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
+
+  require('./config/passport');
+  require('./models/user');
+  require('./models/company');
+  app.use(require('./routes'));
+  app.use((req, res, next) => {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+  });
+  app.use((err, req, res) => {
+    res.status(err.status || 500);
+    res.json({'errors': {
+      message: err.message,
+      error: {}
+    }});
+  });
+
+
+  ... more stuff 
+
+  ... maybe start up Redis
+
+  ... maybe add more middlewares
+
+  async function startServer() {    
+    app.listen(process.env.PORT, err => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log(`Your server is ready !`);
+    });
+  }
+
+  // Run the async function to start our server
+  startServer();
+  ```
+  As you see, this part of your application can be a real mess.
+
+  Here is an effective way to deal with it.
+  ```javascript
+  const loaders = require('./loaders');
+  const express = require('express');
+
+  async function startServer() {
+
+    const app = express();
+
+    await loaders.init({ expressApp: app });
+
+    app.listen(process.env.PORT, err => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log(`Your server is ready !`);
+    });
+  }
+
+  startServer();
+```
+
+  Now the loaders are just tiny files with a concise purpose 
+
+  _loaders/index.js_
+  ```javascript
+  import expressLoader from './express';
+  import mongooseLoader from './mongoose';
+
+  export default async ({ expressApp }) => {
+    const mongoConnection = await mongooseLoader();
+    console.log('MongoDB Intialized');
+    await expressLoader({ app: expressApp });
+    console.log('Express Intialized');
+
+    // ... more loaders can be here
+
+    // ... Initialize agenda
+    // ... or Redis, or whatever you want
+  }
   ```
 
+  The express loader
+
+  _loaders/express.js_
+  ```javascript
+
+  import * as express from 'express';
+  import * as bodyParser from 'body-parser';
+  import * as cors from 'cors';
+
+  export default async ({ app }: { app: express.Application }) => {
+
+    app.get('/status', (req, res) => { res.status(200).end(); });
+    app.head('/status', (req, res) => { res.status(200).end(); });
+    app.enable('trust proxy');
+
+    app.use(cors());
+    app.use(require('morgan')('dev'));
+    app.use(bodyParser.urlencoded({ extended: false }));
+
+    // ...More middlewares
+
+    // Return the express app
+    return app;
+  })
 
   ```
 
-  You shouldn't be mixing your database initialization with the express.js route setup or your cron service.
+  The mongo loader
 
-
-  They may depend upon each other, making things even more complicated.
-
-  Here is an effective way to deal with it
-
-  ```
-
-
+  _loaders/mongoose.js_
+  ```javascript
+  import * as mongoose from 'mongoose'
+  export default async (): Promise<any> => {
+    const connection = await mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
+    return connection.connection.db;
+  }
   ```
 
 <a name="conclusion"></a>
@@ -520,3 +646,5 @@ draft: false
   - Have dependency injection for your peace of mind.
 
   - Never leak your passwords, secrets and API keys, use a configuration manager.
+
+  - Split your node.js server configurations into small modules that can be loaded independently
