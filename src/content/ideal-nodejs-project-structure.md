@@ -12,13 +12,13 @@ draft: false
 
 # Introduction
 
-  Express.js is great frameworks for making a node.js REST APIs however it doesn't gives you any clue on how to organizing your node.js project.
+  Express.js is great frameworks for making a node.js REST APIs however it doesn't give you any clue on how to organizing your node.js project.
 
   While it may sound silly, this is a real problem.
 
   The correct organization of your node.js project structure will avoid duplication of code, will improve stability, and potentially, will help you scale your services if is done correctly.
 
-  This posts is extense research, from my years of experience dealing with poor structured node.js project, bad patterns, and countless hours of refactoring code and moving things around.
+  This post is extense research, from my years of experience dealing with a poor structured node.js project, bad patterns, and countless hours of refactoring code and moving things around.
 
   If you need help to align your node.js project architecture, just drop me a letter at santiago@softwareontheroad.com
 
@@ -60,7 +60,7 @@ draft: false
 
 # 3 Layer architecture 🥪
 
-  The idea is to use the **principle of separation of concerns** to move away the business logic from the API Routes.
+  The idea is to use the **principle of separation of concerns** to move the business logic away from the API Routes.
 
   ![3 layer pattern](/img/nodejs-project-structure/server_layers.png)
 
@@ -74,7 +74,7 @@ draft: false
 
   You may be tempted to just use the controllers to store the business logic of your application, but this quickly becomes spaghetti code, as soon as you need to write unit tests, you will end up dealing with complex mocks for req or res express objects.
 
-  It's complicated to distingue when a response should be send, and when to continue processing in 'background', let's say after the response is sent to the client.
+  It's complicated to distingue when a response should be sent, and when to continue processing in 'background', let's say after the response is sent to the client.
 
   Here is an example of what not to do.
   ```javascript
@@ -178,7 +178,7 @@ draft: false
 
   The simple API endpoint that creates a user right now, may want to call third-party services, maybe to an analytics service, or maybe start an email sequence.
 
-  Sooner than later, that simple "create" operation will be doing several things, and you will endup with 1000 lines of code, all in a single function.
+  Sooner than later, that simple "create" operation will be doing several things, and you will end up with 1000 lines of code, all in a single function.
 
   That violates the principle of single responsibility.
 
@@ -333,7 +333,7 @@ draft: false
   const user = await userServiceInstance.getMyUser('12346');
   ```
 
-  The amount of dependencies a service can have is infinite, and refactor every instantiation of it when you add a new one is a boring and error-pron task.
+  The amount of dependencies a service can have is infinite, and refactor every instantiation of it when you add a new one is a boring and error-prone task.
 
   That's why dependency injection frameworks were created.
 
