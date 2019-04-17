@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Bulletproof node.js project architecture"
+title: "Bulletproof node.js project architecture 🛡️"
 author: santypk4
 date: "2019-04-17T20:00:00.000Z"
 image: img/node-project-structure.jpeg
-subtitle: "A simple yet powerful project architecture for node.js REST APIs"
+subtitle: "A simple yet powerful project architecture for node.js REST APIs 💎"
 tags: ["Node.js"]
 twittertags: ["node", "javascript", "100daysofcode", "programming", "devops"]
 draft: false
