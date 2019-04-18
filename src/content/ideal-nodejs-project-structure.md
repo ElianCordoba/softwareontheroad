@@ -102,7 +102,7 @@ draft: false
     res.json({ user: userRecord, company: companyRecord });
 
     // But code execution continues :(
-    const salaryRecord = await SalaryModel.create(user, salary);
+    const salaryRecord = await SalaryModel.create(userRecord, companyRecord);
     eventTracker.track('user_signup',userRecord,companyRecord,salaryRecord);
     intercom.createUser(userRecord);
     gaAnalytics.event('user_signup',userRecord);
@@ -155,8 +155,8 @@ draft: false
 
     async Signup(user) {
       const userRecord = await UserModel.create(user);
-      const companyRecord = await CompanyModel.create(user);
-      const salaryRecord = await SalaryModel.create(user, salary);
+      const companyRecord = await CompanyModel.create(userRecord); // needs userRecord to have the database id 
+      const salaryRecord = await SalaryModel.create(userRecord, companyRecord); // depends on user and company to be created
       
       ...whatever
       
@@ -268,16 +268,19 @@ draft: false
   ```
 
   ```javascript
-  eventEmitter.on('user_signup', ({ user, company }) => {
-    const salaryRecord = await SalaryModel.create(user, salary);
+  eventEmitter.on('user_signup', async ({ user, company }) => {
+    const salaryRecord = await SalaryModel.create(user, company);
   })
   ```
 
   ```javascript
-  eventEmitter.on('user_signup', ({ user, company }) => {
+  eventEmitter.on('user_signup', async ({ user, company }) => {
     await EmailService.startSignupSequence(user)
   })
   ```
+
+  You can wrap the await statements into a try-catch block or [you can just let it fail and handle the 'unhandledPromise' _process.on('unhandledRejection',cb)_](/nodejs-crash-exception-handler)
+
 
 <a name="di"></a>
 
