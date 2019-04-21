@@ -10,7 +10,7 @@ twittertags: ["node", "javascript", "100daysofcode", "programming", "devops"]
 draft: false
 ---
 
-# Update 04/21/2019: [Implmentation example in a GitHub repository](https://github.com/santiq/bulletproof-nodejs)
+**Update 04/21/2019: [Implementation example repository](https://github.com/santiq/bulletproof-nodejs)**
 
 # Introduction
 
