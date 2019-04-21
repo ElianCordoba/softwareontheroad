@@ -10,6 +10,8 @@ twittertags: ["node", "javascript", "100daysofcode", "programming", "devops"]
 draft: false
 ---
 
+# Update 04/21/2019: [Implmentation example in a GitHub repository](https://github.com/santiq/bulletproof-nodejs)
+
 # Introduction
 
   Express.js is great frameworks for making a node.js REST APIs however it doesn't give you any clue on how to organizing your node.js project.
@@ -33,6 +35,7 @@ draft: false
   - [Cron Jobs and recurring task ⚡](#cron)
   - [Configurations and secrets 🤫](#configs)
   - [Loaders 🏗️](#loaders)
+  - [Example repository](https://github.com/santiq/bulletproof-nodejs)
 
 <a name="folder"></a>
 
@@ -169,7 +172,7 @@ draft: false
   }
 
   ```
-
+ [Visit the example repository](https://github.com/santiq/bulletproof-nodejs)
 <a name="pubsub"></a>
 
 # Use a Pub/Sub layer too 🎙️
@@ -396,6 +399,8 @@ draft: false
   Awesome, project is looking great ! 
   It's so organized that makes me want to be coding something right now.
 
+  [Visit the example repository](https://github.com/santiq/bulletproof-nodejs)
+
   <a name="test"></a>
 
 # An unit test example 🕵🏻
@@ -498,6 +503,8 @@ draft: false
   ```
 
   This way you avoid flooding your code with `process.env.MY_RANDOM_VAR` instructions, and by having the autocompletion you don't have to know how to name the env var.
+
+  [Visit the example repository](https://github.com/santiq/bulletproof-nodejs)
 
 <a name="loaders"></a>
 
@@ -666,3 +673,5 @@ draft: false
   - Never leak your passwords, secrets and API keys, use a configuration manager.
 
   - Split your node.js server configurations into small modules that can be loaded independently.
+
+# [See the example repository here](https://github.com/santiq/bulletproof-nodejs)
