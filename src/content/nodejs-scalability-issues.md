@@ -4,7 +4,7 @@ title: "3 node.js scalability problems and how to solve them 🚀"
 author: santypk4
 date: "2019-03-24T00:05:00.000Z"
 image: img/node-scalability.jpg
-subtitle: "Serving static assets, not using cluster mode, and poorly designed cron jobs, are the most common mistakes at the moment of scaling a node.js server."
+subtitle: "Serving static assets, not using cluster mode, and poorly designed cron jobs, are the most common mistakes when scaling a node.js server."
 tags: ["Node.js", "Best"]
 twittertags: ["node", "scalability", "backend", "programming", "DevOps", "javascript", "100daysofcode"]
 draft: false
@@ -26,7 +26,7 @@ draft: false
 
   Take Netflix for example, they use node.js on its microservices infrastructure, [to do A/B testing at scale](https://www.youtube.com/watch?v=gtjzjiTI96c)
 
-  Here are some considerations and common issues that many development teams face at the moment of scaling a node.js application.
+  Here are some considerations and common issues that many development teams face when scaling a node.js application.
 
 # Table of contents 📝
 
@@ -39,7 +39,7 @@ draft: false
 
   I worked for a couple of startups who started their software products just from a simple express.js template that we found on GitHub.
 
-  Back in 2015, I was hired by a startup that was looking into building the MVP for what I was to be it's first product, so with the team, we decided to use the ["Angular Full-Stack"](https://github.com/angular-fullstack/generator-angular-fullstack) template from Yeoman the scaffolding app (oh boy I'm old)
+  Back in 2015, I was hired by a startup that was looking into building the MVP for what was to be its first product, so with the team, we decided to use the ["Angular Full-Stack"](https://github.com/angular-fullstack/generator-angular-fullstack) template from Yeoman the scaffolding app (oh boy I'm old)
 
   With that, we managed to build MVP in a couple of months, and fortunately, the product had success
 
@@ -59,13 +59,13 @@ draft: false
 
   Why do you have your angular or react app served by express.js in your node.js server?
 
-  **Node.js wasn't designed to serve static assets, it takes so many cpu% time.**
+  **Node.js wasn't designed to serve static assets, it takes so much cpu% time.**
 
   You should be using a proxy CDN like CloudFront in front of your static files.
 
-  I believe the root of the problem comes from the number of starter templates that comes with a "full-stack" solution for building an MVP.
+  I believe the root of the problem comes from the number of starter templates that come with a "full-stack" solution for building an MVP.
 
-  But when your product and user base grows, you will face a problem, your node.js server will use too many CPU time.
+  But when your product and user base grows, you will face a problem, your node.js server will use too much CPU time.
 
   ![node.js and Web client architecture](/img/nodejs-scalability/static_assets.png)
 
@@ -73,7 +73,7 @@ draft: false
 
   Also, you can use Netlify which is [totally free for 100GB network](https://www.netlify.com/tos/) traffic monthly and 1TB traffic for paid accounts.
 
-  As an example of how much is it, **this blog is hosted on Netlify** and each page weight almost 800kb, so I can have around **100.000 visits/month for free.**
+  As an example of how much it is, **this blog is hosted on Netlify** and each page is almost 800kb, so I can have around **100.000 visits/month for free.**
 
   ## And please DON'T USE gzip compression
 
@@ -87,15 +87,15 @@ draft: false
 
   # A good task scheduler ⏰
 
-  It's very common the needing of a recurring task, maybe you need to fire a reminder for a user once a day, or calculating the billing of the service for a customer once a month.
+  It's very common the needing of a recurring task. Maybe you need to fire a reminder for a user once a day, or calculating the billing of the service for a customer once a month.
 
   **But you shouldn't rely on simple `setTimeout` or `setInterval` for doing such tasks.**
 
-  Bad planning here will bring you troubles when you will try to scale horizontally your node.js server, the cron jobs will be duplicated and chaos can occur.
+  Bad planning here will bring you troubles when you try to scale horizontally your node.js server, the cron jobs will be duplicated and chaos can occur.
 
-  It's a better approach to use a task scheduler framework like [agendajs](https://github.com/agenda/agenda) who has a separate [module to have an admin dashboard.](https://github.com/agenda/agendash)
+  It's a better approach to use a task scheduler framework like [agendajs](https://github.com/agenda/agenda) which has a separate [module to have an admin dashboard.](https://github.com/agenda/agendash)
 
-  - Scheduled and recurring Jobs are stored in MongoDB, every time a worker start a job, they lock the execution so no problem with multiple jobs running at the same time.
+  - Scheduled and recurring Jobs are stored in MongoDB, every time a worker starts a job, they lock the execution so no problem with multiple jobs running at the same time.
 
   - Can reschedule jobs easily, they are just MongoDB documents that can be changed at any time.
 
@@ -279,11 +279,11 @@ Also with have control over the jobs, we can re-schedule, create, run, and delet
 
   ![node.js clustering overview](/img/nodejs-scalability/clustering.png)
 
-  Is the year 2019 and still most developers don't use the cluster feature that comes built-in in node.js since version 0.12.0
+  It's the year 2019 and still most developers don't use the cluster feature that comes built-in in node.js since version 0.12.0
 
   By default it works like this: **the master process listens on a port**, accepts new connections and **distributes them across the workers in a round-robin fashion**, with some built-in smarts to avoid overloading a worker process.
 
-  Check this comparasions:
+  Check these comparisons:
 
   - Reponse time _lower is better_
   ![node.js cluster performance graph](/img/nodejs-scalability/cluster_mode.png)
@@ -363,9 +363,9 @@ Also with have control over the jobs, we can re-schedule, create, run, and delet
 
 # Conclusion
 
-  Serving static assets with node.js is a task that demands a lot of CPU, node.js wasn't designed for that.
+  Serving static assets with node.js is a task that demands a lot of CPU resources. Node.js wasn't designed for that.
 
-  Having your cron jobs inside agendajs will benefice you at the moment of doing horizontal scalability.
+  Having your cron jobs inside agendajs will benefit you when scaling horizontally.
 
   And don't forget to enable the power of cluster mode from day 1 to make use of all the resources available in the machine.
 
