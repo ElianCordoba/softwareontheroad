@@ -1,12 +1,13 @@
 import IndexLayout from '../layouts';
 import Wrapper from '../components/Wrapper';
-import SiteNav from '../components/header/SiteNav';
-import { SiteHeader, outer, inner, SiteMain } from '../styles/shared';
+import styled from '@emotion/styled'
+import SiteNav from '../components/header/SiteNav';	
+import { SiteHeader, outer, SiteMain, inner } from '../styles/shared';
 import * as React from 'react';
 import { css } from '@emotion/core';
-
-import { PostFullHeader, PostFullTitle, NoImage, PostFull } from '../templates/post';
 import { PostFullContent } from '../components/PostContent';
+
+import { NoImage, PostFull } from '../templates/post';
 import Footer from '../components/Footer';
 import Helmet from 'react-helmet';
 
@@ -17,6 +18,48 @@ const PageTemplate = css`
   }
 `;
 
+const LandingHeaderContainer = styled.header`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 6vw 3vw 3vw;
+  width: 100%;
+  text-align: center;
+  background: #0a0b0c;
+  font-family: Lato, sans-serif;
+  color: #fff;
+  padding: 0 76px 0 76px;
+`;
+
+const LandingTitle = styled.h1`
+  margin: 0;
+  font-size: 48px;
+  font-weight: 900;
+  margin-bottom: 71px;
+`;
+
+const LandingSubHeader = styled.p`
+  max-width: 630px;
+  text-align: center;
+  font-size: 24px;
+  margin: -36px 141px 44px 141px;
+`
+
+const LandingCallToAction = styled.button`
+  background: #f80;
+  padding: 16px 32px;
+  margin: 0 0 5px;
+  border-radius: 3px;
+  font-size: 18px;
+  font-weight: 600;
+  max-width: 100%;
+`
+const Row = styled.div`
+  width: 100%;
+`
+
 
 const About: React.FunctionComponent = () => (
   <IndexLayout>
@@ -25,25 +68,20 @@ const About: React.FunctionComponent = () => (
     </Helmet>
     <Wrapper css={PageTemplate}>
       <header css={[outer, SiteHeader]}>
-        <div css={inner}>
-          <SiteNav />
+        <div css={inner}>	        
+          <SiteNav />	          
         </div>
       </header>
-      <main id="site-main" className="site-main" css={[SiteMain, outer]}>
-        <article className="post page" css={[PostFull, NoImage]}>
-          <PostFullHeader>
-            <PostFullTitle>How to scale your node.js application to 100k users and beyond ?</PostFullTitle>
-          </PostFullHeader>
+      <div css={inner}> 
+        <main id="site-main" className="site-main" css={[SiteMain]}>
+          <article className="post page" css={[PostFull, NoImage]}>
+          <LandingHeaderContainer>
+            <LandingTitle>Want to scale your node.js application to 100k users and beyond ?</LandingTitle>
+              <LandingSubHeader>If you are in search on of an expert in node.js and javascript technologies with a proven track of producing top-quality applications, and AWS DevOps expertise, you’re in the right place.
+            </LandingSubHeader>
+            <LandingCallToAction> Get in touch to discuss your needs now! </LandingCallToAction>
+          </LandingHeaderContainer>
           <PostFullContent className="post-full-content">
-            <h2> By hiring me!</h2>
-            <div>
-              If you are in search on of an expert in node.js and javascript technologies with a proven track
-              of producing top-quality applications, and AWS DevOps expertise, you’re in the right place. 
-            </div>
-            <div>
-              Get in touch to discuss your needs now!
-            </div>
-            <br />
             <div>
               I can help you scale out your node.js server, your react web application, or your react native mobile app,
               by providing the best practices available to architecture your project, or to save time and money by adding continuous integration, 
@@ -105,8 +143,9 @@ const About: React.FunctionComponent = () => (
               <br />
             </div>
           </PostFullContent>
-        </article>
-      </main>
+          </article>
+        </main>
+      </div>
       <Footer />
     </Wrapper>
   </IndexLayout>
