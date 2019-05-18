@@ -13,7 +13,6 @@ const container = css`
   background: #fff;
 `
 
-
 const HeaderContainer = styled.header`
   display: flex;
   flex-direction: column;
@@ -56,15 +55,20 @@ const CallToAction = styled.button`
 
 const PerksContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: space-between;
+  justify-content: flex-start;
 `
-const Perk= styled.div``
-const PerkTitle = styled.h3``
+const Perk= styled.div`
+  width: 500px;
+  height: 180px;
+  text-align: left;
+`
+const PerkTitle = styled.h2`
+  text-align: left;
+`
 
 const ShowcaseContainer = styled.div`
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,6 +78,12 @@ const ShowcaseItem = styled.div`
  max-height: 500px;
  overflow: hidden;
  margin-right: 15px;
+ border-radius: 5px;
+ transition: transform .5s;
+ transition-timing-function: ease-out;
+ :hover {
+  transform: scale(1.05);
+ }
 `
 
 const FooterContaienr = styled.div`
@@ -82,6 +92,7 @@ const FooterContaienr = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   background: #0a0b0c;
   color: #fff;
 `
@@ -92,8 +103,18 @@ const FooterTitle = styled.p`
   margin-bottom: 10px;
 `
 const FooterCopyRight = styled.div`
+  padding: 30px 0px 50px 0px;
   font-size: 12px;
-  font-weight: 300;
+`
+
+const Separator = styled.div`
+  padding-top: 20px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 15px
 `
 
 const About: React.FunctionComponent = () => (
@@ -116,16 +137,15 @@ const About: React.FunctionComponent = () => (
             <PerksContainer>
               <Perk>
                 <PerkTitle> Node.js Expert </PerkTitle>
-                I only make top-quality code, you can see my guide of a <a> bulletproof node.js architecture.</a>
-                In order to create a top quality application, I only use the best tech stack out there: node.js, MongoDB, and react.js.
-                Also, I'm a certified AWS DevOps, I will take care of how your app is deployed to Amazon Web Services (AWS).
-            </Perk>
+                 I'm a node.js expert with more than 4 years of experience working in large scale projects. 
+                 I contribute to serveral open source projects and write about best practices scaling node.js applications
+              </Perk>
               <Perk>
                 <PerkTitle> AWS DevOps </PerkTitle>
                 I only make top-quality code, you can see my guide of a <a> bulletproof node.js architecture.</a>
                 In order to create a top quality application, I only use the best tech stack out there: node.js, MongoDB, and react.js.
                 Also, I'm a certified AWS DevOps, I will take care of how your app is deployed to Amazon Web Services (AWS).
-            </Perk>
+              </Perk>
             </PerksContainer>
             <PerksContainer>
               <Perk>
@@ -137,21 +157,38 @@ const About: React.FunctionComponent = () => (
               <Perk>
                 <PerkTitle> Top Code Quality </PerkTitle>
                 I only make top-quality code, you can see my guide of a <a> bulletproof node.js architecture.</a>
-                In order to create a top quality application, I only use the best tech stack out there: node.js, MongoDB, and react.js.
-                Also, I'm a certified AWS DevOps, I will take care of how your app is deployed to Amazon Web Services (AWS).
+                You can look at my github profile and see my activity, this 'hire-me' page itself is open source, and you can see the making process here 
             </Perk>
             </PerksContainer>
+            <Separator> 
+                <div> Previous Works </div> 
+                <div> ↓ </div>
+            </Separator>
             <ShowcaseContainer>
-              <ShowcaseItem><img src="https://user-images.githubusercontent.com/7070683/57968200-4780fb00-795f-11e9-886c-07bab1890087.jpg" /></ShowcaseItem>
-              <ShowcaseItem><img src="https://user-images.githubusercontent.com/7070683/57968201-4780fb00-795f-11e9-9a94-26d1d7aa5d53.jpg" /></ShowcaseItem>
-              <ShowcaseItem><img src="https://user-images.githubusercontent.com/7070683/57968202-48199180-795f-11e9-950b-5f9ac90301a1.jpg" /></ShowcaseItem>
+              <ShowcaseItem>
+                <a href="https://whyline.com" rel="nofollow noreferrer"> 
+                  <img src="https://user-images.githubusercontent.com/7070683/57968201-4780fb00-795f-11e9-9a94-26d1d7aa5d53.jpg" />
+                </a>
+              </ShowcaseItem>
+              <ShowcaseItem>
+                <a href="https://drinkko.com" rel="nofollow noreferrer"> 
+                  <img src="https://user-images.githubusercontent.com/7070683/57968202-48199180-795f-11e9-950b-5f9ac90301a1.jpg" />
+                </a>
+              </ShowcaseItem>
+              <ShowcaseItem>
+                <a href="https://standups.io" rel="nofollow noreferrer"> 
+                  <img src="https://user-images.githubusercontent.com/7070683/57968200-4780fb00-795f-11e9-886c-07bab1890087.jpg" />
+                </a>
+              </ShowcaseItem>
             </ShowcaseContainer>
           </div>
       <FooterContaienr>
-        <FooterTitle> Ready to scale? </FooterTitle>
-        <p> Contact me and get free quote </p>
-        <CallToAction> Get in touch</CallToAction>
-        <FooterCopyRight> © 2019 Santiago Quinteros </FooterCopyRight>
+        <div css={{ padding: '80px 0 100px 0px' }}>
+          <FooterTitle> Ready to scale your system? </FooterTitle>
+          <p css={{ padding: '0px 0px 20px 0px' }}> Contact me and get free quote today! </p>
+        <CallToAction> <span css={{ padding: '0px 30px 0px 30px'  }}> Get in touch </span></CallToAction>
+        </div>
+        <FooterCopyRight> © 2019 Santiago Quinteros | <a href="/privacy">Privacy policy</a> </FooterCopyRight>
       </FooterContaienr>
   </IndexLayout>
 );
