@@ -135,7 +135,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
   };
 
   render() {
-    const { isHome = false } = this.props;
+    const { isHome = false, isHireMe = false } = this.props;
     return (
       [ <nav key="site-nav" css={[isHome && HomeNavRaise, SiteNavStyles]}>
         <SiteNavLeft>
@@ -145,15 +145,15 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
                 <Link to="/">Home</Link>
               </li>
             }
-            <li role="menuitem">
-              <Link to="/tags/best/">Bests Posts</Link>
-            </li>
-
-            <li role="menuitem">
-              <Link to="/about">About</Link>
-            </li>
+            {
+              !isHireMe && <li role="menuitem">
+                <Link to="/about">Scale your application to 100k users</Link>
+              </li>
+            }
           </ul>
-          <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
+          {
+            !isHireMe && <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
+          }
         </SiteNavLeft>
         <SiteNavRight>
           <SocialLinks>
