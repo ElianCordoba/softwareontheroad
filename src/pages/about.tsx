@@ -1,26 +1,18 @@
 import IndexLayout from '../layouts';
-import Wrapper from '../components/Wrapper';
 import styled from '@emotion/styled'
 import SiteNav from '../components/header/SiteNav';	
-import { SiteHeader, outer, SiteMain, inner } from '../styles/shared';
+import { SiteHeader, outer, inner } from '../styles/shared';
 import * as React from 'react';
 import { css } from '@emotion/core';
-
-import { NoImage, PostFull } from '../templates/post';
 import Helmet from 'react-helmet';
 
 const container = css`
   margin: 0 auto;
   max-width: 1040px;
   width: 100%;
+  background: #fff;
 `
 
-const PageTemplate = css`
-  .site-main {
-    background: #fff;
-    padding-bottom: 4vw;
-  }
-`;
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -34,7 +26,7 @@ const HeaderContainer = styled.header`
   background: #0a0b0c;
   font-family: Lato, sans-serif;
   color: #fff;
-  padding: 0 76px 0 76px;
+  padding: 10px 76px 20px 76px;
 `;
 
 const Title = styled.h1`
@@ -59,6 +51,7 @@ const CallToAction = styled.button`
   font-size: 18px;
   font-weight: 600;
   max-width: 100%;
+  color: #fff;
 `
 
 const PerksContainer = styled.div`
@@ -70,6 +63,8 @@ const Perk= styled.div``
 const PerkTitle = styled.h3``
 
 const ShowcaseContainer = styled.div`
+  padding-top: 20px;
+  padding-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,35 +73,45 @@ const ShowcaseContainer = styled.div`
 const ShowcaseItem = styled.div`
  max-height: 500px;
  overflow: hidden;
+ margin-right: 15px;
 `
 
 const FooterContaienr = styled.div`
+  padding-top: 20px;
   flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #0a0b0c;
+  color: #fff;
 `
-const FooterTitle = styled.div``
-const FooterCopyRight = styled.div``
+const FooterTitle = styled.p`
+  padding-top: 10px;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+`
+const FooterCopyRight = styled.div`
+  font-size: 12px;
+  font-weight: 300;
+`
 
 const About: React.FunctionComponent = () => (
-  <IndexLayout>
+  <IndexLayout css={{ background: 'white' }}>
     <Helmet>
       <title>How to scale your node.js application to 100k users and beyond</title>
     </Helmet>
-    <Wrapper css={PageTemplate}>
       <header css={[outer, SiteHeader]}>
         <div css={inner}>	        
-          <SiteNav />	          
+          <SiteNav isHireMe={true} />	          
         </div>
       </header>
-        <main id="site-main" className="site-main" css={[SiteMain]}>
-          <HeaderContainer>
-            <Title>Want to scale your node.js application to 100k users and beyond ?</Title>
-              <SubHeader>If you are in search on of an expert in node.js and javascript technologies with a proven track of producing top-quality applications, and AWS DevOps expertise, you’re in the right place.
-            </SubHeader>
-            <CallToAction> Get in touch to discuss your needs now! </CallToAction>
-          </HeaderContainer>
+      <HeaderContainer>
+        <Title>Want to scale your node.js application to 100k users and beyond ?</Title>
+          <SubHeader>If you are in search on of an expert in node.js and javascript technologies with a proven track of producing top-quality applications, and AWS DevOps expertise, you’re in the right place.
+        </SubHeader>
+        <CallToAction> Get in touch to discuss your needs now! </CallToAction>
+      </HeaderContainer>
           <div css={container}> 
             <PerksContainer>
               <Perk>
@@ -141,15 +146,13 @@ const About: React.FunctionComponent = () => (
               <ShowcaseItem><img src="https://user-images.githubusercontent.com/7070683/57968201-4780fb00-795f-11e9-9a94-26d1d7aa5d53.jpg" /></ShowcaseItem>
               <ShowcaseItem><img src="https://user-images.githubusercontent.com/7070683/57968202-48199180-795f-11e9-950b-5f9ac90301a1.jpg" /></ShowcaseItem>
             </ShowcaseContainer>
-            <FooterContaienr>
-              <FooterTitle> Ready to scale? </FooterTitle>
-              <p> Contact me and get free quote </p>
-              <CallToAction> Get in touch</CallToAction>
-              <FooterCopyRight> © 2019 Santiago Quinteros </FooterCopyRight>
-            </FooterContaienr>
           </div>
-        </main>
-    </Wrapper>
+      <FooterContaienr>
+        <FooterTitle> Ready to scale? </FooterTitle>
+        <p> Contact me and get free quote </p>
+        <CallToAction> Get in touch</CallToAction>
+        <FooterCopyRight> © 2019 Santiago Quinteros </FooterCopyRight>
+      </FooterContaienr>
   </IndexLayout>
 );
 
