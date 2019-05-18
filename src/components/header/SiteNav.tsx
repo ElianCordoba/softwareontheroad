@@ -115,6 +115,7 @@ const SubscribeButton = styled.a`
 
 interface SiteNavProps {
   isHome?: boolean;
+  isHireMe?: boolean;
 }
 
 interface SiteNaveState {
