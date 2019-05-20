@@ -37,6 +37,8 @@ const HeaderContainer = styled.header`
   @media only screen and (min-width: 961px) {
     padding: 10px 76px 20px 76px;
   }
+  transform: skewY(-4deg);
+  transform-origin: top left;
 `;
 
 const Title = styled.h1`
@@ -65,6 +67,10 @@ const SubHeader = styled.p`
   @media only screen and (min-width: 961px) {
     margin: -36px 141px 44px 141px;
   }
+`
+
+const noSkew = css`
+  transform: skewY(4deg);
 `
 
 const CallToAction = styled.button`
@@ -144,7 +150,7 @@ const PerkCallToAction = styled.button`
   border-width: 1.5px;
   text-transform: uppercase;
   font-weight: 600;
-
+  background: #fff;
   :hover {
     color: #fff;
     background: #000;
@@ -158,11 +164,15 @@ const ShowcaseContainer = styled.div`
   flex-direction: column;
 `
 
+const ShowcaseItemText = styled.div`
+  padding: 20px;
+`
+
 const ShowcaseItem = styled.div`
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  margin: 10px 15px 0px 0px;
+  margin: 10px 15px 20px 0px;
 `
 
 const ShowcaseImageItem = styled.div`
@@ -221,11 +231,13 @@ const About: React.FunctionComponent = () => (
         </div>
       </header>
       <HeaderContainer>
+        <div css={noSkew}> 
         <Title>Want to scale your node.js application to 100k users and beyond ?</Title>
         <div>
           <SubHeader>If you are in search on of an expert in node.js and javascript technologies with a proven track of producing top-quality applications, and AWS DevOps expertise, you’re in the right place.</SubHeader>
         </div>
         <CallToAction> Get in touch to discuss your needs now! </CallToAction>
+        </div>
       </HeaderContainer>
           <div css={container}> 
             <PerksContainer>
@@ -251,10 +263,10 @@ const About: React.FunctionComponent = () => (
             </Separator>
             <ShowcaseContainer>
               <ShowcaseItem>
-                <div>
+                <ShowcaseItemText>
                   Standups.io an application for communicating with your coworkers.
                   As a Full Stack developer I helped standups.io with the mobile app implementation in React Native, developing mirror features in the web application with React, and mostly the main backend engineer, working with node.js and AWS services.
-                </div>
+                </ShowcaseItemText>
                 <ShowcaseImageItem>
                   <a href="https://whyline.com" rel="nofollow noreferrer"> 
                     <img src="https://user-images.githubusercontent.com/7070683/57968201-4780fb00-795f-11e9-9a94-26d1d7aa5d53.jpg" />
@@ -262,10 +274,10 @@ const About: React.FunctionComponent = () => (
                 </ShowcaseImageItem>
               </ShowcaseItem>
               <ShowcaseItem>
-                <div>
+                <ShowcaseItemText>
                   Standups.io an application for communicating with your coworkers.
                   As a Full Stack developer I helped standups.io with the mobile app implementation in React Native, developing mirror features in the web application with React, and mostly the main backend engineer, working with node.js and AWS services.
-                      </div>
+                      </ShowcaseItemText>
                 <ShowcaseImageItem> 
                   <a href="https://drinkko.com" rel="nofollow noreferrer"> 
                     <img src="https://user-images.githubusercontent.com/7070683/57968202-48199180-795f-11e9-950b-5f9ac90301a1.jpg" />
@@ -273,10 +285,10 @@ const About: React.FunctionComponent = () => (
                 </ShowcaseImageItem> 
               </ShowcaseItem>
               <ShowcaseItem>
-                <div> 
+                <ShowcaseItemText> 
                   Standups.io an application for communicating with your coworkers. 
                   As a Full Stack developer I helped standups.io with the mobile app implementation in React Native, developing mirror features in the web application with React, and mostly the main backend engineer, working with node.js and AWS services.
-                </div>
+                </ShowcaseItemText>
                 <ShowcaseImageItem> 
                   <a href="https://standups.io" rel="nofollow noreferrer">
                     <img src="https://user-images.githubusercontent.com/7070683/57968200-4780fb00-795f-11e9-886c-07bab1890087.jpg" />
