@@ -10,7 +10,6 @@ const container = css`
   margin: 0 auto;
   max-width: 1040px;
   width: 100%;
-  background: #fff;
 `
 
 const HeaderContainer = styled.header`
@@ -18,28 +17,54 @@ const HeaderContainer = styled.header`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
-  padding: 6vw 3vw 3vw;
   width: 100%;
   text-align: center;
   background: #0a0b0c;
   font-family: Lato, sans-serif;
   color: #fff;
-  padding: 10px 76px 20px 76px;
+  height: 600px;
+  /* Mobile Styles */
+  @media only screen and (max-width: 400px) {
+    padding: 10px;
+  }
+
+  /* Tablet Styles */
+  @media only screen and (min-width: 401px) and (max-width: 960px) {
+    padding: 10px
+  }
+
+  /* Desktop Styles */
+  @media only screen and (min-width: 961px) {
+    padding: 10px 76px 20px 76px;
+  }
 `;
 
 const Title = styled.h1`
-  margin: 0;
-  font-size: 48px;
+  /* Mobile Styles */
+  @media only screen and (max-width: 400px) {
+    font-size: 40px;  
+  }
+
+  /* Tablet Styles */
+  @media only screen and (min-width: 401px) and (max-width: 960px) {
+    font-size: 40px;
+  }
+
+  /* Desktop Styles */
+  @media only screen and (min-width: 961px) {
+    font-size: 48px;
+  }
   font-weight: 900;
   margin-bottom: 71px;
 `;
 
 const SubHeader = styled.p`
-  max-width: 630px;
   text-align: center;
   font-size: 24px;
-  margin: -36px 141px 44px 141px;
+  /* Desktop Styles */
+  @media only screen and (min-width: 961px) {
+    margin: -36px 141px 44px 141px;
+  }
 `
 
 const CallToAction = styled.button`
@@ -51,39 +76,107 @@ const CallToAction = styled.button`
   font-weight: 600;
   max-width: 100%;
   color: #fff;
+  transition: transform .2s;
+  transition-timing-function: ease-out;
+  :hover {
+    transform: scale(1.10);
+  }
 `
 
 const PerksContainer = styled.div`
+  margin-top: 20px;
   display: flex;
+  flex-direction: column;
   align-items: space-between;
   justify-content: flex-start;
+  /* Desktop Styles */
+  @media only screen and (min-width: 961px) {
+    flex-direction: row;
+  }
 `
+
+const PerkDescription = styled.div`
+  padding-bottom: 10px;
+  height: 100px;
+`
+
 const Perk= styled.div`
-  width: 500px;
-  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: #fff;
+  width: 100%;
   text-align: left;
+  height: 300px;
+  padding: 20px;
+  padding-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 3px;
+  border-left-style: solid;
+  border-left-color: black;
+  border-left-width: 6px;
+  -webkit-box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.04);
+  -moz-box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.04);
+  box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.04);
+
+  transition: transform .2s;
+  transition-timing-function: ease-out;
+  :hover {
+    transform: translate(3px);
+  }
+
+
 `
 const PerkTitle = styled.h2`
-  text-align: left;
+  text-align: center;
+`
+
+const PerkCallToAction = styled.button`
+  border-radius: 4px;
+  height: 60px;
+  font-size: 14px;
+  color: #000;
+  max-width: 100%;
+  border-style: solid;
+  border-color: black;
+  border-width: 1.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+
+  :hover {
+    color: #fff;
+    background: #000;
+  }
+
 `
 
 const ShowcaseContainer = styled.div`
-  padding-top: 5px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-direction: column;
 `
 
 const ShowcaseItem = styled.div`
- max-height: 500px;
- overflow: hidden;
- margin-right: 15px;
- border-radius: 5px;
- transition: transform .5s;
- transition-timing-function: ease-out;
- :hover {
-  transform: scale(1.05);
- }
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  margin: 10px 15px 0px 0px;
+`
+
+const ShowcaseImageItem = styled.div`
+  border-radius: 5px;
+  max-height: 50px;
+  /* Desktop Styles */
+  @media only screen and (min-width: 961px) {
+    max-height: 250px;
+  }
+  transition: transform .5s;
+  transition-timing-function: ease-out;
+  :hover {
+    transform: scale(1.05);
+  }
 `
 
 const FooterContaienr = styled.div`
@@ -118,7 +211,7 @@ const Separator = styled.div`
 `
 
 const About: React.FunctionComponent = () => (
-  <IndexLayout css={{ background: 'white' }}>
+  <IndexLayout>
     <Helmet>
       <title>How to scale your node.js application to 100k users and beyond</title>
     </Helmet>
@@ -129,36 +222,28 @@ const About: React.FunctionComponent = () => (
       </header>
       <HeaderContainer>
         <Title>Want to scale your node.js application to 100k users and beyond ?</Title>
-          <SubHeader>If you are in search on of an expert in node.js and javascript technologies with a proven track of producing top-quality applications, and AWS DevOps expertise, you’re in the right place.
-        </SubHeader>
+        <div>
+          <SubHeader>If you are in search on of an expert in node.js and javascript technologies with a proven track of producing top-quality applications, and AWS DevOps expertise, you’re in the right place.</SubHeader>
+        </div>
         <CallToAction> Get in touch to discuss your needs now! </CallToAction>
       </HeaderContainer>
           <div css={container}> 
             <PerksContainer>
               <Perk>
-                <PerkTitle> Node.js Expert </PerkTitle>
-                 I'm a node.js expert with more than 4 years of experience working in large scale projects. 
-                 I contribute to serveral open source projects and write about best practices scaling node.js applications
+                <PerkTitle>AWS DevOps </PerkTitle>
+                <PerkDescription>I will deploy your node.js proyect to the AWS Cloud using the best practices and services avaiable.</PerkDescription>
+                <PerkCallToAction> See my tutorials about DevOps </PerkCallToAction>
               </Perk>
               <Perk>
-                <PerkTitle> AWS DevOps </PerkTitle>
-                I only make top-quality code, you can see my guide of a <a> bulletproof node.js architecture.</a>
-                In order to create a top quality application, I only use the best tech stack out there: node.js, MongoDB, and react.js.
-                Also, I'm a certified AWS DevOps, I will take care of how your app is deployed to Amazon Web Services (AWS).
+                <PerkTitle> Node.js expert </PerkTitle>
+                <PerkDescription> More than 5 years of experience in high scale proyects. I'm an expert in node.js and javascript technologies. </PerkDescription>
+                <PerkCallToAction> Read my masterpiece of node.js architecture </PerkCallToAction>
               </Perk>
-            </PerksContainer>
-            <PerksContainer>
               <Perk>
-                <PerkTitle> Fullstack Developer </PerkTitle>
-                I only make top-quality code, you can see my guide of a <a> bulletproof node.js architecture.</a>
-                In order to create a top quality application, I only use the best tech stack out there: node.js, MongoDB, and react.js.
-                Also, I'm a certified AWS DevOps, I will take care of how your app is deployed to Amazon Web Services (AWS).
-            </Perk>
-              <Perk>
-                <PerkTitle> Top Code Quality </PerkTitle>
-                I only make top-quality code, you can see my guide of a <a> bulletproof node.js architecture.</a>
-                You can look at my github profile and see my activity, this 'hire-me' page itself is open source, and you can see the making process here 
-            </Perk>
+                <PerkTitle>Full-Stack developer </PerkTitle>
+                <PerkDescription>I have been using several front-end technologies such as React.js, React Native, Angular and Ionic for years. </PerkDescription>
+                <PerkCallToAction> Deepdive into my guide on React Hooks </PerkCallToAction>
+              </Perk>
             </PerksContainer>
             <Separator> 
                 <div> Previous Works </div> 
@@ -166,19 +251,37 @@ const About: React.FunctionComponent = () => (
             </Separator>
             <ShowcaseContainer>
               <ShowcaseItem>
-                <a href="https://whyline.com" rel="nofollow noreferrer"> 
-                  <img src="https://user-images.githubusercontent.com/7070683/57968201-4780fb00-795f-11e9-9a94-26d1d7aa5d53.jpg" />
-                </a>
+                <div>
+                  Standups.io an application for communicating with your coworkers.
+                  As a Full Stack developer I helped standups.io with the mobile app implementation in React Native, developing mirror features in the web application with React, and mostly the main backend engineer, working with node.js and AWS services.
+                </div>
+                <ShowcaseImageItem>
+                  <a href="https://whyline.com" rel="nofollow noreferrer"> 
+                    <img src="https://user-images.githubusercontent.com/7070683/57968201-4780fb00-795f-11e9-9a94-26d1d7aa5d53.jpg" />
+                  </a>
+                </ShowcaseImageItem>
               </ShowcaseItem>
               <ShowcaseItem>
-                <a href="https://drinkko.com" rel="nofollow noreferrer"> 
-                  <img src="https://user-images.githubusercontent.com/7070683/57968202-48199180-795f-11e9-950b-5f9ac90301a1.jpg" />
-                </a>
+                <div>
+                  Standups.io an application for communicating with your coworkers.
+                  As a Full Stack developer I helped standups.io with the mobile app implementation in React Native, developing mirror features in the web application with React, and mostly the main backend engineer, working with node.js and AWS services.
+                      </div>
+                <ShowcaseImageItem> 
+                  <a href="https://drinkko.com" rel="nofollow noreferrer"> 
+                    <img src="https://user-images.githubusercontent.com/7070683/57968202-48199180-795f-11e9-950b-5f9ac90301a1.jpg" />
+                  </a>
+                </ShowcaseImageItem> 
               </ShowcaseItem>
               <ShowcaseItem>
-                <a href="https://standups.io" rel="nofollow noreferrer"> 
-                  <img src="https://user-images.githubusercontent.com/7070683/57968200-4780fb00-795f-11e9-886c-07bab1890087.jpg" />
-                </a>
+                <div> 
+                  Standups.io an application for communicating with your coworkers. 
+                  As a Full Stack developer I helped standups.io with the mobile app implementation in React Native, developing mirror features in the web application with React, and mostly the main backend engineer, working with node.js and AWS services.
+                </div>
+                <ShowcaseImageItem> 
+                  <a href="https://standups.io" rel="nofollow noreferrer">
+                    <img src="https://user-images.githubusercontent.com/7070683/57968200-4780fb00-795f-11e9-886c-07bab1890087.jpg" />
+                  </a>
+                </ShowcaseImageItem> 
               </ShowcaseItem>
             </ShowcaseContainer>
           </div>
