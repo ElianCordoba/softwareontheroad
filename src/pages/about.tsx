@@ -220,6 +220,8 @@ const Separator = styled.div`
   font-size: 15px
 `
 
+const ContactFormContainer = styled.div``
+
 const About: React.FunctionComponent = () => (
   <IndexLayout>
     <Helmet>
@@ -244,17 +246,23 @@ const About: React.FunctionComponent = () => (
               <Perk>
                 <PerkTitle>AWS DevOps </PerkTitle>
                 <PerkDescription>I will deploy your node.js proyect to the AWS Cloud using the best practices and services avaiable.</PerkDescription>
-                <PerkCallToAction> See my tutorials about DevOps </PerkCallToAction>
+                <a href="/tags/aws/" rel="nofollow noreferrer"> 
+                  <PerkCallToAction> See my tutorials about DevOps </PerkCallToAction>
+                </a>
               </Perk>
               <Perk>
                 <PerkTitle> Node.js expert </PerkTitle>
                 <PerkDescription> More than 5 years of experience in high scale proyects. I'm an expert in node.js and javascript technologies. </PerkDescription>
-                <PerkCallToAction> Read my masterpiece of node.js architecture </PerkCallToAction>
+                <a href="/ideal-nodejs-project-structure/" rel="nofollow noreferrer"> 
+                  <PerkCallToAction> Read my masterpiece of node.js architecture </PerkCallToAction>
+                </a>
               </Perk>
               <Perk>
                 <PerkTitle>Full-Stack developer </PerkTitle>
                 <PerkDescription>I have been using several front-end technologies such as React.js, React Native, Angular and Ionic for years. </PerkDescription>
-                <PerkCallToAction> Deepdive into my guide on React Hooks </PerkCallToAction>
+                <a href="/react-hooks/" rel="nofollow noreferrer"> 
+                  <PerkCallToAction> Deepdive into my guide on React Hooks </PerkCallToAction>
+                </a> 
               </Perk>
             </PerksContainer>
             <Separator> 
@@ -277,7 +285,7 @@ const About: React.FunctionComponent = () => (
                 <ShowcaseItemText>
                   Standups.io an application for communicating with your coworkers.
                   As a Full Stack developer I helped standups.io with the mobile app implementation in React Native, developing mirror features in the web application with React, and mostly the main backend engineer, working with node.js and AWS services.
-                      </ShowcaseItemText>
+                  </ShowcaseItemText>
                 <ShowcaseImageItem> 
                   <a href="https://drinkko.com" rel="nofollow noreferrer"> 
                     <img src="https://user-images.githubusercontent.com/7070683/57968202-48199180-795f-11e9-950b-5f9ac90301a1.jpg" />
@@ -305,6 +313,38 @@ const About: React.FunctionComponent = () => (
         </div>
         <FooterCopyRight> © 2019 Santiago Quinteros | <a href="/privacy">Privacy policy</a> </FooterCopyRight>
       </FooterContaienr>
+      <ContactFormContainer>
+        <form 
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          data-netlify-recaptcha="true"
+          data-netlify-honeypot="anti-spam-bot-field"
+          action="#">
+          <input type="hidden" name="anti-spam-bot-field" />
+          <input type="hidden" name="form-name" value="contact" />
+          <div className="field half first">
+            <label htmlFor="name">Name</label>
+            <input type="text" name="name" id="name" />
+          </div>
+          <div className="field half">
+            <label htmlFor="email">Email</label>
+            <input type="text" name="email" id="email" />
+          </div>
+          <div className="field">
+            <label htmlFor="message">Message</label>
+            <textarea name="message" id="message" />
+          </div>
+          <ul className="actions">
+            <li>
+              <input type="submit" value="Send Message" className="special" />
+            </li>
+            <li>
+              <input type="reset" value="Clear" />
+            </li>
+          </ul>
+        </form>
+      </ContactFormContainer>
   </IndexLayout>
 );
 
