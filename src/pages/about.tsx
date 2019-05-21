@@ -348,15 +348,15 @@ const About: React.FunctionComponent = () => (
                 </ShowcaseImageItem>
               </ShowcaseItem>
               <ShowcaseItem>
+                <ShowcaseImageItem>
+                  <a href="https://drinkko.com" rel="nofollow noreferrer">
+                    <img src="https://user-images.githubusercontent.com/7070683/57968202-48199180-795f-11e9-950b-5f9ac90301a1.jpg" />
+                  </a>
+                </ShowcaseImageItem> 
                 <ShowcaseItemText>
                   Standups.io an application for communicating with your coworkers.
                   As a Full Stack developer I helped standups.io with the mobile app implementation in React Native, developing mirror features in the web application with React, and mostly the main backend engineer, working with node.js and AWS services.
                   </ShowcaseItemText>
-                <ShowcaseImageItem> 
-                  <a href="https://drinkko.com" rel="nofollow noreferrer"> 
-                    <img src="https://user-images.githubusercontent.com/7070683/57968202-48199180-795f-11e9-950b-5f9ac90301a1.jpg" />
-                  </a>
-                </ShowcaseImageItem> 
               </ShowcaseItem>
               <ShowcaseItem>
                 <ShowcaseItemText> 
