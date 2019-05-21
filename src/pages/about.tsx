@@ -220,11 +220,77 @@ const Separator = styled.div`
   font-size: 15px
 `
 
-const ContactFormContainer = styled.div``
+const submit = css`
+  background: #f80;
+  padding: 16px 32px;
+  margin: 20px 0 5px;
+  border-radius: 3px;
+  font-size: 18px;
+  font-weight: 600;
+  max-width: 100%;
+  color: #fff;
+  transition: transform .2s;
+  transition-timing-function: ease-out;
+  :hover {
+    transform: scale(1.10);
+  }
+`
+
+const ContactFormContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: white;
+  color: black;
+  padding: 40px 40px 50px;
+  border-radius: 5px;
+  width: 600px;
+  input, label {
+    display: block
+  }
+  label {
+    text-align: left;
+    padding: 5px;
+    font-size: 14px
+  }
+  input {
+    padding: 0px 15px;
+    background: #f3f3f3;
+    width: 100%;
+    height: 30px;
+    border-radius: 2px;
+    border-width: 0.95px;
+    margin-bottom: 10px;
+    ::placeholder {
+      font-size: 14px;
+    }
+  }
+  textarea {
+    padding: 13px 15px;
+    background: #f3f3f3;
+    width: 100%;
+    height: 226px;
+    border-radius: 2px;
+    resize: none;
+    border-width: 0.95px;
+  }
+  div {
+    width: 500px;
+  }
+  sup {
+    color: red;
+  }
+`
+
+const smothScroll = (elementId: string) => () => {
+  document.querySelector(elementId).scrollIntoView({
+    behavior: 'smooth'
+  }); 
+}
 
 const About: React.FunctionComponent = () => (
   <IndexLayout>
-    <Helmet>
+    <Helmet>22
       <title>How to scale your node.js application to 100k users and beyond</title>
     </Helmet>
       <header css={[outer, SiteHeader]}>
@@ -238,7 +304,7 @@ const About: React.FunctionComponent = () => (
         <div>
           <SubHeader>If you are in search on of an expert in node.js and javascript technologies with a proven track of producing top-quality applications, and AWS DevOps expertise, you’re in the right place.</SubHeader>
         </div>
-        <CallToAction> Get in touch to discuss your needs now! </CallToAction>
+          <CallToAction onClick={smothScroll('#contactme')}> Get in touch to discuss your needs now! </CallToAction>
         </div>
       </HeaderContainer>
           <div css={container}> 
@@ -306,45 +372,42 @@ const About: React.FunctionComponent = () => (
             </ShowcaseContainer>
           </div>
       <FooterContaienr>
-        <div css={{ padding: '80px 0 100px 0px' }}>
-          <FooterTitle> Ready to scale your system? </FooterTitle>
+      <div css={{ padding: '80px 0 100px 0px' }}>
+        <FooterTitle id="contactme"> Ready to scale your system? </FooterTitle>
           <p css={{ padding: '0px 0px 20px 0px' }}> Contact me and get free quote today! </p>
-        <CallToAction> <span css={{ padding: '0px 30px 0px 30px'  }}> Get in touch </span></CallToAction>
+          <p css={{ fontSize: '16px' }}> Send me an email to <a href="mailto:santiago@softwareontheroad.com"> santiago@softwareontheroad.com</a> or fill the form below</p>
+        <ContactFormContainer>
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            data-netlify-recaptcha="true"
+            data-netlify-honeypot="anti-spam-bot-field"
+            action="#">
+            <input type="hidden" name="anti-spam-bot-field" />
+            <input type="hidden" name="form-name" value="contact" />
+              <div>
+                <label htmlFor="name" css={{ display: 'block' }}>Your name<sup>*</sup></label>
+              <input type="text" name="name" id="name" required/>
+              </div>
+              <div>
+                <label htmlFor="email">Your email<sup>*</sup></label>
+                <input type="text" name="email" id="email" required/>
+              </div>
+              <div>
+                <label htmlFor="website" >Your website</label>
+                <input type="text" placeholder="https://" name="website" id="website"/>
+              </div>
+              <div>
+                <label htmlFor="message">Project details<sup>*</sup></label>
+                <textarea name="message" id="message" placeholder="" required/>
+              </div>          
+            <button type="submit" css={submit}> Get in touch </button>
+          </form>
+        </ContactFormContainer>
         </div>
-        <FooterCopyRight> © 2019 Santiago Quinteros | <a href="/privacy">Privacy policy</a> </FooterCopyRight>
+        <FooterCopyRight> © {(new Date()).getFullYear()} Santiago Quinteros | <a href="/privacy">Privacy policy</a> </FooterCopyRight>
       </FooterContaienr>
-      <ContactFormContainer>
-        <form 
-          name="contact"
-          method="POST"
-          data-netlify="true"
-          data-netlify-recaptcha="true"
-          data-netlify-honeypot="anti-spam-bot-field"
-          action="#">
-          <input type="hidden" name="anti-spam-bot-field" />
-          <input type="hidden" name="form-name" value="contact" />
-          <div className="field half first">
-            <label htmlFor="name">Name</label>
-            <input type="text" name="name" id="name" />
-          </div>
-          <div className="field half">
-            <label htmlFor="email">Email</label>
-            <input type="text" name="email" id="email" />
-          </div>
-          <div className="field">
-            <label htmlFor="message">Message</label>
-            <textarea name="message" id="message" />
-          </div>
-          <ul className="actions">
-            <li>
-              <input type="submit" value="Send Message" className="special" />
-            </li>
-            <li>
-              <input type="reset" value="Clear" />
-            </li>
-          </ul>
-        </form>
-      </ContactFormContainer>
   </IndexLayout>
 );
 
