@@ -49,7 +49,6 @@ const SiteNavLeft = styled.div`
 
 const NavStyles = css`
   display: flex;
-  margin: 0 0 0 -12px;
   padding: 0;
   list-style: none;
 
@@ -62,15 +61,19 @@ const NavStyles = css`
 
   li a {
     display: block;
-    margin: 0;
+    margin-right: 20px;
+    font-size: 14px;
     padding: 10px 12px;
     color: #fff;
-    opacity: 0.8;
+    opacity: 1;
+    transition: transform .2s;
+    transition-timing-function: ease-out;
   }
 
   li a:hover {
     text-decoration: none;
-    opacity: 1;
+    transform: scale(1.10);
+    font-weight: bold;
   }
 `;
 
@@ -92,29 +95,35 @@ const SocialLinks = styled.div`
   a:last-of-type {
     padding-right: 20px;
   }
+  transition: transform .2s;
+  transition-timing-function: ease-out;
+  a:hover {
+    transform: scale(1.10);
+    font-weight: bold;
+  }
 `;
 
 const SubscribeButton = styled.a`
-  display: block;
-  padding: 4px 10px;
-  border: #fff 1px solid;
   color: #fff;
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-right: 10px;
-  line-height: 1.2em;
-  border-radius: 5px;
-  opacity: 1;
-
+  display: block;
+  margin-right: 20px;
+  font-size: 14px;
+  padding: 10px 12px;
+  color: #fff;
+  text-transform: uppercase;
+  transition: transform .2s;
+  transition-timing-function: ease-out;
   :hover {
     text-decoration: none;
-    opacity: 1;
     cursor: pointer;
+    transform: scale(1.10);
+    font-weight: bold;
   }
 `;
 
 interface SiteNavProps {
   isHome?: boolean;
+  isHireMe?: boolean;
 }
 
 interface SiteNaveState {
@@ -135,7 +144,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
   };
 
   render() {
-    const { isHome = false } = this.props;
+    const { isHome = false, isHireMe = false } = this.props;
     return (
       [ <nav key="site-nav" css={[isHome && HomeNavRaise, SiteNavStyles]}>
         <SiteNavLeft>
@@ -145,19 +154,19 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
                 <Link to="/">Home</Link>
               </li>
             }
-            <li role="menuitem">
-              <Link to="/tags/best/">Bests Posts</Link>
-            </li>
-
-            <li role="menuitem">
-              <Link to="/about">About</Link>
-            </li>
+            {
+              !isHireMe && <li role="menuitem">
+                <Link to="/about">Hire my services</Link>
+              </li>
+            }
+            {
+              !isHireMe && <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
+            }
           </ul>
-          <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
         </SiteNavLeft>
         <SiteNavRight>
           <SocialLinks>
-            <span css={css`font-size: 1.2em;font-weight: 500;`}> Follow me </span>
+            <span css={css`font-size: 14px; text-transform: uppercase;`}> Follow me </span>
             {config.twitter && (
               <a
                 css={SocialLink}
