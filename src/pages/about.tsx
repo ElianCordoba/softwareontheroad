@@ -238,13 +238,11 @@ const submit = css`
 
 const ContactFormContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   background: white;
   color: black;
   padding: 40px 40px 50px;
   border-radius: 5px;
-  width: 600px;
   input, label {
     display: block
   }
@@ -274,11 +272,18 @@ const ContactFormContainer = styled.div`
     resize: none;
     border-width: 0.95px;
   }
-  div {
-    width: 500px;
-  }
   sup {
     color: red;
+  }
+
+  div {
+    width: 70vw;    
+  }
+  /* Desktop Styles */
+  @media only screen and (min-width: 961px) {
+    div {
+      width: 40vw;    
+    }
   }
 `
 
@@ -371,43 +376,43 @@ const About: React.FunctionComponent = () => (
               </ShowcaseItem>
             </ShowcaseContainer>
           </div>
-      <FooterContaienr>
-      <div css={{ padding: '80px 0 100px 0px' }}>
+    <FooterContaienr>
+      <div css={{ padding: '80px 0px 0px 0px'  }}>
         <FooterTitle id="contactme"> Ready to scale your system? </FooterTitle>
-          <p css={{ padding: '0px 0px 20px 0px' }}> Contact me and get free quote today! </p>
-          <p css={{ fontSize: '16px' }}> Send me an email to <a href="mailto:santiago@softwareontheroad.com"> santiago@softwareontheroad.com</a> or fill the form below</p>
-        <ContactFormContainer>
-          <form
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            data-netlify-recaptcha="true"
-            data-netlify-honeypot="anti-spam-bot-field"
-            action="#">
-            <input type="hidden" name="anti-spam-bot-field" />
-            <input type="hidden" name="form-name" value="contact" />
-              <div>
-                <label htmlFor="name" css={{ display: 'block' }}>Your name<sup>*</sup></label>
-              <input type="text" name="name" id="name" required/>
-              </div>
-              <div>
-                <label htmlFor="email">Your email<sup>*</sup></label>
-                <input type="text" name="email" id="email" required/>
-              </div>
-              <div>
-                <label htmlFor="website" >Your website</label>
-                <input type="text" placeholder="https://" name="website" id="website"/>
-              </div>
-              <div>
-                <label htmlFor="message">Project details<sup>*</sup></label>
-                <textarea name="message" id="message" placeholder="" required/>
-              </div>          
-            <button type="submit" css={submit}> Get in touch </button>
-          </form>
-        </ContactFormContainer>
-        </div>
-        <FooterCopyRight> © {(new Date()).getFullYear()} Santiago Quinteros | <a href="/privacy">Privacy policy</a> </FooterCopyRight>
-      </FooterContaienr>
+        <p css={{ padding: '0px 0px 20px 0px' }}> Contact me and get free quote today! </p>
+        <p css={{ fontSize: '16px' }}> Send me an email to <a href="mailto:santiago@softwareontheroad.com"> santiago@softwareontheroad.com</a> or fill the form below</p>
+      </div>
+      <ContactFormContainer css={{ 'marginBottom': '100px' }}>
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          data-netlify-recaptcha="true"
+          data-netlify-honeypot="anti-spam-bot-field"
+          action="#">
+          <input type="hidden" name="anti-spam-bot-field" />
+          <input type="hidden" name="form-name" value="contact" />
+          <div>
+            <label htmlFor="name" css={{ display: 'block' }}>Your name<sup>*</sup></label>
+            <input type="text" name="name" id="name" required />
+          </div>
+          <div>
+            <label htmlFor="email">Your email<sup>*</sup></label>
+            <input type="text" name="email" id="email" required />
+          </div>
+          <div>
+            <label htmlFor="website" >Your website</label>
+            <input type="text" placeholder="https://" name="website" id="website" />
+          </div>
+          <div>
+            <label htmlFor="message">Project details<sup>*</sup></label>
+            <textarea name="message" id="message" placeholder="" required />
+          </div>
+          <button type="submit" css={submit}> Get in touch </button>
+        </form>
+      </ContactFormContainer>
+      <FooterCopyRight> © {(new Date()).getFullYear()} Santiago Quinteros | <a href="/privacy">Privacy policy</a> </FooterCopyRight>
+    </FooterContaienr>
   </IndexLayout>
 );
 
