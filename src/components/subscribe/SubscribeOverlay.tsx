@@ -42,13 +42,16 @@ const SubscribeOverlay = styled.div`
     padding: 14px 20px;
     width: 100%;
     border: none;
-    color: ${colors.midgrey};
+    color: #000;
+    ::placeholder {
+      color: ${colors.midgrey};
+    }
     font-size: 2rem;
     line-height: 1em;
     font-weight: normal;
     letter-spacing: 0.5px;
     user-select: text;
-    border-radius: 2px;
+    border-radius: 5px;
     transition: border-color 0.15s linear;
 
     -webkit-appearance: none;
@@ -66,16 +69,14 @@ const SubscribeOverlay = styled.div`
     font-weight: 400;
     text-align: center;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
-    background: linear-gradient(
-      color(var(--blue) whiteness(+7%)),
-      color(var(--blue) lightness(-7%) saturation(-10%)) 60%,
-      color(var(--blue) lightness(-7%) saturation(-10%)) 90%,
-      color(var(--blue) lightness(-4%) saturation(-10%))
-    );
-    border-radius: 2px;
     box-shadow: 0 0 0 1px inset rgba(0, 0, 0, 0.14);
 
     -webkit-font-smoothing: subpixel-antialiased;
+
+    border-radius: 5px;
+    margin: 10px 10px;
+    opacity: 1;
+    background: #f80;
   }
 `;
 

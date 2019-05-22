@@ -49,7 +49,6 @@ const SiteNavLeft = styled.div`
 
 const NavStyles = css`
   display: flex;
-  margin: 0 0 0 -12px;
   padding: 0;
   list-style: none;
 
@@ -62,15 +61,15 @@ const NavStyles = css`
 
   li a {
     display: block;
-    margin: 0;
+    margin-right: 20px;
+    font-size: 14px;
     padding: 10px 12px;
     color: #fff;
-    opacity: 0.8;
+    opacity: 1;
   }
 
   li a:hover {
     text-decoration: none;
-    opacity: 1;
   }
 `;
 
@@ -95,20 +94,15 @@ const SocialLinks = styled.div`
 `;
 
 const SubscribeButton = styled.a`
-  display: block;
-  padding: 4px 10px;
-  border: #fff 1px solid;
   color: #fff;
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-right: 10px;
-  line-height: 1.2em;
-  border-radius: 5px;
-  opacity: 1;
-
+  display: block;
+  margin-right: 20px;
+  font-size: 14px;
+  padding: 10px 12px;
+  color: #fff;
+  text-transform: uppercase;
   :hover {
     text-decoration: none;
-    opacity: 1;
     cursor: pointer;
   }
 `;
@@ -148,17 +142,17 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
             }
             {
               !isHireMe && <li role="menuitem">
-                <Link to="/about">Scale your application to 100k users</Link>
+                <Link to="/about">Hire my services</Link>
               </li>
             }
+            {
+              !isHireMe && <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
+            }
           </ul>
-          {
-            !isHireMe && <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
-          }
         </SiteNavLeft>
         <SiteNavRight>
           <SocialLinks>
-            <span css={css`font-size: 1.2em;font-weight: 500;`}> Follow me </span>
+            <span css={css`font-size: 14px; text-transform: uppercase;`}> Follow me </span>
             {config.twitter && (
               <a
                 css={SocialLink}
