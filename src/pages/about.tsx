@@ -159,6 +159,7 @@ const PerkCallToAction = styled.button`
 `
 
 const ShowcaseContainer = styled.div`
+  margin-top: 20px;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -180,12 +181,8 @@ const ShowcaseImageItem = styled.div`
   max-height: 50px;
   /* Desktop Styles */
   @media only screen and (min-width: 961px) {
+    width: 70%;
     max-height: 250px;
-  }
-  transition: transform .5s;
-  transition-timing-function: ease-out;
-  :hover {
-    transform: scale(1.05);
   }
 `
 
@@ -286,6 +283,32 @@ const ContactFormContainer = styled.div`
     }
   }
 `
+const ShowcaseItemTechnologies = styled.div`
+  padding-top: 20px;
+  text-align: right;
+  font-weight: bold;
+`
+
+const BounceAnimation = css`
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-8px);
+    }
+    60% {
+      transform: translateY(-4px);
+    }
+  }
+  animation: bounce 2s infinite;
+`
+const ArrowIcon = css`
+  width: 20px;
+  height: 20px;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSI1MTIiIGlkPSJzdmcyIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6Y2M9Imh0dHA6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL25zIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIiB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzIGlkPSJkZWZzNCIvPjxnIGlkPSJsYXllcjEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsLTU0MC4zNjIyKSI+PHBhdGggZD0ibSAxMjcuNDA2MjUsNjU3Ljc4MTI1IGMgLTQuOTg1MywwLjA3ODQgLTkuOTEwNzcsMi4xNjMwOCAtMTMuNDM3NSw1LjY4NzUgbCAtNTUsNTUgYyAtMy42MDA1NjUsMy41OTkyNyAtNS42OTY4ODMsOC42NTg5NSAtNS42OTY4ODMsMTMuNzUgMCw1LjA5MTA1IDIuMDk2MzE4LDEwLjE1MDczIDUuNjk2ODgzLDEzLjc1IEwgMjQyLjI1LDkyOS4yNSBjIDMuNTk5MjcsMy42MDA1NiA4LjY1ODk1LDUuNjk2ODggMTMuNzUsNS42OTY4OCA1LjA5MTA1LDAgMTAuMTUwNzMsLTIuMDk2MzIgMTMuNzUsLTUuNjk2ODggTCA0NTMuMDMxMjUsNzQ1Ljk2ODc1IGMgMy42MDA1NiwtMy41OTkyNyA1LjY5Njg4LC04LjY1ODk1IDUuNjk2ODgsLTEzLjc1IDAsLTUuMDkxMDUgLTIuMDk2MzIsLTEwLjE1MDczIC01LjY5Njg4LC0xMy43NSBsIC01NSwtNTUgYyAtMy41OTgxNSwtMy41OTEyNyAtOC42NTA2OCwtNS42ODEyNyAtMTMuNzM0MzgsLTUuNjgxMjcgLTUuMDgzNjksMCAtMTAuMTM2MjIsMi4wOSAtMTMuNzM0MzcsNS42ODEyNyBMIDI1Niw3NzguMDMxMjUgMTQxLjQzNzUsNjYzLjQ2ODc1IGMgLTMuNjY2NzgsLTMuNjY0MjMgLTguODQ4MDEsLTUuNzY0NDIgLTE0LjAzMTI1LC01LjY4NzUgeiIgaWQ9InBhdGgzNzY2LTEiIHN0eWxlPSJmb250LXNpemU6bWVkaXVtO2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2ZvbnQtc3RyZXRjaDpub3JtYWw7dGV4dC1pbmRlbnQ6MDt0ZXh0LWFsaWduOnN0YXJ0O3RleHQtZGVjb3JhdGlvbjpub25lO2xpbmUtaGVpZ2h0Om5vcm1hbDtsZXR0ZXItc3BhY2luZzpub3JtYWw7d29yZC1zcGFjaW5nOm5vcm1hbDt0ZXh0LXRyYW5zZm9ybTpub25lO2RpcmVjdGlvbjpsdHI7YmxvY2stcHJvZ3Jlc3Npb246dGI7d3JpdGluZy1tb2RlOmxyLXRiO3RleHQtYW5jaG9yOnN0YXJ0O2Jhc2VsaW5lLXNoaWZ0OmJhc2VsaW5lO2NvbG9yOiMwMDAwMDA7ZmlsbDojMjIyMjIyO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDozOC44ODAwMDEwNzttYXJrZXI6bm9uZTt2aXNpYmlsaXR5OnZpc2libGU7ZGlzcGxheTppbmxpbmU7b3ZlcmZsb3c6dmlzaWJsZTtlbmFibGUtYmFja2dyb3VuZDphY2N1bXVsYXRlO2ZvbnQtZmFtaWx5OlNhbnM7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjpTYW5zIi8+PC9nPjwvc3ZnPg==);
+  background-size: contain;
+`
 
 const smothScroll = (elementId: string) => () => {
   document.querySelector(elementId).scrollIntoView({
@@ -337,19 +360,23 @@ const About: React.FunctionComponent = () => (
               </Perk>
             </PerksContainer>
             <Separator> 
-                <div> Previous Works </div> 
-                <div> ↓ </div>
+                <h3> Previous Works </h3> 
+                <div css={[BounceAnimation, ArrowIcon]}/>
             </Separator>
             <ShowcaseContainer>
               <ShowcaseItem>
                 <ShowcaseItemText>
-                  Standups.io an application for communicating with your coworkers.
-                  As a Full Stack developer I helped standups.io with the mobile app implementation in React Native, developing mirror features in the web application with React, and mostly the main backend engineer, working with node.js and AWS services.
+                  Whyline is an application to skip the line in banks, goverment places, doctors offices, and more.
+                  <br/>
+                  Worked 3 years at several roles, software architect, DevOps, and Full-Stack developer.
+                  Me and my team, design the microservice architecture that make possible the scalation to thousands of users.
+                  <ShowcaseItemTechnologies>Stack: Node.js | AWS | MongoDB | Angular | Ionic </ShowcaseItemTechnologies>
                 </ShowcaseItemText>
                 <ShowcaseImageItem>
                   <a href="https://whyline.com" rel="nofollow noreferrer"> 
                     <img src="https://user-images.githubusercontent.com/7070683/57968201-4780fb00-795f-11e9-9a94-26d1d7aa5d53.jpg" />
                   </a>
+                
                 </ShowcaseImageItem>
               </ShowcaseItem>
               <ShowcaseItem>
@@ -359,14 +386,18 @@ const About: React.FunctionComponent = () => (
                   </a>
                 </ShowcaseImageItem> 
                 <ShowcaseItemText>
-                  Standups.io an application for communicating with your coworkers.
-                  As a Full Stack developer I helped standups.io with the mobile app implementation in React Native, developing mirror features in the web application with React, and mostly the main backend engineer, working with node.js and AWS services.
-                  </ShowcaseItemText>
+                Drinkko an app to find the cheapest beer pint near you.
+                <br />
+                I setup the base architecture for this location based application, and offering my consulting services for almost 2 years.
+                <ShowcaseItemTechnologies>Stack: Node.js | AWS | MongoDB | Angular | Ionic</ShowcaseItemTechnologies>
+                </ShowcaseItemText>
               </ShowcaseItem>
               <ShowcaseItem>
                 <ShowcaseItemText> 
-                  Standups.io an application for communicating with your coworkers. 
+                  Standups.io is an application for communicating with your coworkers. 
+                  <br />
                   As a Full Stack developer I helped standups.io with the mobile app implementation in React Native, developing mirror features in the web application with React, and mostly the main backend engineer, working with node.js and AWS services.
+                <ShowcaseItemTechnologies>Stack: Node.js | AWS | MongoDB | React | React native </ShowcaseItemTechnologies>
                 </ShowcaseItemText>
                 <ShowcaseImageItem> 
                   <a href="https://standups.io" rel="nofollow noreferrer">
@@ -389,7 +420,7 @@ const About: React.FunctionComponent = () => (
           data-netlify="true"
           data-netlify-recaptcha="true"
           data-netlify-honeypot="anti-spam-bot-field"
-          action="#">
+          >
           <input type="hidden" name="anti-spam-bot-field" />
           <input type="hidden" name="form-name" value="contact" />
           <div>
@@ -408,6 +439,7 @@ const About: React.FunctionComponent = () => (
             <label htmlFor="message">Project details<sup>*</sup></label>
             <textarea name="message" id="message" placeholder="" required />
           </div>
+          <div data-netlify-recaptcha="true"/>
           <button type="submit" css={submit}> Get in touch </button>
         </form>
       </ContactFormContainer>
