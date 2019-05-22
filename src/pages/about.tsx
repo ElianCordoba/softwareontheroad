@@ -163,6 +163,16 @@ const ShowcaseContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+  >div:nth-child(odd) {
+    border-left-width: 6px;
+    border-left-color: #000;
+    border-left-style: solid;
+  }
+  >div:nth-child(even) {
+    border-right-width: 6px;
+    border-right-color: #000;
+    border-right-style: solid;
+  }
 `
 
 const ShowcaseItemText = styled.div`
@@ -174,6 +184,11 @@ const ShowcaseItem = styled.div`
   flex-direction: row;
   overflow: hidden;
   margin: 10px 15px 20px 0px;
+  background: white;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.04);
+  -moz-box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.04);
+  box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.04);
 `
 
 const ShowcaseImageItem = styled.div`
@@ -198,7 +213,7 @@ const FooterContaienr = styled.div`
 `
 const FooterTitle = styled.p`
   padding-top: 10px;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
   margin-bottom: 10px;
 `
@@ -366,10 +381,9 @@ const About: React.FunctionComponent = () => (
             <ShowcaseContainer>
               <ShowcaseItem>
                 <ShowcaseItemText>
-                  Whyline is an application to skip the line in banks, goverment places, doctors offices, and more.
+                  Whyline is an application to skip the line in banks, government places, doctors offices, and more.
                   <br/>
-                  Worked 3 years at several roles, software architect, DevOps, and Full-Stack developer.
-                  Me and my team, design the microservice architecture that make possible the scalation to thousands of users.
+                  Worked 3 years at several roles, software architect, DevOps, and Full-Stack developer. Me and my team, design the microservice architecture that makes possible scaling to thousands of users.
                   <ShowcaseItemTechnologies>Stack: Node.js | AWS | MongoDB | Angular | Ionic </ShowcaseItemTechnologies>
                 </ShowcaseItemText>
                 <ShowcaseImageItem>
@@ -388,7 +402,7 @@ const About: React.FunctionComponent = () => (
                 <ShowcaseItemText>
                 Drinkko an app to find the cheapest beer pint near you.
                 <br />
-                I setup the base architecture for this location based application, and offering my consulting services for almost 2 years.
+                I develop the foundation architecture for this location-based application and offered my consulting services for almost 2 years.
                 <ShowcaseItemTechnologies>Stack: Node.js | AWS | MongoDB | Angular | Ionic</ShowcaseItemTechnologies>
                 </ShowcaseItemText>
               </ShowcaseItem>
