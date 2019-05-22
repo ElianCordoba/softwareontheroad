@@ -66,10 +66,14 @@ const NavStyles = css`
     padding: 10px 12px;
     color: #fff;
     opacity: 1;
+    transition: transform .2s;
+    transition-timing-function: ease-out;
   }
 
   li a:hover {
     text-decoration: none;
+    transform: scale(1.10);
+    font-weight: bold;
   }
 `;
 
@@ -91,6 +95,12 @@ const SocialLinks = styled.div`
   a:last-of-type {
     padding-right: 20px;
   }
+  transition: transform .2s;
+  transition-timing-function: ease-out;
+  a:hover {
+    transform: scale(1.10);
+    font-weight: bold;
+  }
 `;
 
 const SubscribeButton = styled.a`
@@ -101,9 +111,13 @@ const SubscribeButton = styled.a`
   padding: 10px 12px;
   color: #fff;
   text-transform: uppercase;
+  transition: transform .2s;
+  transition-timing-function: ease-out;
   :hover {
     text-decoration: none;
     cursor: pointer;
+    transform: scale(1.10);
+    font-weight: bold;
   }
 `;
 
