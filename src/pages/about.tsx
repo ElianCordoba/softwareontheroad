@@ -137,6 +137,7 @@ const Perk= styled.div`
 `
 const PerkTitle = styled.h2`
   text-align: center;
+  color: black;
 `
 
 const PerkCallToAction = styled.button`
@@ -144,7 +145,7 @@ const PerkCallToAction = styled.button`
   height: 60px;
   font-size: 14px;
   color: #000;
-  max-width: 100%;
+  width: 100%;
   border-style: solid;
   border-color: black;
   border-width: 1.5px;
@@ -375,7 +376,10 @@ const About: React.FunctionComponent = () => (
               </Perk>
             </PerksContainer>
             <Separator> 
-                <h3> Previous Works </h3> 
+                <h3 css={{
+                  'color': 'black',
+                  'fontSize': '25px',
+                }}> Previous Works </h3> 
                 <div css={[BounceAnimation, ArrowIcon]}/>
             </Separator>
             <ShowcaseContainer>
