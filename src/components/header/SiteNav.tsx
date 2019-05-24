@@ -145,8 +145,11 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
 
   render() {
     const { isHome = false, isHireMe = false } = this.props;
+    const hireMeCss = isHireMe ? {
+      'borderBottom': '#bbb solid 1px',
+    } : {}
     return (
-      [ <nav key="site-nav" css={[isHome && HomeNavRaise, SiteNavStyles]}>
+      [<nav key="site-nav" css={[isHome && HomeNavRaise, SiteNavStyles, hireMeCss]}>
         <SiteNavLeft>
           <ul css={NavStyles} role="menu">
             {
