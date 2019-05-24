@@ -332,6 +332,23 @@ const smothScroll = (elementId: string) => () => {
   }); 
 }
 
+const WatchMeCodeSection = styled.div``
+
+const WatchMeCodeContainer = styled.div`
+  margin: 10px 0px;
+  padding: 10px 0px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+const WatchMeCodeVideo = styled.iframe`
+  width: 80%; 
+  height: 480px;
+  allowfullscreen="allowfullscreen"
+`
+
 const About: React.FunctionComponent = () => (
   <IndexLayout>
     <Helmet>22
@@ -351,6 +368,13 @@ const About: React.FunctionComponent = () => (
           <CallToAction onClick={smothScroll('#contactme')}> Get in touch to discuss your needs now! </CallToAction>
         </div>
       </HeaderContainer>
+      <Separator>
+            <h3 css={{
+              'color': 'black',
+              'fontSize': '25px',
+            }}> Read my tutorials </h3>
+            <div css={[BounceAnimation, ArrowIcon]} />
+          </Separator>
           <div css={container}> 
             <PerksContainer>
               <Perk>
@@ -425,6 +449,18 @@ const About: React.FunctionComponent = () => (
               </ShowcaseItem>
             </ShowcaseContainer>
           </div>
+          <Separator>
+            <h3 css={{
+              'color': 'black',
+              'fontSize': '25px',
+            }}> Watch me code </h3>
+            <div css={[BounceAnimation, ArrowIcon]} />
+          </Separator>
+          <WatchMeCodeSection>
+            <WatchMeCodeContainer>
+              <WatchMeCodeVideo src="https://www.youtube.com/embed/tgbNymZ7vqY" />
+            </WatchMeCodeContainer>
+          </WatchMeCodeSection>
     <FooterContaienr>
       <div css={{ padding: '80px 0px 0px 0px'  }}>
         <FooterTitle id="contactme"> Ready to scale your system? </FooterTitle>
