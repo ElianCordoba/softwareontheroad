@@ -69,41 +69,84 @@ const ContactFormContainer = styled.div`
   }
 `
 
+export default class ContactForm extends React.Component {
+  private ContactForm: any;
+  constructor(props: Readonly<{}>) {
+    super(props)
+    this.ContactForm = React.createRef()
+    this.state = {}
+  }
+  encode = (data: { [x: string]: string; }) => {
+    return Object.keys(data)
+      .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+      .join("&")
+  }
+  handleChange = (e: { target: { name: any; value: any; }; }) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
 
-const ContactForm: React.FunctionComponent = () => (
-<ContactFormContainer css={{ 'marginBottom': '100px' }}>
-  <form
-    name="contact"
-    method="POST"
-    data-netlify="true"
-    netlify-honeypot="anti-bot-field"
-  >
-    <p hidden> 
-      <label>
-        Don’t fill this out
-      <input name="anti-bot-field" />
-      </label>
-    </p>
-    <div>
-      <label htmlFor="name" css={{ display: 'block' }}>Your name<sup>*</sup></label>
-      <input type="text" name="name" id="name" required />
-    </div>
-    <div>
-      <label htmlFor="email">Your email<sup>*</sup></label>
-      <input type="text" name="email" id="email" required />
-    </div>
-    <div>
-      <label htmlFor="website" >Your website</label>
-      <input type="text" placeholder="https://" name="website" id="website" />
-    </div>
-    <div>
-      <label htmlFor="message">Project details<sup>*</sup></label>
-      <textarea name="message" id="message" placeholder="" required />
-    </div>
-    <div data-netlify-recaptcha="true" />
-    <button type="submit" css={submit}> Get in touch </button>
-  </form>
-</ContactFormContainer>
-)
+  handleSubmit = (e: { preventDefault(): void; }) => {
+    e.preventDefault()
+    const form = this.ContactForm.current
 
-export default ContactForm;
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: this.encode({
+        "form-name": form.getAttribute("name"),
+        ...this.state,
+      }),
+    })
+      .then(response => {
+        console.log("====================================")
+        console.log(`${JSON.stringify(response, null, 2)}`)
+        console.log("====================================")
+        alert("Thanks for your message, we will speak soon :) !")
+        // navigate(form.getAttribute("action"))
+      })
+      .catch(error => {
+        console.log("====================================")
+        console.log(`error in submiting the form data:${error}`)
+        console.log("====================================")
+      })
+  }
+
+  render() {
+    return <ContactFormContainer css={{ 'marginBottom': '100px' }}>
+      <form
+        name="contact"
+        method="POST"
+        action="sucess"
+        data-netlify="true"
+        netlify-honeypot="anti-bot-field"
+        onSubmit={this.handleSubmit}
+        ref={this.ContactForm}
+      >
+        <p hidden> 
+          <label>
+            Don’t fill this out
+          <input name="anti-bot-field"  onChange={this.handleChange} />
+          </label>
+        </p>
+        <div>
+          <label htmlFor="name" css={{ display: 'block' }}>Your name<sup>*</sup></label>
+          <input type="text" name="name" id="name" required  onChange={this.handleChange} />
+        </div>
+        <div>
+          <label htmlFor="email">Your email<sup>*</sup></label>
+          <input type="text" name="email" id="email" required  onChange={this.handleChange} />
+        </div>
+        <div>
+          <label htmlFor="website" >Your website</label>
+          <input type="text" placeholder="https://" name="website" id="website"  onChange={this.handleChange} />
+        </div>
+        <div>
+          <label htmlFor="message">Project details<sup>*</sup></label>
+          <textarea name="message" id="message" placeholder="" required />
+        </div>
+        <div data-netlify-recaptcha="true" />
+        <button type="submit" css={submit}> Get in touch </button>
+      </form>
+    </ContactFormContainer>
+  }
+}
