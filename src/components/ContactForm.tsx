@@ -142,7 +142,7 @@ export default class ContactForm extends React.Component {
         </div>
         <div>
           <label htmlFor="message">Project details<sup>*</sup></label>
-          <textarea name="message" id="message" placeholder="" required />
+          <textarea name="message" id="message" placeholder="" required onChange={this.handleChange}  />
         </div>
         <div data-netlify-recaptcha="true" />
         <button type="submit" css={submit}> Get in touch </button>
