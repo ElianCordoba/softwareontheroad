@@ -399,7 +399,7 @@ const About: React.FunctionComponent = () => (
       <div css={{ padding: '80px 0px 0px 0px'  }}>
         <FooterTitle id="contactme"> Ready to scale your system? </FooterTitle>
         <p css={{ padding: '0px 0px 20px 0px' }}> Contact me and get free quote today! </p>
-        <p css={{ fontSize: '16px' }}> Send me an email to <a href="mailto:santiago@softwareontheroad.com"> santiago@softwareontheroad.com</a> or fill the form below</p>
+        <p css={{ fontSize: '16px' }}> Send me an email to <a href="mailto:contact@softwareontheroad.com"> contact@softwareontheroad.com</a> or fill the form below</p>
       </div>
       <ContactForm />
       <FooterCopyRight> © {(new Date()).getFullYear()} Santiago Quinteros | <a href="/privacy">Privacy policy</a> </FooterCopyRight>
