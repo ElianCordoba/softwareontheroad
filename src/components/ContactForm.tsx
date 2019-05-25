@@ -101,8 +101,8 @@ export default class ContactForm extends React.Component {
         console.log("====================================")
         console.log(`${JSON.stringify(response, null, 2)}`)
         console.log("====================================")
-        alert("Thanks for your message, we will speak soon :) !")
-        // navigate(form.getAttribute("action"))
+        alert("Thanks for your message, we will speak soon :)")
+        document.getElementById("contact-form").reset();
       })
       .catch(error => {
         console.log("====================================")
@@ -114,6 +114,7 @@ export default class ContactForm extends React.Component {
   render() {
     return <ContactFormContainer css={{ 'marginBottom': '100px' }}>
       <form
+        id="contact-form"
         name="contact"
         method="POST"
         action="sucess"
