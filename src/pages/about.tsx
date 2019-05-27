@@ -392,7 +392,7 @@ const About: React.FunctionComponent = () => (
           </Separator>
           <WatchMeCodeSection>
             <WatchMeCodeContainer>
-              <WatchMeCodeVideo src="https://www.youtube.com/embed/tgbNymZ7vqY" />
+              <WatchMeCodeVideo src="https://www.youtube.com/embed/noF88drN7rc" />
             </WatchMeCodeContainer>
           </WatchMeCodeSection>
     <FooterContaienr>
