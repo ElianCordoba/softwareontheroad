@@ -1,11 +1,11 @@
 import IndexLayout from '../layouts';
 import styled from '@emotion/styled'
-import SiteNav from '../components/header/SiteNav';	
+import SiteNav from '../components/header/SiteNav';
+import ContactForm from '../components/ContactForm';
 import { SiteHeader, outer, inner } from '../styles/shared';
 import * as React from 'react';
 import { css } from '@emotion/core';
 import Helmet from 'react-helmet';
-
 const container = css`
   margin: 0 auto;
   max-width: 1040px;
@@ -137,6 +137,7 @@ const Perk= styled.div`
 `
 const PerkTitle = styled.h2`
   text-align: center;
+  color: black;
 `
 
 const PerkCallToAction = styled.button`
@@ -144,7 +145,7 @@ const PerkCallToAction = styled.button`
   height: 60px;
   font-size: 14px;
   color: #000;
-  max-width: 100%;
+  width: 100%;
   border-style: solid;
   border-color: black;
   border-width: 1.5px;
@@ -232,72 +233,6 @@ const Separator = styled.div`
   font-size: 15px
 `
 
-const submit = css`
-  background: #f80;
-  padding: 16px 32px;
-  margin: 20px 0 5px;
-  border-radius: 3px;
-  font-size: 18px;
-  font-weight: 600;
-  max-width: 100%;
-  color: #fff;
-  transition: transform .2s;
-  transition-timing-function: ease-out;
-  :hover {
-    transform: scale(1.10);
-  }
-`
-
-const ContactFormContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  background: white;
-  color: black;
-  padding: 40px 40px 50px;
-  border-radius: 5px;
-  input, label {
-    display: block
-  }
-  label {
-    text-align: left;
-    padding: 5px;
-    font-size: 14px
-  }
-  input {
-    padding: 0px 15px;
-    background: #f3f3f3;
-    width: 100%;
-    height: 30px;
-    border-radius: 2px;
-    border-width: 0.95px;
-    margin-bottom: 10px;
-    ::placeholder {
-      font-size: 14px;
-    }
-  }
-  textarea {
-    padding: 13px 15px;
-    background: #f3f3f3;
-    width: 100%;
-    height: 226px;
-    border-radius: 2px;
-    resize: none;
-    border-width: 0.95px;
-  }
-  sup {
-    color: red;
-  }
-
-  div {
-    width: 70vw;    
-  }
-  /* Desktop Styles */
-  @media only screen and (min-width: 961px) {
-    div {
-      width: 40vw;    
-    }
-  }
-`
 const ShowcaseItemTechnologies = styled.div`
   padding-top: 20px;
   text-align: right;
@@ -331,6 +266,23 @@ const smothScroll = (elementId: string) => () => {
   }); 
 }
 
+const WatchMeCodeSection = styled.div``
+
+const WatchMeCodeContainer = styled.div`
+  margin: 10px 0px;
+  padding: 10px 0px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+const WatchMeCodeVideo = styled.iframe`
+  width: 80%; 
+  height: 480px;
+  allowfullscreen="allowfullscreen"
+`
+
 const About: React.FunctionComponent = () => (
   <IndexLayout>
     <Helmet>22
@@ -350,6 +302,13 @@ const About: React.FunctionComponent = () => (
           <CallToAction onClick={smothScroll('#contactme')}> Get in touch to discuss your needs now! </CallToAction>
         </div>
       </HeaderContainer>
+      <Separator>
+            <h3 css={{
+              'color': 'black',
+              'fontSize': '25px',
+            }}> Read my tutorials </h3>
+            <div css={[BounceAnimation, ArrowIcon]} />
+          </Separator>
           <div css={container}> 
             <PerksContainer>
               <Perk>
@@ -375,7 +334,10 @@ const About: React.FunctionComponent = () => (
               </Perk>
             </PerksContainer>
             <Separator> 
-                <h3> Previous Works </h3> 
+                <h3 css={{
+                  'color': 'black',
+                  'fontSize': '25px',
+                }}> Previous Works </h3> 
                 <div css={[BounceAnimation, ArrowIcon]}/>
             </Separator>
             <ShowcaseContainer>
@@ -421,42 +383,25 @@ const About: React.FunctionComponent = () => (
               </ShowcaseItem>
             </ShowcaseContainer>
           </div>
+          <Separator>
+            <h3 css={{
+              'color': 'black',
+              'fontSize': '25px',
+            }}> Watch me code </h3>
+            <div css={[BounceAnimation, ArrowIcon]} />
+          </Separator>
+          <WatchMeCodeSection>
+            <WatchMeCodeContainer>
+              <WatchMeCodeVideo src="https://www.youtube.com/embed/noF88drN7rc" />
+            </WatchMeCodeContainer>
+          </WatchMeCodeSection>
     <FooterContaienr>
       <div css={{ padding: '80px 0px 0px 0px'  }}>
         <FooterTitle id="contactme"> Ready to scale your system? </FooterTitle>
         <p css={{ padding: '0px 0px 20px 0px' }}> Contact me and get free quote today! </p>
-        <p css={{ fontSize: '16px' }}> Send me an email to <a href="mailto:santiago@softwareontheroad.com"> santiago@softwareontheroad.com</a> or fill the form below</p>
+        <p css={{ fontSize: '16px' }}> Send me an email to <a href="mailto:contact@softwareontheroad.com"> contact@softwareontheroad.com</a> or fill the form below</p>
       </div>
-      <ContactFormContainer css={{ 'marginBottom': '100px' }}>
-        <form
-          name="contact"
-          method="POST"
-          data-netlify="true"
-          data-netlify-recaptcha="true"
-          data-netlify-honeypot="anti-spam-bot-field"
-          >
-          <input type="hidden" name="anti-spam-bot-field" />
-          <input type="hidden" name="form-name" value="contact" />
-          <div>
-            <label htmlFor="name" css={{ display: 'block' }}>Your name<sup>*</sup></label>
-            <input type="text" name="name" id="name" required />
-          </div>
-          <div>
-            <label htmlFor="email">Your email<sup>*</sup></label>
-            <input type="text" name="email" id="email" required />
-          </div>
-          <div>
-            <label htmlFor="website" >Your website</label>
-            <input type="text" placeholder="https://" name="website" id="website" />
-          </div>
-          <div>
-            <label htmlFor="message">Project details<sup>*</sup></label>
-            <textarea name="message" id="message" placeholder="" required />
-          </div>
-          <div data-netlify-recaptcha="true"/>
-          <button type="submit" css={submit}> Get in touch </button>
-        </form>
-      </ContactFormContainer>
+      <ContactForm />
       <FooterCopyRight> © {(new Date()).getFullYear()} Santiago Quinteros | <a href="/privacy">Privacy policy</a> </FooterCopyRight>
     </FooterContaienr>
   </IndexLayout>
