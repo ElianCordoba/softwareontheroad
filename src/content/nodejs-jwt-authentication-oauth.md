@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "You don't need passport.js - Complete guide to node.js authentication"
+title: "You don't need passport.js - Guide to node.js authentication (Part I)"
 author: santypk4
 date: "2019-05-10T20:00:00.000Z"
 image: img/passport.jpg
@@ -87,9 +87,19 @@ _Robo3T for MongoDB_
 
 ## How to create a Sign In
 
-When user perfoms a sign in, the server checks if the user exists, if the password is valid, and emit a JSON Web Token or JWT, this is the temporaly credential that is going to be used in every request that needs an auntenticated user.
+![Sign In Diagram](/img/passport/6-sign_in_diagram.png)
 
-The password verification should be perform using the argon2 library to prevent 'timming based attacks', that is when an attacker try to brute-force a password based in the solid principle of how much time takes the server to respond.
+When user perfoms a sign in, this is what happens:
+
+ - Client send pair of _Public Identification_ and a _Private key_, ussually an email and a password
+
+ - The server, looks for the user in the database using the email.
+
+ - If user exist in database, the server hash the sent password and compares it to the stored hashed password
+
+ - If the password is valid, it emit a JSON Web Token (or JWT)
+
+ This is the temporaly _key_ that the client have to send in every request to an authenticated endpoint
 
 ```javascript
 import * as argon2 from 'argon2';
@@ -116,6 +126,7 @@ class AuthService {
   }
 }
 ```
+The password verification should be perform using the argon2 library to prevent 'timming based attacks', that is when an attacker try to brute-force a password based in the solid principle of how much time takes the server to respond.
 
 In the next section we will discuss how to generate a JWT
 
@@ -309,8 +320,10 @@ That's because the password is not needed, the security of the endpoint comes fr
 
 # Conclusion
 
-Modern authentication with node.js JWT and other componet
 
+
+
+  In the next part of this series we are going to explore the different options to provide a Social Login authentication for our customers.
 
 
 # [See the example repository here](https://github.com/santiq/nodejs-auth)
