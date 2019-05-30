@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "You don't need passport.js - Guide to node.js authentication (Part I)"
+title: "You don't need passport.js - Guide to node.js authentication"
 author: santypk4
-date: "2019-05-10T20:00:00.000Z"
+date: "2019-05-31T14:00:00.000Z"
 image: img/passport.jpg
-subtitle: "How to master authentication in nodejs without external libraries"
+subtitle: "The complete guide to master authentication in node.js without external libraries. Part I"
 tags: ["Node.js"]
 twittertags: ["node", "javascript", "100daysofcode", "code", "webdev"]
 draft: false
@@ -14,38 +14,38 @@ draft: false
 
 While third-party authorization services like Google Firebase, AWS Cognito, and Auth0 gains popularity, and all-in-one library solutions like passport.js are the industry standard, is common to see that developers never really understand all the parts involved in the authentication flow.
 
-This series of articles are aimed to desmitify concepts such as JSON Web Token (JWT), social login (OAuth2), user impersonation (an admin can login as a specific user without password), common security pitfalls and attack vectors.
+This series of articles are aimed to demystify concepts such as JSON Web Token (JWT), social login (OAuth2), user impersonation (an admin can log in as a specific user without password), common security pitfalls and attack vectors.
 
-Also, there is a github repository with a complete authentication flow that you can use as a base for your projects.
+Also, there is a GitHub repository with a complete authentication flow that you can use as a base for your projects.
 
 # Table of contents
-  - [Requirements](#requirements)
-  - [How to make the Sign Up](#signup)
-  - [How to make the Sign In](#signin)
-  - [JWT explained](#what-is-jwt)
-  - [Generating JWTs](#creating-jwt)
-  - [Secured endpoints](#secure-endpoints)
-  - [User impersonation](#user-impersonation)
+  - [Requirements ✍️](#requirements)
+  - [How to make the Sign-Up 🥇](#signup)
+  - [How to make the Sign-In 🥈](#signin)
+  - [JWT explained 👩‍🏫](#what-is-jwt)
+  - [Generating JWTs 🏭](#creating-jwt)
+  - [Secured endpoints ⚔️](#secure-endpoints)
+  - [User impersonation 🕵️](#user-impersonation)
   - [Conclusion 🏗️](#conclusion)
-  - [Example repository](https://github.com/santiq/nodejs-auth)
+  - [Example repository 🔬](https://github.com/santiq/nodejs-auth)
 
 <a name="requirements"></a>
 
-# Project requirements
+# Project requirements ✍️
 
 The requirements for this project are: 
 
-  - A database to store the users email and password, or clientId and clientSecret, or any pair of public and private keys.
+  - A database to store the user's email and password, or clientId and clientSecret, or any pair of public and private keys.
     
   - A strong and efficient cryptographic algorithm to encrypt the passwords.
 
-At the time of writting, I consider that Argon2 is the best cryptographic algorithm out there, please don't use a simple cryptographic algorithm like SHA256, SHA512 or MD5.
+At the time of writing, I consider that Argon2 is the best cryptographic algorithm out there, please don't use a simple cryptographic algorithm like SHA256, SHA512 or MD5.
 
-Please refer to this awesome post for more detailsa about [choosing a password hashing algorithm](https://medium.com/@mpreziuso/password-hashing-pbkdf2-scrypt-bcrypt-and-argon2-e25aaf41598e)
+Please refer to this awesome post for more details about [choosing a password hashing algorithm](https://medium.com/@mpreziuso/password-hashing-pbkdf2-scrypt-bcrypt-and-argon2-e25aaf41598e)
 
 <a name="signup"></a>
 
-## How to create a Sign Up
+## How to create a Sign-Up 🥇
 
 When a user is created, the password has to be hashed and stored in the database alongside the email and other custom details (user profile, timestamp, etc)
 
@@ -78,28 +78,28 @@ class AuthService {
 
 Notice that we also create a _salt_ for the password. A salt is random data that is used as an additional input to the hashing function, also the salt is randomly generated for every new user record.
 
-The user record looks like this
+The user record looks like this:
 
 ![User record - Database MongoDB](/img/passport/1-store_secure_password.png)
 _Robo3T for MongoDB_
 
 <a name="signin"></a>
 
-## How to create a Sign In
+## How to create a Sign-In 🥈
 
-![Sign In Diagram](/img/passport/6-sign_in_diagram.png)
+![Sign-In Diagram](/img/passport/6-sign_in_diagram.png)
 
-When user perfoms a sign in, this is what happens:
+When the user performs a sign in, this is what happens:
 
- - Client send pair of _Public Identification_ and a _Private key_, ussually an email and a password
+ - The client sends a pair of _Public Identification_ and a _Private key_, usually an email and a password
 
- - The server, looks for the user in the database using the email.
+ - The server looks for the user in the database using the email.
 
- - If user exist in database, the server hash the sent password and compares it to the stored hashed password
+ - If the user exists in the database, the server hashes the sent password and compares it to the stored hashed password
 
- - If the password is valid, it emit a JSON Web Token (or JWT)
+ - If the password is valid, it emits a JSON Web Token (or JWT)
 
- This is the temporaly _key_ that the client have to send in every request to an authenticated endpoint
+ This is the temporary _key_ that the client has to send in every request to an authenticated endpoint
 
 ```javascript
 import * as argon2 from 'argon2';
@@ -126,33 +126,34 @@ class AuthService {
   }
 }
 ```
-The password verification should be perform using the argon2 library to prevent 'timming based attacks', that is when an attacker try to brute-force a password based in the solid principle of how much time takes the server to respond.
+The password verification is performed using the argon2 library to prevent 'timing-based attacks',
+which means, when an attacker tries to brute-force a password based in the solid principle of [how much time takes the server to respond](https://en.wikipedia.org/wiki/Timing_attack).
 
-In the next section we will discuss how to generate a JWT
+In the next section, we will discuss how to generate a JWT
 
 <a name="what-is-jwt"></a>
 
-# But, what is a JWT anyway ? : 
+# But, what is a JWT anyway? 👩‍🏫
 
 A JSON Web Token or JWT is an encoded JSON object, in a string or Token.
 
-You can think it as a replacement of a cookie, with several adventajes.
+You can think it as a replacement of a cookie, with several advantages.
 
 The token has 3 parts and looks like this:
 
 ![JSON Web Token example](/img/passport/2-jwt_example.png)
 
-The data of the jwt can be decoded in the client side without the **Secret** or **Signature**. This can be useful to transport information or metadata, encoded inside the token, to be used in the frontend application, such as things like the user role, profile, token expiration, and so on.
+The data of the JWT can be decoded in the client side without the **Secret** or **Signature**. This can be useful to transport information or metadata, encoded inside the token, to be used in the frontend application, such as things like the user role, profile, token expiration, and so on.
 
 ![JSON Web Token decoded example](/img/passport/3-jwt_decoded.png)
 
 <a name="creating-jwt"></a>
 
-# How to generate JWT in node.js
+# How to generate JWT in node.js 🏭
 
 Let's implement the generateToken function needed to complete our auth service
 
-By using the library `` that you can find in npmjs.com we are able to generate a JWT.
+By using the library `jsonwebtoken` that you can find in npmjs.com we are able to generate a JWT.
 ```javascript
 import * as jwt from 'jsonwebtoken'
 class AuthService {
@@ -177,25 +178,34 @@ The signature is the 'secret' that is used to generate the JWT, is very importan
 
 <a name="secure-endpoints"></a>
 
-## Securing endpoints and verifying the JWT
+## Securing endpoints and verifying the JWT ⚔️
 
 The frontend code is now required to send the JWT in every request to a secure endpoint.
 
-A good practice is includ the JWT in a header, commonly the Authorization header.
+A good practice is to include the JWT in a header, commonly the Authorization header.
 
 ![Authorization Header](/img/passport/4-authorization_header.png)
 
 
-Now in backend, a middleware for the express routes has to be created.
+Now in the backend, a middleware for the express routes has to be created.
 
 _Middleware "isAuth"_
 ```javascript
-import jwt from 'express-jwt'
+import * as jwt from 'express-jwt';
 
-const getTokenFromHeader = (req, res) => {}
+// We are assuming that the JWT will come in the header Authorization but it could come in the req.body or in a query param, you have to decide what works best for you.
+const getTokenFromHeader = (req) => {
+  if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+    return req.headers.authorization.split(' ')[1];
+  }
+}
 
 export default jwt({
+  secret: 'MySuP3R_z3kr3t', // Has to be the same that we used to sign the JWT
 
+  userProperty: 'token', // this is where the next middleware can find the encoded data generated in services/auth:generateToken -> 'req.token'
+
+  getToken: getTokenFromHeader, // A function to get the auth token from the request
 })
 ```
 
@@ -217,8 +227,7 @@ export default (req, res, next) => {
 }
 ```
 
-Now the routes can access the current user who is performing the request
-
+Now the routes can access the current user who is performing the request.
 
 ```javascript
   import isAuth from '../middlewares/isAuth';
@@ -235,17 +244,18 @@ Now the routes can access the current user who is performing the request
     })
   }
 ```
+
 The route 'inventory/personal-items' is now secured, you need to have a valid JWT to access it, but also it will use the current user from that JWT to look up in the database for the corresponding items.
 
 ## Why a JWT is secured ?
 
 A common question that you may have after reading this is: 
 
-***If the JWT data can be decoded in the clientsite, can a JWT be manipulated in a way to change the user id or other data ?***
+***If the JWT data can be decoded in the client side, can a JWT be manipulated in a way to change the user id or other data ?***
 
-While you can decoded a JWT easily, you can not encode it with new data without having the 'Secret' that was used when the JWT was signed.
+While you can decode a JWT easily, you can not encode it with new data without having the 'Secret' that was used when the JWT was signed.
 
-This is way is so important to never disclosure the secret.
+This is the way is so important to never disclose the secret.
 
 Our server is checking the signature on the middleware `IsAuth` the library `express-jwt` takes care of that.
 
@@ -253,17 +263,17 @@ Now that we understand how a JWT works, let's move on to a cool advance feature.
 
 <a name="user-impersonation"></a>
 
-## How to impersonate a user
+## How to impersonate a user 🕵️
 
-User impersonation is a techinique used to sign in as a specific user, without knowing the user's password.
+User impersonation is a technique used to sign in as a specific user, without knowing the user's password.
 
 This a very useful feature for the super admins, developers or support, to be able to solve or debug a user problem that is only visible with his session.
 
 There is no need in having the user password to use the application on his behalf, just generate a JWT with the correct signature and the required user metadata.
 
-Let's create an endpoint that can generate a JWT to login as a specific user, this endpoint will only be able to be used by a super-admin user
+Let's create an endpoint that can generate a JWT to log in as a specific user, this endpoint will only be able to be used by a super-admin user
 
-First we need to stablish a higher role for the superadmin user, there are many ways to do it, a simple one is just to add a 'role' property on the user record in the database.
+First, we need to establish a higher role for the super admin user, there are many ways to do it, a simple one is just to add a 'role' property on the user record in the database.
 
 ![super admin role in user database record](/img/passport/5-superadmin_role.png)
 
@@ -312,22 +322,24 @@ Third, the endpoint that generates a JWT for the user to impersonate.
   }
 ```
 
-So, there is no black magic here, the super-admin knows the email of the user that wants to impersonate, and the logic is pretty similar to the singin, but there is no check for correct password.
+So, there is no black magic here, the super-admin knows the email of the user that wants to impersonate, and the logic is pretty similar to the sign-in, but there is no check for correctness of password.
 
 That's because the password is not needed, the security of the endpoint comes from the roleRequired middleware.
 
 <a name="conclusion"></a>
 
-# Conclusion
+# Conclusion 🏗️
 
-
+ 
 
 
   In the next part of this series we are going to explore the different options to provide a Social Login authentication for our customers.
 
 
-# [See the example repository here](https://github.com/santiq/nodejs-auth)
+### [See the example repository here 🔬](https://github.com/santiq/nodejs-auth)
 
-# Resources 
+### Resources 
 
   - [What is the recommended hash to store passwords: bcrypt, scrypt, Argon2?](https://security.stackexchange.com/questions/193351/in-2018-what-is-the-recommended-hash-to-store-passwords-bcrypt-scrypt-argon2)
+
+  - [Timing attack](https://en.wikipedia.org/wiki/Timing_attack)
