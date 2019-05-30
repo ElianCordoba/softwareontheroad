@@ -12,35 +12,44 @@ draft: false
 
 # Introduction
 
-Most developers just clone the boilerpate with login and signup already solved but never take the time to really understand how it works.
+While third-party authorization services like Google Firebase, AWS Cognito, and Auth0 gains popularity, and all-in-one library solutions like passport.js are the industry standard, is common to see that developers never really understand all the parts involved in the authentication flow.
 
-And when requirements change, the needing to implement custom logic on login comes up, but if you don't proceed with caution you can make a mistake that will cost you a lot.
+This series of articles are aimed to desmitify concepts such as JSON Web Token (JWT), social login (OAuth2), user impersonation (an admin can login as a specific user without password), common security pitfalls and attack vectors.
 
-The authentication of your users must be threated like a sacred thing. Avoid messing up with passwords on production.
+Also, there is a github repository with a complete authentication flow that you can use as a base for your projects.
 
 # Table of contents
-
+  - [Requirements](#requirements)
+  - [How to make the Sign Up](#signup)
+  - [How to make the Sign In](#signin)
+  - [JWT explained](#what-is-jwt)
+  - [Generating JWTs](#creating-jwt)
+  - [Secured endpoints](#secure-endpoints)
+  - [User impersonation](#user-impersonation)
   - [Conclusion 🏗️](#conclusion)
-  - [Example repository](https://github.com/santiq/bulletproof-nodejs)
+  - [Example repository](https://github.com/santiq/nodejs-auth)
 
-# The rise and fall of passport.js :emoji-chart-down:
+<a name="requirements"></a>
 
-Don't get me wrong, i think passport.js is a great library that servers it's porpuse of helping developers accomplish any kind of login in time.
+# Project requirements
 
-The objective of this guide is to pay the technical debts of usin passport.js without knowing what's under its abstraction.
+The requirements for this project are: 
 
-# Implementation 
+  - A database to store the users email and password, or clientId and clientSecret, or any pair of public and private keys.
+    
+  - A strong and efficient cryptographic algorithm to encrypt the passwords.
 
-To implement a login you only need a database where you store the email and password of the user, and a type of encryptation for the password.
+At the time of writting, I consider that Argon2 is the best cryptographic algorithm out there, please don't use a simple cryptographic algorithm like SHA256, SHA512 or MD5.
 
-_At the time of writting, I consider that Argon2 is the best cryptographic algorithm out there, please don't use a simple cryptographic algorithm like SHA256, SHA512 or MD5_
+Please refer to this awesome post for more detailsa about [choosing a password hashing algorithm](https://medium.com/@mpreziuso/password-hashing-pbkdf2-scrypt-bcrypt-and-argon2-e25aaf41598e)
 
+<a name="signup"></a>
 
 ## How to create a Sign Up
 
 When a user is created, the password has to be hashed and stored in the database alongside the email and other custom details (user profile, timestamp, etc)
 
-Notice that we also create a _salt_ for the password. A salt is random data that is used as an additional input to the hashing function, also the salt is randomly generated for every new user record.
+_**Note: Read about the project structure in the previous article [Bulletproof node.js project architecture 🛡️](/ideal-nodejs-project-structure)**_
 
 ```javascript
 import * as argon2 from 'argon2';
@@ -67,10 +76,14 @@ class AuthService {
 }
 ```
 
+Notice that we also create a _salt_ for the password. A salt is random data that is used as an additional input to the hashing function, also the salt is randomly generated for every new user record.
+
 The user record looks like this
 
 ![User record - Database MongoDB](/img/passport/1-store_secure_password.png)
 _Robo3T for MongoDB_
+
+<a name="signin"></a>
 
 ## How to create a Sign In
 
@@ -106,6 +119,7 @@ class AuthService {
 
 In the next section we will discuss how to generate a JWT
 
+<a name="what-is-jwt"></a>
 
 # But, what is a JWT anyway ? : 
 
@@ -121,6 +135,7 @@ The data of the jwt can be decoded in the client side without the **Secret** or 
 
 ![JSON Web Token decoded example](/img/passport/3-jwt_decoded.png)
 
+<a name="creating-jwt"></a>
 
 # How to generate JWT in node.js
 
@@ -149,6 +164,7 @@ What is important here is the data encoded, you should never send sensitive info
 
 The signature is the 'secret' that is used to generate the JWT, is very important to keep this signature safe, if it gets compromised an attacker could generate tokens on behalf the users and steal their sessions.
 
+<a name="secure-endpoints"></a>
 
 ## Securing endpoints and verifying the JWT
 
@@ -210,7 +226,7 @@ Now the routes can access the current user who is performing the request
 ```
 The route 'inventory/personal-items' is now secured, you need to have a valid JWT to access it, but also it will use the current user from that JWT to look up in the database for the corresponding items.
 
-## Why a JWT is secured
+## Why a JWT is secured ?
 
 A common question that you may have after reading this is: 
 
@@ -224,14 +240,17 @@ Our server is checking the signature on the middleware `IsAuth` the library `exp
 
 Now that we understand how a JWT works, let's move on to a cool advance feature.
 
-## How to impersonate a user or How to login as a specific user
+<a name="user-impersonation"></a>
 
-Is a very common requirement to have the possibility to use the system as a specific user, but, how can you login as a user without knowing his password?
+## How to impersonate a user
+
+User impersonation is a techinique used to sign in as a specific user, without knowing the user's password.
+
+This a very useful feature for the super admins, developers or support, to be able to solve or debug a user problem that is only visible with his session.
 
 There is no need in having the user password to use the application on his behalf, just generate a JWT with the correct signature and the required user metadata.
 
 Let's create an endpoint that can generate a JWT to login as a specific user, this endpoint will only be able to be used by a super-admin user
-
 
 First we need to stablish a higher role for the superadmin user, there are many ways to do it, a simple one is just to add a 'role' property on the user record in the database.
 
@@ -286,14 +305,16 @@ So, there is no black magic here, the super-admin knows the email of the user th
 
 That's because the password is not needed, the security of the endpoint comes from the roleRequired middleware.
 
-
-
-
-
 <a name="conclusion"></a>
 
 # Conclusion
 
-  
+Modern authentication with node.js JWT and other componet
 
-# [See the example repository here](https://github.com/santiq/bulletproof-nodejs)
+
+
+# [See the example repository here](https://github.com/santiq/nodejs-auth)
+
+# Resources 
+
+  - [What is the recommended hash to store passwords: bcrypt, scrypt, Argon2?](https://security.stackexchange.com/questions/193351/in-2018-what-is-the-recommended-hash-to-store-passwords-bcrypt-scrypt-argon2)
