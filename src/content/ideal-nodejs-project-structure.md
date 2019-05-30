@@ -674,4 +674,23 @@ draft: false
 
   - Split your node.js server configurations into small modules that can be loaded independently.
 
-# [See the example repository here](https://github.com/santiq/bulletproof-nodejs)
+### [See the example repository here](https://github.com/santiq/bulletproof-nodejs)
+
+
+# ✋ Hey ! Before you go 🏃‍
+
+Have you noticed that this website is called 'software on the road'?
+
+That's because I'm a digital nomad and I write software, while I'm on the road. 
+
+Well, not while I'm driving, but when travel by plane, train or bus to kill some time and stay productive.
+
+But working with a laptop all the time **can be bad for your posture**. So to avoid back pain I use a **stand for my laptop**.
+
+If you plan to **travel the world**, **work from cafes**, or even from **coworking spaces**, make sure to pack <a target="_blank" href="https://www.amazon.com/gp/product/B016QO64FI/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B016QO64FI&linkCode=as2&tag=santypk4-20&linkId=5d0fa5b75c5d9c064fa6301942790232" >an external keyboard</a>, <a target="_blank" href="https://www.amazon.com/gp/product/B01NAAY3RA/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01NAAY3RA&linkCode=as2&tag=santypk4-20&linkId=6f9d9254cc8ef77afdc627914ee04840"> a mouse </a>, and <a target="_blank" href="https://www.amazon.com/gp/product/B01HHYQBB8/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01HHYQBB8&linkCode=as2&tag=santypk4-20&linkId=650bc6b8acd5514654e40e405648f6ab">this practical and transportable laptop stand.</a>
+
+
+<img alt="nextstand" src="https://images-na.ssl-images-amazon.com/images/I/71GICdOKwkL._SL1296_.jpg" width="400" height="400"/>
+
+For just 30 bucks you avoid injuries and pains, but it's just a kindly advice from an old developer 😊
+
