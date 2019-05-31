@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "You don't need passport.js - Guide to node.js authentication"
+title: "🛑 You don't need passport.js - Guide to node.js authentication ✌️"
 author: santypk4
 date: "2019-05-31T14:00:00.000Z"
 image: img/passport.jpg
