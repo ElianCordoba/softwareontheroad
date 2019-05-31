@@ -12,7 +12,7 @@ draft: false
 
 # Introduction
 
-While third-party authorization services like Google Firebase, AWS Cognito, and Auth0 are gaining popularity, and all-in-one library solutions like passport.js are the industry standard, is common to see that developers never really understand all the parts involved in the authentication flow.
+While third-party authentication services like Google Firebase, AWS Cognito, and Auth0 are gaining popularity, and all-in-one library solutions like passport.js are the industry standard, is common to see that developers never really understand all the parts involved in the authentication flow.
 
 This series of articles about node.js authentication, are aimed to demystify concepts such as JSON Web Token (JWT), social login (OAuth2), user impersonation (an admin can log in as a specific user without password), common security pitfalls and attack vectors.
 
