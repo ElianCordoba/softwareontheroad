@@ -12,11 +12,11 @@ draft: false
 
 # Introduction
 
-While third-party authorization services like Google Firebase, AWS Cognito, and Auth0 gains popularity, and all-in-one library solutions like passport.js are the industry standard, is common to see that developers never really understand all the parts involved in the authentication flow.
+While third-party authorization services like Google Firebase, AWS Cognito, and Auth0 are gaining popularity, and all-in-one library solutions like passport.js are the industry standard, is common to see that developers never really understand all the parts involved in the authentication flow.
 
-This series of articles are aimed to demystify concepts such as JSON Web Token (JWT), social login (OAuth2), user impersonation (an admin can log in as a specific user without password), common security pitfalls and attack vectors.
+This series of articles about node.js authentication, are aimed to demystify concepts such as JSON Web Token (JWT), social login (OAuth2), user impersonation (an admin can log in as a specific user without password), common security pitfalls and attack vectors.
 
-Also, there is a GitHub repository with a complete authentication flow that you can use as a base for your projects.
+Also, there is a GitHub repository with a complete node.js authentication flow that you can use as a base for your projects.
 
 # Table of contents
   - [Requirements ✍️](#requirements)
@@ -49,7 +49,7 @@ Please refer to this awesome post for more details about [choosing a password ha
 
 When a user is created, the password has to be hashed and stored in the database alongside the email and other custom details (user profile, timestamp, etc)
 
-_**Note: Read about the project structure in the previous article [Bulletproof node.js project architecture 🛡️](/ideal-nodejs-project-structure)**_
+_**Note: Read about the node.js project structure in the previous article [Bulletproof node.js project architecture 🛡️](/ideal-nodejs-project-structure)**_
 
 ```javascript
 import * as argon2 from 'argon2';
@@ -143,7 +143,9 @@ The token has 3 parts and looks like this:
 
 ![JSON Web Token example](/img/passport/2-jwt_example.png)
 
-The data of the JWT can be decoded in the client side without the **Secret** or **Signature**. This can be useful to transport information or metadata, encoded inside the token, to be used in the frontend application, such as things like the user role, profile, token expiration, and so on.
+The data of the JWT can be decoded in the client side without the **Secret** or **Signature**.
+
+This can be useful to transport information or metadata, encoded inside the token, to be used in the frontend application, such as things like the user role, profile, token expiration, and so on.
 
 ![JSON Web Token decoded example](/img/passport/3-jwt_decoded.png)
 
@@ -151,9 +153,9 @@ The data of the JWT can be decoded in the client side without the **Secret** or 
 
 # How to generate JWT in node.js 🏭
 
-Let's implement the generateToken function needed to complete our auth service
+Let's implement the generateToken function needed to complete our authentication service
 
-By using the library `jsonwebtoken` that you can find in npmjs.com we are able to generate a JWT.
+By using the library `jsonwebtoken`, that you can find in npmjs.com, we are able to generate a JWT.
 ```javascript
 import * as jwt from 'jsonwebtoken'
 class AuthService {
@@ -172,9 +174,11 @@ class AuthService {
 }
 ```
 
-What is important here is the data encoded, you should never send sensitive information about the user.
+The important here is the encoded data, you should never send sensitive information about the user.
 
-The signature is the 'secret' that is used to generate the JWT, is very important to keep this signature safe, if it gets compromised an attacker could generate tokens on behalf the users and steal their sessions.
+The signature is the 'secret' that is used to generate the JWT, and is very important to keep this signature safe.
+
+If it gets compromised, an attacker could generate tokens on behalf the users and steal their sessions and.
 
 <a name="secure-endpoints"></a>
 
@@ -185,7 +189,6 @@ The frontend code is now required to send the JWT in every request to a secure e
 A good practice is to include the JWT in a header, commonly the Authorization header.
 
 ![Authorization Header](/img/passport/4-authorization_header.png)
-
 
 Now in the backend, a middleware for the express routes has to be created.
 
@@ -209,8 +212,7 @@ export default jwt({
 })
 ```
 
-Also, is very useful to have a middleware to get the complete user record, from the database, and add it to the current request.
-
+Is very useful to have a middleware to get the complete current user record, from the database, and attach it to the request.
 
 ```javascript
 export default (req, res, next) => {
@@ -227,7 +229,7 @@ export default (req, res, next) => {
 }
 ```
 
-Now the routes can access the current user who is performing the request.
+Now the routes can access the current user that is performing the request.
 
 ```javascript
   import isAuth from '../middlewares/isAuth';
@@ -330,10 +332,11 @@ That's because the password is not needed, the security of the endpoint comes fr
 
 # Conclusion 🏗️
 
- 
+  While is good to rely on third-party authentication services and libraries, to save development time, is also necessary to know the underlayin logic and principles behind authentication.
 
+  In this article we explored the JWT capabilities, why is important to choose a good cryptographic algorithm to hash the passwords, and how to impersonate a user, something that is not so simple if you are using a library like passport.js.
 
-  In the next part of this series we are going to explore the different options to provide a Social Login authentication for our customers.
+  In the next part of this series, we are going to explore the different options to provide 'Social Login' authentication for our customers by using the OAuth2 protocal and an easier alternative, a third-party authentication provider like Firebase.
 
 
 ### [See the example repository here 🔬](https://github.com/santiq/nodejs-auth)
@@ -343,3 +346,21 @@ That's because the password is not needed, the security of the endpoint comes fr
   - [What is the recommended hash to store passwords: bcrypt, scrypt, Argon2?](https://security.stackexchange.com/questions/193351/in-2018-what-is-the-recommended-hash-to-store-passwords-bcrypt-scrypt-argon2)
 
   - [Timing attack](https://en.wikipedia.org/wiki/Timing_attack)
+
+
+# ✋ Hey ! Before you go 🏃‍
+
+Have you noticed that this website is called 'software on the road'?
+
+That's because I'm a digital nomad and I write software, while I'm on the road. 
+
+Well, not while I'm driving, but when travel by plane, train or bus to kill some time and stay productive.
+
+But working with a laptop all the time **can be bad for your posture**. So to avoid back pain I use a **stand for my laptop**.
+
+If you plan to **travel the world**, **work from cafes**, or even from **coworking spaces**, make sure to pack <a target="_blank" href="https://www.amazon.com/gp/product/B016QO64FI/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B016QO64FI&linkCode=as2&tag=santypk4-20&linkId=5d0fa5b75c5d9c064fa6301942790232" >an external keyboard</a>, <a target="_blank" href="https://www.amazon.com/gp/product/B01NAAY3RA/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01NAAY3RA&linkCode=as2&tag=santypk4-20&linkId=6f9d9254cc8ef77afdc627914ee04840"> a mouse </a>, and <a target="_blank" href="https://www.amazon.com/gp/product/B01HHYQBB8/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01HHYQBB8&linkCode=as2&tag=santypk4-20&linkId=650bc6b8acd5514654e40e405648f6ab">this practical and transportable laptop stand.</a>
+
+
+<img alt="nextstand" src="https://images-na.ssl-images-amazon.com/images/I/71GICdOKwkL._SL1296_.jpg" width="400" height="400"/>
+
+For just 30 bucks you can avoid back injuries and neck pains, but it's just a bit of kindly advice from an old developer 😊
