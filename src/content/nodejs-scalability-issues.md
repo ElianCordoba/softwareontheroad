@@ -394,4 +394,4 @@ If you plan to **travel the world**, **work from cafes**, or even from **coworki
 
 <img alt="nextstand" src="https://images-na.ssl-images-amazon.com/images/I/71GICdOKwkL._SL1296_.jpg" width="400" height="400"/>
 
-For just 30 bucks you can avoid back injuries and neck pains, but it's just a bit of kindly advice from an old developer 😊
+For just little money you can avoid back injuries and neck pains, but it's just a bit of kindly advice from an old developer 😊
