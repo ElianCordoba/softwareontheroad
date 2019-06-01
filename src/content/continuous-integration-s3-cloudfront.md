@@ -168,8 +168,6 @@ draft: false
   Archiving continuous integration is something that worths the time investment.
   It will pay you in a lot of time saved and human error prevention.
 
-## Please share this post with your coworkers!
-
 # Resources
 
 - https://stackoverflow.com/questions/47344338/running-circleci-2-0-workflows-on-tags-regex
