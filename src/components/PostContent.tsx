@@ -402,6 +402,29 @@ const PostContent: React.FunctionComponent<PostContentProps> = ({ htmlAst, postU
       {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
       <Ast className="post-content" ast={htmlAst} />
       <br />
+      <div>
+        <h1>  ✋ Hey ! Before you go 🏃‍ </h1>
+        <p>
+        Have you noticed that this website is called 'software on the road'?
+        </p>
+        <p>
+        That's because I'm a digital nomad and I write software, while I'm on the road.
+        </p>
+        <p>
+        Well, not while I'm driving, but when travel by plane, train or bus to kill some time and stay productive.
+        </p>
+        <p>
+        But working with a laptop all the time <b>can be bad for your posture</b>. So to avoid back pain I use a <b>stand for my laptop</b>.
+        </p>
+        <p>
+        If you plan to <b>travel the world</b>, <b>work from cafes</b>, or even from <b>coworking spaces</b>, make sure to pack <a target="_blank" href="https://www.amazon.com/gp/product/B016QO64FI/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B016QO64FI&linkCode=as2&tag=santypk4-20&linkId=5d0fa5b75c5d9c064fa6301942790232" >an external keyboard</a>, <a target="_blank" href="https://www.amazon.com/gp/product/B01NAAY3RA/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01NAAY3RA&linkCode=as2&tag=santypk4-20&linkId=6f9d9254cc8ef77afdc627914ee04840"> a mouse </a>, and <a target="_blank" href="https://www.amazon.com/gp/product/B01HHYQBB8/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01HHYQBB8&linkCode=as2&tag=santypk4-20&linkId=650bc6b8acd5514654e40e405648f6ab">this practical and transportable laptop stand.</a>
+        </p>
+        <p>
+        <img alt="nextstand" src="https://images-na.ssl-images-amazon.com/images/I/71GICdOKwkL._SL1296_.jpg" width="400" height="400" />
+        </p>
+        For just little money you can avoid back injuries and neck pains, but it's just a bit of kindly advice from an old developer 😊  
+      </div>
+      <br />
       <LeaveACommentContainer>
         <a href={`https://mobile.twitter.com/search?q=${postURL}`} target="_blank" rel="nofollow noopener noreferrer">
           Discuss on Twitter
