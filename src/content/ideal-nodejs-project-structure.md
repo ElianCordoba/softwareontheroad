@@ -65,13 +65,13 @@ draft: false
 
   The idea is to use the **principle of separation of concerns** to move the business logic away from the node.js API Routes.
 
-  ![3 layer pattern](/img/nodejs-project-structure/server_layers.png)
+  ![3 layer pattern](/img/nodejs-project-structure/server_layers.jpg)
 
   Because someday, you will want to use your business logic on a CLI tool, or not going far, in a recurring task.
 
   And make an API call from the node.js server to itself it's not a good idea...
 
-  ![3 layer pattern for node.js REST API](/img/nodejs-project-structure/server_layers_2.png)
+  ![3 layer pattern for node.js REST API](/img/nodejs-project-structure/server_layers_2.jpg)
 
 ## ☠️ Don't put your business logic inside the controllers!! ☠️
 

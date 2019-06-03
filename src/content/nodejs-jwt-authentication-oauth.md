@@ -80,14 +80,14 @@ Notice that we also create a _salt_ for the password. A salt is random data that
 
 The user record looks like this:
 
-![User record - Database MongoDB](/img/passport/1-store_secure_password.png)
+![User record - Database MongoDB](/img/passport/1-store_secure_password.jpg)
 _Robo3T for MongoDB_
 
 <a name="signin"></a>
 
 ## How to create a Sign-In 🥈
 
-![Sign-In Diagram](/img/passport/6-sign_in_diagram.png)
+![Sign-In Diagram](/img/passport/6-sign_in_diagram.jpg)
 
 When the user performs a sign in, this is what happens:
 
@@ -141,13 +141,13 @@ You can think it as a replacement of a cookie, with several advantages.
 
 The token has 3 parts and looks like this:
 
-![JSON Web Token example](/img/passport/2-jwt_example.png)
+![JSON Web Token example](/img/passport/2-jwt_example.jpg)
 
 The data of the JWT can be decoded in the client side without the **Secret** or **Signature**.
 
 This can be useful to transport information or metadata, encoded inside the token, to be used in the frontend application, such as things like the user role, profile, token expiration, and so on.
 
-![JSON Web Token decoded example](/img/passport/3-jwt_decoded.png)
+![JSON Web Token decoded example](/img/passport/3-jwt_decoded.jpg)
 
 <a name="creating-jwt"></a>
 
@@ -188,7 +188,7 @@ The frontend code is now required to send the JWT in every request to a secure e
 
 A good practice is to include the JWT in a header, commonly the Authorization header.
 
-![Authorization Header](/img/passport/4-authorization_header.png)
+![Authorization Header](/img/passport/4-authorization_header.jpg)
 
 Now in the backend, a middleware for the express routes has to be created.
 
@@ -277,7 +277,7 @@ Let's create an endpoint that can generate a JWT to log in as a specific user, t
 
 First, we need to establish a higher role for the super admin user, there are many ways to do it, a simple one is just to add a 'role' property on the user record in the database.
 
-![super admin role in user database record](/img/passport/5-superadmin_role.png)
+![super admin role in user database record](/img/passport/5-superadmin_role.jpg)
 
 Second, let's create a new middleware that checks the user role.
 

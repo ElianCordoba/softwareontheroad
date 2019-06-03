@@ -67,7 +67,7 @@ draft: false
 
   But when your product and user base grows, you will face a problem, your node.js server will use too much CPU time.
 
-  ![node.js and Web client architecture](/img/nodejs-scalability/static_assets.png)
+  ![node.js and Web client architecture](/img/nodejs-scalability/static_assets.jpg)
 
   [Check this article on how to implement AWS S3 + AWS Cloudfront for doing this task.](/s3-cloudfront-angular-react)
 
@@ -245,7 +245,7 @@ Now your jobs are stored in the DB and are less error prompt but they can occur.
 A good way to monitor your active, scheduled, and failed jobs are by using Agendash the web UI for agendajs
 Also with have control over the jobs, we can re-schedule, create, run, and delete them.
 
-![Agendash overview](/img/nodejs-scalability/job-details.png)
+![Agendash overview](/img/nodejs-scalability/job-details.jpg)
 
 ## Agendash Installation
 
@@ -277,7 +277,7 @@ Also with have control over the jobs, we can re-schedule, create, run, and delet
 
 # Using all the resources 💰
 
-  ![node.js clustering overview](/img/nodejs-scalability/clustering.png)
+  ![node.js clustering overview](/img/nodejs-scalability/clustering.jpg)
 
   It's the year 2019 and still most developers don't use the cluster feature that comes built-in in node.js since version 0.12.0
 
@@ -286,10 +286,10 @@ Also with have control over the jobs, we can re-schedule, create, run, and delet
   Check these comparisons:
 
   - Reponse time _lower is better_
-  ![node.js cluster performance graph](/img/nodejs-scalability/cluster_mode.png)
+  ![node.js cluster performance graph](/img/nodejs-scalability/cluster_mode.jpg)
 
   - Concurrent connections _higher is better_
-  ![node.js cluster performance table](/img/nodejs-scalability/cluster_mode_2.png)
+  ![node.js cluster performance table](/img/nodejs-scalability/cluster_mode_2.jpg)
 
 ## Cluster mode implementation
 
@@ -297,7 +297,7 @@ Also with have control over the jobs, we can re-schedule, create, run, and delet
 
   Go to your project entry point, require cluster mode, and spawn your application when the process is a worker.
   
-  ![Project structure](/img/nodejs-scalability/folder_structure.png)
+  ![Project structure](/img/nodejs-scalability/folder_structure.jpg)
 
   _Check out my guide on a good project structure for node.js servers._
 
