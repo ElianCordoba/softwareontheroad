@@ -306,7 +306,7 @@ Third, the endpoint that generates a JWT for the user to impersonate.
     app.post('/auth/signin-as-user', isAuth, attachCurrentUser, roleRequired('super-admin'), (req, res) => {
       const userEmail = req.body.email;
 
-      const userRecord = await UserModel.findOne({ email });
+      const userRecord = await UserModel.findOne({ email: userEmail });
 
       if(!userRecord) {
         return res.status(404).send('User not found');
