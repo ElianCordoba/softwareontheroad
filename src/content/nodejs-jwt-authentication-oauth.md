@@ -56,17 +56,15 @@ import * as argon2 from 'argon2';
 
 class AuthService {
   public async SignUp(email, password, name): Promise<any> {
-    const salt = randomBytes(32);
-    const passwordHashed = await argon2.hash(password, { salt });
+    const passwordHashed = await argon2.hash(password);
 
     const userRecord = await UserModel.create({
       password: passwordHashed,
       email,
-      salt: salt.toString('hex'), // notice the .toString('hex')
       name,
     });
     return {
-      // MAKE SURE TO NEVER SEND BACK THE PASSWORD OR SALT!!!!
+      // MAKE SURE TO NEVER SEND BACK THE PASSWORD!!!!
       user: {
         email: userRecord.email,
         name: userRecord.name,
@@ -75,8 +73,6 @@ class AuthService {
   }
 }
 ```
-
-Notice that we also create a _salt_ for the password. A salt is random data that is used as an additional input to the hashing function, also the salt is randomly generated for every new user record.
 
 The user record looks like this:
 
