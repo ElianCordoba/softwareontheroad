@@ -89,6 +89,20 @@ export default class ContactForm extends React.Component {
     e.preventDefault()
     const form = this.ContactForm.current
 
+    try {
+      // tslint:disable-next-line:no-unused-expression
+      window.ga && window.ga('send', {
+        hitType: 'event',
+        eventCategory: 'Contact',
+        eventAction: 'submit',
+        eventLabel: 'Hire services campaign'
+      });
+    } catch(e) {
+      console.log('error tracking event')
+      console.log(e);
+    }
+
+
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
