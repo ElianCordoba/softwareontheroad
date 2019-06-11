@@ -17,7 +17,7 @@ draft: false
 
   I hope you find this post useful, it is NOT just another generic 'X things you need to do for Y', instead I try to provide good advice and tips. 
 
-  But if you think that I stole your time, please, shout me a tweet at @santypk4 with your feelings.
+  But if you think that I stole your time, please, shout me a tweet at <a rel="nofollow noreferrer" href="https://twitter.com/santypk4"> @santypk4</a> with your feelings.
 
 # Table of contents
   - [Error handling 🚧](#errors)
@@ -28,7 +28,7 @@ draft: false
 
 <a name="errors"></a>
 
-# Error handling 🚧
+# Error handling in Node.js 🚧
 
   ![user report](/img/3-things-before-production-nodejs/logs.jpg)
 
@@ -54,16 +54,16 @@ draft: false
 
   Don't be like those guys and log your errors before the user notice it.
 
-  **You must have a stable, reliable, centralized way to handle your errors.**
+  ## You must have a stable, reliable, centralized way to handle your errors.**
 
 
-  Using a real-world example of the 3-layer architecture from [the previous article](/ideal-nodejs-project-structure), imagine that your user search engine starts to fail.
+  Using a real-world example of the 3-layer architecture from [the previous article](/ideal-nodejs-project-structure), let's imagine that your user search engine starts to fail.
 
 
   ![layers](/img/3-things-before-production-nodejs/layers.jpg)
 
-
   The important here is not to handle the errors from the underlying layers but to throw it to the controller layer.
+
   ```js
   import UsefulError from '../utils/usefulError';
   class UserService {
@@ -104,7 +104,7 @@ draft: false
   }
   ```
 
-  Let's create a custom error that we can add it more properties.
+  Let's create a custom class error, so we can add it more properties.
 
   ```js
   class UsefulError extends Error {
@@ -129,7 +129,7 @@ draft: false
   Don't obfuscate your errors, be honest, let your users know why the request fail, so they can perform another action, or try something different.
 
   A good error message will be like: 
-  
+
   > The user search engine doesn't work for now but you can still view your profile.
 
 
@@ -152,7 +152,7 @@ draft: false
   }
   ```
 
-  The controller layer just pass it to the next middleware, our centralized error handler.
+  The controller layer just pass it to the next express middleware, our centralized error handler.
 
   ```javascript
   import Logger from '../logger';
@@ -206,9 +206,9 @@ draft: false
 
 # Conclusion 🏗️
 
-  Use a logging library like Morgan and Winston, separate your logs by level instead of deleting console.logs.
+  Use a logger library like Winston, and separate your **logs by level** instead of using console.log that flood the log files.
 
-  Consider using a centralized error handling, and do not ignore a high percentage of errors.
+  Consider using a centralized error handling, can be a middleware for express, just forward your errors all to the same central location in your server.
 
   I hope you enjoyed this little post, and if you are interested in more node.js tips, and maybe a [Bullet Proof node.js project architecture](/ideal-nodejs-project-structure), I strongly recommend you to read that article.
 
