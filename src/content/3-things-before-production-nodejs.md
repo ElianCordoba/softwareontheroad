@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The missing piece of your node.js architecture"
+title: "Error handling - The missing piece of your node.js architecture"
 author: santypk4
 date: "2019-06-12T14:00:00.000Z"
 image: img/3-things-before-production-nodejs.jpg
@@ -17,7 +17,7 @@ draft: false
 
   I hope you find this post useful, it is NOT just another generic 'X things you need to do for Y', instead I try to provide good advice and tips. 
 
-  But if you think that I stole your time, please, shout me a tweet at <a rel="nofollow noreferrer" href="https://twitter.com/santypk4"> @santypk4</a> with your feelings.
+  But if you think that I stole your time, please, send me a tweet at <a rel="nofollow noreferrer" href="https://twitter.com/santypk4"> @santypk4</a> with your feelings.
 
 # Table of contents
   - [Error handling 🚧](#errors)
@@ -152,7 +152,7 @@ draft: false
   }
   ```
 
-  The controller layer just pass it to the next express middleware, our centralized error handler.
+  The controller layer just passes it to the next express middleware, our centralized error handler.
 
   ```javascript
   import Logger from '../logger';
