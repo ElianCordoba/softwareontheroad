@@ -159,7 +159,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
             }
             {
               !isHireMe && <li role="menuitem">
-                <Link to="/about">Hire my services</Link>
+                <Link to="/about">Work with me</Link>
               </li>
             }
             {
