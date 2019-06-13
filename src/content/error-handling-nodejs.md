@@ -15,9 +15,7 @@ draft: false
 
   But I don't want to discourage you about going live, your boss will hate me, instead, I want to provide you a few tips that I learn through these years of <s> pain </s> experience going to production.
 
-  I hope you find this post useful, it is NOT just another generic 'X things you need to do for Y', instead I try to provide good advice and tips. 
-
-  But if you think that I stole your time, please, send me a tweet at <a rel="nofollow noreferrer" href="https://twitter.com/santypk4"> @santypk4</a> with your feelings.
+  I hope you find this post useful, if you think that I stole your time, please, send me a tweet at <a rel="nofollow noreferrer" href="https://twitter.com/santypk4"> @santypk4</a> with your feelings.
 
 # Table of contents
   - [Error handling 🚧](#errors)
