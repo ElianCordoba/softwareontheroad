@@ -159,7 +159,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
             }
             {
               !isHireMe && <li role="menuitem">
-                <Link to="/about">Hire my services</Link>
+                <Link to="/about">Work with me</Link>
               </li>
             }
             {
@@ -169,7 +169,6 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
         </SiteNavLeft>
         <SiteNavRight>
           <SocialLinks>
-            <span css={css`font-size: 14px; text-transform: uppercase;`}> Follow me </span>
             {config.twitter && (
               <a
                 css={SocialLink}
@@ -178,7 +177,8 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Twitter />
+                <span css={css`font-size: 14px; text-transform: uppercase; margin-right: 5px;`}> Follow me </span>
+                <Twitter />  
               </a>
             )}
             {config.github && (
