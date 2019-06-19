@@ -100,6 +100,12 @@ module.exports = {
         publisherId: `ca-pub-6523317289472383`
       },
     },
+    {
+      resolve: `gatsby-plugin-facebook-pixel`,
+      options: {
+        pixelId: '325210825035746',
+      },
+    },
     'gatsby-plugin-catch-links',
     'gatsby-plugin-sitemap',
     `gatsby-plugin-netlify`
