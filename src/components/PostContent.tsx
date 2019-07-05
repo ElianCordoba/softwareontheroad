@@ -427,6 +427,8 @@ const PostContent: React.FunctionComponent<PostContentProps> = ({ htmlAst, postU
         </p>
         For just little money you can avoid back injuries and neck pains, but it's just a bit of kindly advice from an old developer 😊  
       </div>
+      <div id="amzn-assoc-ad-8a41004c-831a-4dfc-8329-89ef1a3b9a5f" />
+      <script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=8a41004c-831a-4dfc-8329-89ef1a3b9a5f"/>
       <br />
       <LeaveACommentContainer>
         <a href={`https://mobile.twitter.com/search?q=${postURL}`} target="_blank" rel="nofollow noopener noreferrer">
