@@ -138,10 +138,10 @@ const SubscribeOverlayDescription = styled.p`
   margin: 0 auto 50px;
   max-width: 650px;
   font-family: Georgia, serif;
-  font-size: 3rem;
-  line-height: 1.3em;
-  font-weight: 300;
-  opacity: 0.8;
+  font-size: 2.3rem;
+  line-height: 1.5em;
+  font-weight: 200;
+  opacity: 0.9;
 `;
 
 interface SubscribeState {
@@ -190,7 +190,9 @@ class SubscribeModal extends React.Component<any, SubscribeState> {
           <SubscribeLogo />
           <SubscribeOverlayTitle>Get notified when new content is out.</SubscribeOverlayTitle>
           <SubscribeOverlayDescription>
-            Only high-quality articles about AWS, DevOps, continuous integration, node.js, react, ionic and more...
+            Join 2000+ other developers learning node.js best practices!.
+            You will receive only high-quality articles about Node.js, DevOps and Javascript front-end frameworks.
+            Unsubscribe anytime.
           </SubscribeOverlayDescription>
           <SubscribeForm />
         </SubscribeOverlayContent>
