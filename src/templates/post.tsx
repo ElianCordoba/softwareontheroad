@@ -20,7 +20,7 @@ import Subscribe from '../components/subscribe/Subscribe';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import { colors } from '../styles/colors';
-import { inner, outer, SiteHeader, SiteMain } from '../styles/shared';
+import { inner, outer, SiteHeader, SiteMain, StickyHeader } from '../styles/shared';
 import config from '../website-config';
 
 const PostTemplate = css`

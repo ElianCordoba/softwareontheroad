@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import * as React from 'react';
 import { css } from '@emotion/core';
 import Helmet from 'react-helmet';
@@ -128,15 +128,16 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           }}
         >
           <div css={inner}>
+            <SiteNav isHome={true} />
             <SiteHeaderContent>
               <SiteTitle>
-                {
-                  config.title
-                }
+                Advanced Node.js & DevOps articles for large-scale application developers.
               </SiteTitle>
-              <SiteDescription>{config.description}</SiteDescription>
+              <SiteDescription>
+                {/* I create courses, books, and articles for aspiring developers on Enterprise Node.js, Domain-Driven Design and writing testable, flexible JavaScript. */}
+                Read our series on <Link to="/ideal-nodejs-project-structure"> Enterprise Node.js architecture</Link>, roll out your own <Link to="nodejs-jwt-authentication-oauth"> authentication service </Link> or set up a <Link to="/continuous-integration-s3-cloudfront">continuous integration solution </Link> for your development pipeline.
+              </SiteDescription>
             </SiteHeaderContent>
-            <SiteNav isHome={true} />
           </div>
         </header>
         <main id="site-main" css={[SiteMain, outer]}>
@@ -187,7 +188,7 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC },
       filter: { frontmatter: { draft: { ne: true } } },
-      limit: 1000,
+      limit: 25,
     ) {
       edges {
         node {

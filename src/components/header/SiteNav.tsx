@@ -7,25 +7,24 @@ import { css } from '@emotion/core';
 import { SocialLink } from '../../styles/shared';
 import config from '../../website-config';
 import Twitter from '../icons/twitter';
+import Facebook from '../icons/facebook';
 import SubscribeModal from '../subscribe/SubscribeOverlay';
-import Github from '../icons/github';
 
 const HomeNavRaise = css`
   @media (min-width: 900px) {
     position: relative;
-    top: -70px;
   }
+  border-bottom: 1px solid;
+  border-color: white;
 `;
 
 const SiteNavStyles = css`
-  position: relative;
   z-index: 300;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   overflow-y: hidden;
-  height: 40px;
-  font-size: 1.25rem;
+  height: 60px;
 `;
 
 const SiteNavLeft = styled.div`
@@ -48,6 +47,8 @@ const SiteNavLeft = styled.div`
 `;
 
 const NavStyles = css`
+  align-items: center;
+  justify-content: center;
   display: flex;
   padding: 0;
   list-style: none;
@@ -66,13 +67,10 @@ const NavStyles = css`
     padding: 10px 12px;
     color: #fff;
     opacity: 1;
-    transition: transform .2s;
-    transition-timing-function: ease-out;
   }
 
   li a:hover {
     text-decoration: none;
-    transform: scale(1.10);
     font-weight: bold;
   }
 `;
@@ -95,11 +93,8 @@ const SocialLinks = styled.div`
   a:last-of-type {
     padding-right: 20px;
   }
-  transition: transform .2s;
-  transition-timing-function: ease-out;
   a:hover {
-    transform: scale(1.10);
-    font-weight: bold;
+    text-decoration: none;
   }
 `;
 
@@ -107,16 +102,12 @@ const SubscribeButton = styled.a`
   color: #fff;
   display: block;
   margin-right: 20px;
-  font-size: 14px;
   padding: 10px 12px;
   color: #fff;
   text-transform: uppercase;
-  transition: transform .2s;
-  transition-timing-function: ease-out;
   :hover {
     text-decoration: none;
     cursor: pointer;
-    transform: scale(1.10);
     font-weight: bold;
   }
 `;
@@ -154,16 +145,21 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
           <ul css={NavStyles} role="menu">
             {
               !isHome && <li role="menuitem">
-                <Link to="/">Home</Link>
+                <Link to="/">Articles</Link>
               </li>
             }
             {
               !isHireMe && <li role="menuitem">
-                <Link to="/about">Work with me</Link>
+                <Link to="/about">Consulting service</Link>
               </li>
             }
             {
-              !isHireMe && <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
+              !isHireMe && <SubscribeButton onClick={this.openModal}>Newsletter</SubscribeButton>
+            }
+            {
+              config.books && <li role="menuitem">
+                <Link to="/nodejs-books">Books</Link>
+              </li>
             }
           </ul>
         </SiteNavLeft>
@@ -177,24 +173,25 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span css={css`font-size: 14px; text-transform: uppercase; margin-right: 5px;`}> Follow me </span>
-                <Twitter />  
+                <span css={css`font-size: 14px; text-transform: uppercase; margin-right: 5px;`}> Twitter </span>
+                <Twitter />
               </a>
             )}
-            {config.github && (
+            {config.facebook && (
               <a
                 css={SocialLink}
-                href={config.github}
-                title="Github"
+                href={config.facebook}
+                title="Facebook"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github />
+                <span css={css`font-size: 14px; text-transform: uppercase; margin-right: 5px;`}> Facebook </span>
+                <Facebook />
               </a>
             )}
           </SocialLinks>
         </SiteNavRight>
-      </nav> , <SubscribeModal key="subscribe-modal" ref={this.subscribe} />]
+      </nav>, <SubscribeModal key="subscribe-modal" ref={this.subscribe} />]
     );
   }
 }

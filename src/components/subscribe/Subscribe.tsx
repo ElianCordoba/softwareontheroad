@@ -9,7 +9,7 @@ import SubscribeForm from './SubscribeForm';
 
 const SubscribeFormSection = styled.section`
   margin: 1.5em 0;
-  padding: 6.5vw 7vw 7vw;
+  padding: 4.5vw 7vw 4.5vw;
   border: ${lighten('0.02', colors.whitegrey)} 1px solid;
   text-align: center;
   background: ${props =>
@@ -46,7 +46,7 @@ const SubscribeFormSection = styled.section`
 `;
 
 const SubscribeFormTitle = css`
-  margin: 0 0 3px 0;
+  margin: 0 0 10px 0;
   padding: 0;
   color: ${colors.darkgrey};
   font-size: 3.5rem;
@@ -61,7 +61,9 @@ const Subscribe: React.FunctionComponent<{ color: string; }> = ({ color }) => {
   return (
     <SubscribeFormSection color={color}>
       <h3 css={SubscribeFormTitle}>Get notified when new content is out.</h3>
-      <p> Only high-quality articles about AWS, DevOps, continuous integration, node.js, react, ionic and more...</p>
+      <p> Join 2000+ other developers learning node.js best practices! </p>
+      <p> You will receive only high-quality articles about Node.js, DevOps and Javascript front-end frameworks</p>
+      <p> Unsubscribe anytime. </p>
       <SubscribeForm color={color} />
     </SubscribeFormSection>
   );

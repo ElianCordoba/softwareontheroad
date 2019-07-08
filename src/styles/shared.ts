@@ -24,18 +24,22 @@ export const SiteTitle = styled.h1`
   z-index: 10;
   margin: 0;
   padding: 0;
-  font-size: 3.8rem;
+  font-size: 3.2rem;
+  @media (min-width: 700px) {
+    font-size: 3em;
+  }
+  line-height: 1.5;
   font-weight: 700;
 `;
 
 export const SiteDescription = styled.h2`
   z-index: 10;
   margin: 0;
-  padding: 5px 0;
+  padding: 10px 0;
   font-size: 2.2rem;
-  font-weight: 300;
-  letter-spacing: 0.5px;
-  opacity: 0.8;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+  opacity: 0.9;
 `;
 
 export const PostFeed = css`
@@ -81,12 +85,17 @@ export const SiteHeader = css`
   background-size: cover;
 `;
 
+export const StickyHeader = css`
+  position: fixed;
+  top:0;
+`
+
 export const SiteHeaderContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10vw 4vw;
+  padding: 8vw 4vw;
   min-height: 200px;
   max-height: 450px;
   text-align: center;

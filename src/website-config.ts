@@ -28,6 +28,7 @@ export interface WebsiteConfig {
    * this is the hidden input field name
    */
   mailchimpName?: string;
+  books: boolean;
 }
 
 const config: WebsiteConfig = {
@@ -40,6 +41,8 @@ const config: WebsiteConfig = {
   siteUrl: 'https://softwareontheroad.com',
   github: 'https://github.com/santiq',
   twitter: 'https://twitter.com/santypk4',
+  facebook: 'https://facebook.com/softwareontheroad',
+  books: false,
   showSubscribe: true,
   mailchimpAction: 'https://softwareontheroad.us20.list-manage.com/subscribe/post?u=337d8675485234c707e63777d&amp;id=14f1331817',
   mailchimpName: 'b_a81b6927ac288c81b0b7f3a0f_7d717b7d75',
