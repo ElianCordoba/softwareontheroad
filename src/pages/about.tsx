@@ -416,7 +416,7 @@ const About: React.FunctionComponent = () => (
         <p css={{ fontSize: '16px' }}> Send me an email to <a href="mailto:contact@softwareontheroad.com"> contact@softwareontheroad.com</a> or fill the form below</p>
       </div>
       <ContactForm />
-      <FooterCopyRight> © {(new Date()).getFullYear()} Santiago Quinteros | <a href="/privacy">Privacy policy</a> </FooterCopyRight>
+      <FooterCopyRight> © {(new Date()).getFullYear()} Software on the road LLC | <a href="/privacy">Privacy policy</a> </FooterCopyRight>
     </FooterContaienr>
   </IndexLayout>
 );
