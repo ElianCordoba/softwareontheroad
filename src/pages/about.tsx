@@ -6,10 +6,23 @@ import { SiteHeader, outer, inner } from '../styles/shared';
 import * as React from 'react';
 import { css } from '@emotion/core';
 import Helmet from 'react-helmet';
+
+const primaryColor = `#0a0b0c`;
+const secondaryColor = `#8CAFCE`;
+const ternaryColor = `#6A7987`;
+const quaternaryColor = `#2F0019`;
+const callToActionColor = `#009FFF`;
+
 const container = css`
   margin: 0 auto;
   max-width: 1040px;
   width: 100%;
+`
+
+const SkewWrapper = styled.div`
+  transform: skewY(-4deg);
+  transform-origin: top left;
+  background: ${primaryColor};
 `
 
 const HeaderContainer = styled.header`
@@ -19,10 +32,9 @@ const HeaderContainer = styled.header`
   justify-content: center;
   width: 100%;
   text-align: center;
-  background: #0a0b0c;
-  font-family: Lato, sans-serif;
+  font-family: 'Arial';
   color: #fff;
-  height: 600px;
+  height: 100vh;
   /* Mobile Styles */
   @media only screen and (max-width: 400px) {
     padding: 10px;
@@ -37,35 +49,25 @@ const HeaderContainer = styled.header`
   @media only screen and (min-width: 961px) {
     padding: 10px 76px 20px 76px;
   }
-  transform: skewY(-4deg);
-  transform-origin: top left;
 `;
 
 const Title = styled.h1`
-  /* Mobile Styles */
-  @media only screen and (max-width: 400px) {
-    font-size: 40px;  
-  }
-
-  /* Tablet Styles */
-  @media only screen and (min-width: 401px) and (max-width: 960px) {
-    font-size: 40px;
-  }
-
-  /* Desktop Styles */
-  @media only screen and (min-width: 961px) {
-    font-size: 48px;
-  }
+  margin: 5vh 0vh;
+  font-size: 4.25rem;
   font-weight: 900;
-  margin-bottom: 71px;
+  text-transform: uppercase;
 `;
 
 const SubHeader = styled.p`
   text-align: center;
-  font-size: 24px;
+  font-size: 2.25rem;
+  line-height: 1.5;
+  strong {
+    text-decoration: underline;
+  }
   /* Desktop Styles */
   @media only screen and (min-width: 961px) {
-    margin: -36px 141px 44px 141px;
+    margin: 0px 18vw 5vh 18vw;
   }
 `
 
@@ -74,17 +76,19 @@ const noSkew = css`
 `
 
 const CallToAction = styled.button`
-  background: #f80;
-  padding: 16px 32px;
-  margin: 0 0 5px;
+  background: ${callToActionColor};
+  padding: 16px 4.5rem;
+  margin-bottom: 20px;
   border-radius: 3px;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
   max-width: 100%;
   color: #fff;
   transition: transform .2s;
   transition-timing-function: ease-out;
+  cursor: pointer;
   :hover {
+    cursor: pointer;
     transform: scale(1.10);
   }
 `
@@ -209,12 +213,12 @@ const FooterContaienr = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: #0a0b0c;
+  background: ${primaryColor};
   color: #fff;
 `
 const FooterTitle = styled.p`
   padding-top: 10px;
-  font-size: 28px;
+  font-size: 40px;
   font-weight: 700;
   margin-bottom: 10px;
 `
@@ -230,7 +234,11 @@ const Separator = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 15px
+  font-size: 15px;
+  h2 {
+    color: #000;
+    font-size: 2em;
+  }
 `
 
 const ShowcaseItemTechnologies = styled.div`
@@ -269,18 +277,23 @@ const smothScroll = (elementId: string) => () => {
 const WatchMeCodeSection = styled.div``
 
 const WatchMeCodeContainer = styled.div`
-  margin: 10px 0px;
-  padding: 10px 0px;
-  color: black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  min-height: 50vh;
+  margin-bottom: 3vh;
+  margin-top: 3vh;
 `
 const WatchMeCodeVideo = styled.iframe`
-  width: 80%; 
-  height: 480px;
+  width: 75vw;
+  min-height: 60vh;
   allowfullscreen="allowfullscreen"
+`
+
+const SectionWrapper = styled.div`
+  font-family: 'Arial';
+  font-size: 16px;
+  strong {
+    text-decoration: underline;
+  }
 `
 
 const About: React.FunctionComponent = () => (
@@ -300,124 +313,152 @@ const About: React.FunctionComponent = () => (
         `
       }]} 
     >
-      <title>How to scale your node.js application to 100k users and beyond</title>
+      <title>Node.js developer expert | Santiago Quinteros</title>
     </Helmet>
-      <header css={[outer, SiteHeader]}>
-        <div css={inner}>	        
-          <SiteNav isHireMe={true} />	          
-        </div>
-      </header>
-      <HeaderContainer>
-        <div css={noSkew}> 
-        <Title>Want to scale your node.js application to 100k users and beyond ?</Title>
+    <SkewWrapper>
+      <HeaderContainer css={noSkew}>
         <div>
-          <SubHeader>If you are in search on of an expert in node.js and javascript technologies with a proven track of producing top-quality applications, and AWS DevOps expertise, you’re in the right place.</SubHeader>
+          <Title>Hiring a development agency is expensive, slow and sucks.</Title>
         </div>
-          <CallToAction onClick={smothScroll('#contactme')}> Get in touch to discuss your needs now! </CallToAction>
+        <div>
+          <SubHeader>
+            Get a real node.js expert instead, talk <strong>directly</strong> to him, get a <strong>high-quality</strong>, <strong>maintainable</strong> and <strong>scalable</strong> codebase, have totally and dedicated attention span with long term support.
+          </SubHeader>
+        </div>
+        <div>
+          <CallToAction onClick={smothScroll('#contactme')}> Get in touch ! </CallToAction>
+        </div>
+        <div>
+          <i> Not convinced? Keep scrolling </i>
         </div>
       </HeaderContainer>
+    </SkewWrapper>
+    {/* <SectionWrapper>
       <Separator>
-            <h3 css={{
-              'color': 'black',
-              'fontSize': '25px',
-            }}> Read my tutorials </h3>
-            <div css={[BounceAnimation, ArrowIcon]} />
-          </Separator>
-          <div css={container}> 
-            <PerksContainer>
-              <Perk>
-                <PerkTitle>AWS DevOps </PerkTitle>
-                <PerkDescription>I will deploy your node.js proyect to the AWS Cloud using the best practices and services avaiable.</PerkDescription>
-                <a href="/tags/aws/" rel="nofollow noreferrer"> 
-                  <PerkCallToAction> See my tutorials about DevOps </PerkCallToAction>
-                </a>
-              </Perk>
-              <Perk>
-                <PerkTitle> Node.js expert </PerkTitle>
-                <PerkDescription> More than 5 years of experience in high scale proyects. I'm an expert in node.js and javascript technologies. </PerkDescription>
-                <a href="/ideal-nodejs-project-structure/" rel="nofollow noreferrer"> 
-                  <PerkCallToAction> Read my masterpiece of node.js architecture </PerkCallToAction>
-                </a>
-              </Perk>
-              <Perk>
-                <PerkTitle>Full-Stack developer </PerkTitle>
-                <PerkDescription>I have been using several front-end technologies such as React.js, React Native, Angular and Ionic for years. </PerkDescription>
-                <a href="/react-hooks/" rel="nofollow noreferrer"> 
-                  <PerkCallToAction> Deepdive into my guide on React Hooks </PerkCallToAction>
-                </a> 
-              </Perk>
-            </PerksContainer>
-            <Separator> 
-                <h3 css={{
-                  'color': 'black',
-                  'fontSize': '25px',
-                }}> Previous Works </h3> 
-                <div css={[BounceAnimation, ArrowIcon]}/>
-            </Separator>
-            <ShowcaseContainer>
-              <ShowcaseItem>
-                <ShowcaseItemText>
-                  Whyline is an application to skip the line in banks, government places, doctors offices, and more.
-                  <br/>
-                  Worked 3 years at several roles, software architect, DevOps, and Full-Stack developer. Me and my team, design the microservice architecture that makes possible scaling to thousands of users.
-                  <ShowcaseItemTechnologies>Stack: Node.js | AWS | MongoDB | Angular | Ionic </ShowcaseItemTechnologies>
-                </ShowcaseItemText>
-                <ShowcaseImageItem>
-                  <a href="https://whyline.com" rel="nofollow noreferrer"> 
-                    <img src="https://user-images.githubusercontent.com/7070683/57968201-4780fb00-795f-11e9-9a94-26d1d7aa5d53.jpg" />
-                  </a>
-                
-                </ShowcaseImageItem>
-              </ShowcaseItem>
-              <ShowcaseItem>
-                <ShowcaseImageItem>
-                  <a href="https://drinkko.com" rel="nofollow noreferrer">
-                    <img src="https://user-images.githubusercontent.com/7070683/57968202-48199180-795f-11e9-950b-5f9ac90301a1.jpg" />
-                  </a>
-                </ShowcaseImageItem> 
-                <ShowcaseItemText>
-                Drinkko an app to find the cheapest beer pint near you.
-                <br />
-                I develop the foundation architecture for this location-based application and offered my consulting services for almost 2 years.
-                <ShowcaseItemTechnologies>Stack: Node.js | AWS | MongoDB | Angular | Ionic</ShowcaseItemTechnologies>
-                </ShowcaseItemText>
-              </ShowcaseItem>
-              <ShowcaseItem>
-                <ShowcaseItemText> 
-                  Standups.io is an application for communicating with your coworkers. 
-                  <br />
-                  As a Full Stack developer I helped standups.io with the mobile app implementation in React Native, developing mirror features in the web application with React, and mostly the main backend engineer, working with node.js and AWS services.
-                <ShowcaseItemTechnologies>Stack: Node.js | AWS | MongoDB | React | React native </ShowcaseItemTechnologies>
-                </ShowcaseItemText>
-                <ShowcaseImageItem> 
-                  <a href="https://standups.io" rel="nofollow noreferrer">
-                    <img src="https://user-images.githubusercontent.com/7070683/57968200-4780fb00-795f-11e9-886c-07bab1890087.jpg" />
-                  </a>
-                </ShowcaseImageItem> 
-              </ShowcaseItem>
-            </ShowcaseContainer>
-          </div>
-          <Separator>
-            <h3 css={{
-              'color': 'black',
-              'fontSize': '25px',
-            }}> Watch me code </h3>
-            <div css={[BounceAnimation, ArrowIcon]} />
-          </Separator>
-          <WatchMeCodeSection>
-            <WatchMeCodeContainer>
-              <WatchMeCodeVideo src="https://www.youtube.com/embed/EtNHXaI1R9I" />
-            </WatchMeCodeContainer>
-          </WatchMeCodeSection>
-    <FooterContaienr>
-      <div css={{ padding: '80px 0px 0px 0px'  }}>
-        <FooterTitle id="contactme"> Ready to scale your system? </FooterTitle>
-        <p css={{ padding: '0px 0px 20px 0px' }}> Contact me and get free quote today! </p>
-        <p css={{ fontSize: '16px' }}> Send me an email to <a href="mailto:contact@softwareontheroad.com"> contact@softwareontheroad.com</a> or fill the form below</p>
+        <h2> Testimonials </h2>
+      </Separator>
+        <PerksContainer css={container}>
+          <Perk>
+            <PerkTitle>AWS DevOps </PerkTitle>
+            <PerkDescription>I will deploy your node.js proyect to the AWS Cloud using the best practices and services avaiable.</PerkDescription>
+            <a href="/tags/aws/" rel="nofollow noreferrer"> 
+              <PerkCallToAction> See my tutorials about DevOps </PerkCallToAction>
+            </a>
+          </Perk>
+          <Perk>
+            <PerkTitle> Node.js expert </PerkTitle>
+            <PerkDescription> More than 5 years of experience in high scale proyects. I'm an expert in node.js and javascript technologies. </PerkDescription>
+            <a href="/ideal-nodejs-project-structure/" rel="nofollow noreferrer"> 
+              <PerkCallToAction> Read more about node.js architecture </PerkCallToAction>
+            </a>
+          </Perk>
+          <Perk>
+            <PerkTitle>Full-Stack developer </PerkTitle>
+            <PerkDescription>I have been using several front-end technologies such as React.js, React Native, Angular and Ionic for years. </PerkDescription>
+            <a href="/react-hooks/" rel="nofollow noreferrer"> 
+              <PerkCallToAction> Deepdive into my guide on React Hooks </PerkCallToAction>
+            </a> 
+          </Perk>
+        </PerksContainer>
+      </SectionWrapper> */}
+      <SectionWrapper>
+        <Separator> 
+            <h2> Previous Works </h2> 
+            <div css={[BounceAnimation, ArrowIcon]}/>
+        </Separator>
+        <ShowcaseContainer css={container}>
+          <ShowcaseItem>
+            <ShowcaseItemText>
+              Whyline is an application to skip the line in banks, government places, doctors offices, and more.
+              <br/>
+              Worked 3 years at several roles, software architect, DevOps, and Full-Stack developer. Me and my team, design the microservice architecture that makes possible scaling to thousands of users.
+              <ShowcaseItemTechnologies>Stack: Node.js | AWS | MongoDB | Angular | Ionic </ShowcaseItemTechnologies>
+            </ShowcaseItemText>
+            <ShowcaseImageItem>
+              <a href="https://whyline.com" rel="nofollow noreferrer"> 
+                <img src="https://user-images.githubusercontent.com/7070683/57968201-4780fb00-795f-11e9-9a94-26d1d7aa5d53.jpg" />
+              </a>
+            
+            </ShowcaseImageItem>
+          </ShowcaseItem>
+          <ShowcaseItem>
+            <ShowcaseImageItem>
+              <a href="https://drinkko.com" rel="nofollow noreferrer">
+                <img src="https://user-images.githubusercontent.com/7070683/57968202-48199180-795f-11e9-950b-5f9ac90301a1.jpg" />
+              </a>
+            </ShowcaseImageItem> 
+            <ShowcaseItemText>
+            Drinkko an app to find the cheapest beer pint near you.
+            <br />
+            I develop the foundation architecture for this location-based application and offered my consulting services for 2 years.
+            <ShowcaseItemTechnologies>Stack: Node.js | AWS | MongoDB | Angular | Ionic</ShowcaseItemTechnologies>
+            </ShowcaseItemText>
+          </ShowcaseItem>
+          <ShowcaseItem>
+            <ShowcaseItemText> 
+              Standups.io is an application for communicating with your coworkers. 
+              <br />
+              As a Full Stack developer I helped standups.io with the mobile app implementation in React Native, developing mirror features in the web application with React, and mostly the main backend engineer, working with node.js and AWS services.
+            <ShowcaseItemTechnologies>Stack: Node.js | AWS | MongoDB | React | React native </ShowcaseItemTechnologies>
+            </ShowcaseItemText>
+            <ShowcaseImageItem> 
+              <a href="https://standups.io" rel="nofollow noreferrer">
+                <img src="https://user-images.githubusercontent.com/7070683/57968200-4780fb00-795f-11e9-886c-07bab1890087.jpg" />
+              </a>
+            </ShowcaseImageItem> 
+          </ShowcaseItem>
+        </ShowcaseContainer>
+    </SectionWrapper>
+    <SectionWrapper>
+      <Separator>
+        <h2> Read my tutorials </h2>
+        <div css={[BounceAnimation, ArrowIcon]} />
+      </Separator>
+      <PerksContainer css={container}>
+        <Perk>
+          <PerkTitle>AWS DevOps </PerkTitle>
+          <PerkDescription>I will deploy your node.js proyect to the AWS Cloud using the best practices and services avaiable.</PerkDescription>
+          <a href="/tags/aws/" rel="nofollow noreferrer">
+            <PerkCallToAction> See my tutorials about DevOps </PerkCallToAction>
+          </a>
+        </Perk>
+        <Perk>
+          <PerkTitle> Node.js expert </PerkTitle>
+          <PerkDescription> More than 5 years of experience in high scale proyects. I'm an expert in node.js and javascript technologies. </PerkDescription>
+          <a href="/ideal-nodejs-project-structure/" rel="nofollow noreferrer">
+            <PerkCallToAction> Read more about node.js architecture </PerkCallToAction>
+          </a>
+        </Perk>
+        <Perk>
+          <PerkTitle>Full-Stack developer </PerkTitle>
+          <PerkDescription>I have been using several front-end technologies such as React.js, React Native, Angular and Ionic for years. </PerkDescription>
+          <a href="/react-hooks/" rel="nofollow noreferrer">
+            <PerkCallToAction> Deepdive into my guide on React Hooks </PerkCallToAction>
+          </a>
+        </Perk>
+      </PerksContainer>
+    </SectionWrapper>
+    <SectionWrapper>
+      <Separator>
+        <h2> Watch me code </h2>
+        <div css={[BounceAnimation, ArrowIcon]} />
+      </Separator>
+      <div css={css`max-width: 460px`}> 
+        <WatchMeCodeSection>
+          <WatchMeCodeContainer>
+            <WatchMeCodeVideo src="https://www.youtube.com/embed/EtNHXaI1R9I" />
+          </WatchMeCodeContainer>
+        </WatchMeCodeSection>
       </div>
-      <ContactForm />
-      <FooterCopyRight> © {(new Date()).getFullYear()} Software on the road LLC | <a href="/privacy">Privacy policy</a> </FooterCopyRight>
-    </FooterContaienr>
+      <FooterContaienr>
+        <div css={{ padding: '80px 0px 0px 0px' }}>
+          <FooterTitle id="contactme"> Ready to scale your system? </FooterTitle>
+          <h3 css={{ padding: '0px 0px 20px 0px' }}> Contact me and <strong>get free quote! </strong> </h3>
+        </div>
+        <ContactForm />
+        <FooterCopyRight> © {(new Date()).getFullYear()} Software on the road LLC </FooterCopyRight>
+      </FooterContaienr>
+    </SectionWrapper>
   </IndexLayout>
 );
 
