@@ -60,9 +60,9 @@ const SubscribeFormTitle = css`
 const Subscribe: React.FunctionComponent<{ color: string; }> = ({ color }) => {
   return (
     <SubscribeFormSection color={color}>
-      <h3 css={SubscribeFormTitle}>Get notified when new content is out.</h3>
-      <p> Join 2000+ other developers learning node.js best practices! </p>
-      <p> You will receive only high-quality articles about Node.js, DevOps and Javascript front-end frameworks</p>
+      <h3 css={SubscribeFormTitle}>Get The Latest Articles In Your Inbox.</h3>
+      <p> Join the other 2000+ savvy node.js developers who get article updates. </p>
+      <p> You will receive only high-quality articles about Node.js, DevOps and Javascript front-end frameworks.</p>
       <p> Unsubscribe anytime. </p>
       <SubscribeForm color={color} />
     </SubscribeFormSection>

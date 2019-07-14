@@ -188,9 +188,9 @@ class SubscribeModal extends React.Component<any, SubscribeState> {
         <SubscribeOverlayClose onClick={this.close} />
         <SubscribeOverlayContent>
           <SubscribeLogo />
-          <SubscribeOverlayTitle>Get notified when new content is out.</SubscribeOverlayTitle>
+          <SubscribeOverlayTitle>Get The Latest Articles In Your Inbox.</SubscribeOverlayTitle>
           <SubscribeOverlayDescription>
-            Join 2000+ other developers learning node.js best practices!.
+            Join the other 2000+ savvy node.js developers who get article updates.
             You will receive only high-quality articles about Node.js, DevOps and Javascript front-end frameworks.
             Unsubscribe anytime.
           </SubscribeOverlayDescription>
