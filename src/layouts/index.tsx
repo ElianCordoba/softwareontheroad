@@ -9,6 +9,7 @@ import favicon from '../../src/favicon.ico';
 
 interface IndexProps {
   className?: string;
+  globalStyles?: any;
 }
 
 const GlobalStyles = css`
@@ -485,7 +486,7 @@ const IndexLayout: React.FunctionComponent<IndexProps> = props => {
       <Helmet>
         <link rel="icon" href={favicon} type="image/x-icon" />
       </Helmet>
-      <Global styles={GlobalStyles} />
+      <Global styles={{ ...GlobalStyles, ...props.globalStyles}} />
       {props.children}
     </div>
   );

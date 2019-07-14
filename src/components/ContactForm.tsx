@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 
 const submit = css`
-  background: #f80;
+  background: #009FFF;
   padding: 16px 32px;
   margin: 20px 0 5px;
   border-radius: 3px;
@@ -13,9 +13,14 @@ const submit = css`
   color: #fff;
   transition: transform .2s;
   transition-timing-function: ease-out;
+  pointer-events: auto;
+
   :hover {
     transform: scale(1.10);
   }
+  -webkit-box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.1);
+  -moz-box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.1);
+  box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.1);
 `
 
 const ContactFormContainer = styled.div`
@@ -41,6 +46,10 @@ const ContactFormContainer = styled.div`
     border-radius: 2px;
     border-width: 0.95px;
     margin-bottom: 10px;
+    :hover {
+      cursor: text;
+    }
+    cursor: text;
     ::placeholder {
       font-size: 14px;
     }
@@ -150,10 +159,6 @@ export default class ContactForm extends React.Component {
         <div>
           <label htmlFor="email">Your email<sup>*</sup></label>
           <input type="text" name="email" id="email" required  onChange={this.handleChange} />
-        </div>
-        <div>
-          <label htmlFor="website" >Your website</label>
-          <input type="text" placeholder="https://" name="website" id="website"  onChange={this.handleChange} />
         </div>
         <div>
           <label htmlFor="message">Project details<sup>*</sup></label>
