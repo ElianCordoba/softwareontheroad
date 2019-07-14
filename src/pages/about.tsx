@@ -52,7 +52,7 @@ const HeaderContainer = styled.header`
 `;
 
 const Title = styled.h1`
-  margin: 5vh 0vh;
+  margin: 0vh 5vw 5vh;
   font-size: 4.25rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -94,73 +94,49 @@ const CallToAction = styled.button`
 `
 
 const PerksContainer = styled.div`
-  margin-top: 20px;
+  margin: 0vh 0vw 1vh;
   display: flex;
   flex-direction: column;
-  align-items: space-between;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex: 1;
   /* Desktop Styles */
   @media only screen and (min-width: 961px) {
     flex-direction: row;
   }
 `
 
+const GetInTouch = styled.span`
+  text-decoration: underline;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+`
+
 const PerkDescription = styled.div`
   padding-bottom: 10px;
-  height: 100px;
+  font-size: 17px;
+}
 `
 
 const Perk= styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: flex-start;
-  background: #fff;
+  align-items: left;
+  flex: 1;
   width: 100%;
   text-align: left;
-  height: 300px;
-  padding: 20px;
-  padding-top: 10px;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-  border-radius: 3px;
-  border-left-style: solid;
-  border-left-color: black;
-  border-left-width: 6px;
-  -webkit-box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.04);
-  -moz-box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.04);
-  box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.04);
-
-  transition: transform .2s;
-  transition-timing-function: ease-out;
-  :hover {
-    transform: translate(3px);
-  }
-
-
+  height: 22vh;
+  padding: 0vh 2vw 0vh 0vw;
+  margin: 0vw 2vw;
 `
 const PerkTitle = styled.h2`
-  text-align: center;
+  text-align: left;
   color: black;
-`
-
-const PerkCallToAction = styled.button`
-  border-radius: 4px;
-  height: 60px;
-  font-size: 14px;
-  color: #000;
-  width: 100%;
-  border-style: solid;
-  border-color: black;
-  border-width: 1.5px;
-  text-transform: uppercase;
-  font-weight: 600;
-  background: #fff;
-  :hover {
-    color: #fff;
-    background: #000;
-  }
-
+  line-height: 1.5;
+  letter-spacing: -1px;
+  font-style: italic;
 `
 
 const ShowcaseContainer = styled.div`
@@ -221,6 +197,7 @@ const FooterTitle = styled.p`
   font-size: 40px;
   font-weight: 700;
   margin-bottom: 10px;
+  line-height: 1.25;
 `
 const FooterCopyRight = styled.div`
   padding: 30px 0px 50px 0px;
@@ -237,14 +214,15 @@ const Separator = styled.div`
   font-size: 15px;
   h2 {
     color: #000;
-    font-size: 2em;
+    font-size: 2.25em;
   }
 `
 
 const ShowcaseItemTechnologies = styled.div`
   padding-top: 20px;
   text-align: right;
-  font-weight: bold;
+  font-weight: 600;
+  font-style: italic;
 `
 
 const BounceAnimation = css`
@@ -294,6 +272,13 @@ const SectionWrapper = styled.div`
   strong {
     text-decoration: underline;
   }
+`
+
+const borderBottom = css`
+  border-bottom: 2px solid #ddd;
+`
+const borderTop = css`
+  border-top: 2px solid #ddd;
 `
 
 const About: React.FunctionComponent = () => (
@@ -361,12 +346,15 @@ const About: React.FunctionComponent = () => (
           </Perk>
         </PerksContainer>
       </SectionWrapper> */}
-      <SectionWrapper>
+    <SectionWrapper css={borderBottom}>
         <Separator> 
             <h2> Previous Works </h2> 
+            <PerkDescription>
+              <i> These projects have a place in my heart. ❤️ </i> 
+            </PerkDescription>
             <div css={[BounceAnimation, ArrowIcon]}/>
         </Separator>
-        <ShowcaseContainer css={container}>
+        <ShowcaseContainer css={[container]}>
           <ShowcaseItem>
             <ShowcaseItemText>
               Whyline is an application to skip the line in banks, government places, doctors offices, and more.
@@ -409,38 +397,44 @@ const About: React.FunctionComponent = () => (
           </ShowcaseItem>
         </ShowcaseContainer>
     </SectionWrapper>
-    <SectionWrapper>
+    <SectionWrapper css={[container, { paddingBottom: '8vh' }]}>
       <Separator>
-        <h2> Read my tutorials </h2>
-        <div css={[BounceAnimation, ArrowIcon]} />
+        <h2> Questions? </h2>
       </Separator>
-      <PerksContainer css={container}>
+      <PerksContainer>
         <Perk>
-          <PerkTitle>AWS DevOps </PerkTitle>
-          <PerkDescription>I will deploy your node.js proyect to the AWS Cloud using the best practices and services avaiable.</PerkDescription>
-          <a href="/tags/aws/" rel="nofollow noreferrer">
-            <PerkCallToAction> See my tutorials about DevOps </PerkCallToAction>
-          </a>
+          <PerkTitle>How long would it take for you to take ownership?</PerkTitle>
+          <PerkDescription>
+            It really depends upon the codebase complexity, but I'll start analyzing <GetInTouch onClick={smothScroll('#contactme')} className="get-in-touch">it as soon as possible.</GetInTouch>
+          </PerkDescription>
         </Perk>
         <Perk>
-          <PerkTitle> Node.js expert </PerkTitle>
-          <PerkDescription> More than 5 years of experience in high scale proyects. I'm an expert in node.js and javascript technologies. </PerkDescription>
-          <a href="/ideal-nodejs-project-structure/" rel="nofollow noreferrer">
-            <PerkCallToAction> Read more about node.js architecture </PerkCallToAction>
-          </a>
+          <PerkTitle>Where are you? </PerkTitle>
+          <PerkDescription>I'm based in Buenos Aires, Argentina the timezone is GMT+3.</PerkDescription>
+        </Perk>
+        </PerksContainer>
+        <PerksContainer>
+        <Perk>
+          <PerkTitle>Do you have a Tax Identification Number to work in the U.S? </PerkTitle>
+          <PerkDescription> 
+            Yes, this is a registered company, Software On The Road LLC in the state of Wyoming, payments are via wire transfer to a U.S. bank or Paypal. 
+            <GetInTouch onClick={smothScroll('#contactme')} className="get-in-touch">I have everything set up for your peace of mind</GetInTouch> :) 
+          </PerkDescription>
         </Perk>
         <Perk>
-          <PerkTitle>Full-Stack developer </PerkTitle>
-          <PerkDescription>I have been using several front-end technologies such as React.js, React Native, Angular and Ionic for years. </PerkDescription>
-          <a href="/react-hooks/" rel="nofollow noreferrer">
-            <PerkCallToAction> Deepdive into my guide on React Hooks </PerkCallToAction>
-          </a>
+          <PerkTitle>You didn't answer my question.</PerkTitle>
+          <PerkDescription> 
+            That’s not a question. :) If you still have questions after reading this page please <GetInTouch onClick={smothScroll('#contactme')} className="get-in-touch">get in touch</GetInTouch> and I will do my best to answer them.
+          </PerkDescription>
         </Perk>
       </PerksContainer>
     </SectionWrapper>
-    <SectionWrapper>
+    <SectionWrapper css={borderTop}>
       <Separator>
         <h2> Watch me code </h2>
+        <PerkDescription> 
+          I'm not the best youtuber but an <GetInTouch onClick={smothScroll('#contactme')} className="get-in-touch"> excelent coder.</GetInTouch>
+        </PerkDescription>
         <div css={[BounceAnimation, ArrowIcon]} />
       </Separator>
       <div css={css`max-width: 460px`}> 
