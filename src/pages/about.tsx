@@ -30,14 +30,19 @@ const TestimonialsList = styled.div`
 
   justify-content: space-between;
   .testimonial-wrapper {
-    margin: 0vh 2vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     -webkit-box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.04);
     -moz-box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.04);
     box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.04);
     flex: 1 1 0;
-
-    justify-content: space-between;
+  }
+  .testimonial-container {
     display: flex;
+    flex: 1 1 0;
+    justify-content: space-between;
     flex-direction: column;
     align-content: flex-end;
   }
@@ -79,6 +84,8 @@ const TestimonialsList = styled.div`
   padding-bottom: 5vh;
   padding-top: 2vh;
   .quotes {
+    line-height:1;
+    padding-right: .5em;
     font-size: 2.5em;
     color: ${callToActionColor};
   }
@@ -407,44 +414,50 @@ const About: React.FunctionComponent = () => (
       <TestimonialsList>
 
         <div className="testimonial-wrapper">
-          <div className="testimonial-card">
-            <div className="testimonial-description">
-              <span className="quotes">&#8220;</span>
-              After reviewing all our codebase, Santiago solved <b>68%</b> bug issues, and then help us with architectural decisions that got us<b> 3X </b>performance.
+          <div className="testimonial-container">
+            <div className="testimonial-card">
+              <div className="testimonial-description">
+                <span className="quotes">&#8220;</span>
+                After reviewing all our codebase, Santiago solved <b>68%</b> bug issues, and then help us with architectural decisions that got us<b> 3X </b>performance.
+              </div>
             </div>
-          </div>
-          <div className="testimonial-person">
-            <img src={matiasAvatar} />
-            <div className="testimonial-person-name"> Matias Heredia </div>
-            <div className="testimonial-person-position"> CEO - HerediaEstudio.com.ar </div>
+            <div className="testimonial-person">
+              <img src={matiasAvatar} />
+              <div className="testimonial-person-name"> Matias Heredia </div>
+              <div className="testimonial-person-position"> CEO - HerediaEstudio.com.ar </div>
+            </div>
           </div>
         </div>
 
         <div className="testimonial-wrapper">
-          <div className="testimonial-card">
-            <div className="testimonial-description">
-              <span className="quotes">&#8220;</span>
-              Santiago is the best developer I've ever worked with, his <b>passion</b> for coding and getting things done it's unmatchable. A real catalyzer to any team.
-            </div> 
-          </div>
-          <div className="testimonial-person">
-            <img src={elianAvatar} />
-            <div className="testimonial-person-name"> Elian Cordoba </div>
-            <div className="testimonial-person-position"> CTO - PampaSoft </div>
+          <div className="testimonial-container">
+            <div className="testimonial-card">
+              <div className="testimonial-description">
+                <span className="quotes">&#8220;</span>
+                Santiago is the best developer I've ever worked with, his <b>passion</b> for coding and getting things done it's unmatchable. A real catalyzer to any team.
+              </div> 
+            </div>
+            <div className="testimonial-person">
+              <img src={elianAvatar} />
+              <div className="testimonial-person-name"> Elian Cordoba </div>
+              <div className="testimonial-person-position"> CTO - PampaSoft </div>
+            </div>
           </div>
         </div>
 
         <div className="testimonial-wrapper">
-          <div className="testimonial-card">
-            <div className="testimonial-description">
-              <span className="quotes">&#8220;</span>
-              Santiago has really helped our business. I <b>STRONGLY</b> recommend him to <b>EVERYONE</b> interested in running a successful online business!.
+          <div className="testimonial-container">
+            <div className="testimonial-card">
+              <div className="testimonial-description">
+                <span className="quotes">&#8220;</span>
+                Santiago has really helped our business. I <b>STRONGLY</b> recommend him to <b>EVERYONE</b> interested in running a successful online business!.
+              </div>
             </div>
-          </div>
-          <div className="testimonial-person">
-            <img css={css`background-color: #ccddcd;`} src={ferAvatar} />
-            <div className="testimonial-person-name"> Fernando Guevara </div>
-            <div className="testimonial-person-position"> Software Architect - Whyline Inc. </div>
+            <div className="testimonial-person">
+              <img css={css`background-color: #ccddcd;`} src={ferAvatar} />
+              <div className="testimonial-person-name"> Fernando Guevara </div>
+              <div className="testimonial-person-position"> Software Architect - Whyline Inc. </div>
+            </div>
           </div>
         </div>
 
