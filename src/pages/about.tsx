@@ -7,16 +7,95 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import Helmet from 'react-helmet';
 
+import elianAvatar from '../content/avatars/elian.jpg'
+import matiasAvatar from '../content/avatars/matias.jpg'
+import ferAvatar from '../content/avatars/fer.png'
+
 const primaryColor = `#0a0b0c`;
-const secondaryColor = `#8CAFCE`;
-const ternaryColor = `#6A7987`;
-const quaternaryColor = `#2F0019`;
+const textColor = `#3B474D`;
 const callToActionColor = `#009FFF`;
 
 const container = css`
   margin: 0 auto;
   max-width: 1040px;
   width: 100%;
+`
+
+const TestimonialsList = styled.div`
+  margin: 0 auto;
+  max-width: 1040px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  .testimonial-wrapper {
+    margin: 0vh 2vw;
+    -webkit-box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.04);
+    -moz-box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.04);
+    box-shadow: 0px 3px 3px 3px rgba(0,0,0, 0.04);
+    flex: 1 1 0;
+
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+  }
+  .testimonial-card {
+    position: relative;
+    background: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 30px;
+    padding-bottom: 0px;
+    min-height: 250px;
+    z-index: -1;
+    flex: 1 1 0;
+  }
+  .testimonial-person {
+    background: ${primaryColor};
+    color: #fff;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 30px;
+    padding-top: 50px;
+    text-align: center;
+    flex: 1 1 0;
+  }
+  img {
+    max-width: 100px;
+    max-height: 100px;
+    margin-top: -16vh;
+    border:solid white 4px;
+    border-radius: 50%;
+  }
+  .testimonial-person-name {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .testimonial-person-position {
+    color: rgba(255,255,255,0.9);
+  }
+  padding-bottom: 5vh;
+  padding-top: 2vh;
+  .quotes {
+    font-size: 2.5em;
+    color: ${callToActionColor};
+  }
+  @media only screen and (max-width: 960px) {
+    flex-direction: column;
+    .testimonial-wrapper {
+      margin: 2vh 2vw;
+    }
+    .testimonial-card {
+      min-height: 250px;
+      text-align: center;
+    }
+  }
+  .testimonial-description {
+    line-height: 1.5;
+  }
+
 `
 
 const SkewWrapper = styled.div`
@@ -36,7 +115,7 @@ const HeaderContainer = styled.header`
   color: #fff;
   height: 100vh;
   /* Mobile Styles */
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: 420px) {
     padding: 10px;
   }
 
@@ -146,12 +225,12 @@ const ShowcaseContainer = styled.div`
   flex-direction: column;
   >div:nth-child(odd) {
     border-left-width: 6px;
-    border-left-color: #000;
+    border-left-color: ${primaryColor};
     border-left-style: solid;
   }
   >div:nth-child(even) {
     border-right-width: 6px;
-    border-right-color: #000;
+    border-right-color: ${primaryColor};
     border-right-style: solid;
   }
 `
@@ -318,34 +397,59 @@ const About: React.FunctionComponent = () => (
         </div>
       </HeaderContainer>
     </SkewWrapper>
-    {/* <SectionWrapper>
+    <SectionWrapper css={borderBottom}>
       <Separator>
         <h2> Testimonials </h2>
+        <PerkDescription>
+          People who <b>trusted</b> in me.
+        </PerkDescription>
       </Separator>
-        <PerksContainer css={container}>
-          <Perk>
-            <PerkTitle>AWS DevOps </PerkTitle>
-            <PerkDescription>I will deploy your node.js proyect to the AWS Cloud using the best practices and services avaiable.</PerkDescription>
-            <a href="/tags/aws/" rel="nofollow noreferrer"> 
-              <PerkCallToAction> See my tutorials about DevOps </PerkCallToAction>
-            </a>
-          </Perk>
-          <Perk>
-            <PerkTitle> Node.js expert </PerkTitle>
-            <PerkDescription> More than 5 years of experience in high scale proyects. I'm an expert in node.js and javascript technologies. </PerkDescription>
-            <a href="/ideal-nodejs-project-structure/" rel="nofollow noreferrer"> 
-              <PerkCallToAction> Read more about node.js architecture </PerkCallToAction>
-            </a>
-          </Perk>
-          <Perk>
-            <PerkTitle>Full-Stack developer </PerkTitle>
-            <PerkDescription>I have been using several front-end technologies such as React.js, React Native, Angular and Ionic for years. </PerkDescription>
-            <a href="/react-hooks/" rel="nofollow noreferrer"> 
-              <PerkCallToAction> Deepdive into my guide on React Hooks </PerkCallToAction>
-            </a> 
-          </Perk>
-        </PerksContainer>
-      </SectionWrapper> */}
+      <TestimonialsList>
+
+        <div className="testimonial-wrapper">
+          <div className="testimonial-card">
+            <div className="testimonial-description">
+              <span className="quotes">&#8220;</span>
+              After reviewing all our codebase, Santiago solved <b>68%</b> bug issues, and then help us with architectural decisions that got us<b> 3X </b>performance.
+            </div>
+          </div>
+          <div className="testimonial-person">
+            <img src={matiasAvatar} />
+            <div className="testimonial-person-name"> Matias Heredia </div>
+            <div className="testimonial-person-position"> CEO - HerediaEstudio.com.ar </div>
+          </div>
+        </div>
+
+        <div className="testimonial-wrapper">
+          <div className="testimonial-card">
+            <div className="testimonial-description">
+              <span className="quotes">&#8220;</span>
+              Santiago is the best developer I've ever worked with, his <b>passion</b> for coding and getting things done it's unmatchable. A real catalyzer to any team.
+            </div> 
+          </div>
+          <div className="testimonial-person">
+            <img src={elianAvatar} />
+            <div className="testimonial-person-name"> Elian Cordoba </div>
+            <div className="testimonial-person-position"> CTO - PampaSoft </div>
+          </div>
+        </div>
+
+        <div className="testimonial-wrapper">
+          <div className="testimonial-card">
+            <div className="testimonial-description">
+              <span className="quotes">&#8220;</span>
+              Santiago has really helped our business. I <b>STRONGLY</b> recommend him to <b>EVERYONE</b> interested in running a successful online business!.
+            </div>
+          </div>
+          <div className="testimonial-person">
+            <img css={css`background-color: #ccddcd;`} src={ferAvatar} />
+            <div className="testimonial-person-name"> Fernando Guevara </div>
+            <div className="testimonial-person-position"> Software Architect - Whyline Inc. </div>
+          </div>
+        </div>
+
+      </TestimonialsList>       
+    </SectionWrapper>
     <SectionWrapper css={borderBottom}>
         <Separator> 
             <h2> Previous Works </h2> 
