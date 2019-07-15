@@ -98,6 +98,15 @@ const TestimonialsList = styled.div`
       min-height: 250px;
       text-align: center;
     }
+    #card-elian {
+      order: 1;
+    }
+    #card-matias {
+      order: 3;
+    }
+    #card-fer {
+      order: 2;
+    }
   }
   .testimonial-description {
     line-height: 1.5;
@@ -413,7 +422,7 @@ const About: React.FunctionComponent = () => (
       </Separator>
       <TestimonialsList>
 
-        <div className="testimonial-wrapper">
+        <div className="testimonial-wrapper" id="card-matias">
           <div className="testimonial-container">
             <div className="testimonial-card">
               <div className="testimonial-description">
@@ -429,7 +438,7 @@ const About: React.FunctionComponent = () => (
           </div>
         </div>
 
-        <div className="testimonial-wrapper">
+        <div className="testimonial-wrapper" id="card-elian">
           <div className="testimonial-container">
             <div className="testimonial-card">
               <div className="testimonial-description">
@@ -445,7 +454,7 @@ const About: React.FunctionComponent = () => (
           </div>
         </div>
 
-        <div className="testimonial-wrapper">
+        <div className="testimonial-wrapper" id="card-fer">
           <div className="testimonial-container">
             <div className="testimonial-card">
               <div className="testimonial-description">
