@@ -161,7 +161,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
               </li>
             }
             {
-              !isHireMe && <SubscribeButton className="hide-in-mobile" onClick={this.openModal}>Newsletter</SubscribeButton>
+              !isHireMe && <SubscribeButton className={isHome ? '' : "hide-in-mobile"} onClick={this.openModal}>Newsletter</SubscribeButton>
             }
             {
               config.books && <li role="menuitem">
