@@ -173,6 +173,9 @@ draft: false
 
   ```
  [Visit the example repository](https://github.com/santiq/bulletproof-nodejs)
+
+<cta-container type="hire"></cta-container>
+
 <a name="pubsub"></a>
 
 # Use a Pub/Sub layer too 🎙️
@@ -400,6 +403,8 @@ draft: false
   It's so organized that makes me want to be coding something right now.
 
   [Visit the example repository](https://github.com/santiq/bulletproof-nodejs)
+
+<cta-container type="subscribe"></cta-container>
 
   <a name="test"></a>
 
