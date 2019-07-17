@@ -27,6 +27,8 @@ draft: false
   ![do more work](img/ionic-circleci2/stress.jpg)
 
   Even if you can handle all that trouble, maybe your coworkers don't, and you will become that guy who can generate the APK, they always will depend upon you or your computer.
+  
+<cta-container> </cta-container>
 
 # Introducing automated APK generation with CircleCI and Docker
 
