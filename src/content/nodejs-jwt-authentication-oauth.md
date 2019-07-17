@@ -127,6 +127,8 @@ which means, when an attacker tries to brute-force a password based in the solid
 
 In the next section, we will discuss how to generate a JWT
 
+<cta-container type="hire"> </cta-container>
+
 <a name="what-is-jwt"></a>
 
 # But, what is a JWT anyway? 👩‍🏫
@@ -258,6 +260,9 @@ This is the way is so important to never disclose the secret.
 Our server is checking the signature on the middleware `IsAuth` the library `express-jwt` takes care of that.
 
 Now that we understand how a JWT works, let's move on to a cool advance feature.
+
+
+<cta-container> </cta-container>
 
 <a name="user-impersonation"></a>
 

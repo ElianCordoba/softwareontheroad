@@ -222,6 +222,8 @@ draft: false
 
   This lets us keep the logic for adding and removing subscriptions close to each other. 
 
+<cta-container> </cta-container>
+
 <a name="use-reducer"> </a>
 
 # The `useReducer` hook 🎣
@@ -323,6 +325,8 @@ export default TodoList;
     );
   }
   ```
+
+<cta-container type="hire"> </cta-container>
 
 <a name="separation-concerns"> </a>
 

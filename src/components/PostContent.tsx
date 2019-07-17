@@ -2,7 +2,7 @@ import { lighten, setLightness, darken, setSaturation } from 'polished';
 import * as React from 'react';
 import styled from '@emotion/styled'
 import rehypeReact from 'rehype-react';
-
+import CTAContainer from './CTAContainer';
 import { colors } from '../styles/colors';
 
 export const PostFullContent = styled.section`
@@ -374,15 +374,9 @@ export const PostFullContent = styled.section`
   }
 `;
 
-const LeaveACommentContainer = styled.div`
-  width: 100%;
-  text-align: center;
-`
-
 const renderAst = new rehypeReact({
   createElement: React.createElement,
-  // components: { 'interactive-counter': Counter },
-  components: {},
+  components: { 'cta-container': CTAContainer },
 }).Compiler;
 
 const Ast = ({ ast, ...props }: any) => {
@@ -392,11 +386,9 @@ const Ast = ({ ast, ...props }: any) => {
 
 export interface PostContentProps {
   htmlAst: any;
-  postURL: string;
-  githubFile: string;
 }
 
-const PostContent: React.FunctionComponent<PostContentProps> = ({ htmlAst, postURL, githubFile }) => {
+const PostContent: React.FunctionComponent<PostContentProps> = ({ htmlAst }) => {
   return (
     <PostFullContent className="post-full-content">
       {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
@@ -429,18 +421,6 @@ const PostContent: React.FunctionComponent<PostContentProps> = ({ htmlAst, postU
       </div>
       <div id="amzn-assoc-ad-8a41004c-831a-4dfc-8329-89ef1a3b9a5f" />
       <script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=8a41004c-831a-4dfc-8329-89ef1a3b9a5f"/>
-      <br />
-      <LeaveACommentContainer>
-        <a href={`https://mobile.twitter.com/search?q=${postURL}`} target="_blank" rel="nofollow noopener noreferrer">
-          Discuss on Twitter
-        </a>
-        {` - `}
-        <a href={
-          `https://github.com/santiq/softwareontheroad/edit/master/src/content${githubFile}`
-        } target="_blank" rel="nofollow noopener noreferrer">
-          Edit on GitHub
-        </a>
-      </LeaveACommentContainer>
       <br />
     </PostFullContent>
   );

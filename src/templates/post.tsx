@@ -298,12 +298,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                   />
                 </PostFullImage>
               )}
-              <PostContent htmlAst={post.htmlAst} 
-                postURL={encodeURIComponent(config.siteUrl + props.pathContext.slug)}
-                githubFile={`${props.pathContext.slug.slice(
-                  0,
-                  props.pathContext.slug.length - 1
-                )}.md`} /> 
+              <PostContent htmlAst={post.htmlAst} /> 
               <Share
                 socialConfig={{
                   twitterHandle: '@santypk4',

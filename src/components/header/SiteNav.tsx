@@ -73,6 +73,13 @@ const NavStyles = css`
     text-decoration: none;
     font-weight: bold;
   }
+
+  .hide-in-mobile {
+    @media (max-width: 700px) {
+      display: none;
+    }
+  } 
+
 `;
 
 const SiteNavRight = styled.div`
@@ -154,7 +161,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
               </li>
             }
             {
-              !isHireMe && <SubscribeButton onClick={this.openModal}>Newsletter</SubscribeButton>
+              !isHireMe && <SubscribeButton className={isHome ? '' : "hide-in-mobile"} onClick={this.openModal}>Newsletter</SubscribeButton>
             }
             {
               config.books && <li role="menuitem">

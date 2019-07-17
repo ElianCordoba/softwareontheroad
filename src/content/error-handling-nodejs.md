@@ -52,6 +52,8 @@ draft: false
 
   Don't be like those guys and log your errors before the user notice it.
 
+  <cta-container> </cta-container>
+
   ## You must have a stable, reliable, centralized way to handle your errors.**
 
 
