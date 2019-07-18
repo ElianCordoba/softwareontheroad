@@ -76,6 +76,7 @@ const ThanksPage: React.FunctionComponent<NotFoundTemplateProps> = props => {
           <div css={inner}>
             <section style={{ textAlign: 'center' }}>
               <ThankYouTitle>Thank you!</ThankYouTitle>
+              <ErrorDescription>We'll be in touch.</ErrorDescription>
               <Link css={ErrorLink} to={''}>
                 Go to the front page →
               </Link>

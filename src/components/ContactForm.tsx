@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
+import { navigate } from "gatsby";
 
 const submit = css`
   background: #009FFF;
@@ -124,8 +125,8 @@ export default class ContactForm extends React.Component {
         console.log("====================================")
         console.log(`${JSON.stringify(response, null, 2)}`)
         console.log("====================================")
-        alert("Thanks for your message, we will speak soon :)")
-        document.getElementById("contact-form").reset();
+        // alert("Thanks for your message, we will speak soon :)")
+        navigate('/thanks')
       })
       .catch(error => {
         console.log("====================================")
