@@ -34,7 +34,7 @@ export interface WebsiteConfig {
 const config: WebsiteConfig = {
   title: 'Software on the road',
   siteTitle: 'Softwareontheroad: articles on node, react, angular, AWS',
-  description: 'Find articles and tutorials about node, react, angular, cloud computing, aws, continuous integration, docker, and more...',
+  description: 'Advanced articles about Node.js, React, Typescript and Amazon Web Services',
   coverImage: 'img/blog-cover.jpg',
   logo: 'img/ghost-logo.png',
   lang: 'en',
