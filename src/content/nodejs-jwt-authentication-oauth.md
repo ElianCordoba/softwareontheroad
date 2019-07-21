@@ -127,7 +127,7 @@ which means, when an attacker tries to brute-force a password based in the solid
 
 In the next section, we will discuss how to generate a JWT
 
-<cta-container type="hire"> </cta-container>
+<cta-container type="hire" copy="node" > </cta-container>
 
 <a name="what-is-jwt"></a>
 

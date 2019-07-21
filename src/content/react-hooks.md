@@ -326,7 +326,7 @@ export default TodoList;
   }
   ```
 
-<cta-container type="hire"> </cta-container>
+<cta-container type="hire" copy="react"> </cta-container>
 
 <a name="separation-concerns"> </a>
 
@@ -463,6 +463,8 @@ export default TodoList;
   ```
 
 <a name="real-world"></a>
+
+<cta-container type="subscribe" copy="react">
 
 # Real-World examples
 
