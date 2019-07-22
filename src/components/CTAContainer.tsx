@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
-import { colors } from '../styles/colors';
 import config from '../website-config';
 
 
@@ -76,9 +75,10 @@ const BookCTA: React.FunctionComponent = () => {
   </div>
 }
 
-const HireMeCTA: React.FunctionComponent = () => {
+const HireMeCTA: React.FunctionComponent<CTAProps> = ({ copy }) => {
+  const subject = copy === 'react' ? 'react.js' : 'node.js';
   return <div className="cta-element">
-      <h3> 🖐️ Need a hand with your node.js application? </h3>
+      <h3> 🖐️ Need a hand with your {subject} application? </h3>
       <p> 
         <span className="emphasis">Messy code, scalability problems, security issues, feature planning, and architectural advice </span> is just a couple of things that I can help you with.
       </p>
@@ -88,11 +88,13 @@ const HireMeCTA: React.FunctionComponent = () => {
     </div>
 }
 
-const SubscribeCTA: React.FunctionComponent = () => {
+const SubscribeCTA: React.FunctionComponent<CTAProps> = ({ copy }) => {
+
+  const subject = copy === 'react' ? 'react.js' : 'node.js';
 
   return <div className="cta-element">
-    <h3> 👉 GET MORE ADVANCED NODE.JS DEVELOPMENT ARTICLES </h3>
-    <p> <span className="emphasis">Join the other 2,000+ savvy node.js developers </span> who get article updates.</p>
+    <h3> 👉 GET MORE ADVANCED {subject} DEVELOPMENT ARTICLES </h3>
+    <p> <span className="emphasis">Join the other 2,000+ savvy {subject} developers </span> who get article updates.</p>
       <form
         action={config.mailchimpAction}
         method="post"
@@ -114,17 +116,18 @@ const SubscribeCTA: React.FunctionComponent = () => {
 
 
 interface CTAProps {
-  type: string;
+  type?: string;
+  copy: string;
 }
 
-const CTAContainer: React.FunctionComponent<CTAProps> = ({ type }) => {
+const CTAContainer: React.FunctionComponent<CTAProps> = ({ type, copy }) => {
 
   return (
     <div css={CTAStyles} >
       {
         type === 'book' ? <BookCTA />
-          : type === 'hire' ? <HireMeCTA />
-            : <SubscribeCTA />
+          : type === 'hire' ? <HireMeCTA copy={copy} />
+            : <SubscribeCTA copy={copy} />
       }
     </div>
   );

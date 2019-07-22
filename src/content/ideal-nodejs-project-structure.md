@@ -174,7 +174,7 @@ draft: false
   ```
  [Visit the example repository](https://github.com/santiq/bulletproof-nodejs)
 
-<cta-container type="hire"></cta-container>
+<cta-container type="hire" copy="node" ></cta-container>
 
 <a name="pubsub"></a>
 
@@ -404,7 +404,7 @@ draft: false
 
   [Visit the example repository](https://github.com/santiq/bulletproof-nodejs)
 
-<cta-container type="subscribe"></cta-container>
+<cta-container type="subscribe" copy="node"></cta-container>
 
   <a name="test"></a>
 
