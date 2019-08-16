@@ -25,6 +25,21 @@ const SiteNavStyles = css`
   align-items: flex-start;
   overflow-y: hidden;
   height: 60px;
+  @media (min-width: 900px) {
+    position: relative;
+  }
+  @media (max-width: 700px) {
+    justify-content: center;
+    ul li a {
+      opacity: 1;
+      font-size: 1.2em;
+      font-weight: bold;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      text-shadow: rgba(0,0,0,.01) 0 0 1px;
+    }
+  }
 `;
 
 const SiteNavLeft = styled.div`
@@ -52,6 +67,7 @@ const NavStyles = css`
   display: flex;
   padding: 0;
   list-style: none;
+  overflow: hidden;
 
   li {
     display: block;
@@ -66,12 +82,15 @@ const NavStyles = css`
     font-size: 14px;
     padding: 10px 12px;
     color: #fff;
-    opacity: 1;
+    opacity: .8;
   }
 
   li a:hover {
     text-decoration: none;
-    font-weight: bold;
+    cursor: pointer;
+    opacity: 1;
+    background: white;
+    color: black;
   }
 
   .hide-in-mobile {
@@ -101,7 +120,9 @@ const SocialLinks = styled.div`
     padding-right: 20px;
   }
   a:hover {
-    text-decoration: none;
+    text-decoration: #0b0c0e;
+    cursor: pointer;
+    opacity: 1;
   }
 `;
 
@@ -112,11 +133,7 @@ const SubscribeButton = styled.a`
   padding: 10px 12px;
   color: #fff;
   text-transform: uppercase;
-  :hover {
-    text-decoration: none;
-    cursor: pointer;
-    font-weight: bold;
-  }
+  opacity: .8;
 `;
 
 interface SiteNavProps {
@@ -161,7 +178,10 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
               </li>
             }
             {
-              !isHireMe && <SubscribeButton className={isHome ? '' : "hide-in-mobile"} onClick={this.openModal}>Newsletter</SubscribeButton>
+              !isHireMe && 
+                <li> 
+                  <SubscribeButton className={isHome ? '' : "hide-in-mobile"} onClick={this.openModal}>Newsletter</SubscribeButton>
+                </li>
             }
             {
               config.books && <li role="menuitem">
