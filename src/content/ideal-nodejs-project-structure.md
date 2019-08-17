@@ -22,7 +22,7 @@ draft: false
 
   This post is extense research, from my years of experience dealing with a poor structured node.js project, bad patterns, and countless hours of refactoring code and moving things around.
 
-  If you need help to align your node.js project architecture, just drop me a letter at santiago@softwareontheroad.com
+  If you need help to align your node.js project architecture, just drop me a letter at sam@softwareontheroad.com
 
 # Table of contents
 

@@ -393,7 +393,7 @@ const About: React.FunctionComponent = () => (
         `
       }]} 
     >
-      <title>Node.js developer expert | Santiago Quinteros</title>
+      <title>Node.js developer expert | Sam Quinn</title>
     </Helmet>
     <SkewWrapper>
       <HeaderContainer css={noSkew}>
@@ -427,7 +427,7 @@ const About: React.FunctionComponent = () => (
             <div className="testimonial-card">
               <div className="testimonial-description">
                 <span className="quotes">&#8220;</span>
-                After reviewing all our codebase, Santiago solved <b>68%</b> bug issues, and then help us with architectural decisions that got us<b> 3X </b>performance.
+                After reviewing all our codebase, Sam solved <b>68%</b> bug issues, and then help us with architectural decisions that got us<b> 3X </b>performance.
               </div>
             </div>
             <div className="testimonial-person">
@@ -443,7 +443,7 @@ const About: React.FunctionComponent = () => (
             <div className="testimonial-card">
               <div className="testimonial-description">
                 <span className="quotes">&#8220;</span>
-                Santiago is the best developer I've ever worked with, his <b>passion</b> for coding and getting things done it's unmatchable. A real catalyzer to any team.
+                Sam is the best developer I've ever worked with, his <b>passion</b> for coding and getting things done it's unmatchable. A real catalyzer to any team.
               </div> 
             </div>
             <div className="testimonial-person">
@@ -459,7 +459,7 @@ const About: React.FunctionComponent = () => (
             <div className="testimonial-card">
               <div className="testimonial-description">
                 <span className="quotes">&#8220;</span>
-                Santiago has really helped our business. I <b>STRONGLY</b> recommend him to <b>EVERYONE</b> interested in running a successful online business!.
+                Sam has really helped our business. I <b>STRONGLY</b> recommend him to <b>EVERYONE</b> interested in running a successful online business!.
               </div>
             </div>
             <div className="testimonial-person">

@@ -181,7 +181,7 @@ export default class Mailer {
 
   public async SendWelcomeEmail(email){
     const data = {
-      from: 'Hi from Softwareontheroad <santiago@softwareontheroad.com>',
+      from: 'Hi from Softwareontheroad <sam@softwareontheroad.com>',
       to: email,
       subject: 'Welcome !',
       text: 'Thanks for sign up',
