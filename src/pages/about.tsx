@@ -559,7 +559,7 @@ const About: React.FunctionComponent = () => (
       <Separator>
         <h2> Watch me code </h2>
         <PerkDescription> 
-          I'm not the best youtuber but an <GetInTouch onClick={smothScroll('#contactme')} className="get-in-touch"> excelent coder.</GetInTouch>
+          I'm not the best youtuber but an <GetInTouch onClick={smothScroll('#contactme')} className="get-in-touch"> excellent coder.</GetInTouch>
         </PerkDescription>
         <div css={[BounceAnimation, ArrowIcon]} />
       </Separator>
