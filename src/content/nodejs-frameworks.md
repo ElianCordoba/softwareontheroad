@@ -224,7 +224,7 @@ server.listen(8080, function() {
 
 # 4. Nest.js
 
-A relatively new node.js framework, [Nest.js](https://nestjs.com) is caracterized bt
+A relatively new node.js framework, [Nest.js](https://nestjs.com) has a similar architecture to Angular.io, so if you are familiar with that frontend framework, you'll find this one pretty easy to develop as well.
 
 ## Example
 
