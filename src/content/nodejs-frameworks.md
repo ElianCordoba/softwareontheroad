@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Discovering the Best 10 Node.js Frameworks in 2019"
+title: "The Best 10 Node.js Frameworks for 2019"
 subtitle: "A comparasion of the 10 most downloaded node.js frameworks"
 author: santypk4
 date: "2019-08-17T13:00:00.000Z"
