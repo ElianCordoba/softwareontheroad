@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Discovering the Best 10 Node.js Frameworks in 2019"
+title: "The Best 10 Node.js Frameworks for 2019"
 subtitle: "A comparasion of the 10 most downloaded node.js frameworks"
 author: santypk4
 date: "2019-08-17T13:00:00.000Z"
@@ -10,7 +10,7 @@ twittertags: ["100daysofcode", "codenewbie", "javascript", "webdev", "node"]
 draft: false
 ---
 
-I'm so tired of reading articles claiming what is the best node.js framework based on biased oppinions or sponsorhips _(yes, that's a thing)_
+I’m so tired of reading articles claiming what is the best node.js framework based on biased opinions or sponsorships _(yes, that’s a thing)_
 
 So here are the top node.js frameworks ranked by daily downloads, the data was taken from npmjs.com itself _(sorry yarn)_.
 
@@ -43,19 +43,20 @@ So here are the top node.js frameworks ranked by daily downloads, the data was t
 
 You have to consider mainly 2 things:
 
-1. The scalability and resilance of the framework
+1. The scalability and robustness of the framework
 
 2. If the development process is something you feel comfortable working with.
 
-Regardless scalability and resilance, every node.js web framework is built on top of the `http` module.
+Regardless of scalability and robustness, every node.js web framework is built on top of the `http` module.
 
-Some of this frameworks add to much ... and that makes a huge impact on the server's throughtput.
+Some of these frameworks add too much … and that makes a huge impact on the server’s throughput.
 
-In my opinion working with a barebone framework like Express.js or Fastify.js is the best when the service you are developing is small in business logic but need to be highly scalable.
+In my opinion, working with a barebone framework like Express.js or Fastify.js is the best when the service you are developing is small in business logic but need to be highly scalable.
 
-By the other hand, if you are developing a medium size application, it's better to go with a framework that help you have a clear structure like next.js or loopback.
+By the other hand, if you are developing a medium size application, it’s better to go with a framework that helps you have a clear structure like next.js or loopback.
 
 There is no simple answer to the question, you better have a peek on how to declare API routes on every framework on this list and decide for yourself.
+
 
 <cta-container type="hire" copy="node" ></cta-container>
 
@@ -65,17 +66,17 @@ There is no simple answer to the question, you better have a peek on how to decl
 
 [_Adonis.js_](https://adonisjs.com/) is an MVC (Model-View-Controller) node.js framework capable of building an API Rest with JWT authentication and database access.
 
-## What's is this framework about?
+## What’s is this framework about?
 
-The good thing is that Adonis.js framework comes with a CLI to create the boostrap for applications.
+The good thing is that Adonis.js framework comes with a CLI to create the bootstrap for applications.
 
-```bash
+```
 $ npm i -g @adonisjs/cli
 $ adonis new adonis-tasks
 $ adonis serve --dev
 ```
 
-The typical Adonis app has a MVC structure, that way you don’t waste time figuring out how you should structure your web server.
+The typical Adonis app has an MVC structure, that way you don’t waste time figuring out how you should structure your web server.
 
 Some apps built with adonis can [be found here.](https://madewithadonisjs.com/)
 
@@ -83,11 +84,11 @@ Some apps built with adonis can [be found here.](https://madewithadonisjs.com/)
 
 # 9. Feathers
 
-[_Feather.js_](https://feathersjs.com/) is a node.js frameworks promise to be a REST and realtime API layer for modern applications.
+[_Feather.js_](https://feathersjs.com/) is a node.js framework promise to be a REST and realtime API layer for modern applications.
 
-## See what's capable of!!
+## See what’s capable of!!
 
-This is all the code you need to setup your API REST + realtime websockets connection thanks to the socket.io plugin
+This is all the code you need to set-up your API REST + realtime WebSockets connection thanks to the socket.io plugin
 
 ```js
 const feathers = require('@feathersjs/feathers');
@@ -136,15 +137,15 @@ Here are some apps [built with feathers.js.](https://github.com/feathersjs/aweso
 
 # 8. Sails
 
-_[Sails.js](https://sailsjs.com/) Ye' olde node.js framework_
+_[Sails.js](https://sailsjs.com/) Ye’ olde node.js framework_
 
-With 7 years of maturity, this is a battle tested node.js web framework that you should definitivelly check out!
+With 7 years of maturity, this is a battle-tested node.js web framework that you should definitively check out!
 
 ## See it in action
 
-Sails cames with a CLI tool to help you get started in just 4 steps
+Sails.js comes with a CLI tool to help you get started in just 4 steps
 
-```bash
+```
 $ npm install sails -g
 $ sails new test-project
 $ cd test-project
@@ -154,13 +155,38 @@ $ sails lift
 
 <a name="loopback"> </a>
 
+
 # 7. Loopback
 
-Backed by IBM, [Loopback.io](https://loopback.io) is an enterprsie grade node.js framework, used by companies such as GoDaddy, Symantec, IBM itself.
+Backed by IBM, [Loopback.io](https://loopback.io) is an enterprise-grade node.js framework, used by companies such as GoDaddy, Symantec, IBM itself. 
 
-They even offer Long-Term Support (LTS)
+They even offer Long-Term Support (LTS) for 18 months! 
 
-## 
+This framework comes with a CLI tool to scaffold your node.js server
+
+```
+$ npm i -g @loopback/cli
+
+```
+
+Then to create a project
+
+```
+$ lb4 app
+```
+
+Here is what an API route and controller looks like:
+
+```js
+import {get} from '@loopback/rest';
+
+export class HelloController {
+  @get('/hello')
+  hello(): string {
+    return 'Hello world!';
+  }
+}
+```
 
 <a name="fastify"> </a>
 
@@ -187,9 +213,10 @@ fastify.listen(3000, (err, address) => {
   fastify.log.info(`server listening on ${address}`)
 })
 ```
-And that's it! 
 
-I love the simplicity and reminicence to express.js of fastify, definitively is the framework to go if performance is an issue in your server.
+And that’s it!
+
+I love the simplicity and reminiscence to Express.js of Fastify.js, definitively is the framework to go if performance is an issue in your server.
 
 <a name="restify"> </a>
 
@@ -197,11 +224,11 @@ I love the simplicity and reminicence to express.js of fastify, definitively is 
 
 [Restify](http://restify.com/) claims to be the future of Node.js Web Frameworks.
 
-This framework is used in production by NPM, Netflix, Pinteres and Napster.
+This framework is used in production by NPM, Netflix, Pinterest and Napster.
 
 ## Code example
 
-Setting up a restify server is just as simple as this
+Setting up a Restify.js server is just as simple as this
 
 ```js
 const restify = require('restify');
@@ -247,11 +274,11 @@ bootstrap();
 
 One of the big 3 node.js frameworks, [hapi.js](https://hapi.dev) has an ecosystem of libraries and plugins that makes the framework highly customizable.
 
-Altought I never used hapi.js on production, I've been using it's validation library Joi.js for years.
+Although I never used hapi.js on production, I’ve been using its validation library Joi.js for years.
 
 ## Creating a server
 
-A hapi.js web server looks like this 
+A hapi.js webserver looks like this
 
 ```js
 const Hapi = require('@hapi/hapi');
@@ -270,17 +297,31 @@ const init = async () => {
 init();
 ```
 
+
 <a name="koa"> </a>
 
 # 2. Koa
 
 [Koa](https://koajs.com) is a web framework designed by the team behind Express.js the most famous and used node.js framework.
 
-Koa aims to be a smaller, more expressive, and more robust foundation for web applications and APIs than express.js. 
+Koa aims to be a smaller, more expressive, and more robust foundation for web applications and APIs than express.js.
 
-Through leveraging generators Koa allows you to ditch callbacks and greatly increase error-handling. 
+Through leveraging generators Koa allows you to ditch callbacks and greatly increase error-handling.
 
-Koa does not bundle any middleware within core, and provides an elegant suite of methods that make writing servers fast and enjoyable.
+Koa does not bundle any middleware within the core and provides an elegant suite of methods that make writing servers fast and enjoyable.
+
+## Example
+
+```js
+const Koa = require('koa'); 
+const app = new Koa(); 
+app.use(async ctx => { 
+  ctx.body = 'Hello World'; 
+}); 
+app.listen(3000);
+```
+
+ 
 
 ## Example
 
@@ -297,9 +338,9 @@ app.listen(3000);
 
 # 1. Express
 
-[Express.js](https://expressjs.com) is definitively the king of node.js frameworks, will reach the incredible mark of 2 millon daily downloads by the end of 2019.
+[Express.js](https://expressjs.com) is definitively the king of node.js frameworks, will reach the incredible mark of 2 million daily downloads by the end of 2019.
 
-Despite being such an old framework, Express.js is actively mantain by the community, and is used by big companies such as User, Mulesoft, IBM, and so on.
+Despite being such an old framework, Express.js is actively maintained by the community and is used by big companies such as User, Mulesoft, IBM, and so on.
 
 ## Example
 
@@ -317,24 +358,23 @@ const port = 3000
 app.get('/', (req, res) => res.send('Hello World!'))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-
 ```
 
-And that's all you need to start using it!
+And that’s all you need to start using it!
 
-<cta-container type="hire" copy="node" ></cta-container>
+<cta-container type="hire" copy="node"></cta-container>
 
 <a name="conclusion"> </a>
 
+
 # Conclusion
 
-There are tons of node.js frameworks out there, the best you can do is go and try them all 'til you find the ones that suits your needs.
+There are tons of node.js frameworks out there, the best you can do is go and try them all ‘til you find the ones that suit your needs.
 
-Personally, I prefer Express.js because through this 6 years of node.js development, I build a strong knoleadge on good architectural patterns, all based on trial and error.
+Personally, I prefer Express.js because, through these 6 years of node.js development, I build a strong knowledge of good architectural patterns, all based on trial and error.
 
-But that doesn't mean you have to do the same, here is [all the secrets of a good express.js framework project.](/ideal-nodejs-project-structure/)
+But that doesn’t mean you have to do the same, here is [all the secrets of a good express.js framework project.](/ideal-nodejs-project-structure/)
 
 ## Now tell me, what is your favorite node.js framework?
 
-Send me a tweet to @santypk4, come on! I want to know what the people are using, I don't want to fall behind! 
-
+Send me a tweet to @santypk4, come on! I want to know what the people are using, I don’t want to fall behind!
